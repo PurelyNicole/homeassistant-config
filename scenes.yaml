@@ -1,0 +1,70 @@
+- id: '1639946893898'
+  name: Dusk
+  entities:
+    switch.bedroom_humidifier:
+      icon: mdi:cup-water
+      friendly_name: Bedroom Humidifier
+      state: 'on'
+  icon: mdi:weather-sunset
+- id: '1639947996691'
+  name: Goodnight
+  entities:
+    input_select.home_mode:
+      state: Sleep
+    group.basement_lights:
+      state: 'off'
+    group.downstairs_lights:
+      state: 'off'
+    lock.cooper_se_lock:
+      state: locked
+    group.upstairs_lights:
+      state: 'off'
+    group.main_floor_lights:
+      state: 'off'
+    switch.bedroom_humidifier:
+      state: 'on'
+  icon: mdi:sleep
+- id: '1640004945420'
+  name: Good Morning
+  entities:
+    input_select.home_mode:
+      state: Home
+    switch.bedroom_humidifier:
+      state: 'off'
+  icon: mdi:weather-sunny
+- id: '1640110444762'
+  name: Goodbye
+  entities:
+    group.downstairs_lights:
+      state: 'off'
+    group.basement_lights:
+      state: 'off'
+    group.main_floor_lights:
+      state: 'off'
+    group.upstairs_lights:
+      state: 'off'
+  icon: mdi:run
+- id: '1640110582898'
+  name: Watch TV
+  entities:
+    light.family_room_track_light_front:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 64
+      friendly_name: Family Room Track Light - Front
+      supported_features: 32
+      state: 'on'
+    switch.globe_lamp:
+      icon: mdi:lightbulb
+      friendly_name: Globe Lamp
+      state: 'off'
+    light.family_room_track_light_back:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
+      brightness: 64
+      friendly_name: Family Room Track Light - Back
+      supported_features: 0
+      state: 'on'
+  icon: mdi:television-classic

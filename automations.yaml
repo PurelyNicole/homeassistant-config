@@ -1,0 +1,366 @@
+- id: '1639680361547'
+  alias: Home Mode - Set away when everyone leaves
+  description: When everyone leaves And 5 minutes have passed Then the Home Mode switches
+    to Away
+  trigger:
+  - platform: state
+    entity_id: group.people
+    from: home
+    to: not_home
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  condition: []
+  action:
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.home_mode
+    data:
+      option: Away
+  - scene: scene.goodbye
+  mode: single
+- id: '1639681295254'
+  alias: Home Mode - Set to home when someone arrives
+  description: When someone arrives home And mode is not sleep Then set Home_Mode
+    to Home
+  trigger:
+  - platform: state
+    entity_id: group.people
+    to: home
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.home_mode
+      state: Sleep
+  action:
+  - service: input_select.select_option
+    data:
+      option: Home
+    target:
+      entity_id: input_select.home_mode
+  mode: single
+- id: '1639682032795'
+  alias: Scene - Goodnight at 2:00am
+  description: When the time is 2:00am And Someone is home Then call the goodnight
+    scene
+  trigger:
+  - platform: time
+    at: 02:00
+  condition:
+  - condition: state
+    entity_id: group.people
+    state: home
+  action:
+  - scene: scene.goodnight
+  mode: single
+- id: '1639704472426'
+  alias: Ecobee - Call thermostat script
+  description: When the Time of Day or Home Mode changes Then Set the Thermostat
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.day
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.dusk
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.morning
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.night
+    to: 'on'
+  - platform: state
+    entity_id: input_select.home_mode
+  condition:
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'off'
+  action:
+  - service: python_script.set_ecobee
+    data:
+      weather: weather.ecobee_thermostat
+      thermostat: climate.ecobee_thermostat
+  mode: single
+- id: '1640090788072'
+  alias: Lighting - Turn lights off at sunrise
+  description: When the sun rises Then turn off Outdoor Lights And Turn off the nightlight
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: '0'
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 270c91f7718161af4127d8eb00d5cf32
+    entity_id: light.nightlight
+    domain: light
+  - service: light.turn_off
+    target:
+      area_id: outdoors
+  mode: single
+- id: '1640110823028'
+  alias: Scene - Trigger watch TV when Remote goes from PowerOff after sunset
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: select.family_room_remote_activities
+    from: PowerOff
+    to: Play PS3
+  - platform: state
+    entity_id: select.family_room_remote_activities
+    from: PowerOff
+    to: Play Xbox
+  - platform: state
+    entity_id: select.family_room_remote_activities
+    from: PowerOff
+    to: Watch Roku
+  - platform: state
+    entity_id: select.family_room_remote_activities
+    from: PowerOff
+    to: Watch TV
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.dusk
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.night
+      state: 'on'
+  action:
+  - scene: scene.watch_tv
+  mode: single
+- id: '1640264600563'
+  alias: Lighting - Turn lights on at sunset
+  description: When the sun rises Then turn off Outdoor Lights And Turn off the nightlight
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: '0'
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      area_id: outdoors
+  - type: turn_on
+    device_id: 270c91f7718161af4127d8eb00d5cf32
+    entity_id: light.nightlight
+    domain: light
+  mode: single
+- id: '1640269776987'
+  alias: Notification - Notify if water detected in basement
+  description: ''
+  trigger:
+  - type: turned_on
+    platform: device
+    device_id: f1988841f3fd56b85b26e5b1cfcfccab
+    entity_id: binary_sensor.hot_water_heater_flood_sensor_any
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.mobile_app_erics_iphone
+    data:
+      title: Basement Flood Sensor
+      message: Water detected in basement.
+  - service: notify.mobile_app_nicole_iphone
+    data:
+      title: Basement Flood Sensor
+      message: Water detected in basement.
+  mode: single
+- id: '1640709513122'
+  alias: Nicole Office - Turn on floor lamp with wall switch
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: 3b585a2a41b618f9cb095cd55d94ce74
+    entity_id: switch.nicole_office_lights
+    domain: switch
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 84233bfe9142301d0caf5e3ba80fef60
+    entity_id: switch.nicole_office_floor_lamp
+    domain: switch
+  mode: single
+- id: '1640709546537'
+  alias: Nicole Office - Turn off floor lamp with wall switch
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: 3b585a2a41b618f9cb095cd55d94ce74
+    entity_id: switch.nicole_office_lights
+    domain: switch
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 84233bfe9142301d0caf5e3ba80fef60
+    entity_id: switch.nicole_office_floor_lamp
+    domain: switch
+  mode: single
+- id: '1640787196947'
+  alias: Basement Lights - Turn off all lights with switch
+  description: When the Basement Lights Switch is set to off Then turn off all lights
+    in basement
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: d0bbca2d3726b6419e9cc70b7a95722c
+    entity_id: switch.basement_lights
+    domain: switch
+  condition: []
+  action:
+  - service: switch.turn_off
+    target:
+      area_id: basement
+  - type: turn_off
+    device_id: f72754504a3fc7dd7707dcc954348eb5
+    entity_id: light.basement_workbench_light
+    domain: light
+  mode: single
+- id: shellies_announce
+  alias: HACS - Shellies Announce
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: time_pattern
+    hours: /1
+  action:
+  - service: mqtt.publish
+    data:
+      topic: shellies/command
+      payload: announce
+- id: shellies_discovery
+  alias: HACS - Shellies Discovery
+  trigger:
+  - platform: mqtt
+    topic: shellies/announce
+  action:
+  - service: python_script.shellies_discovery
+    data:
+      id: '{{ trigger.payload_json.id }}'
+      mac: '{{ trigger.payload_json.mac }}'
+      fw_ver: '{{ trigger.payload_json.fw_ver }}'
+      model: '{{ trigger.payload_json.model }}'
+      mode: '{{ trigger.payload_json.mode | default }}'
+      host: '{{ trigger.payload_json.ip }}'
+  mode: queued
+  max: 999
+- id: '1640874149023'
+  alias: Nicole Office - Turn off lights when no one in office
+  description: When no motion is detected in the Office And 5 minutes have passed
+    Then turn off the lights
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: 7ba36598dccd4e9310bf7c044decd042
+    entity_id: binary_sensor.nicole_office_sensor_home_security_motion_detection
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 3b585a2a41b618f9cb095cd55d94ce74
+    entity_id: switch.nicole_office_lights
+    domain: switch
+  mode: single
+- id: '1641089648642'
+  alias: Basement Lights - Turn on all lights with switch
+  description: When the Basement Lights Switch is set to on Then turn on all lights
+    in basement
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: c250ce4f0b12576b46fa9e0391822a38
+    entity_id: switch.basement_lights
+    domain: switch
+  condition: []
+  action:
+  - service: switch.turn_on
+    target:
+      area_id: basement
+  mode: single
+- id: '1641667112268'
+  alias: Basement Lights - Turn on basement lights with motion
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: d1a883d2e796fc27213aadc0aad04a1b
+    entity_id: binary_sensor.basement_motion_sensor_0e38cd22_ias_zone
+    domain: binary_sensor
+  condition:
+  - condition: template
+    value_template: '{{ (states.switch.basement_lights.last_changed) < (now() - timedelta(
+      minutes = 1 ))}}'
+  action:
+  - type: turn_on
+    device_id: c250ce4f0b12576b46fa9e0391822a38
+    entity_id: switch.basement_lights
+    domain: switch
+  mode: single
+- id: '1642185258937'
+  alias: Nicole Office - Turn on filter workday mornings
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:00
+  condition:
+  - condition: state
+    entity_id: binary_sensor.nicole_workday_sensor
+    state: 'on'
+  action:
+  - service: switch.turn_on
+    target:
+      device_id: a16dc6ccbdc67705acdb84885360d1f8
+  mode: single
+- id: '1642193400953'
+  alias: Nicole Office - Turn off filter after work
+  description: ''
+  trigger:
+  - platform: time
+    at: '16:00'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.nicole_workday_sensor
+    state: 'on'
+  action:
+  - service: switch.turn_off
+    target:
+      device_id: a16dc6ccbdc67705acdb84885360d1f8
+  mode: single
+- id: '1642209630036'
+  alias: Basement Lights - Turn on workbench light with motion
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 63234ed61d6290fc93bf5153115ba8ef
+    entity_id: binary_sensor.basement_workbench_motion_sensor_ias_zone
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_on
+    device_id: f72754504a3fc7dd7707dcc954348eb5
+    entity_id: light.basement_workbench_light
+    domain: light
+  mode: single
+- id: '1642519993262'
+  alias: System - Create Snapshot Weekly
+  description: ''
+  trigger:
+  - platform: time
+    at: 03:00
+  condition:
+  - condition: time
+    weekday:
+    - sun
+  action:
+  - service: hassio.backup_full
+  mode: single

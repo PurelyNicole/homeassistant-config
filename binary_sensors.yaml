@@ -1,0 +1,33 @@
+# Time of Day
+- platform: tod
+  name: Morning
+  before: sunrise
+  after: 06:00:00
+  before_offset: '2:00:00'
+- platform: tod
+  name: Day
+  after: sunrise
+  after_offset: '2:00:00'
+  before: sunset
+  before_offset: '-1:00:00'
+- platform: tod
+  name: Dusk
+  after: sunset
+  after_offset: '-1:00:00'
+  before: sunset
+- platform: tod
+  name: Night
+  after: sunset
+  before: sunrise
+# Workday
+- platform: workday
+  name: Nicole Workday Sensor
+  country: US
+  province: IN
+  remove_holidays:
+    - 'Good Friday'
+    - 'Primary Election Day'
+    - 'Juneteenth National Independence Day'
+    - 'Columbus Day'
+    - 'Election Day'
+    - 'Veterans Day'

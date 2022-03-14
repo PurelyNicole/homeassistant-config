@@ -1,0 +1,10 @@
+# Ignore
+*
+
+# Allow
+!.gitignore
+!input_boolean
+!input_datetime
+!input_select
+!input_text
+!lovelace

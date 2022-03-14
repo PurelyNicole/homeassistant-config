@@ -1,0 +1,69 @@
+people:
+  name: People
+  entities:
+    - person.eric
+    - person.nicole
+  icon: mdi:account-group
+
+###################
+# Lighting Groups #
+###################
+outdoor_lights:
+  name: Outdoor Lights
+  entities:
+    - light.family_room_deck_light_back
+    - light.family_room_deck_light_side
+    - light.outdoor_garage_lights
+  icon: mdi:lightbulb-group
+# Level Lights
+upstairs_lights:
+  name: Upstairs Lights
+  entities:
+    - group.nicole_office_lights
+    - group.master_bedroom_lights
+  icon: mdi:lightbulb-group
+main_floor_lights:
+  name: Main Floor Lights
+  entities:
+    - light.plant_light
+    - group.garage_lights
+    - light.dining_room_dimmer
+  icon: mdi:lightbulb-group
+downstairs_lights:
+  name: Downstairs Lights
+  entities:
+    - group.family_room_lights
+    - switch.globe_lamp
+  icon: mdi:lightbulb-group
+basement_lights:
+  name: Basement Lights
+  entities:
+    - switch.gym_lights
+    - switch.basement_lights
+    - light.basement_workbench_light
+  icon: mdi:lightbulb-group
+# Room Lights
+family_room_lights:
+  name: Family Room Lights
+  entities:
+    - light.family_room_track_light_front
+    - light.family_room_track_light_back
+  icon: mdi:lightbulb-group
+nicole_office_lights:
+  name: Nicole Office Lights
+  entities:
+    - switch.nicole_office_lights
+    - switch.nicole_office_floor_lamp
+  icon: mdi:lightbulb-group
+garage_lights:
+  name: Garage Lights
+  entities:
+    - switch.garage_lights_north
+    - switch.garage_lights_south
+  icon: mdi:lightbulb-group
+master_bedroom_lights:
+  name: Master Bedroom Lights
+  entities:
+    - light.master_bath_light
+    - switch.master_bath_fan
+  icon: mdi:lightbulb-group

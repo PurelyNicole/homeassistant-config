@@ -1,0 +1,461 @@
+{
+    "version": 1,
+    "minor_version": 1,
+    "key": "lovelace",
+    "data": {
+        "config": {
+            "title": "Possum Den",
+            "views": [
+                {
+                    "path": "default_view",
+                    "title": "Home",
+                    "icon": "mdi:home",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "person.eric",
+                                "person.nicole"
+                            ],
+                            "title": "People",
+                            "show_header_toggle": true
+                        },
+                        {
+                            "type": "weather-forecast",
+                            "entity": "weather.ecobee_thermostat"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "scene.watch_tv"
+                                },
+                                {
+                                    "entity": "scene.goodnight"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "group.outdoor_lights"
+                                },
+                                {
+                                    "entity": "group.upstairs_lights"
+                                },
+                                {
+                                    "entity": "group.main_floor_lights"
+                                },
+                                {
+                                    "entity": "group.downstairs_lights"
+                                },
+                                {
+                                    "entity": "group.basement_lights"
+                                }
+                            ],
+                            "title": "Lights",
+                            "state_color": true
+                        }
+                    ]
+                },
+                {
+                    "title": "Lights",
+                    "path": "lights",
+                    "icon": "mdi:lightbulb-outline",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "light.family_room_deck_light_back"
+                                },
+                                {
+                                    "entity": "light.family_room_deck_light_side"
+                                },
+                                {
+                                    "entity": "light.outdoor_garage_lights"
+                                }
+                            ],
+                            "title": "Outdoor Lights",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "switch.globe_lamp"
+                                },
+                                {
+                                    "entity": "light.family_room_track_light_front"
+                                },
+                                {
+                                    "entity": "light.family_room_track_light_back"
+                                }
+                            ],
+                            "title": "Downstairs  Lights",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "light.plant_light"
+                                },
+                                {
+                                    "entity": "light.dining_room_dimmer"
+                                }
+                            ],
+                            "title": "Main Floor Lights",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "switch.gym_lights"
+                                },
+                                {
+                                    "entity": "switch.basement_lights"
+                                },
+                                {
+                                    "entity": "light.basement_workbench_light"
+                                }
+                            ],
+                            "state_color": true,
+                            "title": "Basement Lights"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "switch.nicole_office_lights"
+                                },
+                                {
+                                    "entity": "switch.nicole_office_floor_lamp"
+                                }
+                            ],
+                            "title": "Nicole Office Lights",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "switch.garage_lights_north"
+                                },
+                                {
+                                    "entity": "switch.garage_lights_south"
+                                }
+                            ],
+                            "title": "Garage Lights",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "switch.master_bath_fan",
+                                "light.master_bath_light"
+                            ],
+                            "title": "Master Bedroom"
+                        }
+                    ]
+                },
+                {
+                    "title": "Climate",
+                    "path": "climate",
+                    "icon": "mdi:thermometer",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "thermostat",
+                            "entity": "climate.ecobee_thermostat"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.ecobee_thermostat_temperature",
+                                    "name": "Living Room Temperature"
+                                },
+                                {
+                                    "entity": "sensor.nicole_office_sensor_air_temperature"
+                                },
+                                {
+                                    "entity": "sensor.eric_office_temperature"
+                                },
+                                {
+                                    "entity": "sensor.bedroom_ecobee_sensor_temperature"
+                                },
+                                {
+                                    "entity": "sensor.hot_water_heater_flood_sensor_air_temperature"
+                                },
+                                {
+                                    "entity": "sensor.ambient_temperature",
+                                    "name": "Garage Temperature"
+                                }
+                            ],
+                            "title": "Temperature"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.ecobee_thermostat_humidity",
+                                    "name": "Living Room Humidity"
+                                },
+                                {
+                                    "entity": "sensor.compensation_sensor_nicole_office_sensor_humidity"
+                                },
+                                {
+                                    "entity": "sensor.eric_office_humidity"
+                                }
+                            ],
+                            "title": "Humidity"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "switch.bedroom_humidifier"
+                                },
+                                {
+                                    "entity": "switch.nicole_office_filter"
+                                }
+                            ],
+                            "title": "Humidifiers"
+                        }
+                    ]
+                },
+                {
+                    "title": "Media",
+                    "path": "media",
+                    "icon": "mdi:music",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "media-control",
+                            "entity": "media_player.workshopaudio"
+                        },
+                        {
+                            "type": "media-control",
+                            "entity": "media_player.living_room_musiccast"
+                        },
+                        {
+                            "type": "media-control",
+                            "entity": "media_player.nicole_office_music"
+                        }
+                    ]
+                },
+                {
+                    "title": "Vehicles",
+                    "path": "vehicles",
+                    "icon": "mdi:car",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "device_tracker.cooper_se"
+                                },
+                                {
+                                    "entity": "sensor.cooper_se_charging_status"
+                                },
+                                {
+                                    "entity": "sensor.cooper_se_charging_time_remaining"
+                                },
+                                {
+                                    "entity": "binary_sensor.cooper_se_check_control_messages"
+                                },
+                                {
+                                    "entity": "binary_sensor.cooper_se_condition_based_services"
+                                },
+                                {
+                                    "entity": "binary_sensor.cooper_se_connection_status"
+                                },
+                                {
+                                    "entity": "binary_sensor.cooper_se_lids"
+                                },
+                                {
+                                    "entity": "lock.cooper_se_lock"
+                                },
+                                {
+                                    "entity": "sensor.cooper_se_mileage"
+                                },
+                                {
+                                    "entity": "sensor.cooper_se_remaining_range_electric"
+                                },
+                                {
+                                    "entity": "binary_sensor.cooper_se_windows"
+                                }
+                            ],
+                            "title": "MINI",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.charging_status"
+                                },
+                                {
+                                    "entity": "sensor.charge_time_elapsed"
+                                },
+                                {
+                                    "entity": "sensor.ambient_temperature"
+                                },
+                                {
+                                    "entity": "sensor.total_usage"
+                                },
+                                {
+                                    "entity": "sensor.usage_this_session"
+                                }
+                            ],
+                            "title": "OpenEVSE",
+                            "state_color": true
+                        }
+                    ]
+                },
+                {
+                    "title": "Chores",
+                    "path": "chores",
+                    "icon": "mdi:robot-vacuum",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:grocy-chores-card",
+                            "entity": "sensor.grocy_chores",
+                            "title": "Chorin'",
+                            "show_quantity": 7,
+                            "show_days": 3,
+                            "show_assigned": false,
+                            "show_last_tracked": true,
+                            "show_last_tracked_by": false,
+                            "show_track_button": true
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "vacuum.roomba"
+                                        },
+                                        {
+                                            "entity": "sensor.roomba_battery_level"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.roomba_bin_full"
+                                        }
+                                    ],
+                                    "state_color": true,
+                                    "title": "Roomba"
+                                },
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "vacuum.dum_dum"
+                                        },
+                                        {
+                                            "entity": "sensor.dum_dum_battery_level"
+                                        }
+                                    ],
+                                    "title": "Dum-Dum"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Settings",
+                    "path": "settings",
+                    "icon": "mdi:cog",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.updater"
+                                }
+                            ],
+                            "title": "Updates"
+                        },
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        "input_select.home_mode"
+                                    ],
+                                    "title": "Home Status"
+                                },
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "binary_sensor.morning"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.day"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.dusk"
+                                        },
+                                        {
+                                            "entity": "binary_sensor.night"
+                                        }
+                                    ],
+                                    "title": "Time Of Day"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "input_boolean.vacation_mode"
+                            ],
+                            "title": "System Toggles"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.samsung_m332x_382x_402x_series_toner_black"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "history-graph",
+                            "entities": [
+                                {
+                                    "entity": "sensor.speedtest_download"
+                                }
+                            ],
+                            "hours_to_show": 24,
+                            "refresh_interval": 0,
+                            "title": "Download Speed"
+                        },
+                        {
+                            "type": "history-graph",
+                            "entities": [
+                                {
+                                    "entity": "sensor.energy_bridge"
+                                }
+                            ],
+                            "hours_to_show": 24,
+                            "refresh_interval": 0,
+                            "title": "Energy Usage"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,9 @@
+nicole_office_humidity_corrected:
+  source: sensor.nicole_office_sensor_humidity
+  data_points:
+    - [49.89, 42]
+    - [50.67, 43]
+    - [51.09, 43]
+    - [52.53, 44]
+  unique_id: 7d48g08z
+  unit_of_measurement: "%"

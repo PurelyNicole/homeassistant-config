@@ -1,0 +1,30 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+python_script:
+
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: !secret influx_db
+  max_retries: 3
+  default_measurement: state
+
+
+automation: !include automations.yaml
+binary_sensor: !include binary_sensors.yaml
+compensation: !include compensations.yaml
+group: !include groups.yaml
+light: !include lights.yaml
+sensor: !include sensors.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+homeassistant:
+  customize: !include customizations.yaml

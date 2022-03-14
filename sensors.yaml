@@ -1,0 +1,14 @@
+- platform: openevse
+  host: 192.168.50.8
+  monitored_variables:
+    - status
+    - charge_time
+    - ambient_temp
+    - usage_session
+    - usage_total
+- platform: mqtt
+  name: "Energy Bridge"
+  state_topic: "event/metering/summation/minute"
+  unit_of_measurement: "W"
+  value_template: "{{value_json.value}}"
+  icon: mdi:home-lightning-bolt

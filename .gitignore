@@ -1,0 +1,19 @@
+# Folders
+.cloud
+custom_components
+deps
+tts
+www
+
+# Files
+.HA_VERSION
+aircast.xml
+harmony_7158457.conf
+home-assistant.log*
+home-assistant_v2.db*
+secrets.yaml
+zigbee.db
+.omv_cookies.json
+python_scripts/shellies_discovery.py
+python_scripts/shellies_discovery_gen2.py
+themes/ios_theme/ios_theme.yaml

@@ -1,0 +1,41 @@
+- platform: mqtt
+  name: "Family Room Track Light - Back"
+  state_topic: "stat/FamilyRoom_TrackLight_Back/POWER"
+  command_topic: "cmnd/FamilyRoom_TrackLight_Back/POWER"
+  availability_topic: "tele/FamilyRoom_TrackLight_Back/LWT"
+  brightness_state_topic: "stat/FamilyRoom_TrackLight_Back/RESULT"
+  brightness_command_topic: "cmnd/FamilyRoom_TrackLight_Back/Dimmer"
+  brightness_scale: 100
+  brightness_value_template: "{{ value_json.Dimmer }}"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  retain: false
+  unique_id: 807d3a3730e8
+- platform: mqtt
+  name: "Master Bath Light"
+  state_topic: "stat/MB_Bath_Light/POWER"
+  command_topic: "cmnd/MB_Bath_Light/POWER"
+  availability_topic: "tele/MB_Bath_Light/LWT"
+  brightness_state_topic: "stat/MB_Bath_Light/RESULT"
+  brightness_command_topic: "cmnd/MB_Bath_Light/Dimmer"
+  brightness_scale: 100
+  brightness_value_template: "{{ value_json.Dimmer }}"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  retain: false
+  unique_id: master_bath_light
+- platform: mqtt
+  schema: template
+  name:  Dining Room Dimmer
+  state_topic: "shellies/shellydimmer2-D8BFC019F016/light/0/status"
+  state_template: '{% if value_json.ison %} on {% else %} off {% endif %}'
+  command_topic: "shellies/shellydimmer2-D8BFC019F016/light/0/set"
+  command_on_template: '{"turn": "on"{% if brightness is defined %}, "brightness": {{(brightness | float * 0.3882 + 1) | round(0)}}{% endif %}}'
+  command_off_template: '{"turn": "off"}'
+  brightness_template: '{{ (value_json.brightness | float * 2.55) | round(0) }}'
