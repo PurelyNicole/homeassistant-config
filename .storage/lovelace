@@ -77,6 +77,12 @@
                                 },
                                 {
                                     "entity": "light.outdoor_garage_lights"
+                                },
+                                {
+                                    "entity": "light.garage_flood_lights_west"
+                                },
+                                {
+                                    "entity": "light.service_door_light"
                                 }
                             ],
                             "title": "Outdoor Lights",
@@ -159,7 +165,8 @@
                                 "switch.master_bath_fan",
                                 "light.master_bath_light"
                             ],
-                            "title": "Master Bedroom"
+                            "title": "Master Bedroom",
+                            "state_color": true
                         }
                     ]
                 },
@@ -207,7 +214,7 @@
                                     "name": "Living Room Humidity"
                                 },
                                 {
-                                    "entity": "sensor.compensation_sensor_nicole_office_sensor_humidity"
+                                    "entity": "sensor.nicole_office_sensor_humidity"
                                 },
                                 {
                                     "entity": "sensor.eric_office_humidity"
@@ -237,15 +244,31 @@
                     "cards": [
                         {
                             "type": "media-control",
-                            "entity": "media_player.workshopaudio"
-                        },
-                        {
-                            "type": "media-control",
                             "entity": "media_player.living_room_musiccast"
                         },
                         {
                             "type": "media-control",
+                            "entity": "media_player.family_room_musiccast"
+                        },
+                        {
+                            "type": "media-control",
                             "entity": "media_player.nicole_office_music"
+                        },
+                        {
+                            "type": "media-control",
+                            "entity": "media_player.garage_volumio"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "remote.family_room_remote"
+                                },
+                                {
+                                    "entity": "switch.family_room_sub"
+                                }
+                            ],
+                            "state_color": true
                         }
                     ]
                 },
@@ -378,15 +401,6 @@
                     "badges": [],
                     "cards": [
                         {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "entity": "binary_sensor.updater"
-                                }
-                            ],
-                            "title": "Updates"
-                        },
-                        {
                             "type": "vertical-stack",
                             "cards": [
                                 {
@@ -417,19 +431,22 @@
                             ]
                         },
                         {
+                            "type": "history-graph",
+                            "entities": [
+                                {
+                                    "entity": "sensor.energy_bridge"
+                                }
+                            ],
+                            "hours_to_show": 24,
+                            "refresh_interval": 0,
+                            "title": "Energy Usage"
+                        },
+                        {
                             "type": "entities",
                             "entities": [
                                 "input_boolean.vacation_mode"
                             ],
                             "title": "System Toggles"
-                        },
-                        {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "entity": "sensor.samsung_m332x_382x_402x_series_toner_black"
-                                }
-                            ]
                         },
                         {
                             "type": "history-graph",
@@ -443,15 +460,12 @@
                             "title": "Download Speed"
                         },
                         {
-                            "type": "history-graph",
+                            "type": "entities",
                             "entities": [
                                 {
-                                    "entity": "sensor.energy_bridge"
+                                    "entity": "sensor.samsung_m332x_382x_402x_series_toner_black"
                                 }
-                            ],
-                            "hours_to_show": 24,
-                            "refresh_interval": 0,
-                            "title": "Energy Usage"
+                            ]
                         }
                     ]
                 }

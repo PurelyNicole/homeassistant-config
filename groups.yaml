@@ -14,6 +14,8 @@ outdoor_lights:
     - light.family_room_deck_light_back
     - light.family_room_deck_light_side
     - light.outdoor_garage_lights
+    - light.garage_flood_lights_west
+    - light.service_door_light
   icon: mdi:lightbulb-group
 # Level Lights
 upstairs_lights:
