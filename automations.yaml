@@ -402,3 +402,21 @@
         domain: switch
     default: []
   mode: single
+- id: '1648924822558'
+  alias: Notification - Smoke Detector Activated
+  description: ''
+  trigger:
+  - type: problem
+    platform: device
+    device_id: fe22124a5684619e2af2005c3afc93de
+    entity_id: binary_sensor.kitchen_smoke_alarm_smoke_alarm_smoke_alarm_test
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.mobile_app_nicole_iphone
+    data:
+      title: Smoke Detector Activated!
+      message: Smoke detector has been activiated.
+  - service: notify.mobile_app_erics_iphone
+    data: {}
+  mode: single

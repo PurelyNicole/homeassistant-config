@@ -293,7 +293,16 @@
                                 "binary_sensor.garage_kitchen_door"
                             ],
                             "title": "Doors"
-                        },
+                        }
+                    ]
+                },
+                {
+                    "theme": "Backend-selected",
+                    "title": "Alarms",
+                    "path": "alarms",
+                    "icon": "mdi:alarm-bell",
+                    "badges": [],
+                    "cards": [
                         {
                             "type": "entities",
                             "entities": [
@@ -301,7 +310,28 @@
                                 "binary_sensor.hot_water_heater_flood_sensor_general_purpose_state",
                                 "binary_sensor.hot_water_heater_flood_sensor_water_leak_state"
                             ],
-                            "title": "Water"
+                            "title": "Basement Water"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.kitchen_smoke_alarm_alarmtype"
+                                },
+                                {
+                                    "entity": "sensor.kitchen_smoke_alarm_alarmlevel"
+                                },
+                                {
+                                    "entity": "sensor.kitchen_smoke_alarm_smoke_alarm_alarm_status"
+                                },
+                                {
+                                    "entity": "binary_sensor.kitchen_smoke_alarm_smoke_alarm_smoke_alarm_test"
+                                },
+                                {
+                                    "entity": "sensor.kitchen_smoke_alarm_battery_level"
+                                }
+                            ],
+                            "title": "Kitchen Smoke Alarm"
                         }
                     ]
                 },
