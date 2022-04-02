@@ -1,45 +1,45 @@
 - id: '1639680361547'
-  alias: Home Mode - Set away when everyone leaves
-  description: When everyone leaves And 5 minutes have passed Then the Home Mode switches
-    to Away
+  alias: Home Mode - Set home mode based on presence
+  description: ''
   trigger:
   - platform: state
     entity_id: group.people
-    from: home
-    to: not_home
     for:
       hours: 0
-      minutes: 5
+      minutes: 0
       seconds: 0
   condition: []
   action:
-  - service: input_select.select_option
-    target:
-      entity_id: input_select.home_mode
-    data:
-      option: Away
-  - scene: scene.goodbye
-  mode: single
-- id: '1639681295254'
-  alias: Home Mode - Set to home when someone arrives
-  description: When someone arrives home And mode is not sleep Then set Home_Mode
-    to Home
-  trigger:
-  - platform: state
-    entity_id: group.people
-    to: home
-  condition:
-  - condition: not
-    conditions:
-    - condition: state
-      entity_id: input_select.home_mode
-      state: Sleep
-  action:
-  - service: input_select.select_option
-    data:
-      option: Home
-    target:
-      entity_id: input_select.home_mode
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: group.people
+        state: not_home
+        for:
+          hours: 0
+          minutes: 5
+          seconds: 0
+      sequence:
+      - service: scene.turn_on
+        target:
+          entity_id: scene.goodbye
+        metadata: {}
+    - conditions:
+      - condition: state
+        entity_id: group.people
+        state: home
+      - condition: not
+        conditions:
+        - condition: state
+          entity_id: input_select.home_mode
+          state: Sleep
+      sequence:
+      - service: input_select.select_option
+        data:
+          option: Home
+        target:
+          entity_id: input_select.home_mode
+    default: []
   mode: single
 - id: '1639682032795'
   alias: Scene - Goodnight at 2:00am
@@ -104,33 +104,30 @@
   alias: Scene - Trigger watch TV when Remote goes from PowerOff after sunset
   description: ''
   trigger:
-  - platform: state
-    entity_id: select.family_room_remote_activities
-    from: PowerOff
-    to: Play PS3
-  - platform: state
-    entity_id: select.family_room_remote_activities
-    from: PowerOff
-    to: Play Xbox
-  - platform: state
-    entity_id: select.family_room_remote_activities
-    from: PowerOff
-    to: Watch Roku
-  - platform: state
-    entity_id: select.family_room_remote_activities
-    from: PowerOff
-    to: Watch TV
-  condition:
-  - condition: or
-    conditions:
-    - condition: state
-      entity_id: binary_sensor.dusk
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.night
-      state: 'on'
+  - platform: device
+    type: turned_on
+    device_id: d824906b0d4aea07973580f026dc7ed9
+    entity_id: remote.family_room_remote
+    domain: remote
+  condition: []
   action:
   - scene: scene.watch_tv
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: binary_sensor.dusk
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.night
+          state: 'on'
+      sequence:
+      - service: scene.turn_on
+        target:
+          entity_id: scene.watch_tv
+        metadata: {}
+    default: []
   mode: single
 - id: '1640264600563'
   alias: Lighting - Turn lights on at sunset
@@ -202,24 +199,45 @@
     domain: switch
   mode: single
 - id: '1640787196947'
-  alias: Basement Lights - Turn off all lights with switch
-  description: When the Basement Lights Switch is set to off Then turn off all lights
-    in basement
+  alias: Basement - Control lights with single switch
+  description: When the basement light switch is toggled, change the state of the
+    other lights to match.
   trigger:
   - platform: device
-    type: turned_off
-    device_id: d0bbca2d3726b6419e9cc70b7a95722c
+    type: changed_states
+    device_id: c250ce4f0b12576b46fa9e0391822a38
     entity_id: switch.basement_lights
     domain: switch
   condition: []
   action:
-  - service: switch.turn_off
-    target:
-      area_id: basement
-  - type: turn_off
-    device_id: f72754504a3fc7dd7707dcc954348eb5
-    entity_id: light.basement_workbench_light
-    domain: light
+  - choose:
+    - conditions:
+      - condition: device
+        type: is_off
+        device_id: c250ce4f0b12576b46fa9e0391822a38
+        entity_id: switch.basement_lights
+        domain: switch
+      sequence:
+      - service: switch.turn_off
+        data: {}
+        target:
+          area_id: basement
+      - service: light.turn_off
+        data: {}
+        target:
+          area_id: basement
+    - conditions:
+      - condition: device
+        type: is_on
+        device_id: c250ce4f0b12576b46fa9e0391822a38
+        entity_id: switch.basement_lights
+        domain: switch
+      sequence:
+      - type: turn_on
+        device_id: d0bbca2d3726b6419e9cc70b7a95722c
+        entity_id: switch.gym_lights
+        domain: switch
+    default: []
   mode: single
 - id: shellies_announce
   alias: HACS - Shellies Announce
@@ -270,25 +288,9 @@
     entity_id: switch.nicole_office_lights
     domain: switch
   mode: single
-- id: '1641089648642'
-  alias: Basement Lights - Turn on all lights with switch
-  description: When the Basement Lights Switch is set to on Then turn on all lights
-    in basement
-  trigger:
-  - platform: device
-    type: turned_on
-    device_id: c250ce4f0b12576b46fa9e0391822a38
-    entity_id: switch.basement_lights
-    domain: switch
-  condition: []
-  action:
-  - service: switch.turn_on
-    target:
-      area_id: basement
-  mode: single
 - id: '1641667112268'
-  alias: Basement Lights - Turn on basement lights with motion
-  description: ''
+  alias: Basement - Turn on basement lights with motion
+  description: When motion is detected in the basement, turn on the lgihts
   trigger:
   - type: motion
     platform: device
@@ -336,8 +338,8 @@
       device_id: a16dc6ccbdc67705acdb84885360d1f8
   mode: single
 - id: '1642209630036'
-  alias: Basement Lights - Turn on workbench light with motion
-  description: ''
+  alias: Basement - Turn on workbench light with motion
+  description: When motion is detected in workbench room turn on the light
   trigger:
   - type: motion
     platform: device
@@ -363,4 +365,40 @@
     - sun
   action:
   - service: hassio.backup_full
+  mode: single
+- id: '1648747676385'
+  alias: Family Room - Control sub with remote
+  description: When the remote turns on, turn on the sub.
+  trigger:
+  - platform: device
+    type: changed_states
+    device_id: d824906b0d4aea07973580f026dc7ed9
+    entity_id: remote.family_room_remote
+    domain: remote
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: device
+        type: is_on
+        device_id: d824906b0d4aea07973580f026dc7ed9
+        entity_id: remote.family_room_remote
+        domain: remote
+      sequence:
+      - type: turn_on
+        device_id: a92e583bc2e9af0c7902a1cf6aca3a3e
+        entity_id: switch.family_room_sub
+        domain: switch
+    - conditions:
+      - condition: device
+        type: is_off
+        device_id: d824906b0d4aea07973580f026dc7ed9
+        entity_id: remote.family_room_remote
+        domain: remote
+      sequence:
+      - type: turn_off
+        device_id: a92e583bc2e9af0c7902a1cf6aca3a3e
+        entity_id: switch.family_room_sub
+        domain: switch
+    default: []
   mode: single
