@@ -16,6 +16,7 @@ outdoor_lights:
     - light.outdoor_garage_lights
     - light.garage_flood_lights_west
     - light.service_door_light
+    - light.porch_light
   icon: mdi:lightbulb-group
 # Level Lights
 upstairs_lights:

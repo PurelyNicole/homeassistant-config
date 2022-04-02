@@ -83,6 +83,9 @@
                                 },
                                 {
                                     "entity": "light.service_door_light"
+                                },
+                                {
+                                    "entity": "light.porch_light"
                                 }
                             ],
                             "title": "Outdoor Lights",
@@ -188,20 +191,22 @@
                                     "name": "Living Room Temperature"
                                 },
                                 {
+                                    "entity": "sensor.garage_sensor_air_temperature"
+                                },
+                                {
                                     "entity": "sensor.nicole_office_sensor_air_temperature"
                                 },
                                 {
-                                    "entity": "sensor.eric_office_temperature"
+                                    "entity": "sensor.master_bathroom_sensor_air_temperature"
                                 },
                                 {
                                     "entity": "sensor.bedroom_ecobee_sensor_temperature"
                                 },
                                 {
-                                    "entity": "sensor.hot_water_heater_flood_sensor_air_temperature"
+                                    "entity": "sensor.eric_office_temperature"
                                 },
                                 {
-                                    "entity": "sensor.ambient_temperature",
-                                    "name": "Garage Temperature"
+                                    "entity": "sensor.basement_sensor_air_temperature"
                                 }
                             ],
                             "title": "Temperature"
@@ -214,10 +219,19 @@
                                     "name": "Living Room Humidity"
                                 },
                                 {
+                                    "entity": "sensor.garage_sensor_humidity"
+                                },
+                                {
                                     "entity": "sensor.nicole_office_sensor_humidity"
                                 },
                                 {
+                                    "entity": "sensor.master_bathroom_sensor_humidity"
+                                },
+                                {
                                     "entity": "sensor.eric_office_humidity"
+                                },
+                                {
+                                    "entity": "sensor.basement_sensor_humidity"
                                 }
                             ],
                             "title": "Humidity"
@@ -233,6 +247,61 @@
                                 }
                             ],
                             "title": "Humidifiers"
+                        }
+                    ]
+                },
+                {
+                    "theme": "Backend-selected",
+                    "title": "Doors and Motion",
+                    "path": "doors-and-motion",
+                    "icon": "mdi:door",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.garage_sensor_home_security_motion_detection"
+                                },
+                                {
+                                    "entity": "binary_sensor.nicole_office_sensor_home_security_motion_detection"
+                                },
+                                {
+                                    "entity": "binary_sensor.bedroom_ecobee_sensor_occupancy"
+                                },
+                                {
+                                    "entity": "binary_sensor.master_bathroom_sensor_home_security_motion_detection"
+                                },
+                                {
+                                    "entity": "binary_sensor.den"
+                                },
+                                {
+                                    "entity": "binary_sensor.basement_motion_sensor_0e38cd22_ias_zone"
+                                },
+                                {
+                                    "entity": "binary_sensor.basement_workbench_motion_sensor_ias_zone"
+                                }
+                            ],
+                            "title": "Motion",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "binary_sensor.basement_outside_door",
+                                "binary_sensor.front_door",
+                                "binary_sensor.garage_kitchen_door"
+                            ],
+                            "title": "Doors"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "binary_sensor.hot_water_heater_flood_sensor_any",
+                                "binary_sensor.hot_water_heater_flood_sensor_general_purpose_state",
+                                "binary_sensor.hot_water_heater_flood_sensor_water_leak_state"
+                            ],
+                            "title": "Water"
                         }
                     ]
                 },
