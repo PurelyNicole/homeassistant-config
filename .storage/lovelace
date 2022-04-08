@@ -98,6 +98,9 @@
                                     "entity": "switch.globe_lamp"
                                 },
                                 {
+                                    "entity": "light.eric_office_light"
+                                },
+                                {
                                     "entity": "light.family_room_track_light_front"
                                 },
                                 {
@@ -165,8 +168,15 @@
                         {
                             "type": "entities",
                             "entities": [
-                                "switch.master_bath_fan",
-                                "light.master_bath_light"
+                                {
+                                    "entity": "switch.master_bath_fan"
+                                },
+                                {
+                                    "entity": "light.master_bath_light"
+                                },
+                                {
+                                    "entity": "light.nicole_nightstand"
+                                }
                             ],
                             "title": "Master Bedroom",
                             "state_color": true
@@ -207,6 +217,9 @@
                                 },
                                 {
                                     "entity": "sensor.basement_sensor_air_temperature"
+                                },
+                                {
+                                    "entity": "sensor.workshop_sensor_air_temperature"
                                 }
                             ],
                             "title": "Temperature"
@@ -232,6 +245,9 @@
                                 },
                                 {
                                     "entity": "sensor.basement_sensor_humidity"
+                                },
+                                {
+                                    "entity": "sensor.workshop_sensor_humidity"
                                 }
                             ],
                             "title": "Humidity"
@@ -292,7 +308,8 @@
                                 "binary_sensor.front_door",
                                 "binary_sensor.garage_kitchen_door"
                             ],
-                            "title": "Doors"
+                            "title": "Doors",
+                            "state_color": true
                         }
                     ]
                 },
@@ -310,7 +327,8 @@
                                 "binary_sensor.hot_water_heater_flood_sensor_general_purpose_state",
                                 "binary_sensor.hot_water_heater_flood_sensor_water_leak_state"
                             ],
-                            "title": "Basement Water"
+                            "title": "Basement Water",
+                            "state_color": true
                         },
                         {
                             "type": "entities",
@@ -331,7 +349,8 @@
                                     "entity": "sensor.kitchen_smoke_alarm_battery_level"
                                 }
                             ],
-                            "title": "Kitchen Smoke Alarm"
+                            "title": "Kitchen Smoke Alarm",
+                            "state_color": true
                         }
                     ]
                 },
@@ -565,6 +584,21 @@
                                     "entity": "sensor.samsung_m332x_382x_402x_series_toner_black"
                                 }
                             ]
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.hot_water_heater_flood_sensor_battery_level"
+                                },
+                                {
+                                    "entity": "sensor.kitchen_smoke_alarm_battery_level"
+                                },
+                                {
+                                    "entity": "sensor.master_bathroom_sensor_battery_level"
+                                }
+                            ],
+                            "title": "Z-Wave Battery Status"
                         }
                     ]
                 }

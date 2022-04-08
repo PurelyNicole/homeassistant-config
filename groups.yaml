@@ -37,6 +37,7 @@ downstairs_lights:
   entities:
     - group.family_room_lights
     - switch.globe_lamp
+    - light.eric_office_light
   icon: mdi:lightbulb-group
 basement_lights:
   name: Basement Lights
@@ -68,5 +69,6 @@ master_bedroom_lights:
   name: Master Bedroom Lights
   entities:
     - light.master_bath_light
+    - light.nicole_nightstand
     - switch.master_bath_fan
   icon: mdi:lightbulb-group
