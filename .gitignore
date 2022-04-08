@@ -2,6 +2,7 @@
 .cloud
 custom_components
 deps
+node-red
 tts
 www
 

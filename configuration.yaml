@@ -19,7 +19,6 @@ influxdb:
 
 automation: !include automations.yaml
 binary_sensor: !include binary_sensors.yaml
-compensation: !include compensations.yaml
 group: !include groups.yaml
 light: !include lights.yaml
 sensor: !include sensors.yaml
