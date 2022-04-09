@@ -1,33 +1,43 @@
 - id: '1639680361547'
-  alias: Home Mode - Set home mode based on presence
-  description: ''
+  alias: Home Mode - Set away when everyone leaves
+  description: When everyone leaves And 5 minutes have passed Then the Home Mode switches
+    to Away
   trigger:
   - platform: state
     entity_id: group.people
+    from: home
+    to: not_home
     for:
       hours: 0
-      minutes: 0
+      minutes: 5
       seconds: 0
+  condition: []
+  action:
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.home_mode
+    data:
+      option: Away
+  - scene: scene.goodbye
+  mode: single
+- id: '1639681295254'
+  alias: Welcome Home
+  description: 'When someone arrives home: If state is not Sleep, set state to home.
+    If it''s after sunset, turn on dining room light and globe lamp.'
+  trigger:
+  - platform: state
+    entity_id: group.people
+    to: home
+  - platform: state
+    entity_id: person.eric
+    to: home
+  - platform: state
+    entity_id: person.nicole
+    to: home
   condition: []
   action:
   - choose:
     - conditions:
-      - condition: state
-        entity_id: group.people
-        state: not_home
-        for:
-          hours: 0
-          minutes: 5
-          seconds: 0
-      sequence:
-      - service: scene.turn_on
-        target:
-          entity_id: scene.goodbye
-        metadata: {}
-    - conditions:
-      - condition: state
-        entity_id: group.people
-        state: home
       - condition: not
         conditions:
         - condition: state
@@ -39,6 +49,34 @@
           option: Home
         target:
           entity_id: input_select.home_mode
+    - conditions:
+      - condition: sun
+        after: sunset
+        before: sunrise
+      sequence:
+      - type: turn_on
+        device_id: 96935feeb1e56a473fbcb4b4b4fbfd27
+        entity_id: switch.globe_lamp
+        domain: switch
+      - service: light.turn_on
+        data: {}
+        target:
+          entity_id: light.dining_room_dimmer
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: person.eric
+          state: home
+        - condition: time
+          before: 06:00:00
+          after: 04:00:00
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 20
+        target:
+          entity_id: light.eric_office_light
     default: []
   mode: single
 - id: '1639682032795'
@@ -109,25 +147,11 @@
     device_id: d824906b0d4aea07973580f026dc7ed9
     entity_id: remote.family_room_remote
     domain: remote
-  condition: []
+  condition:
+  - condition: sun
+    after: sunset
   action:
   - scene: scene.watch_tv
-  - choose:
-    - conditions:
-      - condition: or
-        conditions:
-        - condition: state
-          entity_id: binary_sensor.dusk
-          state: 'on'
-        - condition: state
-          entity_id: binary_sensor.night
-          state: 'on'
-      sequence:
-      - service: scene.turn_on
-        target:
-          entity_id: scene.watch_tv
-        metadata: {}
-    default: []
   mode: single
 - id: '1640264600563'
   alias: Lighting - Turn lights on at sunset
@@ -411,6 +435,36 @@
     device_id: fe22124a5684619e2af2005c3afc93de
     entity_id: binary_sensor.kitchen_smoke_alarm_smoke_alarm_smoke_alarm_test
     domain: binary_sensor
+  - type: co
+    platform: device
+    device_id: 5dd20b9615b858ea31f5f02431fde004
+    entity_id: binary_sensor.basement_smoke_detector_co_alarm_carbon_monoxide_detected
+    domain: binary_sensor
+  - type: smoke
+    platform: device
+    device_id: 5dd20b9615b858ea31f5f02431fde004
+    entity_id: binary_sensor.basement_smoke_detector_smoke_alarm_smoke_detected
+    domain: binary_sensor
+  - type: co
+    platform: device
+    device_id: ac353f226d5faf78efe8bd287741ea47
+    entity_id: binary_sensor.downstairs_smoke_detector_co_alarm_carbon_monoxide_detected
+    domain: binary_sensor
+  - type: smoke
+    platform: device
+    device_id: ac353f226d5faf78efe8bd287741ea47
+    entity_id: binary_sensor.downstairs_smoke_detector_smoke_alarm_smoke_detected
+    domain: binary_sensor
+  - type: co
+    platform: device
+    device_id: 5dc7a5753d33064cf1c660f0097e0be2
+    entity_id: binary_sensor.upstairs_smoke_detector_co_alarm_carbon_monoxide_detected
+    domain: binary_sensor
+  - type: smoke
+    platform: device
+    device_id: 5dc7a5753d33064cf1c660f0097e0be2
+    entity_id: binary_sensor.upstairs_smoke_detector_smoke_alarm_smoke_detected
+    domain: binary_sensor
   condition: []
   action:
   - service: notify.mobile_app_nicole_iphone
@@ -418,5 +472,16 @@
       title: Smoke Detector Activated!
       message: Smoke detector has been activiated.
   - service: notify.mobile_app_erics_iphone
-    data: {}
+    data:
+      message: Smoke detector has been activiated.
+      title: Smoke Detector Activated!
   mode: single
+- id: '1649354388135'
+  alias: Master Bathroom - Humidity Management
+  description: ''
+  use_blueprint:
+    path: dondochaka/turn-a-fan-on-and-off-based-on-the-difference-between-a-humidity-sensor-and-a-baseline.yaml
+    input:
+      humidity_sensor: sensor.master_bathroom_sensor_humidity
+      fan_switch: switch.master_bath_fan
+      rising_threshold: 1

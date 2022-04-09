@@ -95,7 +95,7 @@
                             "type": "entities",
                             "entities": [
                                 {
-                                    "entity": "switch.globe_lamp"
+                                    "entity": "light.globe_lamp"
                                 },
                                 {
                                     "entity": "light.eric_office_light"
@@ -323,16 +323,9 @@
                         {
                             "type": "entities",
                             "entities": [
-                                "binary_sensor.hot_water_heater_flood_sensor_any",
-                                "binary_sensor.hot_water_heater_flood_sensor_general_purpose_state",
-                                "binary_sensor.hot_water_heater_flood_sensor_water_leak_state"
-                            ],
-                            "title": "Basement Water",
-                            "state_color": true
-                        },
-                        {
-                            "type": "entities",
-                            "entities": [
+                                {
+                                    "entity": "sensor.kitchen_smoke_alarm_smoke_alarm_alarm_status"
+                                },
                                 {
                                     "entity": "sensor.kitchen_smoke_alarm_alarmtype"
                                 },
@@ -340,16 +333,86 @@
                                     "entity": "sensor.kitchen_smoke_alarm_alarmlevel"
                                 },
                                 {
-                                    "entity": "sensor.kitchen_smoke_alarm_smoke_alarm_alarm_status"
-                                },
-                                {
-                                    "entity": "binary_sensor.kitchen_smoke_alarm_smoke_alarm_smoke_alarm_test"
-                                },
-                                {
                                     "entity": "sensor.kitchen_smoke_alarm_battery_level"
                                 }
                             ],
                             "title": "Kitchen Smoke Alarm",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.basement_smoke_detector_co_alarm_carbon_monoxide_detected",
+                                    "name": "CO Alarm - Carbon monoxide detected"
+                                },
+                                {
+                                    "entity": "binary_sensor.basement_smoke_detector_co_alarm_replacement_required_end_of_life",
+                                    "name": "CO Alarm - Replacement required, End-of-life"
+                                },
+                                {
+                                    "entity": "binary_sensor.basement_smoke_detector_smoke_alarm_smoke_detected",
+                                    "name": "Smoke Alarm - Smoke detected"
+                                },
+                                {
+                                    "entity": "sensor.basement_smoke_detector_battery_level"
+                                }
+                            ],
+                            "title": "Basement Smoke Detector",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.downstairs_smoke_detector_co_alarm_carbon_monoxide_detected",
+                                    "name": "CO Alarm - Carbon monoxide detected"
+                                },
+                                {
+                                    "entity": "binary_sensor.downstairs_smoke_detector_co_alarm_replacement_required_end_of_life",
+                                    "name": "CO Alarm - Replacement required, End-of-life"
+                                },
+                                {
+                                    "entity": "binary_sensor.downstairs_smoke_detector_smoke_alarm_smoke_detected",
+                                    "name": "Smoke Alarm - Smoke detected"
+                                },
+                                {
+                                    "entity": "sensor.downstairs_smoke_detector_battery_level"
+                                }
+                            ],
+                            "title": "Downstairs Smoke Detector",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.upstairs_smoke_detector_co_alarm_carbon_monoxide_detected",
+                                    "name": "CO Alarm - Carbon monoxide detected"
+                                },
+                                {
+                                    "entity": "binary_sensor.upstairs_smoke_detector_co_alarm_replacement_required_end_of_life",
+                                    "name": "CO Alarm - Replacement required, End-of-life"
+                                },
+                                {
+                                    "entity": "binary_sensor.upstairs_smoke_detector_smoke_alarm_smoke_detected",
+                                    "name": "Smoke Alarm - Smoke detected"
+                                },
+                                {
+                                    "entity": "sensor.upstairs_smoke_detector_battery_level"
+                                }
+                            ],
+                            "title": "Upstairs Smoke Detector",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "binary_sensor.hot_water_heater_flood_sensor_any",
+                                "binary_sensor.hot_water_heater_flood_sensor_general_purpose_state",
+                                "binary_sensor.hot_water_heater_flood_sensor_water_leak_state"
+                            ],
+                            "title": "Basement Water",
                             "state_color": true
                         }
                     ]
@@ -596,6 +659,15 @@
                                 },
                                 {
                                     "entity": "sensor.master_bathroom_sensor_battery_level"
+                                },
+                                {
+                                    "entity": "sensor.basement_smoke_detector_battery_level"
+                                },
+                                {
+                                    "entity": "sensor.downstairs_smoke_detector_battery_level"
+                                },
+                                {
+                                    "entity": "sensor.upstairs_smoke_detector_battery_level"
                                 }
                             ],
                             "title": "Z-Wave Battery Status"
