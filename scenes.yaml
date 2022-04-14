@@ -322,13 +322,6 @@
       friendly_name: Link Audio Quality
       state: uncompressed
     input_select.home_mode:
-      options:
-      - Home
-      - Away
-      - Sleep
-      editable: true
-      icon: mdi:home
-      friendly_name: Home Mode
       state: Away
   icon: mdi:run
 - id: '1640110582898'
@@ -361,10 +354,20 @@
     light.master_bath_light:
       supported_color_modes:
       - brightness
-      color_mode: brightness
-      brightness: 51
       friendly_name: Master Bath Light
       supported_features: 0
+      color_mode: brightness
+      brightness: 51
+      state: 'on'
+    switch.nicole_nightstand:
+      friendly_name: Nicole Nightstand
+      state: 'on'
+    light.nicole_nightstand:
+      supported_color_modes:
+      - onoff
+      friendly_name: Nicole Nightstand
+      supported_features: 0
+      color_mode: onoff
       state: 'on'
   icon: mdi:alarm-check
 - id: '1648765686550'

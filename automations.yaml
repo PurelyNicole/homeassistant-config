@@ -50,9 +50,9 @@
         target:
           entity_id: input_select.home_mode
     - conditions:
-      - condition: sun
-        after: sunset
-        before: sunrise
+      - condition: state
+        entity_id: binary_sensor.night
+        state: 'on'
       sequence:
       - type: turn_on
         device_id: 96935feeb1e56a473fbcb4b4b4fbfd27
@@ -298,12 +298,12 @@
   trigger:
   - type: no_motion
     platform: device
-    device_id: 7ba36598dccd4e9310bf7c044decd042
+    device_id: aa43c0bccd576d4987586522ab5fa9d3
     entity_id: binary_sensor.nicole_office_sensor_home_security_motion_detection
     domain: binary_sensor
     for:
       hours: 0
-      minutes: 15
+      minutes: 20
       seconds: 0
   condition: []
   action:
@@ -376,19 +376,6 @@
     device_id: f72754504a3fc7dd7707dcc954348eb5
     entity_id: light.basement_workbench_light
     domain: light
-  mode: single
-- id: '1642519993262'
-  alias: System - Create Snapshot Weekly
-  description: ''
-  trigger:
-  - platform: time
-    at: 03:00
-  condition:
-  - condition: time
-    weekday:
-    - sun
-  action:
-  - service: hassio.backup_full
   mode: single
 - id: '1648747676385'
   alias: Family Room - Control sub with remote
@@ -476,12 +463,80 @@
       message: Smoke detector has been activiated.
       title: Smoke Detector Activated!
   mode: single
-- id: '1649354388135'
+- id: '1649549687291'
   alias: Master Bathroom - Humidity Management
   description: ''
-  use_blueprint:
-    path: dondochaka/turn-a-fan-on-and-off-based-on-the-difference-between-a-humidity-sensor-and-a-baseline.yaml
-    input:
-      humidity_sensor: sensor.master_bathroom_sensor_humidity
-      fan_switch: switch.master_bath_fan
-      rising_threshold: 1
+  trigger:
+  - type: humidity
+    platform: device
+    device_id: 7ba36598dccd4e9310bf7c044decd042
+    entity_id: sensor.master_bathroom_sensor_humidity
+    domain: sensor
+    below: 56
+  condition: []
+  action:
+  - type: turn_off
+    device_id: a661b2686aff252c938e2863135cd183
+    entity_id: switch.master_bath_fan
+    domain: switch
+  mode: single
+- id: '1649768577077'
+  alias: Master Bathroom - Turn off lights when no motion detected
+  description: ''
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: 7ba36598dccd4e9310bf7c044decd042
+    entity_id: binary_sensor.master_bathroom_sensor_home_security_motion_detection
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 20
+      seconds: 0
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.master_bath_light
+  mode: single
+- id: '1649768858205'
+  alias: Downstairs - Turn off den and family room lights with no motion.
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.den
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 40
+      seconds: 0
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      area_id:
+      - family_room
+      - den
+  mode: single
+- id: '1649961428008'
+  alias: Eric Office - Turn off lights when no one in office
+  description: ''
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: 964b6a45231edb68895c05eceaeb13bf
+    entity_id: binary_sensor.eric_office_motion
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 20
+      seconds: 0
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.eric_office_light
+  mode: single
