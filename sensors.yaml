@@ -7,8 +7,18 @@
     - usage_session
     - usage_total
 - platform: mqtt
+  name: "Energy Bridge - Kwh"
+  icon: mdi:home-lightning-bolt
+  state_topic: "event/metering/summation/minute"
+  unit_of_measurement: "kWh"
+  value_template: "{{ value_json.value | float / 60000 }}"
+  last_reset_value_template:  "{{ now().fromtimestamp(value_json.time / 1000).replace(tzinfo=now().tzinfo) }}"
+  device_class: energy
+  state_class: total
+- platform: mqtt
   name: "Energy Bridge"
+  icon: mdi:home-lightning-bolt
   state_topic: "event/metering/summation/minute"
   unit_of_measurement: "W"
-  value_template: "{{value_json.value}}"
-  icon: mdi:home-lightning-bolt
+  value_template: "{{ value_json.value }}"
+  state_class: total

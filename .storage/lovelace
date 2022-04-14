@@ -296,6 +296,9 @@
                                 },
                                 {
                                     "entity": "binary_sensor.basement_workbench_motion_sensor_ias_zone"
+                                },
+                                {
+                                    "entity": "binary_sensor.eric_office_motion"
                                 }
                             ],
                             "title": "Motion",
@@ -572,6 +575,86 @@
                                     "title": "Dum-Dum"
                                 }
                             ]
+                        }
+                    ]
+                },
+                {
+                    "theme": "Backend-selected",
+                    "icon": "mdi:printer-3d-nozzle",
+                    "title": "3D Printer",
+                    "path": "3d-printer",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "button.octoprint_pause_job",
+                                    "name": "Pause Job"
+                                },
+                                {
+                                    "entity": "button.octoprint_resume_job",
+                                    "name": "Resume Job"
+                                },
+                                {
+                                    "entity": "button.octoprint_stop_job",
+                                    "name": "Stop Job"
+                                }
+                            ],
+                            "title": "OctoPrint"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.octoprint_current_state",
+                                    "name": "Current State"
+                                },
+                                {
+                                    "entity": "sensor.octoprint_estimated_finish_time",
+                                    "name": "Estimated Finish Time"
+                                },
+                                {
+                                    "entity": "sensor.octoprint_job_percentage",
+                                    "name": "Job Percentage"
+                                },
+                                {
+                                    "entity": "binary_sensor.octoprint_printing",
+                                    "name": "Printing"
+                                },
+                                {
+                                    "entity": "binary_sensor.octoprint_printing_error",
+                                    "name": "Printing Error"
+                                },
+                                {
+                                    "entity": "sensor.octoprint_start_time",
+                                    "name": "Start Time"
+                                },
+                                {
+                                    "entity": "sensor.octoprint_actual_bed_temp",
+                                    "name": "Actual bed temp"
+                                },
+                                {
+                                    "entity": "sensor.octoprint_actual_tool0_temp",
+                                    "name": "Actual tool0 temp"
+                                },
+                                {
+                                    "entity": "sensor.octoprint_target_bed_temp",
+                                    "name": "Target bed temp"
+                                },
+                                {
+                                    "entity": "sensor.octoprint_target_tool0_temp",
+                                    "name": "Target tool0 temp"
+                                }
+                            ],
+                            "title": "OctoPrint"
+                        },
+                        {
+                            "show_state": false,
+                            "show_name": false,
+                            "camera_view": "live",
+                            "type": "picture-entity",
+                            "entity": "camera.3d_printer"
                         }
                     ]
                 },
