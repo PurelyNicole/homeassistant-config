@@ -691,26 +691,60 @@
                                         }
                                     ],
                                     "title": "Time Of Day"
+                                },
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        "input_boolean.vacation_mode"
+                                    ],
+                                    "title": "System Toggles"
                                 }
                             ]
                         },
                         {
-                            "type": "history-graph",
-                            "entities": [
+                            "type": "vertical-stack",
+                            "cards": [
                                 {
-                                    "entity": "sensor.energy_bridge"
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.eric_office_motion_sensor_power"
+                                        },
+                                        {
+                                            "entity": "sensor.basement_motion_sensor_0e38cd22_power"
+                                        },
+                                        {
+                                            "entity": "sensor.basement_workbench_motion_sensor_power"
+                                        }
+                                    ],
+                                    "title": "Zigbee Battery Status",
+                                    "state_color": true
+                                },
+                                {
+                                    "type": "entities",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.hot_water_heater_flood_sensor_battery_level"
+                                        },
+                                        {
+                                            "entity": "sensor.kitchen_smoke_alarm_battery_level"
+                                        },
+                                        {
+                                            "entity": "sensor.master_bathroom_sensor_battery_level"
+                                        },
+                                        {
+                                            "entity": "sensor.basement_smoke_detector_battery_level"
+                                        },
+                                        {
+                                            "entity": "sensor.downstairs_smoke_detector_battery_level"
+                                        },
+                                        {
+                                            "entity": "sensor.upstairs_smoke_detector_battery_level"
+                                        }
+                                    ],
+                                    "title": "Z-Wave Battery Status"
                                 }
-                            ],
-                            "hours_to_show": 24,
-                            "refresh_interval": 0,
-                            "title": "Energy Usage"
-                        },
-                        {
-                            "type": "entities",
-                            "entities": [
-                                "input_boolean.vacation_mode"
-                            ],
-                            "title": "System Toggles"
+                            ]
                         },
                         {
                             "type": "history-graph",
@@ -730,30 +764,6 @@
                                     "entity": "sensor.samsung_m332x_382x_402x_series_toner_black"
                                 }
                             ]
-                        },
-                        {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "entity": "sensor.hot_water_heater_flood_sensor_battery_level"
-                                },
-                                {
-                                    "entity": "sensor.kitchen_smoke_alarm_battery_level"
-                                },
-                                {
-                                    "entity": "sensor.master_bathroom_sensor_battery_level"
-                                },
-                                {
-                                    "entity": "sensor.basement_smoke_detector_battery_level"
-                                },
-                                {
-                                    "entity": "sensor.downstairs_smoke_detector_battery_level"
-                                },
-                                {
-                                    "entity": "sensor.upstairs_smoke_detector_battery_level"
-                                }
-                            ],
-                            "title": "Z-Wave Battery Status"
                         }
                     ]
                 }
