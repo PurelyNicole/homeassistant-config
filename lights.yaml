@@ -1,4 +1,4 @@
-# MJ Switches
+# MJ Dimmers - These do not work well with Tasmota integration.
 - platform: mqtt
   name: "Family Room Track Light - Back"
   state_topic: "stat/FamilyRoom_TrackLight_Back/POWER"
@@ -47,7 +47,8 @@
   payload_not_available: "Offline"
   retain: false
   unique_id: EricOfficeLight
-# Shellies
+
+  # Shellies
 - platform: mqtt
   schema: template
   name: Dining Room Dimmer
@@ -57,3 +58,4 @@
   command_on_template: '{"turn": "on"{% if brightness is defined %}, "brightness": {{(brightness | float * 0.3882 + 1) | round(0)}}{% endif %}}'
   command_off_template: '{"turn": "off"}'
   brightness_template: "{{ (value_json.brightness | float * 2.55) | round(0) }}"
+  unique_id: dining_room_dimmer
