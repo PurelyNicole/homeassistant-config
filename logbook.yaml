@@ -1,0 +1,8 @@
+exclude:
+  # domains:
+  entity_globs:
+    - binary_sensor.omv_*_service
+    - sensor.*_ip
+    - sensor.*_node_status
+  entities:
+    - sensor.zigbeebridge_last_restart_time

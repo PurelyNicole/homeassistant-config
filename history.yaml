@@ -1,0 +1,8 @@
+exclude:
+  domains:
+    - automation
+    - scene
+    - weather
+  # entity_globs:
+  entities:
+    - binary_sensor.backups_stale

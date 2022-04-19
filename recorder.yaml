@@ -1,0 +1,42 @@
+exclude:
+  domains:
+    - button
+    - camera
+    - media_player
+    - number
+    - update
+  entity_globs:
+    - binary_sensor.*_running # if addons are running
+    - sensor.erics_iphone_* # iPhone sensors
+    - sensor.nicole_iphone_* # iPhone sensors
+    - sensor.*_energy_yesterday # Can get this by looking at "today" value for previous day
+    - sensor.*_ip # Only care about current, not historical
+  entities:
+    # Automations
+    - automation.shellies_announce
+    - automation.shellies_discovery
+    # Binary Sensors
+    - binary_sensor.erics_iphone_focus
+    - binary_sensor.nicole_iphone_focus
+    - binary_sensor.omv_config_dirty
+    - binary_sensor.omv_reboot_pending
+    - binary_sensor.omv_update_available
+    - binary_sensor.roomba_bin_full
+    # Selects
+    - select.display_brightness
+    - select.equalizer_mode
+    - select.link_audio_delay
+    - select.link_audio_delay_2
+    - select.link_audio_quality
+    - select.link_audio_quality_2
+    - select.link_control
+    - select.link_control_2
+    - select.sleep_timer
+    - select.sleep_timer_2
+    - select.tone_control_mode
+    # Sensors
+    - sensor.allergy_index_tomorrow
+    - sensor.grocy_chores
+    - sensor.hacs
+    - sensor.omv_uptime
+    - sensor.zigbeebridge_ssid
