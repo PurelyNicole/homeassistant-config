@@ -268,9 +268,9 @@
                 },
                 {
                     "theme": "Backend-selected",
-                    "title": "Doors and Motion",
-                    "path": "doors-and-motion",
-                    "icon": "mdi:door",
+                    "title": "Motion",
+                    "path": "motion",
+                    "icon": "mdi:motion-sensor",
                     "badges": [],
                     "cards": [
                         {
@@ -327,6 +327,98 @@
                             "type": "entities",
                             "entities": [
                                 {
+                                    "entity": "binary_sensor.basement_smoke_detector_co_alarm_carbon_monoxide_detected",
+                                    "name": "Carbon monoxide detected"
+                                },
+                                {
+                                    "entity": "binary_sensor.basement_smoke_detector_smoke_alarm_smoke_detected",
+                                    "name": "Smoke detected"
+                                },
+                                {
+                                    "entity": "binary_sensor.basement_smoke_detector_co_alarm_replacement_required_end_of_life",
+                                    "name": "Replacement required"
+                                },
+                                {
+                                    "entity": "sensor.basement_smoke_detector_battery_level",
+                                    "name": "Battery Level"
+                                }
+                            ],
+                            "title": "Basement Smoke Detector",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.downstairs_smoke_detector_co_alarm_carbon_monoxide_detected",
+                                    "name": "Carbon monoxide detected"
+                                },
+                                {
+                                    "entity": "binary_sensor.downstairs_smoke_detector_smoke_alarm_smoke_detected",
+                                    "name": "Smoke detected"
+                                },
+                                {
+                                    "entity": "binary_sensor.downstairs_smoke_detector_co_alarm_replacement_required_end_of_life",
+                                    "name": "Replacement required"
+                                },
+                                {
+                                    "entity": "sensor.downstairs_smoke_detector_battery_level",
+                                    "name": "Battery Level"
+                                }
+                            ],
+                            "title": "Downstairs Smoke Detector",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.upstairs_smoke_detector_co_alarm_carbon_monoxide_detected",
+                                    "name": "Carbon monoxide detected"
+                                },
+                                {
+                                    "entity": "binary_sensor.upstairs_smoke_detector_smoke_alarm_smoke_detected",
+                                    "name": "Smoke detected"
+                                },
+                                {
+                                    "entity": "binary_sensor.upstairs_smoke_detector_co_alarm_replacement_required_end_of_life",
+                                    "name": "Replacement required"
+                                },
+                                {
+                                    "entity": "sensor.upstairs_smoke_detector_battery_level",
+                                    "name": "Battery Level"
+                                }
+                            ],
+                            "title": "Upstairs Smoke Detector",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.eric_office_smoke_detector_co_alarm_carbon_monoxide_detected",
+                                    "name": "Carbon Monoxide Detected"
+                                },
+                                {
+                                    "entity": "binary_sensor.eric_office_smoke_detector_smoke_alarm_smoke_detected",
+                                    "name": "Smoke Detected"
+                                },
+                                {
+                                    "entity": "binary_sensor.eric_office_smoke_detector_co_alarm_replacement_required_end_of_life",
+                                    "name": "Replacement Required"
+                                },
+                                {
+                                    "entity": "sensor.eric_office_smoke_detector_battery_level",
+                                    "name": "Battery Level"
+                                }
+                            ],
+                            "title": "Eric Office Smoke Detector",
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
                                     "entity": "sensor.kitchen_smoke_alarm_smoke_alarm_alarm_status"
                                 },
                                 {
@@ -340,72 +432,6 @@
                                 }
                             ],
                             "title": "Kitchen Smoke Alarm",
-                            "state_color": true
-                        },
-                        {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "entity": "binary_sensor.basement_smoke_detector_co_alarm_carbon_monoxide_detected",
-                                    "name": "CO Alarm - Carbon monoxide detected"
-                                },
-                                {
-                                    "entity": "binary_sensor.basement_smoke_detector_co_alarm_replacement_required_end_of_life",
-                                    "name": "CO Alarm - Replacement required, End-of-life"
-                                },
-                                {
-                                    "entity": "binary_sensor.basement_smoke_detector_smoke_alarm_smoke_detected",
-                                    "name": "Smoke Alarm - Smoke detected"
-                                },
-                                {
-                                    "entity": "sensor.basement_smoke_detector_battery_level"
-                                }
-                            ],
-                            "title": "Basement Smoke Detector",
-                            "state_color": true
-                        },
-                        {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "entity": "binary_sensor.downstairs_smoke_detector_co_alarm_carbon_monoxide_detected",
-                                    "name": "CO Alarm - Carbon monoxide detected"
-                                },
-                                {
-                                    "entity": "binary_sensor.downstairs_smoke_detector_co_alarm_replacement_required_end_of_life",
-                                    "name": "CO Alarm - Replacement required, End-of-life"
-                                },
-                                {
-                                    "entity": "binary_sensor.downstairs_smoke_detector_smoke_alarm_smoke_detected",
-                                    "name": "Smoke Alarm - Smoke detected"
-                                },
-                                {
-                                    "entity": "sensor.downstairs_smoke_detector_battery_level"
-                                }
-                            ],
-                            "title": "Downstairs Smoke Detector",
-                            "state_color": true
-                        },
-                        {
-                            "type": "entities",
-                            "entities": [
-                                {
-                                    "entity": "binary_sensor.upstairs_smoke_detector_co_alarm_carbon_monoxide_detected",
-                                    "name": "CO Alarm - Carbon monoxide detected"
-                                },
-                                {
-                                    "entity": "binary_sensor.upstairs_smoke_detector_co_alarm_replacement_required_end_of_life",
-                                    "name": "CO Alarm - Replacement required, End-of-life"
-                                },
-                                {
-                                    "entity": "binary_sensor.upstairs_smoke_detector_smoke_alarm_smoke_detected",
-                                    "name": "Smoke Alarm - Smoke detected"
-                                },
-                                {
-                                    "entity": "sensor.upstairs_smoke_detector_battery_level"
-                                }
-                            ],
-                            "title": "Upstairs Smoke Detector",
                             "state_color": true
                         },
                         {
@@ -715,6 +741,9 @@
                                         },
                                         {
                                             "entity": "sensor.basement_workbench_motion_sensor_power"
+                                        },
+                                        {
+                                            "entity": "sensor.eric_office_smoke_detector_battery_level"
                                         }
                                     ],
                                     "title": "Zigbee Battery Status",
