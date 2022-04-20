@@ -150,6 +150,7 @@
   condition:
   - condition: sun
     after: sunset
+    after_offset: '-1:00'
   action:
   - scene: scene.watch_tv
   mode: single
@@ -540,3 +541,31 @@
     target:
       entity_id: light.eric_office_light
   mode: single
+- id: '1650396215500'
+  alias: Blueprint - Vacation Lighting
+  description: ''
+  use_blueprint:
+    path: vacation_lighting.yaml
+    input:
+      vacation_mode_toggle: input_boolean.vacation_mode
+      default_brightness: 100
+      replay_sensor_1: sensor.replay_dining_room_dimmer
+      light_target_1: light.dining_room_dimmer
+      replay_sensor_2: sensor.replay_basement_lights
+      light_target_2: group.basement_lights
+      replay_sensor_3: sensor.replay_eric_office_light
+      light_target_3: light.eric_office_light
+      replay_sensor_4: sensor.replay_family_room_track_light_back
+      light_target_4: light.family_room_track_light_back
+      replay_sensor_5: sensor.replay_family_room_track_light_front
+      light_target_5: light.family_room_track_light_front
+      replay_sensor_6: sensor.replay_garage_lights
+      light_target_6: group.garage_lights
+      replay_sensor_7: sensor.replay_master_bath_fan
+      light_target_7: switch.master_bath_fan
+      replay_sensor_8: sensor.replay_master_bath_light
+      light_target_8: light.master_bath_light
+      replay_sensor_9: sensor.replay_nicole_nightstand
+      light_target_9: light.nicole_nightstand
+      replay_sensor_10: sensor.replay_nicole_office_lights
+      light_target_10: group.nicole_office_lights

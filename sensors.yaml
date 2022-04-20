@@ -1,3 +1,86 @@
+# History Stats - Used for vacation lighting
+- platform: history_stats
+  name: "replay_nicole_office_lights"
+  entity_id: group.nicole_office_lights
+  state: "on"
+  type: count
+  start: >
+      {{ as_timestamp(now()) - (7*86400) }}
+  duration: 00:00:30
+- platform: history_stats
+  name: "replay_dining_room_dimmer"
+  entity_id: light.dining_room_dimmer
+  state: "on"
+  type: count
+  start: >
+      {{ as_timestamp(now()) - (7*86400) }}
+  duration: 00:00:30
+- platform: history_stats
+  name: "replay_eric_office_light"
+  entity_id: light.eric_office_light
+  state: "on"
+  type: count
+  start: >
+      {{ as_timestamp(now()) - (7*86400) }}
+  duration: 00:00:30
+- platform: history_stats
+  name: "replay_family_room_track_light_front"
+  entity_id: light.family_room_track_light_front
+  state: "on"
+  type: count
+  start: >
+      {{ as_timestamp(now()) - (7*86400) }}
+  duration: 00:00:30
+- platform: history_stats
+  name: "replay_family_room_track_light_back"
+  entity_id: light.family_room_track_light_back
+  state: "on"
+  type: count
+  start: >
+      {{ as_timestamp(now()) - (7*86400) }}
+  duration: 00:00:30
+- platform: history_stats
+  name: "replay_master_bath_light"
+  entity_id: light.master_bath_light
+  state: "on"
+  type: count
+  start: >
+      {{ as_timestamp(now()) - (7*86400) }}
+  duration: 00:00:30
+- platform: history_stats
+  name: "replay_nicole_nightstand"
+  entity_id: light.nicole_nightstand
+  state: "on"
+  type: count
+  start: >
+      {{ as_timestamp(now()) - (7*86400) }}
+  duration: 00:00:30
+- platform: history_stats
+  name: "replay_garage_lights"
+  entity_id: group.garage_lights
+  state: "on"
+  type: count
+  start: >
+      {{ as_timestamp(now()) - (7*86400) }}
+  duration: 00:00:30
+- platform: history_stats
+  name: "replay_basement_lights"
+  entity_id: group.basement_lights
+  state: "on"
+  type: count
+  start: >
+      {{ as_timestamp(now()) - (7*86400) }}
+  duration: 00:00:30
+- platform: history_stats
+  name: "replay_master_bath_fan"
+  entity_id: switch.master_bath_fan
+  state: "on"
+  type: count
+  start: >
+      {{ as_timestamp(now()) - (7*86400) }}
+  duration: 00:00:30
+
+# Open EVSE
 - platform: openevse
   host: 192.168.50.8
   monitored_variables:
@@ -6,12 +89,15 @@
     - ambient_temp
     - usage_session
     - usage_total
+
+#System Monitor
 - platform: systemmonitor
   resources:
     - type: disk_use_percent
     - type: memory_use_percent
     - type: processor_use
     - type: last_boot
+
 # MQTT Sensors
 - platform: mqtt # Workaround to get DTE energy bridge into Home Assistant.
   name: "Energy Bridge"
