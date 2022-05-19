@@ -45,6 +45,7 @@ basement_lights:
     - switch.gym_lights
     - switch.basement_lights
     - light.basement_workbench_light
+    - light.basement_stairs_light
   icon: mdi:lightbulb-group
 # Room Lights
 family_room_lights:

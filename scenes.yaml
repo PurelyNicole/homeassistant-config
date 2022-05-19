@@ -1,388 +1,77 @@
-- id: '1639946893898'
-  name: Dusk
-  entities:
-    switch.bedroom_humidifier:
-      icon: mdi:cup-water
-      friendly_name: Bedroom Humidifier
-      state: 'on'
-  icon: mdi:weather-sunset
-- id: '1639947996691'
-  name: Goodnight
+- name: Goodnight
+  id: '1639947996691'
   entities:
     input_select.home_mode:
-      options:
-      - Home
-      - Away
-      - Sleep
-      editable: true
-      icon: mdi:home
-      friendly_name: Home Mode
       state: Sleep
     group.basement_lights:
-      entity_id:
-      - switch.gym_lights
-      - switch.basement_lights
-      - light.basement_workbench_light
-      order: 5
-      icon: mdi:lightbulb-group
-      friendly_name: Basement Lights
       state: 'off'
     group.downstairs_lights:
-      entity_id:
-      - group.family_room_lights
-      - switch.globe_lamp
-      order: 4
-      icon: mdi:lightbulb-group
-      friendly_name: Downstairs Lights
       state: 'off'
     lock.cooper_se_lock:
-      car: Cooper SE
-      door_lock_state: LOCKED
-      friendly_name: Cooper SE lock
       state: locked
     group.upstairs_lights:
-      entity_id:
-      - group.nicole_office_lights
-      - group.master_bedroom_lights
-      order: 2
-      icon: mdi:lightbulb-group
-      friendly_name: Upstairs Lights
       state: 'off'
     group.main_floor_lights:
-      entity_id:
-      - light.plant_light
-      - group.garage_lights
-      - light.dining_room_dimmer
-      order: 3
-      icon: mdi:lightbulb-group
-      friendly_name: Main Floor Lights
       state: 'off'
     switch.bedroom_humidifier:
-      icon: mdi:cup-water
-      friendly_name: Bedroom Humidifier
       state: 'on'
-    number.tone_control_bass:
-      min: -5
-      max: 5
-      step: 1
-      mode: auto
-      icon: ''
-      friendly_name: Tone Control Bass
-      state: '1'
-    number.tone_control_treble:
-      min: -5
-      max: 5
-      step: 1
-      mode: auto
-      icon: ''
-      friendly_name: Tone Control Treble
-      state: '-1'
     media_player.living_room_musiccast:
-      source_list:
-      - napster
-      - siriusxm
-      - pandora
-      - spotify
-      - tidal
-      - deezer
-      - airplay
-      - mc_link
-      - server
-      - net_radio
-      - bluetooth
-      - tuner
-      - optical
-      - coaxial
-      - line1
-      - line2
-      - line_cd
-      - phono
-      group_members:
-      - media_player.living_room_musiccast
-      icon: mdi:speaker
-      friendly_name: Living Room Musiccast
-      supported_features: 888716
       state: 'off'
-    select.sleep_timer:
-      options:
-      - 'off'
-      - 30 min
-      - 60 min
-      - 90 min
-      - 120 min
-      device_class: yamaha_musiccast__zone_sleep
-      icon: ''
-      friendly_name: Sleep Timer
-      state: 'off'
-    select.tone_control_mode:
-      options:
-      - manual
-      device_class: yamaha_musiccast__zone_tone_control_mode
-      icon: ''
-      friendly_name: Tone Control Mode
-      state: manual
-    select.link_control:
-      options:
-      - speed
-      - standard
-      - stability
-      device_class: yamaha_musiccast__zone_link_control
-      icon: ''
-      friendly_name: Link Control
-      state: standard
-    select.link_audio_delay:
-      options:
-      - audio_sync_on
-      - audio_sync_off
-      device_class: yamaha_musiccast__zone_link_audio_delay
-      icon: ''
-      friendly_name: Link Audio Delay
-      state: audio_sync_on
-    select.link_audio_quality:
-      options:
-      - compressed
-      - uncompressed
-      device_class: yamaha_musiccast__zone_link_audio_quality
-      icon: ''
-      friendly_name: Link Audio Quality
-      state: uncompressed
-  icon: mdi:sleep
-- id: '1640004945420'
-  name: Good Morning
+  icon: mdi:weather-night
+- name: Good Morning
+  id: '1640004945420'
   entities:
     input_select.home_mode:
       state: Home
     switch.bedroom_humidifier:
       state: 'off'
   icon: mdi:weather-sunny
-- id: '1640110444762'
-  name: Goodbye
+- name: Goodbye
+  id: '1640110444762'
   entities:
     group.downstairs_lights:
-      entity_id:
-      - group.family_room_lights
-      - switch.globe_lamp
-      order: 4
-      icon: mdi:lightbulb-group
-      friendly_name: Downstairs Lights
       state: 'off'
     group.basement_lights:
-      entity_id:
-      - switch.gym_lights
-      - switch.basement_lights
-      - light.basement_workbench_light
-      order: 5
-      icon: mdi:lightbulb-group
-      friendly_name: Basement Lights
       state: 'off'
     group.main_floor_lights:
-      entity_id:
-      - light.plant_light
-      - group.garage_lights
-      - light.dining_room_dimmer
-      order: 3
-      icon: mdi:lightbulb-group
-      friendly_name: Main Floor Lights
       state: 'off'
     group.upstairs_lights:
-      entity_id:
-      - group.nicole_office_lights
-      - group.master_bedroom_lights
-      order: 2
-      icon: mdi:lightbulb-group
-      friendly_name: Upstairs Lights
       state: 'off'
     remote.family_room_remote:
-      activity_list:
-      - Play PS3
-      - Listen to Turntable
-      - Watch TV
-      - Watch Roku
-      - Play Rocksmith
-      - MusicCast
-      - Listen to CDs
-      - Play Xbox
-      - Play Switch
-      current_activity: PowerOff
-      activity_starting:
-      devices_list:
-      - Roku Ultra
-      - Yamaha Amp
-      - Receiver Zone 3
-      - Pioneer AV Receiver
-      - Nintendo Game Console
-      - Marantz CD
-      - Xfinity DVR
-      - Sony PS3
-      - Vizio TV
-      - Xbox One
-      - Receiver Zone 2
-      last_activity: Watch Roku
-      friendly_name: Family Room Remote
-      supported_features: 4
       state: 'off'
     select.family_room_remote_activities:
-      options:
-      - PowerOff
-      - Listen to CDs
-      - Listen to Turntable
-      - MusicCast
-      - Play PS3
-      - Play Rocksmith
-      - Play Switch
-      - Play Xbox
-      - Watch Roku
-      - Watch TV
-      icon: mdi:remote-tv-off
-      friendly_name: Family Room Remote Activities
       state: PowerOff
-    number.tone_control_bass:
-      min: -5
-      max: 5
-      step: 1
-      mode: auto
-      icon: ''
-      friendly_name: Tone Control Bass
-      state: '1'
-    number.tone_control_treble:
-      min: -5
-      max: 5
-      step: 1
-      mode: auto
-      icon: ''
-      friendly_name: Tone Control Treble
-      state: '-1'
     media_player.living_room_musiccast:
-      source_list:
-      - napster
-      - siriusxm
-      - pandora
-      - spotify
-      - tidal
-      - deezer
-      - airplay
-      - mc_link
-      - server
-      - net_radio
-      - bluetooth
-      - tuner
-      - optical
-      - coaxial
-      - line1
-      - line2
-      - line_cd
-      - phono
-      group_members:
-      - media_player.living_room_musiccast
-      icon: mdi:speaker
-      friendly_name: Living Room Musiccast
-      supported_features: 888716
       state: 'off'
-    select.sleep_timer:
-      options:
-      - 'off'
-      - 30 min
-      - 60 min
-      - 90 min
-      - 120 min
-      device_class: yamaha_musiccast__zone_sleep
-      icon: ''
-      friendly_name: Sleep Timer
-      state: 'off'
-    select.tone_control_mode:
-      options:
-      - manual
-      device_class: yamaha_musiccast__zone_tone_control_mode
-      icon: ''
-      friendly_name: Tone Control Mode
-      state: manual
-    select.link_control:
-      options:
-      - speed
-      - standard
-      - stability
-      device_class: yamaha_musiccast__zone_link_control
-      icon: ''
-      friendly_name: Link Control
-      state: standard
-    select.link_audio_delay:
-      options:
-      - audio_sync_on
-      - audio_sync_off
-      device_class: yamaha_musiccast__zone_link_audio_delay
-      icon: ''
-      friendly_name: Link Audio Delay
-      state: audio_sync_on
-    select.link_audio_quality:
-      options:
-      - compressed
-      - uncompressed
-      device_class: yamaha_musiccast__zone_link_audio_quality
-      icon: ''
-      friendly_name: Link Audio Quality
-      state: uncompressed
     input_select.home_mode:
       state: Away
   icon: mdi:run
-- id: '1640110582898'
-  name: Watch TV
+- name: Watch TV
+  id: '1640110582898'
   entities:
     light.family_room_track_light_front:
-      supported_color_modes:
-      - brightness
-      color_mode: brightness
       brightness: 64
-      friendly_name: Family Room Track Light - Front
-      supported_features: 32
       state: 'on'
-    switch.globe_lamp:
-      icon: mdi:lightbulb
-      friendly_name: Globe Lamp
+    light.globe_lamp:
       state: 'off'
     light.family_room_track_light_back:
-      supported_color_modes:
-      - brightness
-      color_mode: brightness
       brightness: 64
-      friendly_name: Family Room Track Light - Back
-      supported_features: 0
       state: 'on'
   icon: mdi:television-classic
-- id: '1648765572635'
-  name: Wind Down - Nicole
+- name: Wind Down - Nicole
+  id: '1648765572635'
   entities:
     light.master_bath_light:
-      supported_color_modes:
-      - brightness
-      friendly_name: Master Bath Light
-      supported_features: 0
-      color_mode: brightness
-      brightness: 51
-      state: 'on'
-    switch.nicole_nightstand:
-      friendly_name: Nicole Nightstand
+      brightness: 3
       state: 'on'
     light.nicole_nightstand:
-      supported_color_modes:
-      - onoff
-      friendly_name: Nicole Nightstand
-      supported_features: 0
-      color_mode: onoff
       state: 'on'
   icon: mdi:alarm-check
-- id: '1648765686550'
-  name: Good night - Nicole
+- name: Good night - Nicole
+  id: '1648765686550'
   entities:
     switch.bedroom_humidifier:
-      icon: mdi:cup-water
-      friendly_name: Bedroom Humidifier
       state: 'on'
     group.master_bedroom_lights:
-      entity_id:
-      - light.master_bath_light
-      - switch.master_bath_fan
-      order: 9
-      icon: mdi:lightbulb-group
-      friendly_name: Master Bedroom Lights
       state: 'off'
   icon: mdi:chat-sleep-outline

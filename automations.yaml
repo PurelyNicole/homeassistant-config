@@ -1,4 +1,4 @@
-- id: '1639680361547'
+- id: home_mode_away
   alias: Home Mode - Set away when everyone leaves
   description: When everyone leaves And 5 minutes have passed Then the Home Mode switches
     to Away
@@ -20,7 +20,7 @@
       option: Away
   - scene: scene.goodbye
   mode: single
-- id: '1639681295254'
+- id: welcome_home
   alias: Welcome Home
   description: 'When someone arrives home: If state is not Sleep, set state to home.
     If it''s after sunset, turn on dining room light and globe lamp.'
@@ -62,21 +62,18 @@
         data: {}
         target:
           entity_id: light.dining_room_dimmer
-    - conditions:
-      - condition: and
-        conditions:
-        - condition: state
-          entity_id: person.eric
-          state: home
-        - condition: time
-          before: 06:00:00
-          after: 04:00:00
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness_pct: 20
-        target:
-          entity_id: light.eric_office_light
+      - choose:
+        - conditions:
+          - condition: time
+            before: 06:00:00
+            after: 04:00:00
+          sequence:
+          - service: light.turn_on
+            data:
+              brightness_pct: 20
+            target:
+              entity_id: light.eric_office_light
+        default: []
     default: []
   mode: single
 - id: '1639682032795'
@@ -262,6 +259,10 @@
         device_id: d0bbca2d3726b6419e9cc70b7a95722c
         entity_id: switch.gym_lights
         domain: switch
+      - type: turn_on
+        device_id: 146e389c8f1db698d76680b08f131e99
+        entity_id: light.basement_stairs_light
+        domain: light
     default: []
   mode: single
 - id: shellies_announce
@@ -453,6 +454,11 @@
     device_id: 5dc7a5753d33064cf1c660f0097e0be2
     entity_id: binary_sensor.upstairs_smoke_detector_smoke_alarm_smoke_detected
     domain: binary_sensor
+  - type: smoke
+    platform: device
+    device_id: fe22124a5684619e2af2005c3afc93de
+    entity_id: binary_sensor.smoke_and_carbon_monoxide_alarm_smoke_alarm_smoke_detected
+    domain: binary_sensor
   condition: []
   action:
   - service: notify.mobile_app_nicole_iphone
@@ -474,6 +480,15 @@
     entity_id: sensor.master_bathroom_sensor_humidity
     domain: sensor
     below: 56
+  - platform: device
+    type: turned_on
+    device_id: a661b2686aff252c938e2863135cd183
+    entity_id: switch.master_bath_fan
+    domain: switch
+    for:
+      hours: 1
+      minutes: 0
+      seconds: 0
   condition: []
   action:
   - type: turn_off
@@ -492,7 +507,7 @@
     domain: binary_sensor
     for:
       hours: 0
-      minutes: 20
+      minutes: 30
       seconds: 0
   condition: []
   action:

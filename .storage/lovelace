@@ -22,8 +22,11 @@
                             "show_header_toggle": true
                         },
                         {
+                            "show_current": true,
+                            "show_forecast": true,
                             "type": "weather-forecast",
-                            "entity": "weather.ecobee_thermostat"
+                            "entity": "weather.ecobee_thermostat",
+                            "secondary_info_attribute": "humidity"
                         },
                         {
                             "type": "entities",
@@ -134,6 +137,9 @@
                                 },
                                 {
                                     "entity": "light.basement_workbench_light"
+                                },
+                                {
+                                    "entity": "light.basement_stairs_light"
                                 }
                             ],
                             "state_color": true,
@@ -419,7 +425,7 @@
                             "type": "entities",
                             "entities": [
                                 {
-                                    "entity": "sensor.kitchen_smoke_alarm_smoke_alarm_alarm_status"
+                                    "entity": "binary_sensor.smoke_and_carbon_monoxide_alarm_smoke_alarm_smoke_detected"
                                 },
                                 {
                                     "entity": "sensor.kitchen_smoke_alarm_alarmtype"
@@ -681,6 +687,43 @@
                             "camera_view": "live",
                             "type": "picture-entity",
                             "entity": "camera.3d_printer"
+                        }
+                    ]
+                },
+                {
+                    "theme": "Backend-selected",
+                    "title": "Outdoors",
+                    "path": "outdoors",
+                    "icon": "mdi:leaf",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "show_current": true,
+                            "show_forecast": true,
+                            "type": "weather-forecast",
+                            "entity": "weather.possum_den_hourly"
+                        },
+                        {
+                            "type": "gauge",
+                            "entity": "sensor.allergy_index_today",
+                            "min": 0,
+                            "max": 12,
+                            "severity": {
+                                "green": 0,
+                                "yellow": 4.9,
+                                "red": 9.6
+                            }
+                        },
+                        {
+                            "type": "gauge",
+                            "entity": "sensor.allergy_index_tomorrow",
+                            "min": 0,
+                            "max": 12,
+                            "severity": {
+                                "green": 0,
+                                "yellow": 4.9,
+                                "red": 9.6
+                            }
                         }
                     ]
                 },

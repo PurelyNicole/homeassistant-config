@@ -1,12 +1,20 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+# Extensions to default config
+homeassistant:
+  customize: !include customizations.yaml
+frontend:
+  themes: !include_dir_merge_named themes
+
 # Text to speech
 tts:
   - platform: google_translate
 
+# Enable python scripting
 python_script:
 
+# Write data to InfluxDB instance
 influxdb:
   host: a0d7b954-influxdb
   port: 8086
@@ -16,7 +24,7 @@ influxdb:
   max_retries: 3
   default_measurement: state
 
-
+# Includes for integrations
 automation: !include automations.yaml
 binary_sensor: !include binary_sensors.yaml
 group: !include groups.yaml
@@ -27,6 +35,3 @@ recorder: !include recorder.yaml
 sensor: !include sensors.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
-
-homeassistant:
-  customize: !include customizations.yaml
