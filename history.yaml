@@ -3,6 +3,35 @@ exclude:
     - automation
     - scene
     - weather
-  # entity_globs:
+  entity_globs:
+    # MINI
+    - binary_sensor.cooper_se_*
+    # Octoprint
+    - binary_sensor.octoprint_*
+    # OMV
+    - binary_sensor.omv_*_service
+    # Smoke Detectorss
+    - binary_sensor.*_silenced
+    - binary_sensor.*_sensor_home_security_tampering_product_cover_removed
+    - binary_sensor.*_replacement_required_end_of_life
+    - binary_sensor.*_smoke_alarm_test
+    - binary_sensor.*_hardware_failure
+    # Zwave
+    - sensor.*_node_status
+    # Misc
+    - sensor.replay_* # Replay Sensors
+    - group.*_lights # Light Groups
   entities:
+    # Google Backups
     - binary_sensor.backups_stale
+    - sensor.backup_state
+    # Printer
+    - sensor.samsung_m332x_382x_402x_series_output_tray_0
+    - sensor.samsung_m332x_382x_402x_series_tray_mp
+    - sensor.samsung_m332x_382x_402x_series_tray_tray_1
+    # Zigbee
+    - sensor.zigbeebridge_last_restart_time
+    - sensor.zigbeebridge_mqtt_connect_count
+    - sensor.zigbeebridge_restart_reason
+    # Misc
+    - sensor.last_boot

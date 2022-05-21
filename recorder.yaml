@@ -7,8 +7,8 @@ exclude:
     - update
   entity_globs:
     - binary_sensor.*_running # if addons are running
-    - sensor.erics_iphone_* # iPhone sensors
-    - sensor.nicole_iphone_* # iPhone sensors
+    - sensor.erics_iphone_* # Eric iPhone sensors
+    - sensor.nicole_iphone_* # Nicole iPhone sensors
     - sensor.*_energy_yesterday # Can get this by looking at "today" value for previous day
     - sensor.*_ip # Only care about current, not historical
   entities:
@@ -36,7 +36,9 @@ exclude:
     - select.tone_control_mode
     # Sensors
     - sensor.allergy_index_tomorrow
+    - sensor.cooper_se_charging_end_time
     - sensor.grocy_chores
     - sensor.hacs
+    - sensor.omv_sdb
     - sensor.omv_uptime
     - sensor.zigbeebridge_ssid

@@ -1,8 +1,9 @@
 exclude:
   # domains:
   entity_globs:
-    - binary_sensor.omv_*_service
-    - sensor.*_ip
-    - sensor.*_node_status
+    - group.*_lights # Light Groups
+    - binary_sensor.omv_*_service # OMV
+    - sensor.*_node_status # Zwave
+    - sensor.replay_* # Replay Sensors
   entities:
     - sensor.zigbeebridge_last_restart_time
