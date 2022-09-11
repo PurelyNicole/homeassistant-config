@@ -17,6 +17,8 @@ outdoor_lights:
     - light.garage_flood_lights_west
     - light.service_door_light
     - light.porch_light
+    - light.outside_workshop_light
+    - light.den_outside_door
   icon: mdi:lightbulb-group
 # Level Lights
 upstairs_lights:
@@ -36,6 +38,7 @@ downstairs_lights:
   name: Downstairs Lights
   entities:
     - group.family_room_lights
+    - group.den_lights
     - light.globe_lamp
     - light.eric_office_light
   icon: mdi:lightbulb-group
@@ -44,8 +47,10 @@ basement_lights:
   entities:
     - switch.gym_lights
     - switch.basement_lights
+    - switch.basement_stairs_switch
     - light.basement_workbench_light
-    - light.basement_stairs_light
+    - light.basement_landing_light
+    - light.workbench_led_light
   icon: mdi:lightbulb-group
 # Room Lights
 family_room_lights:
@@ -72,4 +77,10 @@ master_bedroom_lights:
     - light.master_bath_light
     - light.nicole_nightstand
     - switch.master_bath_fan
+  icon: mdi:lightbulb-group
+den_lights:
+  name: Den Lights
+  entities:
+    - light.kitchenette_spot_lights
+    - switch.den_stair_landing
   icon: mdi:lightbulb-group

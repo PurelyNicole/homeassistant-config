@@ -101,9 +101,6 @@
     entity_id: binary_sensor.dusk
     to: 'on'
   - platform: state
-    entity_id: binary_sensor.morning
-    to: 'on'
-  - platform: state
     entity_id: binary_sensor.night
     to: 'on'
   - platform: state
@@ -227,8 +224,8 @@
   trigger:
   - platform: device
     type: changed_states
-    device_id: c250ce4f0b12576b46fa9e0391822a38
-    entity_id: switch.basement_lights
+    device_id: efbcedf9dc139306d474e13da27929f3
+    entity_id: switch.sonoff
     domain: switch
   condition: []
   action:
@@ -236,8 +233,8 @@
     - conditions:
       - condition: device
         type: is_off
-        device_id: c250ce4f0b12576b46fa9e0391822a38
-        entity_id: switch.basement_lights
+        device_id: efbcedf9dc139306d474e13da27929f3
+        entity_id: switch.sonoff
         domain: switch
       sequence:
       - service: switch.turn_off
@@ -251,18 +248,18 @@
     - conditions:
       - condition: device
         type: is_on
-        device_id: c250ce4f0b12576b46fa9e0391822a38
-        entity_id: switch.basement_lights
+        device_id: efbcedf9dc139306d474e13da27929f3
+        entity_id: switch.sonoff
         domain: switch
       sequence:
-      - type: turn_on
-        device_id: d0bbca2d3726b6419e9cc70b7a95722c
-        entity_id: switch.gym_lights
-        domain: switch
-      - type: turn_on
-        device_id: 146e389c8f1db698d76680b08f131e99
-        entity_id: light.basement_stairs_light
-        domain: light
+      - service: light.turn_on
+        data: {}
+        target:
+          area_id: basement
+      - service: switch.turn_on
+        data: {}
+        target:
+          area_id: basement
     default: []
   mode: single
 - id: shellies_announce
@@ -332,36 +329,6 @@
     device_id: c250ce4f0b12576b46fa9e0391822a38
     entity_id: switch.basement_lights
     domain: switch
-  mode: single
-- id: '1642185258937'
-  alias: Nicole Office - Turn on filter workday mornings
-  description: ''
-  trigger:
-  - platform: time
-    at: 07:00
-  condition:
-  - condition: state
-    entity_id: binary_sensor.nicole_workday_sensor
-    state: 'on'
-  action:
-  - service: switch.turn_on
-    target:
-      device_id: a16dc6ccbdc67705acdb84885360d1f8
-  mode: single
-- id: '1642193400953'
-  alias: Nicole Office - Turn off filter after work
-  description: ''
-  trigger:
-  - platform: time
-    at: '16:00'
-  condition:
-  - condition: state
-    entity_id: binary_sensor.nicole_workday_sensor
-    state: 'on'
-  action:
-  - service: switch.turn_off
-    target:
-      device_id: a16dc6ccbdc67705acdb84885360d1f8
   mode: single
 - id: '1642209630036'
   alias: Basement - Turn on workbench light with motion
@@ -521,11 +488,12 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: binary_sensor.den
+    entity_id:
+    - binary_sensor.den
     to: 'off'
     for:
-      hours: 0
-      minutes: 40
+      hours: 1
+      minutes: 0
       seconds: 0
   condition: []
   action:
@@ -584,3 +552,61 @@
       light_target_9: light.nicole_nightstand
       replay_sensor_10: sensor.replay_nicole_office_lights
       light_target_10: group.nicole_office_lights
+- id: '1655493389075'
+  alias: Mini - Cool car after ride
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - device_tracker.cooper_se
+    to: Hickory Glen
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  - platform: state
+    entity_id:
+    - device_tracker.cooper_se
+    to: Hickory Glen
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  - platform: state
+    entity_id:
+    - device_tracker.cooper_se
+    to: Milford Trail
+    for:
+      hours: 0
+      minutes: 35
+      seconds: 0
+  condition: []
+  action:
+  - device_id: b7abdbf8fe525eb1a5ac7ea8fd050455
+    domain: button
+    entity_id: button.cooper_se_activate_air_conditioning
+    type: press
+  mode: single
+- id: '1659620831059'
+  alias: Den - Fish tank lights
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 0
+  condition: []
+  action:
+  - type: turn_on
+    device_id: a16dc6ccbdc67705acdb84885360d1f8
+    entity_id: switch.fish_tank_lights
+    domain: switch
+  - delay:
+      hours: 5
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: a16dc6ccbdc67705acdb84885360d1f8
+    entity_id: switch.fish_tank_lights
+    domain: switch
+  mode: single

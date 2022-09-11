@@ -1,77 +1,86 @@
 - name: Goodnight
-  id: '1639947996691'
+  id: "1639947996691"
   entities:
     input_select.home_mode:
       state: Sleep
     group.basement_lights:
-      state: 'off'
+      state: "off"
     group.downstairs_lights:
-      state: 'off'
-    lock.cooper_se_lock:
-      state: locked
+      state: "off"
     group.upstairs_lights:
-      state: 'off'
+      state: "off"
     group.main_floor_lights:
-      state: 'off'
+      state: "off"
     switch.bedroom_humidifier:
-      state: 'on'
+      state: "on"
     media_player.living_room_musiccast:
-      state: 'off'
+      state: "off"
+    switch.fish_tank_lights:
+      state: "off"
   icon: mdi:weather-night
 - name: Good Morning
-  id: '1640004945420'
+  id: "1640004945420"
   entities:
     input_select.home_mode:
+      options:
+        - Home
+        - Away
+        - Sleep
+      editable: true
+      icon: mdi:home
+      friendly_name: Home Mode
       state: Home
     switch.bedroom_humidifier:
-      state: 'off'
+      icon: mdi:cup-water
+      friendly_name: Bedroom Humidifier
+      state: "off"
   icon: mdi:weather-sunny
 - name: Goodbye
-  id: '1640110444762'
+  id: "1640110444762"
   entities:
     group.downstairs_lights:
-      state: 'off'
+      state: "off"
     group.basement_lights:
-      state: 'off'
+      state: "off"
     group.main_floor_lights:
-      state: 'off'
+      state: "off"
     group.upstairs_lights:
-      state: 'off'
+      state: "off"
     remote.family_room_remote:
-      state: 'off'
+      state: "off"
     select.family_room_remote_activities:
       state: PowerOff
     media_player.living_room_musiccast:
-      state: 'off'
+      state: "off"
     input_select.home_mode:
       state: Away
   icon: mdi:run
 - name: Watch TV
-  id: '1640110582898'
+  id: "1640110582898"
   entities:
     light.family_room_track_light_front:
       brightness: 64
-      state: 'on'
+      state: "on"
     light.globe_lamp:
-      state: 'off'
+      state: "off"
     light.family_room_track_light_back:
       brightness: 64
-      state: 'on'
+      state: "on"
   icon: mdi:television-classic
 - name: Wind Down - Nicole
-  id: '1648765572635'
+  id: "1648765572635"
   entities:
     light.master_bath_light:
       brightness: 3
-      state: 'on'
+      state: "on"
     light.nicole_nightstand:
-      state: 'on'
+      state: "on"
   icon: mdi:alarm-check
 - name: Good night - Nicole
-  id: '1648765686550'
+  id: "1648765686550"
   entities:
     switch.bedroom_humidifier:
-      state: 'on'
+      state: "on"
     group.master_bedroom_lights:
-      state: 'off'
+      state: "off"
   icon: mdi:chat-sleep-outline
