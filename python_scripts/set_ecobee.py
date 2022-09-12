@@ -10,10 +10,7 @@ current_mode = (hass.states.get(thermostat)).state
 today_high = (hass.states.get(weather).attributes['forecast'][0]['temperature'])
 
 # Get current time of day.
-if hass.states.is_state("binary_sensor.morning", "on"):
-  logger.info("Morning.")
-  time_of_day = "morning"
-elif hass.states.is_state("binary_sensor.day", "on"):
+if hass.states.is_state("binary_sensor.day", "on"):
   logger.info("Day.")
   time_of_day = "day"
 elif hass.states.is_state("binary_sensor.dusk", "on"):

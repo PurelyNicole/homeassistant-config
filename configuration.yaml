@@ -29,8 +29,8 @@ automation: !include automations.yaml
 binary_sensor: !include binary_sensors.yaml
 group: !include groups.yaml
 history: !include history.yaml
-light: !include lights.yaml
 logbook: !include logbook.yaml
+mqtt: !include mqtt.yaml
 recorder: !include recorder.yaml
 sensor: !include sensors.yaml
 script: !include scripts.yaml

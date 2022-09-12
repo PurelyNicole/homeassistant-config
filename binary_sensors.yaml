@@ -1,10 +1,5 @@
 # Time of Day
 - platform: tod
-  name: Morning
-  before: sunrise
-  after: 06:00:00
-  before_offset: '2:00:00'
-- platform: tod
   name: Day
   after: sunrise
   after_offset: '2:00:00'
