@@ -18,7 +18,7 @@ outdoor_lights:
     - light.service_door_light
     - light.porch_light
     - light.outside_workshop_light
-    - light.den_outside_door
+    - light.grill_lights
   icon: mdi:lightbulb-group
 # Level Lights
 upstairs_lights:
@@ -47,10 +47,9 @@ basement_lights:
   entities:
     - switch.gym_lights
     - switch.basement_lights
-    - switch.basement_stairs_switch
-    - light.basement_workbench_light
+    - light.basement_stairs_switch
     - light.basement_landing_light
-    - light.workbench_led_light
+    - light.utility_room_light
   icon: mdi:lightbulb-group
 # Room Lights
 family_room_lights:

@@ -79,7 +79,7 @@
                   "entity": "light.family_room_deck_light_side"
                 },
                 {
-                  "entity": "switch.den_outside_door"
+                  "entity": "light.grill_lights"
                 },
                 {
                   "entity": "light.outdoor_garage_lights"
@@ -126,6 +126,9 @@
                 },
                 {
                   "entity": "switch.fish_tank_lights"
+                },
+                {
+                  "entity": "switch.fish_feeder"
                 }
               ],
               "title": "Downstairs  Lights",
@@ -154,10 +157,10 @@
                   "entity": "switch.basement_lights"
                 },
                 {
-                  "entity": "light.basement_workbench_light"
+                  "entity": "light.basement_landing_light"
                 },
                 {
-                  "entity": "light.basement_landing_light"
+                  "entity": "light.utility_room_light"
                 }
               ],
               "state_color": true,
@@ -510,9 +513,6 @@
                   "entity": "sensor.cooper_se_charging_status"
                 },
                 {
-                  "entity": "sensor.cooper_se_charging_time_remaining"
-                },
-                {
                   "entity": "binary_sensor.cooper_se_check_control_messages"
                 },
                 {
@@ -815,6 +815,9 @@
                     },
                     {
                       "entity": "sensor.upstairs_smoke_detector_battery_level"
+                    },
+                    {
+                      "entity": "sensor.nicole_office_sensor_battery_level"
                     }
                   ],
                   "title": "Z-Wave Battery Status"
