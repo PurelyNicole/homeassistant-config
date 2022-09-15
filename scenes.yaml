@@ -2,24 +2,97 @@
   name: Goodnight
   entities:
     input_select.home_mode:
+      options:
+      - Home
+      - Away
+      - Sleep
+      editable: true
+      icon: mdi:home
+      friendly_name: Home Mode
       state: Sleep
     group.basement_lights:
+      entity_id:
+      - switch.gym_lights
+      - switch.basement_lights
+      - light.basement_stairs_switch
+      - light.basement_landing_light
+      - light.utility_room_light
+      order: 5
+      icon: mdi:lightbulb-group
+      friendly_name: Basement Lights
       state: 'off'
     group.downstairs_lights:
+      entity_id:
+      - group.family_room_lights
+      - group.den_lights
+      - light.globe_lamp
+      - light.eric_office_light
+      order: 4
+      icon: mdi:lightbulb-group
+      friendly_name: Downstairs Lights
       state: 'off'
     group.upstairs_lights:
+      entity_id:
+      - group.nicole_office_lights
+      - group.master_bedroom_lights
+      order: 2
+      icon: mdi:lightbulb-group
+      friendly_name: Upstairs Lights
       state: 'off'
     group.main_floor_lights:
+      entity_id:
+      - light.plant_light
+      - group.garage_lights
+      - light.dining_room_dimmer
+      order: 3
+      icon: mdi:lightbulb-group
+      friendly_name: Main Floor Lights
       state: 'off'
     switch.bedroom_humidifier:
+      icon: mdi:cup-water
+      friendly_name: Bedroom Humidifier
       state: 'on'
     media_player.living_room_musiccast:
+      source_list:
+      - napster
+      - siriusxm
+      - pandora
+      - spotify
+      - tidal
+      - deezer
+      - airplay
+      - mc_link
+      - server
+      - net_radio
+      - bluetooth
+      - tuner
+      - optical
+      - coaxial
+      - line1
+      - line2
+      - line_cd
+      - phono
+      group_members:
+      - media_player.living_room_musiccast
+      icon: mdi:speaker
+      friendly_name: Living Room Musiccast
+      supported_features: 888716
       state: 'off'
     switch.fish_tank_lights:
+      icon: mdi:fishbowl
+      friendly_name: Fish Tank Lights
       state: 'off'
-    light.den_outside_door:
+    light.grill_lights:
+      supported_color_modes:
+      - onoff
+      friendly_name: Grill Lights
+      supported_features: 0
+      color_mode: onoff
       state: 'on'
   icon: mdi:weather-night
+  metadata:
+    light.grill_lights:
+      entity_only: true
 - id: good_morning_scene
   name: Good Morning
   entities:

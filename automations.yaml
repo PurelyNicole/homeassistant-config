@@ -572,7 +572,7 @@
     type: press
   mode: single
 - id: fish_tank_lights
-  alias: Den - Fish tank lights
+  alias: Fish Lights and Feed
   description: ''
   trigger:
   - platform: sun
@@ -583,6 +583,10 @@
   - type: turn_on
     device_id: a16dc6ccbdc67705acdb84885360d1f8
     entity_id: switch.fish_tank_lights
+    domain: switch
+  - type: turn_on
+    device_id: e063d491c2a8f543fec0b738f8694367
+    entity_id: switch.fish_feeder
     domain: switch
   - delay:
       hours: 5
