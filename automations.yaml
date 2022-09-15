@@ -76,7 +76,7 @@
         default: []
     default: []
   mode: single
-- id: '1639682032795'
+- id: goodnight_2am
   alias: Scene - Goodnight at 2:00am
   description: When the time is 2:00am And Someone is home Then call the goodnight
     scene
@@ -90,7 +90,7 @@
   action:
   - scene: scene.goodnight
   mode: single
-- id: '1639704472426'
+- id: ecobee_call_script
   alias: Ecobee - Call thermostat script
   description: When the Time of Day or Home Mode changes Then Set the Thermostat
   trigger:
@@ -115,7 +115,7 @@
       weather: weather.ecobee_thermostat
       thermostat: climate.ecobee_thermostat
   mode: single
-- id: '1640090788072'
+- id: lights_off_sunrise
   alias: Lighting - Turn lights off at sunrise
   description: When the sun rises Then turn off Outdoor Lights And Turn off the nightlight
   trigger:
@@ -132,7 +132,7 @@
     target:
       area_id: outdoors
   mode: single
-- id: '1640110823028'
+- id: watch_tv_after_sunset
   alias: Scene - Trigger watch TV when Remote goes from PowerOff after sunset
   description: ''
   trigger:
@@ -148,7 +148,7 @@
   action:
   - scene: scene.watch_tv
   mode: single
-- id: '1640264600563'
+- id: lights_on_sunset
   alias: Lighting - Turn lights on at sunset
   description: When the sun rises Then turn off Outdoor Lights And Turn off the nightlight
   trigger:
@@ -165,7 +165,7 @@
     entity_id: light.nightlight
     domain: light
   mode: single
-- id: '1640269776987'
+- id: notify_water_basement
   alias: Notification - Notify if water detected in basement
   description: ''
   trigger:
@@ -185,7 +185,7 @@
       title: Basement Flood Sensor
       message: Water detected in basement.
   mode: single
-- id: '1640709513122'
+- id: nicole_office_lights_on
   alias: Nicole Office - Turn on floor lamp with wall switch
   description: ''
   trigger:
@@ -201,7 +201,7 @@
     entity_id: switch.nicole_office_floor_lamp
     domain: switch
   mode: single
-- id: '1640709546537'
+- id: nicole_office_lights_off
   alias: Nicole Office - Turn off floor lamp with wall switch
   description: ''
   trigger:
@@ -217,7 +217,7 @@
     entity_id: switch.nicole_office_floor_lamp
     domain: switch
   mode: single
-- id: '1640787196947'
+- id: basement_lights_single_switch
   alias: Basement - Control lights with single switch
   description: When the basement light switch is toggled, change the state of the
     other lights to match.
@@ -225,8 +225,8 @@
   - platform: device
     type: changed_states
     device_id: efbcedf9dc139306d474e13da27929f3
-    entity_id: switch.sonoff
-    domain: switch
+    entity_id: light.basement_stairs_switch
+    domain: light
   condition: []
   action:
   - choose:
@@ -234,8 +234,8 @@
       - condition: device
         type: is_off
         device_id: efbcedf9dc139306d474e13da27929f3
-        entity_id: switch.sonoff
-        domain: switch
+        entity_id: light.basement_stairs_switch
+        domain: light
       sequence:
       - service: switch.turn_off
         data: {}
@@ -249,8 +249,8 @@
       - condition: device
         type: is_on
         device_id: efbcedf9dc139306d474e13da27929f3
-        entity_id: switch.sonoff
-        domain: switch
+        entity_id: light.basement_stairs_switch
+        domain: light
       sequence:
       - service: light.turn_on
         data: {}
@@ -290,7 +290,7 @@
       host: '{{ trigger.payload_json.ip }}'
   mode: queued
   max: 999
-- id: '1640874149023'
+- id: nicole_office_motion
   alias: Nicole Office - Turn off lights when no one in office
   description: When no motion is detected in the Office And 5 minutes have passed
     Then turn off the lights
@@ -311,7 +311,7 @@
     entity_id: switch.nicole_office_lights
     domain: switch
   mode: single
-- id: '1641667112268'
+- id: basement_lights_motion
   alias: Basement - Turn on basement lights with motion
   description: When motion is detected in the basement, turn on the lgihts
   trigger:
@@ -322,31 +322,15 @@
     domain: binary_sensor
   condition:
   - condition: template
-    value_template: '{{ (states.switch.basement_lights.last_changed) < (now() - timedelta(
-      minutes = 1 ))}}'
+    value_template: '{{ (states.light.basement_stairs_switch.last_changed) < (now()
+      - timedelta( minutes = 1 ))}}'
   action:
   - type: turn_on
     device_id: c250ce4f0b12576b46fa9e0391822a38
     entity_id: switch.basement_lights
     domain: switch
   mode: single
-- id: '1642209630036'
-  alias: Basement - Turn on workbench light with motion
-  description: When motion is detected in workbench room turn on the light
-  trigger:
-  - type: motion
-    platform: device
-    device_id: 63234ed61d6290fc93bf5153115ba8ef
-    entity_id: binary_sensor.basement_workbench_motion_sensor_ias_zone
-    domain: binary_sensor
-  condition: []
-  action:
-  - type: turn_on
-    device_id: f72754504a3fc7dd7707dcc954348eb5
-    entity_id: light.basement_workbench_light
-    domain: light
-  mode: single
-- id: '1648747676385'
+- id: sub_controll_remote
   alias: Family Room - Control sub with remote
   description: When the remote turns on, turn on the sub.
   trigger:
@@ -382,7 +366,7 @@
         domain: switch
     default: []
   mode: single
-- id: '1648924822558'
+- id: notify_smoke_detected
   alias: Notification - Smoke Detector Activated
   description: ''
   trigger:
@@ -437,7 +421,7 @@
       message: Smoke detector has been activiated.
       title: Smoke Detector Activated!
   mode: single
-- id: '1649549687291'
+- id: master_bath_humidity
   alias: Master Bathroom - Humidity Management
   description: ''
   trigger:
@@ -463,7 +447,7 @@
     entity_id: switch.master_bath_fan
     domain: switch
   mode: single
-- id: '1649768577077'
+- id: master_bath_motion
   alias: Master Bathroom - Turn off lights when no motion detected
   description: ''
   trigger:
@@ -483,7 +467,7 @@
     target:
       entity_id: light.master_bath_light
   mode: single
-- id: '1649768858205'
+- id: family_room_motion
   alias: Downstairs - Turn off den and family room lights with no motion.
   description: ''
   trigger:
@@ -504,7 +488,7 @@
       - family_room
       - den
   mode: single
-- id: '1649961428008'
+- id: eric_office_motion
   alias: Eric Office - Turn off lights when no one in office
   description: ''
   trigger:
@@ -524,7 +508,7 @@
     target:
       entity_id: light.eric_office_light
   mode: single
-- id: '1650396215500'
+- id: vacation_lighting
   alias: Blueprint - Vacation Lighting
   description: ''
   use_blueprint:
@@ -552,7 +536,7 @@
       light_target_9: light.nicole_nightstand
       replay_sensor_10: sensor.replay_nicole_office_lights
       light_target_10: group.nicole_office_lights
-- id: '1655493389075'
+- id: mini_cool_after_ride
   alias: Mini - Cool car after ride
   description: ''
   trigger:
@@ -587,7 +571,7 @@
     entity_id: button.cooper_se_activate_air_conditioning
     type: press
   mode: single
-- id: '1659620831059'
+- id: fish_tank_lights
   alias: Den - Fish tank lights
   description: ''
   trigger:
