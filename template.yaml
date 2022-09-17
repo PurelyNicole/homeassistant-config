@@ -1,0 +1,9 @@
+- sensor:
+  - name: "Family Room Temperature"
+    unique_id: sensor.family_room_temperature
+    state: "{{ state_attr('climate.family_room_thermostat', 'current_temperature') }}"
+    unit_of_measurement: "°F"
+    state_class: measurement
+    device_class: temperature
+    
+    

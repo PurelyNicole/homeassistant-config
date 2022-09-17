@@ -2,122 +2,48 @@
   name: Goodnight
   entities:
     input_select.home_mode:
-      options:
-      - Home
-      - Away
-      - Sleep
-      editable: true
-      icon: mdi:home
-      friendly_name: Home Mode
       state: Sleep
     group.basement_lights:
-      entity_id:
-      - switch.gym_lights
-      - switch.basement_lights
-      - light.basement_stairs_switch
-      - light.basement_landing_light
-      - light.utility_room_light
-      order: 5
-      icon: mdi:lightbulb-group
-      friendly_name: Basement Lights
-      state: 'off'
+      state: "off"
     group.downstairs_lights:
-      entity_id:
-      - group.family_room_lights
-      - group.den_lights
-      - light.globe_lamp
-      - light.eric_office_light
-      order: 4
-      icon: mdi:lightbulb-group
-      friendly_name: Downstairs Lights
-      state: 'off'
+      state: "off"
     group.upstairs_lights:
-      entity_id:
-      - group.nicole_office_lights
-      - group.master_bedroom_lights
-      order: 2
-      icon: mdi:lightbulb-group
-      friendly_name: Upstairs Lights
-      state: 'off'
+      state: "off"
     group.main_floor_lights:
-      entity_id:
-      - light.plant_light
-      - group.garage_lights
-      - light.dining_room_dimmer
-      order: 3
-      icon: mdi:lightbulb-group
-      friendly_name: Main Floor Lights
-      state: 'off'
+      state: "off"
     switch.bedroom_humidifier:
-      icon: mdi:cup-water
-      friendly_name: Bedroom Humidifier
-      state: 'on'
+      state: "on"
     media_player.living_room_musiccast:
-      source_list:
-      - napster
-      - siriusxm
-      - pandora
-      - spotify
-      - tidal
-      - deezer
-      - airplay
-      - mc_link
-      - server
-      - net_radio
-      - bluetooth
-      - tuner
-      - optical
-      - coaxial
-      - line1
-      - line2
-      - line_cd
-      - phono
-      group_members:
-      - media_player.living_room_musiccast
-      icon: mdi:speaker
-      friendly_name: Living Room Musiccast
-      supported_features: 888716
-      state: 'off'
+      state: "off"
     switch.fish_tank_lights:
-      icon: mdi:fishbowl
-      friendly_name: Fish Tank Lights
-      state: 'off'
+      state: "off"
     light.grill_lights:
-      supported_color_modes:
-      - onoff
-      friendly_name: Grill Lights
-      supported_features: 0
-      color_mode: onoff
-      state: 'on'
-  icon: mdi:weather-night
-  metadata:
-    light.grill_lights:
-      entity_only: true
+      state: "on"
 - id: good_morning_scene
   name: Good Morning
   entities:
     input_select.home_mode:
       state: Home
     switch.bedroom_humidifier:
-      state: 'off'
+      state: "off"
   icon: mdi:weather-sunny
 - id: goodbye_scene
   name: Goodbye
   entities:
     group.downstairs_lights:
-      state: 'off'
+      state: "off"
     group.basement_lights:
-      state: 'off'
+      state: "off"
     group.main_floor_lights:
-      state: 'off'
+      state: "off"
     group.upstairs_lights:
-      state: 'off'
+      state: "off"
     remote.family_room_remote:
-      state: 'off'
+      state: "off"
     select.family_room_remote_activities:
       state: PowerOff
     media_player.living_room_musiccast:
-      state: 'off'
+      state: "off"
     input_select.home_mode:
       state: Away
   icon: mdi:run
@@ -126,31 +52,31 @@
   entities:
     light.family_room_track_light_front:
       brightness: 64
-      state: 'on'
+      state: "on"
     light.globe_lamp:
-      state: 'off'
+      state: "off"
     light.family_room_track_light_back:
       brightness: 64
-      state: 'on'
+      state: "on"
     light.grill_lights:
-      state: 'off'
+      state: "off"
     switch.den_stair_landing:
-      state: 'off'
+      state: "off"
   icon: mdi:television-classic
 - id: nicole_wind_down_scene
   name: Wind Down - Nicole
   entities:
     light.master_bath_light:
       brightness: 3
-      state: 'on'
+      state: "on"
     light.nicole_nightstand:
-      state: 'on'
+      state: "on"
   icon: mdi:alarm-check
 - id: goodnight_nicole_scene
   name: Good night - Nicole
   entities:
     switch.bedroom_humidifier:
-      state: 'on'
+      state: "on"
     group.master_bedroom_lights:
-      state: 'off'
+      state: "off"
   icon: mdi:chat-sleep-outline

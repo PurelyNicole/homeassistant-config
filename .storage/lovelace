@@ -217,8 +217,17 @@
           "badges": [],
           "cards": [
             {
-              "type": "thermostat",
-              "entity": "climate.ecobee_thermostat"
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "thermostat",
+                  "entity": "climate.ecobee_thermostat"
+                },
+                {
+                  "type": "thermostat",
+                  "entity": "climate.family_room_thermostat"
+                }
+              ]
             },
             {
               "type": "entities",
@@ -243,7 +252,13 @@
                   "entity": "sensor.eric_s_office_temperature"
                 },
                 {
+                  "entity": "sensor.family_room_temperature"
+                },
+                {
                   "entity": "sensor.basement_sensor_air_temperature"
+                },
+                {
+                  "entity": "sensor.hot_water_heater_flood_sensor_air_temperature"
                 },
                 {
                   "entity": "sensor.workshop_sensor_air_temperature"

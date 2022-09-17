@@ -598,3 +598,30 @@
     entity_id: switch.fish_tank_lights
     domain: switch
   mode: single
+- id: 'vacation_mode_auto'
+  alias: Vacation Mode
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.vacation_mode
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+    alias: When Vacation Mode changes
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'on'
+      sequence:
+      - device_id: afeb99ceb8a5bc6e7ae6e6af6eceee3b
+        domain: climate
+        entity_id: climate.family_room_thermostat
+        type: set_hvac_mode
+        hvac_mode: 'off'
+        alias: Turn Family Room Thermostat Off
+  mode: single
