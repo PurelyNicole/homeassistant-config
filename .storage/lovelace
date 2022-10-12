@@ -98,6 +98,9 @@
                 },
                 {
                   "entity": "light.workshop_lights"
+                },
+                {
+                  "entity": "group.rgb_flood_lights"
                 }
               ],
               "title": "Outdoor Lights",
@@ -343,6 +346,32 @@
               ],
               "title": "Doors",
               "state_color": true
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Doors and Windows",
+          "path": "doors-and-windows",
+          "icon": "mdi:door-closed",
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.basement_outside_door"
+                },
+                {
+                  "entity": "binary_sensor.front_door"
+                },
+                {
+                  "entity": "binary_sensor.garage_kitchen_door"
+                },
+                {
+                  "entity": "cover.garage_door"
+                }
+              ]
             }
           ]
         },

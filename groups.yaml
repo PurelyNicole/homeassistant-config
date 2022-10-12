@@ -19,6 +19,16 @@ outdoor_lights:
     - light.porch_light
     - light.outside_workshop_light
     - light.grill_lights
+    - group.rgb_flood_lights
+  icon: mdi:lightbulb-group
+# RGB Outdoor Lights
+rgb_flood_lights:  
+  name: RGB Flood Lights
+  entities: 
+    - light.rgb_flood1
+    - light.rgb_flood2
+    - light.rgb_flood3
+    - light.rgb_flood4
   icon: mdi:lightbulb-group
 # Level Lights
 upstairs_lights:

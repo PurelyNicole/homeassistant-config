@@ -8,13 +8,15 @@ www
 
 # Files
 .HA_VERSION
+.omv_cookies.json
 aircast.xml
 harmony_7158457.conf
 home-assistant.log*
 home-assistant_v2.db*
 secrets.yaml
-zigbee.db
-.omv_cookies.json
+zigbee.db*
+
+# Blueprints, themes, and scripts
 python_scripts/shellies_discovery.py
 python_scripts/shellies_discovery_gen2.py
 themes/ios_theme/ios_theme.yaml
