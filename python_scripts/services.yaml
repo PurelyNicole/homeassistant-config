@@ -8,3 +8,13 @@ set_ecobee:
     weather:
       description: The ecobee weather entitiy to use for getting the high temperature
       example: weather.ecobee_thermostat
+set_fr_thermostat:
+  name: Set Family Room Thermostat
+  description: Sets the Family Room temperature, based off the main thermostat.
+  fields:
+    main_thermostat:
+      description: The thermostat that will set reference temperature.
+      example: climate.ecobee_thermostat
+    fr_thermostat:
+      description: The thermostat to be set.
+      example: climate.family_room_thermostat

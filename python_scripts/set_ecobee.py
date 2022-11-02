@@ -8,6 +8,7 @@ weather = data.get("weather")
 home_mode = (hass.states.get("input_select.home_mode")).state
 current_mode = (hass.states.get(thermostat)).state
 today_high = (hass.states.get(weather).attributes['forecast'][0]['temperature'])
+window_satus = (hass.states.get("binary_sensor.windows")).state
 
 # Get current time of day.
 if hass.states.is_state("binary_sensor.day", "on"):
@@ -27,20 +28,24 @@ if today_high > 80:
   logger.info("Setting mode to cool.")
   operation_mode = "cool"
 # Sets heat_cool variables.
-elif today_high >= 60 and today_high <= 80:
+elif today_high >= 50 and today_high <= 80:
   logger.info("Setting mode to heat_cool.")
   operation_mode = "heat_cool"
 # Sets heat variables.
-elif today_high < 60:
+elif today_high < 50:
   logger.info("Setting mode to heat.")
   operation_mode = "heat"
 else:
   logger.warn("Temperature is out of range.")
 
 # Set the operation mode if the thermostat is not already in that mode.
-if current_mode != operation_mode:
-  logger.info("Set operation mode.")
-  hass.services.call("climate", "set_hvac_mode", {"entity_id": thermostat, "hvac_mode": operation_mode}, False)
+if window_satus == "off":
+  if current_mode != operation_mode:
+    logger.info("Set operation mode.")
+    hass.services.call("climate", "set_hvac_mode", {"entity_id": thermostat, "hvac_mode": operation_mode}, False)
+elif window_satus == "on":
+  logger.info("Set operation to off.")
+  hass.services.call("climate", "set_hvac_mode", {"entity_id": thermostat, "hvac_mode": "off"}, False)
 else:
   logger.info("Mode is already set correctly.")
 
