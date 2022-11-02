@@ -4,46 +4,49 @@
     input_select.home_mode:
       state: Sleep
     group.basement_lights:
-      state: "off"
+      state: 'off'
     group.downstairs_lights:
-      state: "off"
+      state: 'off'
     group.upstairs_lights:
-      state: "off"
+      state: 'off'
     group.main_floor_lights:
-      state: "off"
+      state: 'off'
     switch.bedroom_humidifier:
-      state: "on"
+      state: 'on'
     media_player.living_room_musiccast:
-      state: "off"
+      state: 'off'
     switch.fish_tank_lights:
-      state: "off"
+      state: 'off'
     light.grill_lights:
-      state: "on"
+      state: 'on'
+    cover.garage_door:
+      state: closed
+  icon: mdi:weather-night
 - id: good_morning_scene
   name: Good Morning
   entities:
     input_select.home_mode:
       state: Home
     switch.bedroom_humidifier:
-      state: "off"
+      state: 'off'
   icon: mdi:weather-sunny
 - id: goodbye_scene
   name: Goodbye
   entities:
     group.downstairs_lights:
-      state: "off"
+      state: 'off'
     group.basement_lights:
-      state: "off"
+      state: 'off'
     group.main_floor_lights:
-      state: "off"
+      state: 'off'
     group.upstairs_lights:
-      state: "off"
+      state: 'off'
     remote.family_room_remote:
-      state: "off"
+      state: 'off'
     select.family_room_remote_activities:
       state: PowerOff
     media_player.living_room_musiccast:
-      state: "off"
+      state: 'off'
     input_select.home_mode:
       state: Away
   icon: mdi:run
@@ -51,32 +54,83 @@
   name: Watch TV
   entities:
     light.family_room_track_light_front:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
       brightness: 64
-      state: "on"
+      friendly_name: Family Room Track Light - Front
+      supported_features: 32
+      state: 'on'
     light.globe_lamp:
-      state: "off"
+      supported_color_modes:
+      - onoff
+      friendly_name: Globe Lamp
+      supported_features: 0
+      state: 'off'
     light.family_room_track_light_back:
+      supported_color_modes:
+      - brightness
+      color_mode: brightness
       brightness: 64
-      state: "on"
+      friendly_name: Family Room Track Light - Back
+      supported_features: 0
+      state: 'on'
     light.grill_lights:
-      state: "off"
+      supported_color_modes:
+      - onoff
+      friendly_name: Grill Lights
+      supported_features: 0
+      state: 'off'
     switch.den_stair_landing:
-      state: "off"
+      friendly_name: Den Stair Landing
+      state: 'off'
+    light.kitchenette_led_strip:
+      effect_list:
+      - Solid
+      - Wake up
+      - Cycle up
+      - Cycle down
+      - Random
+      supported_color_modes:
+      - hs
+      friendly_name: Kitchenette LED Strip
+      supported_features: 36
+      color_mode: hs
+      brightness: 153
+      hs_color:
+      - 30
+      - 0
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      xy_color:
+      - 0.323
+      - 0.329
+      effect: Solid
+      state: 'on'
+    light.fireplace_dimmer:
+      supported_color_modes:
+      - brightness
+      friendly_name: Fireplace Dimmer
+      supported_features: 32
+      state: 'off'
   icon: mdi:television-classic
+  metadata: {}
 - id: nicole_wind_down_scene
   name: Wind Down - Nicole
   entities:
     light.master_bath_light:
       brightness: 3
-      state: "on"
+      state: 'on'
     light.nicole_nightstand:
-      state: "on"
+      state: 'on'
   icon: mdi:alarm-check
 - id: goodnight_nicole_scene
   name: Good night - Nicole
   entities:
     switch.bedroom_humidifier:
-      state: "on"
+      state: 'on'
     group.master_bedroom_lights:
-      state: "off"
+      state: 'off'
   icon: mdi:chat-sleep-outline

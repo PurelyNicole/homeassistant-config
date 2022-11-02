@@ -22,9 +22,9 @@ outdoor_lights:
     - group.rgb_flood_lights
   icon: mdi:lightbulb-group
 # RGB Outdoor Lights
-rgb_flood_lights:  
+rgb_flood_lights:
   name: RGB Flood Lights
-  entities: 
+  entities:
     - light.rgb_flood1
     - light.rgb_flood2
     - light.rgb_flood3
@@ -40,7 +40,6 @@ upstairs_lights:
 main_floor_lights:
   name: Main Floor Lights
   entities:
-    - light.plant_light
     - group.garage_lights
     - light.dining_room_dimmer
   icon: mdi:lightbulb-group
@@ -73,6 +72,7 @@ nicole_office_lights:
   entities:
     - switch.nicole_office_lights
     - switch.nicole_office_floor_lamp
+    - light.nicole_office_closet_light
   icon: mdi:lightbulb-group
 garage_lights:
   name: Garage Lights
@@ -92,4 +92,6 @@ den_lights:
   entities:
     - light.kitchenette_spot_lights
     - switch.den_stair_landing
+    - light.kitchenette_led_strip
+    - light.fireplace_dimmer
   icon: mdi:lightbulb-group

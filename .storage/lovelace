@@ -7,9 +7,167 @@
       "title": "Possum Den",
       "views": [
         {
+          "theme": "Backend-selected",
+          "title": "Den Dashboard",
+          "path": "den-dashboard",
+          "icon": "mdi:fireplace",
+          "visible": [
+            {
+              "user": "a506d526e61b42d4982d4b388a7b4144"
+            },
+            {
+              "user": "b42b185d4255477db7bb66103bbd89d9"
+            }
+          ],
+          "badges": [],
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.kitchenette_led_strip"
+                    },
+                    {
+                      "entity": "light.fireplace_dimmer"
+                    },
+                    {
+                      "entity": "light.kitchenette_spot_lights"
+                    },
+                    {
+                      "entity": "switch.den_stair_landing"
+                    },
+                    {
+                      "entity": "switch.fish_tank_lights"
+                    }
+                  ],
+                  "state_color": true,
+                  "title": "Den Lights"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.family_room_track_light_front"
+                    },
+                    {
+                      "entity": "light.family_room_track_light_back"
+                    },
+                    {
+                      "entity": "scene.watch_tv"
+                    }
+                  ],
+                  "title": "Family Room Lights",
+                  "state_color": true
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "custom:harmony-card",
+                  "entity": "remote.family_room_remote",
+                  "volume_device": "Pioneer AV Receiver",
+                  "activities": [
+                    {
+                      "name": "MusicCast"
+                    },
+                    {
+                      "name": "Watch TV"
+                    },
+                    {
+                      "name": "Watch Roku"
+                    }
+                  ],
+                  "buttons": {
+                    "dpad_up": {
+                      "hide": true
+                    },
+                    "dpad_down": {
+                      "hide": true
+                    },
+                    "dpad_left": {
+                      "hide": true
+                    },
+                    "dpad_right": {
+                      "hide": true
+                    },
+                    "dpad_center": {
+                      "hide": true
+                    },
+                    "xbox": {
+                      "hide": true
+                    },
+                    "back": {
+                      "hide": true
+                    },
+                    "a": {
+                      "hide": true
+                    },
+                    "b": {
+                      "hide": true
+                    },
+                    "x": {
+                      "hide": true
+                    },
+                    "y": {
+                      "hide": true
+                    }
+                  }
+                },
+                {
+                  "type": "media-control",
+                  "entity": "media_player.downstairs_musiccast"
+                }
+              ]
+            },
+            {
+              "type": "custom:simple-thermostat",
+              "entity": "climate.family_room_thermostat",
+              "header": {},
+              "layout": {
+                "mode": {
+                  "names": false,
+                  "headings": false,
+                  "icons": true
+                }
+              }
+            },
+            {
+              "type": "picture-entity",
+              "entity": "camera.blueiris_all_cameras_cycle",
+              "tap_action": {
+                "action": "navigate",
+                "navigation_path": "/lovelace/cameras"
+              }
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
           "path": "default_view",
           "title": "Home",
           "icon": "mdi:home",
+          "visible": [
+            {
+              "user": "a506d526e61b42d4982d4b388a7b4144"
+            },
+            {
+              "user": "416b6f0371014c22a73752f36d9ff2c7"
+            },
+            {
+              "user": "66b26aa37c3c4a3da85a6504307b6eda"
+            },
+            {
+              "user": "99ad95a5fa354694a345abc0443b6b00"
+            },
+            {
+              "user": "9125054b39ad488f9a8c52a13de70d0e"
+            }
+          ],
           "badges": [],
           "cards": [
             {
@@ -122,12 +280,6 @@
                   "entity": "light.family_room_track_light_back"
                 },
                 {
-                  "entity": "light.kitchenette_spot_lights"
-                },
-                {
-                  "entity": "switch.den_stair_landing"
-                },
-                {
                   "entity": "switch.fish_tank_lights"
                 },
                 {
@@ -135,19 +287,6 @@
                 }
               ],
               "title": "Downstairs  Lights",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "light.plant_light"
-                },
-                {
-                  "entity": "light.dining_room_dimmer"
-                }
-              ],
-              "title": "Main Floor Lights",
               "state_color": true
             },
             {
@@ -173,10 +312,29 @@
               "type": "entities",
               "entities": [
                 {
+                  "entity": "switch.garage_lights_north"
+                },
+                {
+                  "entity": "switch.garage_lights_south"
+                },
+                {
+                  "entity": "light.dining_room_dimmer"
+                }
+              ],
+              "state_color": true,
+              "title": "Main Floor Lights"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
                   "entity": "switch.nicole_office_lights"
                 },
                 {
                   "entity": "switch.nicole_office_floor_lamp"
+                },
+                {
+                  "entity": "light.nicole_office_closet_light"
                 }
               ],
               "title": "Nicole Office Lights",
@@ -186,13 +344,19 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "switch.garage_lights_north"
+                  "entity": "light.kitchenette_led_strip"
                 },
                 {
-                  "entity": "switch.garage_lights_south"
+                  "entity": "light.kitchenette_spot_lights"
+                },
+                {
+                  "entity": "switch.den_stair_landing"
+                },
+                {
+                  "entity": "light.fireplace_dimmer"
                 }
               ],
-              "title": "Garage Lights",
+              "title": "Den Lights",
               "state_color": true
             },
             {
@@ -252,7 +416,7 @@
                   "entity": "sensor.bedroom_ecobee_sensor_temperature"
                 },
                 {
-                  "entity": "sensor.eric_s_office_temperature"
+                  "entity": "sensor.eric_office_temperature"
                 },
                 {
                   "entity": "sensor.family_room_temperature"
@@ -286,7 +450,7 @@
                   "entity": "sensor.master_bathroom_sensor_humidity"
                 },
                 {
-                  "entity": "sensor.eric_s_office_humidity"
+                  "entity": "sensor.eric_office_humidity"
                 },
                 {
                   "entity": "sensor.basement_sensor_humidity"
@@ -296,56 +460,6 @@
                 }
               ],
               "title": "Humidity"
-            }
-          ]
-        },
-        {
-          "theme": "Backend-selected",
-          "title": "Motion",
-          "path": "motion",
-          "icon": "mdi:motion-sensor",
-          "badges": [],
-          "cards": [
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "binary_sensor.garage_sensor_home_security_motion_detection"
-                },
-                {
-                  "entity": "binary_sensor.nicole_office_sensor_home_security_motion_detection"
-                },
-                {
-                  "entity": "binary_sensor.bedroom_ecobee_sensor_occupancy"
-                },
-                {
-                  "entity": "binary_sensor.master_bathroom_sensor_home_security_motion_detection"
-                },
-                {
-                  "entity": "binary_sensor.den"
-                },
-                {
-                  "entity": "binary_sensor.basement_motion_sensor_0e38cd22_ias_zone"
-                },
-                {
-                  "entity": "binary_sensor.basement_workbench_motion_sensor_ias_zone"
-                },
-                {
-                  "entity": "binary_sensor.eric_office_motion"
-                }
-              ],
-              "title": "Motion",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                "binary_sensor.basement_outside_door",
-                "binary_sensor.front_door",
-                "binary_sensor.garage_kitchen_door"
-              ],
-              "title": "Doors",
-              "state_color": true
             }
           ]
         },
@@ -371,7 +485,150 @@
                 {
                   "entity": "cover.garage_door"
                 }
+              ],
+              "title": "Doors",
+              "state_color": true
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.dining_room_window_window_door_is_open"
+                },
+                {
+                  "entity": "binary_sensor.bedroom_window"
+                },
+                {
+                  "entity": "binary_sensor.nicole_office_window"
+                },
+                {
+                  "entity": "binary_sensor.kitchen_window"
+                }
+              ],
+              "title": "Windows",
+              "state_color": true
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.garage_sensor_home_security_motion_detection"
+                },
+                {
+                  "entity": "binary_sensor.nicole_office_sensor_home_security_motion_detection"
+                },
+                {
+                  "entity": "binary_sensor.bedroom_ecobee_sensor_occupancy"
+                },
+                {
+                  "entity": "binary_sensor.master_bathroom_sensor_home_security_motion_detection"
+                },
+                {
+                  "entity": "binary_sensor.den"
+                },
+                {
+                  "entity": "binary_sensor.basement_sensor_home_security_motion_detection"
+                },
+                {
+                  "entity": "binary_sensor.basement_motion_sensor_0e38cd22_ias_zone"
+                },
+                {
+                  "entity": "binary_sensor.basement_workbench_motion_sensor_ias_zone"
+                },
+                {
+                  "entity": "binary_sensor.eric_office_motion"
+                }
+              ],
+              "title": "Motion",
+              "state_color": true
+            },
+            {
+              "square": false,
+              "columns": 1,
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "binary_sensor.doorbell_streaming_sensor",
+                      "state": "False"
+                    }
+                  ],
+                  "card": {
+                    "type": "picture-entity",
+                    "entity": "camera.doorbell",
+                    "tap_action": {
+                      "action": "call-service",
+                      "service": "camera.turn_on",
+                      "target": {
+                        "entity_id": "camera.doorbell"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "binary_sensor.doorbell_streaming_sensor",
+                      "state": "False"
+                    }
+                  ],
+                  "card": {
+                    "type": "vertical-stack",
+                    "cards": [
+                      {
+                        "type": "custom:webrtc-camera",
+                        "entity": "camera.doorbell"
+                      },
+                      {
+                        "type": "button",
+                        "name": "Stop Streaming",
+                        "show_state": false,
+                        "show_icon": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "camera.turn_off",
+                          "target": {
+                            "entity_id": "camera.doorbell"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
               ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Cameras",
+          "path": "cameras",
+          "icon": "mdi:camera",
+          "badges": [],
+          "cards": [
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "entity": "camera.blueiris_garage"
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "entity": "camera.blueiris_se"
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "entity": "camera.blueiris_workshop"
             }
           ]
         },
@@ -513,11 +770,11 @@
           "cards": [
             {
               "type": "media-control",
-              "entity": "media_player.living_room_musiccast"
+              "entity": "media_player.main_floor_musiccast"
             },
             {
               "type": "media-control",
-              "entity": "media_player.family_room_musiccast"
+              "entity": "media_player.downstairs_musiccast"
             },
             {
               "type": "media-control",
@@ -833,7 +1090,7 @@
                       "entity": "sensor.basement_workbench_motion_sensor_power"
                     },
                     {
-                      "entity": "sensor.eric_office_smoke_detector_battery_level"
+                      "entity": "sensor.family_room_thermostat_battery"
                     }
                   ],
                   "title": "Zigbee Battery Status",
@@ -861,10 +1118,29 @@
                       "entity": "sensor.upstairs_smoke_detector_battery_level"
                     },
                     {
+                      "entity": "sensor.eric_office_smoke_detector_battery_level"
+                    },
+                    {
                       "entity": "sensor.nicole_office_sensor_battery_level"
+                    },
+                    {
+                      "entity": "sensor.nicole_office_closet_door_battery_level"
+                    },
+                    {
+                      "entity": "sensor.dining_room_window_battery_level"
+                    },
+                    {
+                      "entity": "sensor.bedroom_window_battery_level"
+                    },
+                    {
+                      "entity": "sensor.kitchen_window_battery_level"
+                    },
+                    {
+                      "entity": "sensor.nicole_office_window_battery_level"
                     }
                   ],
-                  "title": "Z-Wave Battery Status"
+                  "title": "Z-Wave Battery Status",
+                  "state_color": true
                 }
               ]
             },
