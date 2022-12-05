@@ -2,13 +2,12 @@
 - platform: tod
   name: Day
   after: sunrise
-  after_offset: '2:00:00'
   before: sunset
-  before_offset: '-1:00:00'
+  before_offset: "-1:00:00"
 - platform: tod
   name: Dusk
   after: sunset
-  after_offset: '-1:00:00'
+  after_offset: "-1:00:00"
   before: sunset
 - platform: tod
   name: Night
@@ -20,9 +19,9 @@
   country: US
   province: IN
   remove_holidays:
-    - 'Good Friday'
-    - 'Primary Election Day'
-    - 'Juneteenth National Independence Day'
-    - 'Columbus Day'
-    - 'Election Day'
-    - 'Veterans Day'
+    - "Good Friday"
+    - "Primary Election Day"
+    - "Juneteenth National Independence Day"
+    - "Columbus Day"
+    - "Election Day"
+    - "Veterans Day"

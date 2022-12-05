@@ -7,7 +7,7 @@ exclude:
     - update
   entity_globs:
     - binary_sensor.*_running # if addons are running
-    - sensor.erics_iphone_* # Eric iPhone sensors
+    - sensor.erics_iphone_14_* # Eric iPhone sensors
     - sensor.nicole_iphone_* # Nicole iPhone sensors
     - sensor.*_energy_yesterday # Can get this by looking at "today" value for previous day
     - sensor.*_ip # Only care about current, not historical
@@ -16,7 +16,7 @@ exclude:
     - automation.shellies_announce
     - automation.shellies_discovery
     # Binary Sensors
-    - binary_sensor.erics_iphone_focus
+    - binary_sensor.erics_iphone_14_focus
     - binary_sensor.nicole_iphone_focus
     - binary_sensor.omv_config_dirty
     - binary_sensor.omv_reboot_pending

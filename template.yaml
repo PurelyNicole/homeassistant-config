@@ -5,5 +5,3 @@
     unit_of_measurement: "°F"
     state_class: measurement
     device_class: temperature
-    
-    
