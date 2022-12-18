@@ -54,47 +54,16 @@
   name: Watch TV
   entities:
     light.family_room_track_light_front:
-      supported_color_modes:
-      - brightness
-      color_mode: brightness
       brightness: 64
-      friendly_name: Family Room Track Light - Front
-      supported_features: 32
       state: 'on'
-    light.globe_lamp:
-      supported_color_modes:
-      - onoff
-      friendly_name: Globe Lamp
-      supported_features: 0
-      state: 'off'
     light.family_room_track_light_back:
-      supported_color_modes:
-      - brightness
-      color_mode: brightness
       brightness: 64
-      friendly_name: Family Room Track Light - Back
-      supported_features: 0
       state: 'on'
     light.grill_lights:
-      supported_color_modes:
-      - onoff
-      friendly_name: Grill Lights
-      supported_features: 0
       state: 'off'
     switch.den_stair_landing:
-      friendly_name: Den Stair Landing
       state: 'off'
     light.kitchenette_led_strip:
-      effect_list:
-      - Solid
-      - Wake up
-      - Cycle up
-      - Cycle down
-      - Random
-      supported_color_modes:
-      - hs
-      friendly_name: Kitchenette LED Strip
-      supported_features: 36
       color_mode: hs
       brightness: 153
       hs_color:
@@ -107,16 +76,13 @@
       xy_color:
       - 0.323
       - 0.329
-      effect: Solid
       state: 'on'
     light.fireplace_dimmer:
-      supported_color_modes:
-      - brightness
-      friendly_name: Fireplace Dimmer
-      supported_features: 32
       state: 'off'
+    light.kitchenette_spot_lights:
+      brightness: 76
+      state: 'on'
   icon: mdi:television-classic
-  metadata: {}
 - id: nicole_wind_down_scene
   name: Wind Down - Nicole
   entities:

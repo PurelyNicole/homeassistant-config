@@ -31,13 +31,13 @@
                       "entity": "light.kitchenette_led_strip"
                     },
                     {
-                      "entity": "light.fireplace_dimmer"
-                    },
-                    {
                       "entity": "light.kitchenette_spot_lights"
                     },
                     {
                       "entity": "switch.den_stair_landing"
+                    },
+                    {
+                      "entity": "light.fireplace_dimmer"
                     },
                     {
                       "entity": "switch.fish_tank_lights"
@@ -57,6 +57,12 @@
                     },
                     {
                       "entity": "scene.watch_tv"
+                    },
+                    {
+                      "entity": "fan.family_room_fan_south",
+                      "type": "custom:fan-mode-button-row",
+                      "reverseButtons": true,
+                      "sendStateWithMode": true
                     }
                   ],
                   "title": "Family Room Lights",
@@ -143,6 +149,11 @@
                 "action": "navigate",
                 "navigation_path": "/lovelace/cameras"
               }
+            },
+            {
+              "type": "custom:clock-weather-card",
+              "entity": "weather.ecobee_thermostat",
+              "time_format": 12
             }
           ]
         },
@@ -268,22 +279,22 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "light.globe_lamp"
-                },
-                {
-                  "entity": "light.eric_office_light"
-                },
-                {
                   "entity": "light.family_room_track_light_front"
                 },
                 {
                   "entity": "light.family_room_track_light_back"
                 },
                 {
-                  "entity": "switch.fish_tank_lights"
+                  "entity": "light.globe_lamp"
                 },
                 {
-                  "entity": "switch.fish_feeder"
+                  "entity": "light.eric_office_light"
+                },
+                {
+                  "entity": "fan.family_room_fan_south",
+                  "type": "custom:fan-mode-button-row",
+                  "reverseButtons": true,
+                  "sendStateWithMode": true
                 }
               ],
               "title": "Downstairs  Lights",
@@ -318,7 +329,13 @@
                   "entity": "switch.garage_lights_south"
                 },
                 {
-                  "entity": "light.dining_room_dimmer"
+                  "entity": "light.dining_room_table_dimmer"
+                },
+                {
+                  "entity": "light.dining_room_wall_dimmer"
+                },
+                {
+                  "entity": "light.half_bath_light"
                 }
               ],
               "state_color": true,
@@ -354,6 +371,12 @@
                 },
                 {
                   "entity": "light.fireplace_dimmer"
+                },
+                {
+                  "entity": "switch.fish_tank_lights"
+                },
+                {
+                  "entity": "switch.fish_feeder"
                 }
               ],
               "title": "Den Lights",
@@ -541,64 +564,6 @@
               ],
               "title": "Motion",
               "state_color": true
-            },
-            {
-              "square": false,
-              "columns": 1,
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "binary_sensor.doorbell_streaming_sensor",
-                      "state": "False"
-                    }
-                  ],
-                  "card": {
-                    "type": "picture-entity",
-                    "entity": "camera.doorbell",
-                    "tap_action": {
-                      "action": "call-service",
-                      "service": "camera.turn_on",
-                      "target": {
-                        "entity_id": "camera.doorbell"
-                      }
-                    }
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "binary_sensor.doorbell_streaming_sensor",
-                      "state": "False"
-                    }
-                  ],
-                  "card": {
-                    "type": "vertical-stack",
-                    "cards": [
-                      {
-                        "type": "custom:webrtc-camera",
-                        "entity": "camera.doorbell"
-                      },
-                      {
-                        "type": "button",
-                        "name": "Stop Streaming",
-                        "show_state": false,
-                        "show_icon": false,
-                        "tap_action": {
-                          "action": "call-service",
-                          "service": "camera.turn_off",
-                          "target": {
-                            "entity_id": "camera.doorbell"
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
             }
           ]
         },
@@ -629,6 +594,64 @@
               "camera_view": "auto",
               "type": "picture-entity",
               "entity": "camera.blueiris_workshop"
+            },
+            {
+              "type": "grid",
+              "square": false,
+              "cards": [
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "binary_sensor.doorbell_streaming_sensor",
+                      "state": "False"
+                    }
+                  ],
+                  "card": {
+                    "type": "picture-entity",
+                    "entity": "camera.doorbell",
+                    "tap_action": {
+                      "action": "call-service",
+                      "service": "camera.turn_on",
+                      "target": {
+                        "entity_id": "camera.doorbell"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "binary_sensor.doorbell_streaming_sensor",
+                      "state": "True"
+                    }
+                  ],
+                  "card": {
+                    "type": "vertical-stack",
+                    "cards": [
+                      {
+                        "type": "custom:webrtc-camera",
+                        "entity": "camera.doorbell"
+                      },
+                      {
+                        "type": "button",
+                        "name": "Stop Streaming",
+                        "show_state": false,
+                        "show_icon": false,
+                        "tap_action": {
+                          "action": "call-service",
+                          "service": "camera.turn_off",
+                          "target": {
+                            "entity_id": "camera.doorbell"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "columns": 1
             }
           ]
         },
@@ -775,10 +798,6 @@
             {
               "type": "media-control",
               "entity": "media_player.downstairs_musiccast"
-            },
-            {
-              "type": "media-control",
-              "entity": "media_player.nicole_office_music"
             },
             {
               "type": "media-control",
@@ -1005,10 +1024,32 @@
           "badges": [],
           "cards": [
             {
-              "show_current": true,
-              "show_forecast": true,
-              "type": "weather-forecast",
-              "entity": "weather.possum_den_hourly"
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "show_current": true,
+                  "show_forecast": true,
+                  "type": "weather-forecast",
+                  "entity": "weather.possum_den_hourly"
+                },
+                {
+                  "type": "custom:weather-radar-card",
+                  "frame_count": 10,
+                  "center_latitude": 42.59099219695002,
+                  "center_longitude": -83.39325635707908,
+                  "marker_latitude": 42.59099219695002,
+                  "marker_longitude": -83.39325635707908,
+                  "show_marker": true,
+                  "show_range": true,
+                  "show_zoom": true,
+                  "show_recenter": true,
+                  "show_playback": true,
+                  "zoom_level": 8,
+                  "extra_labels": false,
+                  "show_scale": false,
+                  "static_map": false
+                }
+              ]
             },
             {
               "type": "gauge",

@@ -41,7 +41,9 @@ main_floor_lights:
   name: Main Floor Lights
   entities:
     - group.garage_lights
-    - light.dining_room_dimmer
+    - light.dining_room_table_dimmer
+    - light.dining_room_wall_dimmer
+    - light.half_bath_light
   icon: mdi:lightbulb-group
 downstairs_lights:
   name: Downstairs Lights

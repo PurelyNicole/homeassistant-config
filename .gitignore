@@ -13,6 +13,7 @@ aircast.xml
 harmony_7158457.conf
 home-assistant.log*
 home-assistant_v2.db*
+rtsp2webrtc_v5_amd64
 secrets.yaml
 zigbee.db*
 
