@@ -27,8 +27,6 @@ rgb_flood_lights:
   entities:
     - light.rgb_flood1
     - light.rgb_flood2
-    - light.rgb_flood3
-    - light.rgb_flood4
   icon: mdi:lightbulb-group
 # Level Lights
 upstairs_lights:
@@ -41,9 +39,9 @@ main_floor_lights:
   name: Main Floor Lights
   entities:
     - group.garage_lights
+    - group.kitchen_lights
     - light.dining_room_table_dimmer
     - light.dining_room_wall_dimmer
-    - light.half_bath_light
   icon: mdi:lightbulb-group
 downstairs_lights:
   name: Downstairs Lights
@@ -96,4 +94,12 @@ den_lights:
     - switch.den_stair_landing
     - light.kitchenette_led_strip
     - light.fireplace_dimmer
+  icon: mdi:lightbulb-group
+kitchen_lights:
+  name: Kitchen Lights
+  entities: 
+    - light.kitchen_sink_dimmer
+    - light.kitchen_window_seat_light
+    - light.kitchen_under_cabinet_lights
+    - light.half_bath_light
   icon: mdi:lightbulb-group

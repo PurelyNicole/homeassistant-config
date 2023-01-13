@@ -5,15 +5,15 @@
   state: "on"
   type: count
   start: >
-      {{ as_timestamp(now()) - (7*86400) }}
+    {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 - platform: history_stats
   name: "replay_dining_room_dimmer"
-  entity_id: light.dining_room_dimmer
+  entity_id: light.dining_room_table_dimmer
   state: "on"
   type: count
   start: >
-      {{ as_timestamp(now()) - (7*86400) }}
+    {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 - platform: history_stats
   name: "replay_eric_office_light"
@@ -21,7 +21,7 @@
   state: "on"
   type: count
   start: >
-      {{ as_timestamp(now()) - (7*86400) }}
+    {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 - platform: history_stats
   name: "replay_family_room_track_light_front"
@@ -29,7 +29,7 @@
   state: "on"
   type: count
   start: >
-      {{ as_timestamp(now()) - (7*86400) }}
+    {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 - platform: history_stats
   name: "replay_family_room_track_light_back"
@@ -37,7 +37,7 @@
   state: "on"
   type: count
   start: >
-      {{ as_timestamp(now()) - (7*86400) }}
+    {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 - platform: history_stats
   name: "replay_master_bath_light"
@@ -45,7 +45,7 @@
   state: "on"
   type: count
   start: >
-      {{ as_timestamp(now()) - (7*86400) }}
+    {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 - platform: history_stats
   name: "replay_nicole_nightstand"
@@ -53,7 +53,7 @@
   state: "on"
   type: count
   start: >
-      {{ as_timestamp(now()) - (7*86400) }}
+    {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 - platform: history_stats
   name: "replay_garage_lights"
@@ -61,7 +61,7 @@
   state: "on"
   type: count
   start: >
-      {{ as_timestamp(now()) - (7*86400) }}
+    {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 - platform: history_stats
   name: "replay_basement_lights"
@@ -69,7 +69,7 @@
   state: "on"
   type: count
   start: >
-      {{ as_timestamp(now()) - (7*86400) }}
+    {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 - platform: history_stats
   name: "replay_master_bath_fan"
@@ -77,7 +77,7 @@
   state: "on"
   type: count
   start: >
-      {{ as_timestamp(now()) - (7*86400) }}
+    {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 
 # Open EVSE
@@ -89,6 +89,17 @@
     - ambient_temp
     - usage_session
     - usage_total
+
+# Statistics
+- platform: statistics
+  name: "Washing Machine Statistics"
+  entity_id: sensor.washing_machine_energy_power
+  state_characteristic: mean
+  max_age:
+    minutes: 5
+  sampling_size: 50
+  precision: 1
+  unique_id: sensor.washing_machine_energy_power
 
 # System Monitor
 - platform: systemmonitor

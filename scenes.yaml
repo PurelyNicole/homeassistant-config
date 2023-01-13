@@ -13,14 +13,16 @@
       state: 'off'
     switch.bedroom_humidifier:
       state: 'on'
-    media_player.living_room_musiccast:
-      state: 'off'
     switch.fish_tank_lights:
       state: 'off'
     light.grill_lights:
       state: 'on'
+    light.family_room_deck_light_back:
+      state: 'on'
     cover.garage_door:
       state: closed
+    lock.kitchen_door_lock:
+      state: locked
   icon: mdi:weather-night
 - id: good_morning_scene
   name: Good Morning
@@ -44,11 +46,11 @@
     remote.family_room_remote:
       state: 'off'
     select.family_room_remote_activities:
-      state: PowerOff
-    media_player.living_room_musiccast:
-      state: 'off'
+      state: power_off
     input_select.home_mode:
       state: Away
+    lock.kitchen_door_lock:
+      state: locked
   icon: mdi:run
 - id: watch_tv_scene
   name: Watch TV
