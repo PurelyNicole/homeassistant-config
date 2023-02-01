@@ -63,6 +63,8 @@
       state: 'on'
     light.grill_lights:
       state: 'off'
+    light.family_room_deck_light_back:
+      state: 'off'
     switch.den_stair_landing:
       state: 'off'
     light.kitchenette_led_strip:

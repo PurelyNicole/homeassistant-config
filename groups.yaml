@@ -102,4 +102,7 @@ kitchen_lights:
     - light.kitchen_window_seat_light
     - light.kitchen_under_cabinet_lights
     - light.half_bath_light
+    - switch.kitchen_overhead_lights
+    - light.kitchen_table_light
+    - light.kitchen_mudroom_dimmer
   icon: mdi:lightbulb-group

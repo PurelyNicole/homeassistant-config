@@ -19,7 +19,8 @@
     data:
       option: Away
   - scene: scene.goodbye
-  mode: single
+  mode: parallel
+  max: 10
 - id: welcome_home
   alias: Welcome Home
   description: 'When someone arrives home: If state is not Sleep, set state to home.
@@ -36,46 +37,38 @@
     to: home
   condition: []
   action:
-  - choose:
-    - conditions:
-      - condition: not
-        conditions:
-        - condition: state
-          entity_id: input_select.home_mode
-          state: Sleep
-      sequence:
-      - service: input_select.select_option
-        data:
-          option: Home
-        target:
-          entity_id: input_select.home_mode
-    - conditions:
+  - device_id: 151c891fb2dceba4d2d11073ea66cb8f
+    domain: lock
+    entity_id: lock.kitchen_door_lock
+    type: unlock
+  - if:
+    - condition: not
+      conditions:
       - condition: state
-        entity_id: binary_sensor.night
-        state: 'on'
-      sequence:
-      - type: turn_on
-        device_id: 96935feeb1e56a473fbcb4b4b4fbfd27
-        entity_id: switch.globe_lamp
-        domain: switch
-      - service: light.turn_on
-        data: {}
-        target:
-          entity_id: light.dining_room_dimmer
-      - choose:
-        - conditions:
-          - condition: time
-            before: 06:00:00
-            after: 04:00:00
-          sequence:
-          - service: light.turn_on
-            data:
-              brightness_pct: 20
-            target:
-              entity_id: light.eric_office_light
-        default: []
-    default: []
-  mode: single
+        entity_id: input_select.home_mode
+        state: Sleep
+      alias: Mode is not Sleep
+    then:
+    - service: input_select.select_option
+      data:
+        option: Home
+      target:
+        entity_id: input_select.home_mode
+  - if:
+    - condition: sun
+      after: sunset
+      after_offset: '-1:00'
+    then:
+    - type: turn_on
+      device_id: 9dd57a98dd4307e523095748acd917f1
+      entity_id: light.kitchen_mudroom_dimmer
+      domain: light
+    - type: turn_on
+      device_id: fe2189f8bdcd90fc50adb90d370669f6
+      entity_id: switch.den_stair_landing
+      domain: switch
+  mode: parallel
+  max: 10
 - id: goodnight_2am
   alias: Scene - Goodnight at 2:00am
   description: When the time is 2:00am And Someone is home Then call the goodnight
@@ -105,6 +98,10 @@
     to: 'on'
   - platform: state
     entity_id: input_select.home_mode
+  - platform: state
+    entity_id:
+    - binary_sensor.windows
+    enabled: false
   condition:
   - condition: state
     entity_id: input_boolean.vacation_mode
@@ -176,7 +173,7 @@
     domain: binary_sensor
   condition: []
   action:
-  - service: notify.mobile_app_erics_iphone
+  - service: notify.mobile_app_erics_iphone_14
     data:
       title: Basement Flood Sensor
       message: Water detected in basement.
@@ -197,22 +194,6 @@
   condition: []
   action:
   - type: turn_on
-    device_id: 84233bfe9142301d0caf5e3ba80fef60
-    entity_id: switch.nicole_office_floor_lamp
-    domain: switch
-  mode: single
-- id: nicole_office_lights_off
-  alias: Nicole Office - Turn off floor lamp with wall switch
-  description: ''
-  trigger:
-  - platform: device
-    type: turned_off
-    device_id: 3b585a2a41b618f9cb095cd55d94ce74
-    entity_id: switch.nicole_office_lights
-    domain: switch
-  condition: []
-  action:
-  - type: turn_off
     device_id: 84233bfe9142301d0caf5e3ba80fef60
     entity_id: switch.nicole_office_floor_lamp
     domain: switch
@@ -416,7 +397,7 @@
     data:
       title: Smoke Detector Activated!
       message: Smoke detector has been activiated.
-  - service: notify.mobile_app_erics_iphone
+  - service: notify.mobile_app_erics_iphone_14
     data:
       message: Smoke detector has been activiated.
       title: Smoke Detector Activated!
@@ -517,7 +498,7 @@
       vacation_mode_toggle: input_boolean.vacation_mode
       default_brightness: 100
       replay_sensor_1: sensor.replay_dining_room_dimmer
-      light_target_1: light.dining_room_dimmer
+      light_target_1: light.dining_room_table_dimmer
       replay_sensor_2: sensor.replay_basement_lights
       light_target_2: group.basement_lights
       replay_sensor_3: sensor.replay_eric_office_light
@@ -598,7 +579,7 @@
     entity_id: switch.fish_tank_lights
     domain: switch
   mode: single
-- id: 'vacation_mode_auto'
+- id: vacation_mode_auto
   alias: Vacation Mode
   description: ''
   trigger:
@@ -609,7 +590,6 @@
       hours: 0
       minutes: 0
       seconds: 0
-    alias: When Vacation Mode changes
   condition: []
   action:
   - choose:
@@ -624,4 +604,124 @@
         type: set_hvac_mode
         hvac_mode: 'off'
         alias: Turn Family Room Thermostat Off
+  mode: single
+- id: nicole_office_lights_off
+  alias: Nicole Office - Turn off lights with wall switch
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.nicole_office_lights
+    to: 'off'
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 84233bfe9142301d0caf5e3ba80fef60
+    entity_id: switch.nicole_office_floor_lamp
+    domain: switch
+  - type: turn_off
+    device_id: 25520ab15610b01545d335b2672717a4
+    entity_id: light.nicole_office_closet_light
+    domain: light
+  mode: single
+- id: niocole_office_closet_light
+  alias: Nicole Office - Turn closet light off/on with door
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.nicole_office_closet_door
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.nicole_office_closet_door
+        state: 'on'
+      sequence:
+      - type: turn_on
+        device_id: 25520ab15610b01545d335b2672717a4
+        entity_id: light.nicole_office_closet_light
+        domain: light
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.nicole_office_closet_door
+        state: 'off'
+      sequence:
+      - type: turn_off
+        device_id: 25520ab15610b01545d335b2672717a4
+        entity_id: light.nicole_office_closet_light
+        domain: light
+  mode: single
+- id: '1666281140733'
+  alias: Family Room Thermostat
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - climate.ecobee_thermostat
+    attribute: temperature
+  - platform: state
+    entity_id:
+    - climate.ecobee_thermostat
+  - platform: state
+    entity_id:
+    - input_select.home_mode
+    to: Sleep
+  condition: []
+  action:
+  - if:
+    - condition: state
+      entity_id: input_select.home_mode
+      state: Sleep
+    then:
+    - device_id: afeb99ceb8a5bc6e7ae6e6af6eceee3b
+      domain: climate
+      entity_id: climate.family_room_thermostat
+      type: set_hvac_mode
+      hvac_mode: 'off'
+      alias: Set thermostat to off
+    else:
+    - service: python_script.set_fr_thermostat
+      data:
+        main_thermostat: climate.ecobee_thermostat
+        fr_thermostat: climate.family_room_thermostat
+      alias: Set based on ecobee
+  mode: single
+- id: '1666969652329'
+  alias: Notification - Notify when fish feeder goes offline
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.fish_feeder
+    to: unavailable
+  - platform: state
+    entity_id:
+    - switch.fish_feeder
+    to: unknown
+  condition: []
+  action:
+  - service: notify.mobile_app_erics_iphone_14
+    data:
+      message: Fish tank feeder is offline.
+  - service: notify.mobile_app_nicole_iphone
+    data:
+      message: Fish tank feeder is offline.
+  mode: single
+- id: '1668612237576'
+  alias: Kitchenette - Turn on LEDs with wall switch
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: 3a723969ea70edbaabb321ad14e6924d
+    entity_id: light.kitchenette_spot_lights
+    domain: light
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 5cdd36d9da5933171ecacd4e048912ba
+    entity_id: light.kitchenette_led_strip
+    domain: light
   mode: single

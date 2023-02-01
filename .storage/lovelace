@@ -152,7 +152,7 @@
             },
             {
               "type": "custom:clock-weather-card",
-              "entity": "weather.ecobee_thermostat",
+              "entity": "weather.possum_den",
               "time_format": 12
             }
           ]
@@ -194,7 +194,7 @@
               "show_current": true,
               "show_forecast": true,
               "type": "weather-forecast",
-              "entity": "weather.ecobee_thermostat",
+              "entity": "weather.possum_den",
               "secondary_info_attribute": "humidity"
             },
             {
@@ -239,6 +239,112 @@
           "badges": [],
           "cards": [
             {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "switch.garage_lights_north"
+                    },
+                    {
+                      "entity": "switch.garage_lights_south"
+                    },
+                    {
+                      "entity": "light.dining_room_table_dimmer"
+                    },
+                    {
+                      "entity": "light.dining_room_wall_dimmer"
+                    }
+                  ],
+                  "state_color": true,
+                  "title": "Main Floor Lights"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.half_bath_light"
+                    },
+                    {
+                      "entity": "light.kitchen_mudroom_dimmer"
+                    },
+                    {
+                      "entity": "light.kitchen_sink_dimmer"
+                    },
+                    {
+                      "entity": "light.kitchen_under_cabinet_lights"
+                    },
+                    {
+                      "entity": "light.kitchen_window_seat_light"
+                    },
+                    {
+                      "entity": "light.kitchen_table_light"
+                    },
+                    {
+                      "entity": "switch.kitchen_overhead_lights"
+                    }
+                  ],
+                  "title": "Kitchen Lights"
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.family_room_track_light_front"
+                    },
+                    {
+                      "entity": "light.family_room_track_light_back"
+                    },
+                    {
+                      "entity": "light.globe_lamp"
+                    },
+                    {
+                      "entity": "light.eric_office_light"
+                    },
+                    {
+                      "entity": "fan.family_room_fan_south",
+                      "type": "custom:fan-mode-button-row",
+                      "reverseButtons": true,
+                      "sendStateWithMode": true
+                    }
+                  ],
+                  "title": "Downstairs  Lights",
+                  "state_color": true
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.kitchenette_led_strip"
+                    },
+                    {
+                      "entity": "light.kitchenette_spot_lights"
+                    },
+                    {
+                      "entity": "switch.den_stair_landing"
+                    },
+                    {
+                      "entity": "light.fireplace_dimmer"
+                    },
+                    {
+                      "entity": "switch.fish_tank_lights"
+                    },
+                    {
+                      "entity": "switch.fish_feeder"
+                    }
+                  ],
+                  "title": "Den Lights",
+                  "state_color": true
+                }
+              ]
+            },
+            {
               "type": "entities",
               "entities": [
                 {
@@ -279,31 +385,6 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "light.family_room_track_light_front"
-                },
-                {
-                  "entity": "light.family_room_track_light_back"
-                },
-                {
-                  "entity": "light.globe_lamp"
-                },
-                {
-                  "entity": "light.eric_office_light"
-                },
-                {
-                  "entity": "fan.family_room_fan_south",
-                  "type": "custom:fan-mode-button-row",
-                  "reverseButtons": true,
-                  "sendStateWithMode": true
-                }
-              ],
-              "title": "Downstairs  Lights",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
                   "entity": "switch.gym_lights"
                 },
                 {
@@ -323,28 +404,6 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "switch.garage_lights_north"
-                },
-                {
-                  "entity": "switch.garage_lights_south"
-                },
-                {
-                  "entity": "light.dining_room_table_dimmer"
-                },
-                {
-                  "entity": "light.dining_room_wall_dimmer"
-                },
-                {
-                  "entity": "light.half_bath_light"
-                }
-              ],
-              "state_color": true,
-              "title": "Main Floor Lights"
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
                   "entity": "switch.nicole_office_lights"
                 },
                 {
@@ -355,31 +414,6 @@
                 }
               ],
               "title": "Nicole Office Lights",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "light.kitchenette_led_strip"
-                },
-                {
-                  "entity": "light.kitchenette_spot_lights"
-                },
-                {
-                  "entity": "switch.den_stair_landing"
-                },
-                {
-                  "entity": "light.fireplace_dimmer"
-                },
-                {
-                  "entity": "switch.fish_tank_lights"
-                },
-                {
-                  "entity": "switch.fish_feeder"
-                }
-              ],
-              "title": "Den Lights",
               "state_color": true
             },
             {
@@ -430,7 +464,8 @@
                   "entity": "sensor.garage_sensor_air_temperature"
                 },
                 {
-                  "entity": "sensor.nicole_office_sensor_air_temperature"
+                  "entity": "sensor.compensation_sensor_nicole_office_sensor_air_temperature",
+                  "name": "Nicole Office: Temperature"
                 },
                 {
                   "entity": "sensor.master_bathroom_sensor_air_temperature"
@@ -503,10 +538,10 @@
                   "entity": "binary_sensor.front_door"
                 },
                 {
-                  "entity": "binary_sensor.garage_kitchen_door"
+                  "entity": "cover.garage_door"
                 },
                 {
-                  "entity": "cover.garage_door"
+                  "entity": "lock.kitchen_door_lock"
                 }
               ],
               "title": "Doors",
@@ -586,72 +621,14 @@
               "show_name": true,
               "camera_view": "auto",
               "type": "picture-entity",
-              "entity": "camera.blueiris_se"
+              "entity": "camera.blueiris_reolink_duo_right"
             },
             {
               "show_state": true,
               "show_name": true,
               "camera_view": "auto",
               "type": "picture-entity",
-              "entity": "camera.blueiris_workshop"
-            },
-            {
-              "type": "grid",
-              "square": false,
-              "cards": [
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "binary_sensor.doorbell_streaming_sensor",
-                      "state": "False"
-                    }
-                  ],
-                  "card": {
-                    "type": "picture-entity",
-                    "entity": "camera.doorbell",
-                    "tap_action": {
-                      "action": "call-service",
-                      "service": "camera.turn_on",
-                      "target": {
-                        "entity_id": "camera.doorbell"
-                      }
-                    }
-                  }
-                },
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "binary_sensor.doorbell_streaming_sensor",
-                      "state": "True"
-                    }
-                  ],
-                  "card": {
-                    "type": "vertical-stack",
-                    "cards": [
-                      {
-                        "type": "custom:webrtc-camera",
-                        "entity": "camera.doorbell"
-                      },
-                      {
-                        "type": "button",
-                        "name": "Stop Streaming",
-                        "show_state": false,
-                        "show_icon": false,
-                        "tap_action": {
-                          "action": "call-service",
-                          "service": "camera.turn_off",
-                          "target": {
-                            "entity_id": "camera.doorbell"
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              ],
-              "columns": 1
+              "entity": "camera.blueiris_reolink_duo_left"
             }
           ]
         },
