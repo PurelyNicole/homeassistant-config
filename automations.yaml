@@ -725,3 +725,38 @@
     entity_id: light.kitchenette_led_strip
     domain: light
   mode: single
+- id: '1675271741372'
+  alias: Living Room - Turn off receiver with TV
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: 527bcce84a0020ad4805403d7c88110a
+    entity_id: switch.main_floor_tv
+    domain: switch
+  condition:
+  - condition: template
+    value_template: '{{is_state_attr(''media_player.main_floor_musiccast'', ''source'',
+      ''optical'')}}'
+    alias: Is MusicCast set to Optical
+  action:
+  - service: media_player.turn_off
+    data: {}
+    target:
+      device_id: fd7ae8ebda3faafe21c87fe16cd3070c
+  mode: single
+- id: '1675276984882'
+  alias: Living Room - Turn TV Off In Art Mode
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.main_floor_tv_tv_channel_name
+    to: art
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 527bcce84a0020ad4805403d7c88110a
+    entity_id: switch.main_floor_tv
+    domain: switch
+  mode: single

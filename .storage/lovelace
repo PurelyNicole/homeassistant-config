@@ -791,6 +791,24 @@
                 }
               ],
               "state_color": true
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "media_player.main_floor_musiccast"
+                },
+                {
+                  "entity": "switch.main_floor_tv"
+                },
+                {
+                  "entity": "sensor.main_floor_tv_media_input_source"
+                },
+                {
+                  "entity": "sensor.main_floor_tv_tv_channel_name"
+                }
+              ],
+              "title": "Main Floor TV"
             }
           ]
         },
