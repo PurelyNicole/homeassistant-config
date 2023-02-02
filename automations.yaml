@@ -760,3 +760,29 @@
     entity_id: switch.main_floor_tv
     domain: switch
   mode: single
+- id: '1675368783882'
+  alias: Notification - Everyone left but oven is on.
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - group.people
+    to: away
+  - platform: state
+    entity_id:
+    - input_select.home_mode
+    to: Sleep
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: sensor.oven_oven_mode
+      state: NoOperation
+  action:
+  - service: notify.mobile_app_erics_iphone_14
+    data:
+      message: Oven is on.
+  - service: notify.mobile_app_nicole_iphone
+    data:
+      message: Oven is on.
+  mode: single
