@@ -32,8 +32,8 @@
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 - platform: history_stats
-  name: "replay_family_room_track_light_back"
-  entity_id: light.family_room_track_light_back
+  name: "replay_kitchenette_spot_lights"
+  entity_id: light.kitchenette_spot_lights
   state: "on"
   type: count
   start: >
@@ -48,8 +48,8 @@
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 - platform: history_stats
-  name: "replay_nicole_nightstand"
-  entity_id: light.nicole_nightstand
+  name: "replay_kitchen_overhead_lights"
+  entity_id: light.kitchen_overhead_lights
   state: "on"
   type: count
   start: >
@@ -57,7 +57,7 @@
   duration: 00:00:30
 - platform: history_stats
   name: "replay_garage_lights"
-  entity_id: group.garage_lights
+  entity_id: switch.garage_lights_north
   state: "on"
   type: count
   start: >
@@ -65,15 +65,15 @@
   duration: 00:00:30
 - platform: history_stats
   name: "replay_basement_lights"
-  entity_id: group.basement_lights
+  entity_id: switch.basement_lights
   state: "on"
   type: count
   start: >
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 - platform: history_stats
-  name: "replay_master_bath_fan"
-  entity_id: switch.master_bath_fan
+  name: "replay_kitchen_sink_dimmer"
+  entity_id: light.kitchen_sink_dimmer
   state: "on"
   type: count
   start: >

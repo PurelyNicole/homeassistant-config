@@ -497,26 +497,26 @@
     input:
       vacation_mode_toggle: input_boolean.vacation_mode
       default_brightness: 100
-      replay_sensor_1: sensor.replay_dining_room_dimmer
-      light_target_1: light.dining_room_table_dimmer
-      replay_sensor_2: sensor.replay_basement_lights
-      light_target_2: group.basement_lights
+      replay_sensor_1: sensor.replay_basement_lights
+      light_target_1: group.basement_lights
+      replay_sensor_2: sensor.replay_dining_room_dimmer
+      light_target_2: light.dining_room_table_dimmer
       replay_sensor_3: sensor.replay_eric_office_light
       light_target_3: light.eric_office_light
-      replay_sensor_4: sensor.replay_family_room_track_light_back
-      light_target_4: light.family_room_track_light_back
-      replay_sensor_5: sensor.replay_family_room_track_light_front
-      light_target_5: light.family_room_track_light_front
-      replay_sensor_6: sensor.replay_garage_lights
-      light_target_6: group.garage_lights
-      replay_sensor_7: sensor.replay_master_bath_fan
-      light_target_7: switch.master_bath_fan
-      replay_sensor_8: sensor.replay_master_bath_light
-      light_target_8: light.master_bath_light
-      replay_sensor_9: sensor.replay_nicole_nightstand
-      light_target_9: light.nicole_nightstand
+      replay_sensor_4: sensor.replay_family_room_track_light_front
+      light_target_4: group.family_room_lights
+      replay_sensor_5: sensor.replay_garage_lights
+      light_target_5: group.garage_lights
+      replay_sensor_6: sensor.replay_kitchen_overhead_lights
+      light_target_6: light.kitchen_overhead_lights
+      replay_sensor_7: sensor.replay_kitchen_sink_dimmer
+      light_target_7: light.kitchen_sink_dimmer
+      replay_sensor_8: sensor.replay_kitchenette_spot_lights
+      light_target_8: light.kitchenette_spot_lights
+      replay_sensor_9: sensor.replay_master_bath_light
+      light_target_9: light.master_bath_light
       replay_sensor_10: sensor.replay_nicole_office_lights
-      light_target_10: group.nicole_office_lights
+      light_target_10: switch.nicole_office_lights
 - id: mini_cool_after_ride
   alias: Mini - Cool car after ride
   description: ''
@@ -726,24 +726,20 @@
     domain: light
   mode: single
 - id: '1675271741372'
-  alias: Living Room - Turn off receiver with TV
-  description: ''
+  alias: Living Room - Turn off TV with Receiver
+  description: Overriding the art mode.
   trigger:
   - platform: device
+    device_id: fd7ae8ebda3faafe21c87fe16cd3070c
+    domain: media_player
+    entity_id: media_player.main_floor_musiccast
     type: turned_off
+  condition: []
+  action:
+  - type: turn_off
     device_id: 527bcce84a0020ad4805403d7c88110a
     entity_id: switch.main_floor_tv
     domain: switch
-  condition:
-  - condition: template
-    value_template: '{{is_state_attr(''media_player.main_floor_musiccast'', ''source'',
-      ''optical'')}}'
-    alias: Is MusicCast set to Optical
-  action:
-  - service: media_player.turn_off
-    data: {}
-    target:
-      device_id: fd7ae8ebda3faafe21c87fe16cd3070c
   mode: single
 - id: '1675276984882'
   alias: Living Room - Turn TV Off In Art Mode
@@ -776,8 +772,8 @@
   - condition: not
     conditions:
     - condition: state
-      entity_id: sensor.oven_oven_mode
-      state: NoOperation
+      entity_id: sensor.oven_oven_machine_state
+      state: ready
   action:
   - service: notify.mobile_app_erics_iphone_14
     data:

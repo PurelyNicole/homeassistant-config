@@ -282,7 +282,7 @@
                       "entity": "light.kitchen_table_light"
                     },
                     {
-                      "entity": "switch.kitchen_overhead_lights"
+                      "entity": "light.kitchen_overhead_lights"
                     }
                   ],
                   "title": "Kitchen Lights"
@@ -327,7 +327,7 @@
                       "entity": "light.kitchenette_spot_lights"
                     },
                     {
-                      "entity": "switch.den_stair_landing"
+                      "entity": "light.den_stair_landing"
                     },
                     {
                       "entity": "light.fireplace_dimmer"
