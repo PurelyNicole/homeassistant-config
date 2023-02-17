@@ -173,13 +173,8 @@
     domain: binary_sensor
   condition: []
   action:
-  - service: notify.mobile_app_erics_iphone_14
+  - service: notify.notify_nicole_and_eric
     data:
-      title: Basement Flood Sensor
-      message: Water detected in basement.
-  - service: notify.mobile_app_nicole_iphone
-    data:
-      title: Basement Flood Sensor
       message: Water detected in basement.
   mode: single
 - id: nicole_office_lights_on
@@ -393,11 +388,7 @@
     domain: binary_sensor
   condition: []
   action:
-  - service: notify.mobile_app_nicole_iphone
-    data:
-      title: Smoke Detector Activated!
-      message: Smoke detector has been activiated.
-  - service: notify.mobile_app_erics_iphone_14
+  - service: notify.notify_nicole_and_eric
     data:
       message: Smoke detector has been activiated.
       title: Smoke Detector Activated!
@@ -702,9 +693,6 @@
     to: unknown
   condition: []
   action:
-  - service: notify.mobile_app_erics_iphone_14
-    data:
-      message: Fish tank feeder is offline.
   - service: notify.mobile_app_nicole_iphone
     data:
       message: Fish tank feeder is offline.
@@ -757,7 +745,7 @@
     domain: switch
   mode: single
 - id: '1675368783882'
-  alias: Notification - Everyone left but oven is on.
+  alias: Notification - Everyone left or is sleeping but oven is on.
   description: ''
   trigger:
   - platform: state
@@ -775,10 +763,7 @@
       entity_id: sensor.oven_oven_machine_state
       state: ready
   action:
-  - service: notify.mobile_app_erics_iphone_14
-    data:
-      message: Oven is on.
-  - service: notify.mobile_app_nicole_iphone
+  - service: notify.notify_nicole_and_eric
     data:
       message: Oven is on.
   mode: single
@@ -806,4 +791,46 @@
       data: {}
       target:
         entity_id: input_boolean.dte_peak_season
+  mode: single
+- id: '1676648197460'
+  alias: Notification - Upstairs fridge is open.
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 825c675de049294dc0a55919bdfbf156
+    entity_id: binary_sensor.upstairs_refrigerator_door_open
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+  condition: []
+  action:
+  - service: notify.notify_nicole_and_eric
+    data:
+      message: 'Upstairs refridgerator is open. '
+  mode: single
+- id: '1676648661998'
+  alias: Mini - Precondition after work.
+  description: ''
+  trigger:
+  - platform: time
+    at: '16:45:00'
+  - platform: time
+    at: 04:45:00
+  condition:
+  - condition: or
+    conditions:
+    - condition: zone
+      entity_id: device_tracker.cooper_se
+      zone: zone.itc
+    - condition: zone
+      entity_id: device_tracker.cooper_se
+      zone: zone.itc_ann_arbor
+  action:
+  - device_id: b7abdbf8fe525eb1a5ac7ea8fd050455
+    domain: button
+    entity_id: button.cooper_se_activate_air_conditioning
+    type: press
   mode: single
