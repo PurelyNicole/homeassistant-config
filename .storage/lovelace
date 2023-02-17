@@ -34,7 +34,7 @@
                       "entity": "light.kitchenette_spot_lights"
                     },
                     {
-                      "entity": "switch.den_stair_landing"
+                      "entity": "light.den_stair_landing"
                     },
                     {
                       "entity": "light.fireplace_dimmer"
@@ -245,10 +245,10 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "switch.garage_lights_north"
+                      "entity": "light.garage_lights_north"
                     },
                     {
-                      "entity": "switch.garage_lights_south"
+                      "entity": "light.garage_lights_south"
                     },
                     {
                       "entity": "light.dining_room_table_dimmer"
@@ -385,10 +385,10 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "switch.gym_lights"
+                  "entity": "light.gym_lights"
                 },
                 {
-                  "entity": "switch.basement_lights"
+                  "entity": "light.basement_stairs_switch"
                 },
                 {
                   "entity": "light.basement_landing_light"
@@ -404,10 +404,10 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "switch.nicole_office_lights"
+                  "entity": "light.nicole_office_lights"
                 },
                 {
-                  "entity": "switch.nicole_office_floor_lamp"
+                  "entity": "light.nicole_office_floor_lamp"
                 },
                 {
                   "entity": "light.nicole_office_closet_light"

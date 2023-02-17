@@ -57,7 +57,7 @@
   duration: 00:00:30
 - platform: history_stats
   name: "replay_garage_lights"
-  entity_id: switch.garage_lights_north
+  entity_id: light.garage_lights_north
   state: "on"
   type: count
   start: >
@@ -65,7 +65,7 @@
   duration: 00:00:30
 - platform: history_stats
   name: "replay_basement_lights"
-  entity_id: switch.basement_lights
+  entity_id: light.basement_lights
   state: "on"
   type: count
   start: >

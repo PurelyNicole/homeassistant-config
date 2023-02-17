@@ -1,19 +1,19 @@
 {
-    "version": 1,
-    "minor_version": 1,
-    "key": "input_select",
-    "data": {
-        "items": [
-            {
-                "name": "Home Mode",
-                "icon": "mdi:home",
-                "options": [
-                    "Home",
-                    "Away",
-                    "Sleep"
-                ],
-                "id": "home_mode"
-            }
-        ]
-    }
+  "version": 1,
+  "minor_version": 2,
+  "key": "input_select",
+  "data": {
+    "items": [
+      {
+        "name": "Home Mode",
+        "icon": "mdi:home",
+        "options": [
+          "Home",
+          "Away",
+          "Sleep"
+        ],
+        "id": "home_mode"
+      }
+    ]
+  }
 }

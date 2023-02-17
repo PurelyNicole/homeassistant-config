@@ -1,14 +1,19 @@
 {
-    "version": 1,
-    "minor_version": 1,
-    "key": "input_boolean",
-    "data": {
-        "items": [
-            {
-                "name": "Vacation Mode",
-                "icon": "mdi:beach",
-                "id": "vacation_mode"
-            }
-        ]
-    }
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_boolean",
+  "data": {
+    "items": [
+      {
+        "name": "Vacation Mode",
+        "icon": "mdi:beach",
+        "id": "vacation_mode"
+      },
+      {
+        "id": "dte_peak_season",
+        "name": "DTE Peak Season",
+        "icon": "mdi:calendar"
+      }
+    ]
+  }
 }

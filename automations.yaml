@@ -189,14 +189,14 @@
   - platform: device
     type: turned_on
     device_id: 3b585a2a41b618f9cb095cd55d94ce74
-    entity_id: switch.nicole_office_lights
-    domain: switch
+    entity_id: light.nicole_office_lights
+    domain: light
   condition: []
   action:
   - type: turn_on
     device_id: 84233bfe9142301d0caf5e3ba80fef60
-    entity_id: switch.nicole_office_floor_lamp
-    domain: switch
+    entity_id: light.nicole_office_floor_lamp
+    domain: light
   mode: single
 - id: basement_lights_single_switch
   alias: Basement - Control lights with single switch
@@ -289,8 +289,8 @@
   action:
   - type: turn_off
     device_id: 3b585a2a41b618f9cb095cd55d94ce74
-    entity_id: switch.nicole_office_lights
-    domain: switch
+    entity_id: light.nicole_office_lights
+    domain: light
   mode: single
 - id: basement_lights_motion
   alias: Basement - Turn on basement lights with motion
@@ -308,8 +308,8 @@
   action:
   - type: turn_on
     device_id: c250ce4f0b12576b46fa9e0391822a38
-    entity_id: switch.basement_lights
-    domain: switch
+    entity_id: light.basement_lights
+    domain: light
   mode: single
 - id: sub_controll_remote
   alias: Family Room - Control sub with remote
@@ -516,7 +516,7 @@
       replay_sensor_9: sensor.replay_master_bath_light
       light_target_9: light.master_bath_light
       replay_sensor_10: sensor.replay_nicole_office_lights
-      light_target_10: switch.nicole_office_lights
+      light_target_10: light.nicole_office_lights
 - id: mini_cool_after_ride
   alias: Mini - Cool car after ride
   description: ''
@@ -611,14 +611,14 @@
   trigger:
   - platform: state
     entity_id:
-    - switch.nicole_office_lights
+    - light.nicole_office_lights
     to: 'off'
   condition: []
   action:
   - type: turn_off
     device_id: 84233bfe9142301d0caf5e3ba80fef60
-    entity_id: switch.nicole_office_floor_lamp
-    domain: switch
+    entity_id: light.nicole_office_floor_lamp
+    domain: light
   - type: turn_off
     device_id: 25520ab15610b01545d335b2672717a4
     entity_id: light.nicole_office_closet_light
@@ -781,4 +781,29 @@
   - service: notify.mobile_app_nicole_iphone
     data:
       message: Oven is on.
+  mode: single
+- id: '1675882545653'
+  alias: Set DTE Peak Month
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  - platform: time
+    at: 00:00:01
+  condition: []
+  action:
+  - if:
+    - condition: template
+      value_template: '{{(now().month > 5)  and (now().month < 10)}}'
+      alias: Current month is between June and September
+    then:
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.dte_peak_season
+    else:
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.dte_peak_season
   mode: single
