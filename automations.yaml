@@ -58,6 +58,7 @@
     - condition: sun
       after: sunset
       after_offset: '-1:00'
+      before: sunrise
     then:
     - type: turn_on
       device_id: 9dd57a98dd4307e523095748acd917f1
@@ -67,6 +68,10 @@
       device_id: fe2189f8bdcd90fc50adb90d370669f6
       entity_id: switch.den_stair_landing
       domain: switch
+    - type: turn_on
+      device_id: 35744bb4b80d36890ae0f34f1ad22a94
+      entity_id: light.dining_room_table_dimmer
+      domain: light
   mode: parallel
   max: 10
 - id: goodnight_2am
@@ -833,4 +838,53 @@
     domain: button
     entity_id: button.cooper_se_activate_air_conditioning
     type: press
+  mode: single
+- id: '1676693636735'
+  alias: Kitchen - Control window seat lights with overhead switch
+  description: ''
+  trigger:
+  - platform: device
+    type: changed_states
+    device_id: 798f8e918501c5894dd7375a73b337f5
+    entity_id: light.kitchen_overhead_lights
+    domain: light
+  condition: []
+  action:
+  - if:
+    - condition: device
+      type: is_off
+      device_id: 798f8e918501c5894dd7375a73b337f5
+      entity_id: light.kitchen_overhead_lights
+      domain: light
+    then:
+    - type: turn_off
+      device_id: 13d77bf51baef8f805d72c62d269d19b
+      entity_id: light.kitchen_window_seat_light
+      domain: light
+    else:
+    - if:
+      - condition: device
+        type: is_on
+        device_id: 798f8e918501c5894dd7375a73b337f5
+        entity_id: light.kitchen_overhead_lights
+        domain: light
+      then:
+      - type: turn_on
+        device_id: 13d77bf51baef8f805d72c62d269d19b
+        entity_id: light.kitchen_window_seat_light
+        domain: light
+  mode: single
+- id: '1676849212991'
+  alias: 'Notification - Dishwasher finished '
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.dishwasher_operation_state
+    to: Finished
+  condition: []
+  action:
+  - service: notify.notify_nicole_and_eric
+    data:
+      message: Dishwasher finished.
   mode: single

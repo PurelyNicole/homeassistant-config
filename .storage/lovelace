@@ -928,6 +928,28 @@
                   "title": "Dum-Dum"
                 }
               ]
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.dishwasher_door",
+                  "name": "Door"
+                },
+                {
+                  "entity": "sensor.dishwasher_operation_state",
+                  "name": "Operation State"
+                },
+                {
+                  "entity": "sensor.dishwasher_program_progress",
+                  "name": "Program Progress"
+                },
+                {
+                  "entity": "sensor.dishwasher_remaining_program_time",
+                  "name": "Remaining Program Time"
+                }
+              ],
+              "title": "Dishwasher"
             }
           ]
         },

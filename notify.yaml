@@ -1,0 +1,5 @@
+- platform: group
+  name: "Notify Nicole and Eric"
+  services:
+    - service: mobile_app_nicole_iphone
+    - service: mobile_app_erics_iphone_14
