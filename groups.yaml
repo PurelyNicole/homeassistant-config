@@ -54,10 +54,10 @@ downstairs_lights:
 basement_lights:
   name: Basement Lights
   entities:
-    - light.gym_lights
-    - light.basement_lights
+    - light.basement_landing_lights
+    - light.north_basement_lights
     - light.basement_stairs_switch
-    - light.basement_landing_light
+    - light.south_basement_lights
     - light.utility_room_light
   icon: mdi:lightbulb-group
 # Room Lights

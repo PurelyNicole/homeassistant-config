@@ -53,13 +53,15 @@
       state: locked
   icon: mdi:run
 - id: watch_tv_scene
-  name: Watch TV
+  name: 'Watch TV - Downstairs '
   entities:
     light.family_room_track_light_front:
-      brightness: 64
+      color_mode: brightness
+      brightness: 76
       state: 'on'
     light.family_room_track_light_back:
-      brightness: 64
+      color_mode: brightness
+      brightness: 76
       state: 'on'
     light.grill_lights:
       state: 'off'
@@ -73,20 +75,16 @@
       hs_color:
       - 30
       - 0
-      rgb_color:
-      - 255
-      - 255
-      - 255
-      xy_color:
-      - 0.323
-      - 0.329
+      effect: Solid
       state: 'on'
     light.fireplace_dimmer:
       state: 'off'
     light.kitchenette_spot_lights:
-      brightness: 76
+      color_mode: brightness
+      brightness: 145
       state: 'on'
   icon: mdi:television-classic
+  metadata: {}
 - id: nicole_wind_down_scene
   name: Wind Down - Nicole
   entities:
@@ -104,3 +102,34 @@
     group.master_bedroom_lights:
       state: 'off'
   icon: mdi:chat-sleep-outline
+- id: watch_tv_main_floor_scene
+  name: Watch TV - Main Floor
+  entities:
+    light.dining_room_wall_dimmer:
+      color_mode: brightness
+      brightness: 150
+      state: 'on'
+    light.dining_room_table_dimmer:
+      color_mode: brightness
+      brightness: 150
+      state: 'on'
+    light.kitchen_mudroom_dimmer:
+      state: 'off'
+    switch.kitchen_overhead_lights:
+      state: 'off'
+    light.kitchen_overhead_lights:
+      state: 'off'
+    light.kitchen_under_cabinet_lights:
+      color_mode: brightness
+      brightness: 125
+      state: 'on'
+    light.kitchen_sink_dimmer:
+      color_mode: brightness
+      brightness: 125
+      state: 'on'
+    light.kitchen_table_light:
+      color_mode: brightness
+      brightness: 145
+      state: 'on'
+  icon: mdi:television
+  metadata: {}

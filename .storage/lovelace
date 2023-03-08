@@ -385,13 +385,16 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "light.gym_lights"
-                },
-                {
                   "entity": "light.basement_stairs_switch"
                 },
                 {
-                  "entity": "light.basement_landing_light"
+                  "entity": "light.basement_landing_lights"
+                },
+                {
+                  "entity": "light.north_basement_lights"
+                },
+                {
+                  "entity": "light.south_basement_lights"
                 },
                 {
                   "entity": "light.utility_room_light"
@@ -586,15 +589,6 @@
                 },
                 {
                   "entity": "binary_sensor.basement_sensor_home_security_motion_detection"
-                },
-                {
-                  "entity": "binary_sensor.basement_motion_sensor_0e38cd22_ias_zone"
-                },
-                {
-                  "entity": "binary_sensor.basement_workbench_motion_sensor_ias_zone"
-                },
-                {
-                  "entity": "binary_sensor.eric_office_motion"
                 }
               ],
               "title": "Motion",
@@ -753,11 +747,14 @@
             {
               "type": "entities",
               "entities": [
-                "binary_sensor.hot_water_heater_flood_sensor_any",
-                "binary_sensor.hot_water_heater_flood_sensor_general_purpose_state",
-                "binary_sensor.hot_water_heater_flood_sensor_water_leak_state"
+                {
+                  "entity": "binary_sensor.hot_water_heater_flood_sensor_water_leak_state"
+                },
+                {
+                  "entity": "binary_sensor.kitchen_sink_water_sensor"
+                }
               ],
-              "title": "Basement Water",
+              "title": "Water Sensors",
               "state_color": true
             }
           ]
@@ -1139,16 +1136,10 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "sensor.eric_office_motion_sensor_power"
-                    },
-                    {
-                      "entity": "sensor.basement_motion_sensor_0e38cd22_power"
-                    },
-                    {
-                      "entity": "sensor.basement_workbench_motion_sensor_power"
-                    },
-                    {
                       "entity": "sensor.family_room_thermostat_battery"
+                    },
+                    {
+                      "entity": "sensor.kitchen_sink_water_sensor_battery"
                     }
                   ],
                   "title": "Zigbee Battery Status",
@@ -1158,43 +1149,43 @@
                   "type": "entities",
                   "entities": [
                     {
+                      "entity": "sensor.basement_smoke_detector_battery_level"
+                    },
+                    {
+                      "entity": "sensor.bedroom_window_battery_level"
+                    },
+                    {
+                      "entity": "sensor.dining_room_window_battery_level"
+                    },
+                    {
+                      "entity": "sensor.downstairs_smoke_detector_battery_level"
+                    },
+                    {
+                      "entity": "sensor.eric_office_smoke_detector_battery_level"
+                    },
+                    {
                       "entity": "sensor.hot_water_heater_flood_sensor_battery_level"
                     },
                     {
                       "entity": "sensor.kitchen_smoke_alarm_battery_level"
                     },
                     {
+                      "entity": "sensor.kitchen_window_battery_level"
+                    },
+                    {
                       "entity": "sensor.master_bathroom_sensor_battery_level"
-                    },
-                    {
-                      "entity": "sensor.basement_smoke_detector_battery_level"
-                    },
-                    {
-                      "entity": "sensor.downstairs_smoke_detector_battery_level"
-                    },
-                    {
-                      "entity": "sensor.upstairs_smoke_detector_battery_level"
-                    },
-                    {
-                      "entity": "sensor.eric_office_smoke_detector_battery_level"
-                    },
-                    {
-                      "entity": "sensor.nicole_office_sensor_battery_level"
                     },
                     {
                       "entity": "sensor.nicole_office_closet_door_battery_level"
                     },
                     {
-                      "entity": "sensor.dining_room_window_battery_level"
-                    },
-                    {
-                      "entity": "sensor.bedroom_window_battery_level"
-                    },
-                    {
-                      "entity": "sensor.kitchen_window_battery_level"
-                    },
-                    {
                       "entity": "sensor.nicole_office_window_battery_level"
+                    },
+                    {
+                      "entity": "sensor.nicole_office_sensor_battery_level"
+                    },
+                    {
+                      "entity": "sensor.upstairs_smoke_detector_battery_level"
                     }
                   ],
                   "title": "Z-Wave Battery Status",
