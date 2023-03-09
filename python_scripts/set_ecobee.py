@@ -10,19 +10,6 @@ current_mode = (hass.states.get(thermostat)).state
 today_high = (hass.states.get(weather).attributes['forecast'][0]['temperature'])
 window_satus = (hass.states.get("binary_sensor.windows")).state
 
-# Get current time of day.
-if hass.states.is_state("binary_sensor.day", "on"):
-  logger.info("Day.")
-  time_of_day = "day"
-elif hass.states.is_state("binary_sensor.dusk", "on"):
-  logger.info("Dusk.")
-  time_of_day = "dusk"
-elif hass.states.is_state("binary_sensor.night", "on"):
-  logger.info("Night.")
-  time_of_day = "night"
-else:
-  logger.warn("No time of day detected.")
-
 # Set thermostat mode based on forecasted high temperature.
 if today_high > 80:
   logger.info("Setting mode to cool.")
@@ -52,12 +39,7 @@ else:
 # Call set_preset_mode based on home mode and time of day, using the service data above.
 if home_mode == "Home":
   logger.info("In home mode.")
-  if time_of_day == "dusk" or time_of_day == "night":
-    logger.info("Home dusk or night.")
-    hass.services.call("climate", "set_preset_mode", {"entity_id": thermostat, "preset_mode": "Sleep"}, False)
-  else:
-    logger.info("Home morning/day.")
-    hass.services.call("climate", "set_preset_mode", {"entity_id": thermostat, "preset_mode": "Home"}, False)
+  hass.services.call("climate", "set_preset_mode", {"entity_id": thermostat, "preset_mode": "Home"}, False)
 elif home_mode == "Away":
   logger.info("Away mode.")
   hass.services.call("climate", "set_preset_mode", {"entity_id": thermostat, "preset_mode": "Away"}, False)
