@@ -373,7 +373,14 @@
       hours: 1
       minutes: 0
       seconds: 0
-  condition: []
+  condition:
+  - condition: state
+    entity_id: binary_sensor.master_bathroom_sensor_home_security_motion_detection
+    state: 'off'
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
   action:
   - type: turn_off
     device_id: a661b2686aff252c938e2863135cd183
@@ -391,7 +398,7 @@
     domain: binary_sensor
     for:
       hours: 0
-      minutes: 30
+      minutes: 15
       seconds: 0
   condition: []
   action:
@@ -836,4 +843,96 @@
   - service: notify.notify_nicole_and_eric
     data:
       message: Water detected under kitchen sink.
+  mode: single
+- id: '1678372630165'
+  alias: Notification - Notify Nicole when Eric leaves work.
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.eric
+    zone: zone.itc
+    event: leave
+  - platform: zone
+    entity_id: person.eric
+    zone: zone.itc_ann_arbor
+    event: enter
+  condition: []
+  action:
+  - service: notify.mobile_app_nicole_iphone
+    data:
+      message: Eric is leaving work.
+  mode: single
+- id: '1678381183358'
+  alias: Notification - Notifiy if water under fish tank
+  description: ''
+  trigger:
+  - type: moist
+    platform: device
+    device_id: b98319a1990e48df55701f9bf318167c
+    entity_id: binary_sensor.fish_tank_water_sensor
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.notify_nicole_and_eric
+    data:
+      message: Water detected under fish tank.
+  mode: single
+- id: '1678382201207'
+  alias: Notification - Notify if water detected in laundry room
+  description: ''
+  trigger:
+  - type: moist
+    platform: device
+    device_id: 61a98c1c226600fd7f6dab560abf7f8b
+    entity_id: binary_sensor.laundry_room_water_sensor_iaszone
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.notify_nicole_and_eric
+    data:
+      message: Water detected in laundry room.
+  mode: single
+- id: '1678393467679'
+  alias: Half Bath - Control lights with motion
+  description: ''
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: 12b7dc73a4601643d79a3274b66d4c62
+    entity_id: binary_sensor.half_bath_motion_sensor
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  - type: motion
+    platform: device
+    device_id: 12b7dc73a4601643d79a3274b66d4c62
+    entity_id: binary_sensor.half_bath_motion_sensor
+    domain: binary_sensor
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - type: is_no_motion
+        condition: device
+        device_id: 12b7dc73a4601643d79a3274b66d4c62
+        entity_id: binary_sensor.half_bath_motion_sensor
+        domain: binary_sensor
+      sequence:
+      - type: turn_off
+        device_id: 10f945d73ec4f5a56d053445e3ef3f9b
+        entity_id: light.half_bath_light
+        domain: light
+    - conditions:
+      - type: is_motion
+        condition: device
+        device_id: 12b7dc73a4601643d79a3274b66d4c62
+        entity_id: binary_sensor.half_bath_motion_sensor
+        domain: binary_sensor
+      sequence:
+      - type: turn_on
+        device_id: 10f945d73ec4f5a56d053445e3ef3f9b
+        entity_id: light.half_bath_light
+        domain: light
   mode: single
