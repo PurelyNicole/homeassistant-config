@@ -89,11 +89,14 @@
   name: Wind Down - Nicole
   entities:
     light.master_bath_light:
+      color_mode: brightness
       brightness: 3
       state: 'on'
     light.nicole_nightstand:
+      color_mode: onoff
       state: 'on'
   icon: mdi:alarm-check
+  metadata: {}
 - id: goodnight_nicole_scene
   name: Good night - Nicole
   entities:
@@ -133,3 +136,24 @@
       state: 'on'
   icon: mdi:television
   metadata: {}
+- id: good_morning_eric
+  name: Good Morning Eric
+  entities:
+    light.den_stair_landing:
+      state: 'on'
+    light.kitchen_mudroom_dimmer:
+      color_mode: brightness
+      brightness: 255
+      state: 'on'
+    light.kitchen_table_light:
+      color_mode: brightness
+      brightness: 255
+      state: 'on'
+  icon: mdi:sun-clock
+  metadata:
+    light.den_stair_landing:
+      entity_only: true
+    light.kitchen_mudroom_dimmer:
+      entity_only: true
+    light.kitchen_table_light:
+      entity_only: true

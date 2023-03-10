@@ -936,3 +936,98 @@
         entity_id: light.half_bath_light
         domain: light
   mode: single
+- id: '1678461827612'
+  alias: Nicole - Good Morning Nicole
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_button.good_morning_nicole
+    alias: When Good Morning Nicole button is pressed
+  condition:
+  - condition: state
+    entity_id: person.nicole
+    state: home
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.good_morning
+    metadata: {}
+  - if:
+    - condition: sun
+      before: sunrise
+    then:
+    - type: turn_on
+      device_id: b3275c0af7696dc2e67ed8b562004634
+      entity_id: light.kitchen_table_light
+      domain: light
+    alias: Turn on Kitchen Table Light if before sunrise.
+  mode: single
+- id: '1678462647288'
+  alias: Nicole - Wind Down
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_button.wind_down_nicole
+    alias: When Wind Down Nicole Button is pressed
+  condition:
+  - condition: state
+    entity_id: person.nicole
+    state: home
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.wind_down_nicole
+    metadata: {}
+  mode: single
+- id: '1678463156108'
+  alias: Eric - Good Morning Eric
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_button.good_morning_eric
+  condition:
+  - condition: and
+    conditions:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: input_select.home_mode
+        state: Home
+      alias: Home Mode is not Home
+    - condition: state
+      entity_id: person.eric
+      state: home
+    alias: Home Mode is not Home and Eric is Home
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.good_morning
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.good_morning_eric
+    metadata: {}
+  mode: single
+- id: '1678463681567'
+  alias: Lighting - Turn on Garage Lights when Garage Door opens
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 21959ccd3bcee083d4554dd0e553d051
+    domain: cover
+    entity_id: cover.garage_door
+    type: opening
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 391560c1060dcc4b55637e30ceea5a35
+    entity_id: light.garage_lights_north
+    domain: light
+  - type: turn_on
+    device_id: 09655dcdc33e62d00633e87860d3ee7b
+    entity_id: light.garage_lights_south
+    domain: light
+  mode: single
