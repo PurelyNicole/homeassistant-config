@@ -66,8 +66,8 @@
       domain: light
     - type: turn_on
       device_id: fe2189f8bdcd90fc50adb90d370669f6
-      entity_id: switch.den_stair_landing
-      domain: switch
+      entity_id: light.den_stair_landing
+      domain: light
     - type: turn_on
       device_id: 35744bb4b80d36890ae0f34f1ad22a94
       entity_id: light.dining_room_table_dimmer
@@ -855,7 +855,7 @@
   - platform: zone
     entity_id: person.eric
     zone: zone.itc_ann_arbor
-    event: enter
+    event: leave
   condition: []
   action:
   - service: notify.mobile_app_nicole_iphone
@@ -896,28 +896,24 @@
   alias: Half Bath - Control lights with motion
   description: ''
   trigger:
-  - type: no_motion
+  - type: occupied
     platform: device
     device_id: 12b7dc73a4601643d79a3274b66d4c62
-    entity_id: binary_sensor.half_bath_motion_sensor
+    entity_id: binary_sensor.half_bath_motion_sensor_occupancy
     domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 10
-      seconds: 0
-  - type: motion
+  - type: not_occupied
     platform: device
     device_id: 12b7dc73a4601643d79a3274b66d4c62
-    entity_id: binary_sensor.half_bath_motion_sensor
+    entity_id: binary_sensor.half_bath_motion_sensor_occupancy
     domain: binary_sensor
   condition: []
   action:
   - choose:
     - conditions:
-      - type: is_no_motion
+      - type: is_not_occupied
         condition: device
         device_id: 12b7dc73a4601643d79a3274b66d4c62
-        entity_id: binary_sensor.half_bath_motion_sensor
+        entity_id: binary_sensor.half_bath_motion_sensor_occupancy
         domain: binary_sensor
       sequence:
       - type: turn_off
@@ -925,10 +921,10 @@
         entity_id: light.half_bath_light
         domain: light
     - conditions:
-      - type: is_motion
+      - type: is_occupied
         condition: device
         device_id: 12b7dc73a4601643d79a3274b66d4c62
-        entity_id: binary_sensor.half_bath_motion_sensor
+        entity_id: binary_sensor.half_bath_motion_sensor_occupancy
         domain: binary_sensor
       sequence:
       - type: turn_on
@@ -980,6 +976,11 @@
     target:
       entity_id: scene.wind_down_nicole
     metadata: {}
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: Sleep
+    target:
+      entity_id: climate.ecobee_thermostat
   mode: single
 - id: '1678463156108'
   alias: Eric - Good Morning Eric
@@ -1019,7 +1020,7 @@
     device_id: 21959ccd3bcee083d4554dd0e553d051
     domain: cover
     entity_id: cover.garage_door
-    type: opening
+    type: opened
   condition: []
   action:
   - type: turn_on
@@ -1030,4 +1031,40 @@
     device_id: 09655dcdc33e62d00633e87860d3ee7b
     entity_id: light.garage_lights_south
     domain: light
+  mode: single
+- id: '1678734348755'
+  alias: MINI - Workaround for Quota
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: '15'
+  - platform: zone
+    entity_id: person.nicole
+    zone: zone.hickory_glen
+    event: enter
+  - platform: zone
+    entity_id: person.nicole
+    zone: zone.milford_trail
+    event: enter
+  condition: []
+  action:
+  - service: homeassistant.update_entity
+    data: {}
+    target:
+      entity_id: device_tracker.cooper_se
+  mode: single
+- id: '1678889480710'
+  alias: Notification - Notify when energy peaks during DTE peak hours
+  description: ''
+  trigger:
+  - platform: template
+    value_template: '{{states("sensor.energy_bridge") > "5000"}}'
+  condition:
+  - condition: state
+    entity_id: schedule.dte_peak_hours
+    state: 'on'
+  action:
+  - service: notify.notify_nicole_and_eric
+    data:
+      message: High energy use detected during peak hours.
   mode: single

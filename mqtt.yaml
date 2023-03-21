@@ -70,19 +70,17 @@ light:
     payload_not_available: "Offline"
     retain: false
     unique_id: EricOfficeLight
-  # Shelly Dimmers - Not autodiscoverable
-  # Workbench LED Light
-  - name: "Workbench LED Light"
-    state_topic: "stat/workbench_led/POWER"
-    command_topic: "cmnd/workbench_led/POWER"
-    availability_topic: "tele/workbench_led/LWT"
-    qos: 1
+  # Den Stairs
+  - name: "Den Stair Landing"
+    state_topic: "stat/den_stair_landing/POWER1"
+    command_topic: "cmnd/den_stair_landing/EVENT"
+    availability_topic: "tele/den_stair_landing/LWT"
+    qos: 0
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
     payload_not_available: "Offline"
-    retain: false
-    unique_id: workbench_led_light
+    unique_id: DenStairLanding
 
 sensor:
   - name: "Energy Bridge"
