@@ -90,17 +90,6 @@
     - usage_session
     - usage_total
 
-# Statistics
-- platform: statistics
-  name: "Washing Machine Statistics"
-  entity_id: sensor.washing_machine_energy_power
-  state_characteristic: mean
-  max_age:
-    minutes: 5
-  sampling_size: 50
-  precision: 1
-  unique_id: sensor.washing_machine_energy_power
-
 # System Monitor
 - platform: systemmonitor
   resources:
