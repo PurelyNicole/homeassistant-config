@@ -11,8 +11,6 @@
       state: 'off'
     group.main_floor_lights:
       state: 'off'
-    switch.bedroom_humidifier:
-      state: 'on'
     switch.fish_tank_lights:
       state: 'off'
     light.grill_lights:
@@ -23,14 +21,15 @@
       state: closed
     lock.kitchen_door_lock:
       state: locked
+    switch.hair_straightener:
+      state: 'off'
   icon: mdi:weather-night
+  metadata: {}
 - id: good_morning_scene
   name: Good Morning
   entities:
     input_select.home_mode:
       state: Home
-    switch.bedroom_humidifier:
-      state: 'off'
   icon: mdi:weather-sunny
 - id: goodbye_scene
   name: Goodbye
@@ -51,7 +50,12 @@
       state: Away
     lock.kitchen_door_lock:
       state: locked
+    switch.hair_straightener:
+      state: 'off'
   icon: mdi:run
+  metadata:
+    switch.hair_straightener:
+      entity_only: true
 - id: watch_tv_scene
   name: 'Watch TV - Downstairs '
   entities:
@@ -67,7 +71,7 @@
       state: 'off'
     light.family_room_deck_light_back:
       state: 'off'
-    switch.den_stair_landing:
+    light.den_stair_landing:
       state: 'off'
     light.kitchenette_led_strip:
       color_mode: hs
@@ -100,8 +104,6 @@
 - id: goodnight_nicole_scene
   name: Good night - Nicole
   entities:
-    switch.bedroom_humidifier:
-      state: 'on'
     group.master_bedroom_lights:
       state: 'off'
   icon: mdi:chat-sleep-outline

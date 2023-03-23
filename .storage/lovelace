@@ -8,6 +8,132 @@
       "views": [
         {
           "theme": "Backend-selected",
+          "path": "default_view",
+          "title": "Home",
+          "icon": "mdi:home",
+          "visible": [
+            {
+              "user": "a506d526e61b42d4982d4b388a7b4144"
+            },
+            {
+              "user": "416b6f0371014c22a73752f36d9ff2c7"
+            },
+            {
+              "user": "66b26aa37c3c4a3da85a6504307b6eda"
+            },
+            {
+              "user": "99ad95a5fa354694a345abc0443b6b00"
+            },
+            {
+              "user": "9125054b39ad488f9a8c52a13de70d0e"
+            }
+          ],
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                "person.eric",
+                "person.nicole"
+              ],
+              "title": "People",
+              "show_header_toggle": true
+            },
+            {
+              "show_current": true,
+              "show_forecast": true,
+              "type": "weather-forecast",
+              "entity": "weather.possum_den",
+              "secondary_info_attribute": "humidity"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "scene.watch_tv"
+                },
+                {
+                  "entity": "scene.goodnight"
+                }
+              ]
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "group.outdoor_lights"
+                },
+                {
+                  "entity": "group.upstairs_lights"
+                },
+                {
+                  "entity": "group.main_floor_lights"
+                },
+                {
+                  "entity": "group.downstairs_lights"
+                },
+                {
+                  "entity": "group.basement_lights"
+                }
+              ],
+              "title": "Lights",
+              "state_color": true
+            },
+            {
+              "type": "custom:atomic-calendar-revive",
+              "entities": [
+                {
+                  "entity": "calendar.eric_calendar",
+                  "name": "Eric",
+                  "color": "#3F51B5"
+                },
+                {
+                  "entity": "calendar.eric_nicole_calendar",
+                  "name": "Eric & Nicole",
+                  "color": "#8E24AA"
+                },
+                {
+                  "entity": "calendar.nicole_calendar",
+                  "name": "Nicole",
+                  "color": "#D81B60"
+                },
+                {
+                  "entity": "calendar.holidays_in_united_states",
+                  "name": "Holidays",
+                  "color": "#A79B8E"
+                }
+              ],
+              "name": "Calendar Card",
+              "enableModeChange": true,
+              "firstDayOfWeek": 1,
+              "maxDaysToShow": 7,
+              "refreshInterval": 60,
+              "hideFinishedEvents": true,
+              "showRelativeTime": false,
+              "showMultiDay": true,
+              "showDate": true,
+              "sortByStartTime": true,
+              "hideDuplicates": true,
+              "showCurrentEventLine": false,
+              "showMonth": false,
+              "showProgressBar": false,
+              "showWeekDay": true,
+              "showNoEventsForToday": false,
+              "showEventIcon": false,
+              "showFullDayProgress": false,
+              "showHiddenText": false,
+              "showCalendarName": false,
+              "showWeekNumber": false,
+              "showEventDate": true,
+              "showDatePerEvent": false,
+              "calShowDescription": false,
+              "showLastCalendarWeek": false,
+              "showDescription": false
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
           "title": "Den Dashboard",
           "path": "den-dashboard",
           "icon": "mdi:fireplace",
@@ -159,76 +285,172 @@
         },
         {
           "theme": "Backend-selected",
-          "path": "default_view",
-          "title": "Home",
-          "icon": "mdi:home",
+          "title": "Kitchen Dash",
+          "path": "kitchen-dash",
           "visible": [
             {
-              "user": "a506d526e61b42d4982d4b388a7b4144"
-            },
-            {
-              "user": "416b6f0371014c22a73752f36d9ff2c7"
-            },
-            {
-              "user": "66b26aa37c3c4a3da85a6504307b6eda"
-            },
-            {
-              "user": "99ad95a5fa354694a345abc0443b6b00"
-            },
-            {
-              "user": "9125054b39ad488f9a8c52a13de70d0e"
+              "user": "4df26c21b64743d683213ba2dfd50dd7"
             }
           ],
+          "icon": "mdi:countertop-outline",
           "badges": [],
           "cards": [
             {
-              "type": "entities",
-              "entities": [
-                "person.eric",
-                "person.nicole"
-              ],
-              "title": "People",
-              "show_header_toggle": true
-            },
-            {
-              "show_current": true,
-              "show_forecast": true,
-              "type": "weather-forecast",
-              "entity": "weather.possum_den",
-              "secondary_info_attribute": "humidity"
-            },
-            {
-              "type": "entities",
-              "entities": [
+              "type": "vertical-stack",
+              "cards": [
                 {
-                  "entity": "scene.watch_tv"
+                  "type": "custom:clock-weather-card",
+                  "entity": "weather.possum_den",
+                  "time_format": 12
                 },
                 {
-                  "entity": "scene.goodnight"
+                  "type": "custom:weather-radar-card",
+                  "frame_count": 10,
+                  "center_latitude": 42.59099219695002,
+                  "center_longitude": -83.39325635707908,
+                  "marker_latitude": 42.59099219695002,
+                  "marker_longitude": -83.39325635707908,
+                  "show_marker": true,
+                  "show_range": true,
+                  "show_zoom": true,
+                  "show_recenter": true,
+                  "show_playback": true,
+                  "zoom_level": 8,
+                  "extra_labels": false,
+                  "show_scale": false,
+                  "static_map": false
                 }
               ]
             },
             {
-              "type": "entities",
-              "entities": [
+              "type": "vertical-stack",
+              "cards": [
                 {
-                  "entity": "group.outdoor_lights"
+                  "type": "custom:atomic-calendar-revive",
+                  "entities": [
+                    {
+                      "entity": "calendar.eric_calendar",
+                      "name": "Eric",
+                      "color": "#3F51B5"
+                    },
+                    {
+                      "entity": "calendar.eric_nicole_calendar",
+                      "name": "Eric & Nicole",
+                      "color": "#8E24AA"
+                    },
+                    {
+                      "entity": "calendar.nicole_calendar",
+                      "name": "Nicole",
+                      "color": "#D81B60"
+                    },
+                    {
+                      "entity": "calendar.holidays_in_united_states",
+                      "name": "Holidays",
+                      "color": "#A79B8E"
+                    }
+                  ],
+                  "name": "Calendar Card",
+                  "enableModeChange": true,
+                  "firstDayOfWeek": 1,
+                  "maxDaysToShow": 7,
+                  "refreshInterval": 60,
+                  "hideFinishedEvents": true,
+                  "showRelativeTime": false,
+                  "showMultiDay": true,
+                  "showDate": true,
+                  "sortByStartTime": true,
+                  "hideDuplicates": true,
+                  "showCurrentEventLine": false,
+                  "showMonth": false,
+                  "showProgressBar": false,
+                  "showWeekDay": true,
+                  "showNoEventsForToday": false,
+                  "showEventIcon": false,
+                  "showFullDayProgress": false,
+                  "showHiddenText": false,
+                  "showCalendarName": false,
+                  "showWeekNumber": false,
+                  "showEventDate": true,
+                  "showDatePerEvent": false,
+                  "calShowDescription": false,
+                  "showLastCalendarWeek": false
                 },
                 {
-                  "entity": "group.upstairs_lights"
-                },
-                {
-                  "entity": "group.main_floor_lights"
-                },
-                {
-                  "entity": "group.downstairs_lights"
-                },
-                {
-                  "entity": "group.basement_lights"
+                  "show_state": true,
+                  "show_name": true,
+                  "camera_view": "auto",
+                  "type": "picture-entity",
+                  "entity": "camera.blueiris_all_cameras_cycle",
+                  "tap_action": {
+                    "action": "navigate",
+                    "navigation_path": "/lovelace/cameras"
+                  }
                 }
-              ],
-              "title": "Lights",
-              "state_color": true
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "lock.kitchen_door_lock"
+                    },
+                    {
+                      "entity": "cover.garage_door"
+                    },
+                    {
+                      "entity": "binary_sensor.basement_outside_door"
+                    }
+                  ],
+                  "title": "Doors",
+                  "state_color": true
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "group.outdoor_lights"
+                    },
+                    {
+                      "entity": "group.upstairs_lights"
+                    },
+                    {
+                      "entity": "group.main_floor_lights"
+                    },
+                    {
+                      "entity": "group.downstairs_lights"
+                    },
+                    {
+                      "entity": "group.basement_lights"
+                    }
+                  ],
+                  "title": "Lights",
+                  "state_color": true
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entity",
+                  "entity": "sensor.dishwasher_status",
+                  "state_color": true
+                },
+                {
+                  "type": "custom:grocy-chores-card",
+                  "entity": "sensor.grocy_chores",
+                  "title": "Chorin'",
+                  "show_quantity": 5,
+                  "show_days": 3,
+                  "show_assigned": false,
+                  "show_last_tracked": true,
+                  "show_last_tracked_by": false,
+                  "show_track_button": true
+                }
+              ]
             }
           ]
         },
@@ -738,6 +960,9 @@
                   "entity": "binary_sensor.master_bathroom_sensor_home_security_motion_detection"
                 },
                 {
+                  "entity": "binary_sensor.eric_office_motion_sensor_motion"
+                },
+                {
                   "entity": "binary_sensor.den"
                 },
                 {
@@ -816,6 +1041,35 @@
                 }
               ],
               "title": "Main Floor TV"
+            },
+            {
+              "type": "custom:atomic-calendar-revive",
+              "entities": [
+                {
+                  "entity": "calendar.music_announcements",
+                  "name": "Music announcements"
+                }
+              ],
+              "name": "Upcoming Releases",
+              "enableModeChange": true,
+              "firstDayOfWeek": 1,
+              "maxDaysToShow": 30,
+              "refreshInterval": 60,
+              "hideFinishedEvents": true,
+              "showLocation": false,
+              "showDate": false,
+              "hideDuplicates": true,
+              "showDescription": false,
+              "showProgressBar": false,
+              "showCurrentEventLine": false,
+              "showWeekDay": true,
+              "disableEventLink": false,
+              "showEventIcon": false,
+              "showCalendarName": false,
+              "showEventDate": true,
+              "calShowDescription": false,
+              "showRelativeTime": false,
+              "showLastCalendarWeek": false
             }
           ]
         },
@@ -935,31 +1189,33 @@
                       "entity": "binary_sensor.roomba_mainfloor_bin_full"
                     }
                   ],
-                  "title": "Roomba - Main Floor"
+                  "title": "Roomba - Main Floor",
+                  "state_color": true
                 }
               ]
             },
             {
-              "type": "entities",
-              "entities": [
+              "type": "entity",
+              "entity": "binary_sensor.washing_machine"
+            },
+            {
+              "type": "entity",
+              "entity": "sensor.dishwasher_status",
+              "state_color": true
+            },
+            {
+              "type": "conditional",
+              "conditions": [
                 {
-                  "entity": "binary_sensor.dishwasher_door",
-                  "name": "Door"
-                },
-                {
-                  "entity": "sensor.dishwasher_operation_state",
-                  "name": "Operation State"
-                },
-                {
-                  "entity": "sensor.dishwasher_program_progress",
-                  "name": "Program Progress"
-                },
-                {
-                  "entity": "sensor.dishwasher_remaining_program_time",
-                  "name": "Remaining Program Time"
+                  "entity": "sensor.dishwasher_status",
+                  "state_not": "Dirty"
                 }
               ],
-              "title": "Dishwasher"
+              "card": {
+                "type": "entity",
+                "entity": "sensor.dishwasher_remaining_program_time",
+                "name": "Dishwasher Finshed At:"
+              }
             }
           ]
         },
@@ -1148,6 +1404,9 @@
                 {
                   "type": "entities",
                   "entities": [
+                    {
+                      "entity": "sensor.eric_office_motion_sensor_battery"
+                    },
                     {
                       "entity": "sensor.family_room_thermostat_battery"
                     },
