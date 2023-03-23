@@ -6,8 +6,11 @@ exclude:
     - number
     - update
   entity_globs:
+    - binary_sensor.*_firmware_update
     - binary_sensor.*_running # if addons are running
+    - binary_sensor.roomba*bin_full
     - sensor.erics_iphone_14_* # Eric iPhone sensors
+    - sensor.eric_ipad* # Eric iPad sensors
     - sensor.nicole_iphone_* # Nicole iPhone sensors
     - sensor.*_energy_yesterday # Can get this by looking at "today" value for previous day
     - sensor.*_ip # Only care about current, not historical
@@ -16,12 +19,13 @@ exclude:
     - automation.shellies_announce
     - automation.shellies_discovery
     # Binary Sensors
+    - binary_sensor.dishwasher_remote_control
+    - binary_sensor.dishwasher_remote_start
     - binary_sensor.erics_iphone_14_focus
     - binary_sensor.nicole_iphone_focus
     - binary_sensor.omv_config_dirty
     - binary_sensor.omv_reboot_pending
     - binary_sensor.omv_update_available
-    - binary_sensor.roomba_bin_full
     # Selects
     - select.display_brightness
     - select.equalizer_mode
@@ -37,8 +41,26 @@ exclude:
     # Sensors
     - sensor.allergy_index_tomorrow
     - sensor.cooper_se_charging_end_time
+    - sensor.fish_feeder_counter_c1
+    - sensor.fish_feeder_status
     - sensor.grocy_chores
     - sensor.hacs
+    - sensor.main_floor_tv_tv_channel
+    - sensor.main_floor_tv_tv_channel_name
     - sensor.omv_sdb
     - sensor.omv_uptime
+    - sensor.oven_oven_completion_time
     - sensor.zigbeebridge_ssid
+    # Change device type switches
+    - switch.basement_landing_lights
+    - switch.den_stair_landing
+    - switch.family_room_south_fan
+    - switch.garage_lights_north
+    - switch.garage_lights_south
+    - switch.globe_lamp
+    - switch.kitchen_overhead_lights
+    - switch.nicole_nightstand
+    - switch.nicole_office_floor_lamp
+    - switch.nicole_office_lights
+    - switch.north_basement_lights
+    - switch.south_basement_lights
