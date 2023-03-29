@@ -72,6 +72,10 @@
       device_id: 35744bb4b80d36890ae0f34f1ad22a94
       entity_id: light.dining_room_table_dimmer
       domain: light
+    - type: turn_on
+      device_id: b3275c0af7696dc2e67ed8b562004634
+      entity_id: light.kitchen_table_light
+      domain: light
   mode: parallel
   max: 10
 - id: goodnight_2am
@@ -106,7 +110,13 @@
   - platform: state
     entity_id:
     - binary_sensor.windows
-    enabled: false
+    enabled: true
+  - platform: state
+    entity_id:
+    - schedule.dte_peak_hours
+  - platform: state
+    entity_id:
+    - input_boolean.dte_peak_season
   condition:
   - condition: state
     entity_id: input_boolean.vacation_mode
@@ -774,10 +784,12 @@
     entity_id:
     - light.kitchen_overhead_lights
     to: 'on'
+    from: 'off'
   - platform: state
     entity_id:
     - light.kitchen_overhead_lights
     to: 'off'
+    from: 'on'
   condition: []
   action:
   - choose:
@@ -786,19 +798,19 @@
         entity_id: light.kitchen_overhead_lights
         state: 'on'
       sequence:
-      - type: turn_on
-        device_id: 13d77bf51baef8f805d72c62d269d19b
-        entity_id: light.kitchen_window_seat_light
-        domain: light
+      - service: light.turn_on
+        data: {}
+        target:
+          entity_id: light.kitchen_window_seat_light
     - conditions:
       - condition: state
         entity_id: light.kitchen_overhead_lights
         state: 'off'
       sequence:
-      - type: turn_off
-        device_id: 13d77bf51baef8f805d72c62d269d19b
-        entity_id: light.kitchen_window_seat_light
-        domain: light
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: light.kitchen_window_seat_light
   mode: single
 - id: '1676849212991'
   alias: 'Notification - Dishwasher finished '
@@ -1107,4 +1119,39 @@
   - service: notify.notify_nicole_and_eric
     data:
       message: Washing machine cycle complete.
+  mode: single
+- id: '1680028298582'
+  alias: Set Ecobee - DTE Update
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.day
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.dusk
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.night
+    to: 'on'
+  - platform: state
+    entity_id: input_select.home_mode
+  - platform: state
+    entity_id:
+    - binary_sensor.windows
+    enabled: true
+  - platform: state
+    entity_id:
+    - schedule.dte_peak_hours
+  - platform: state
+    entity_id:
+    - input_boolean.dte_peak_season
+  condition:
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'off'
+  action:
+  - service: python_script.set_ecobee_dte_update
+    data:
+      weather: weather.ecobee_thermostat
+      thermostat: climate.ecobee_thermostat
   mode: single
