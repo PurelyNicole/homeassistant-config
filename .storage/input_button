@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_button",
+  "data": {
+    "items": [
+      {
+        "name": "Good Morning Nicole",
+        "id": "good_morning_nicole"
+      },
+      {
+        "name": "Wind Down Nicole",
+        "id": "wind_down_nicole"
+      },
+      {
+        "name": "Good Morning Eric",
+        "id": "good_morning_eric"
+      }
+    ]
+  }
+}

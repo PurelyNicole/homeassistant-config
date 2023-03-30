@@ -1055,7 +1055,7 @@
               "firstDayOfWeek": 1,
               "maxDaysToShow": 30,
               "refreshInterval": 60,
-              "hideFinishedEvents": true,
+              "hideFinishedEvents": false,
               "showLocation": false,
               "showDate": false,
               "hideDuplicates": true,
@@ -1070,6 +1070,37 @@
               "calShowDescription": false,
               "showRelativeTime": false,
               "showLastCalendarWeek": false
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "show_state": false,
+                  "type": "glance",
+                  "entities": [
+                    {
+                      "entity": "button.get_random_cd",
+                      "tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "entity": "button.get_random_record",
+                      "tap_action": {
+                        "action": "toggle"
+                      }
+                    }
+                  ],
+                  "state_color": false
+                },
+                {
+                  "type": "entity",
+                  "entity": "sensor.random_release",
+                  "name": "You Should Listen To..."
+                }
+              ]
             }
           ]
         },

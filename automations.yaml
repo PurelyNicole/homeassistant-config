@@ -1078,7 +1078,12 @@
       hours: 0
       minutes: 30
       seconds: 0
-  condition: []
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: sensor.hair_straightener_energy_power
+      state: '0'
   action:
   - type: turn_off
     device_id: ca79eaed962b1a630ce3466878b3a0d0

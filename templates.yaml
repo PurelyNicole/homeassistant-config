@@ -30,10 +30,3 @@
       {%- else %}
         Unknown  
       {%- endif %}
-    attributes:
-      CompletionTime: >
-        {% if is_state("sensor.dishwasher_operation_state", "Run") -%}
-          Complete at {{as_timestamp(states("sensor.dishwasher_remaining_program_time")) | timestamp_custom("%I:%M")}}
-        {%- else %}
-          
-        {%- endif %}

@@ -1,3 +1,9 @@
+# Discogs
+- platform: discogs
+  token: !secret discogs_token
+  monitored_conditions:
+    - collection
+
 # History Stats - Used for vacation lighting
 - platform: history_stats
   name: "replay_nicole_office_lights"
