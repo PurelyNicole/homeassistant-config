@@ -16,11 +16,11 @@ peak_hours = (hass.states.get("schedule.dte_peak_hours")).state
 def normalOperation():
   logger.info("Enter normal operation mode.")
   # Set thermostat mode based on forecasted high temperature.
-  if today_high > 80:
+  if today_high > 74:
     logger.info("Setting mode to cool.")
     operation_mode = "cool"
   # Sets heat_cool variables.
-  elif today_high >= 55 and today_high <= 80:
+  elif today_high >= 55 and today_high <= 74:
     logger.info("Setting mode to heat_cool.")
     operation_mode = "heat_cool"
   # Sets heat variables.
@@ -58,6 +58,7 @@ def dtePeakSeasonMode():
   logger.info("Enter DTE Peak Season mode.")
   operation_mode = "cool"
   peak_hours_temp = 80
+  current_hour = datetime.datetime.now().hour
   
   # Set pre-chill temperatures
   if today_high >= 75 and today_high <= 85:
@@ -68,10 +69,10 @@ def dtePeakSeasonMode():
     logger.warn("You shouldn't be here.")
 
   # Prechill before the peak hours start
-  if datetime.datetime.now().hour < 15:
+  if current_hour > 7 and current_hour < 15:
     logger.info("Prechilling the house")
     hass.services.call("climate", "set_temperature", {"entity_id": thermostat, "temperature": pre_chill_temp}, False)
-  elif datetime.datetime.now().hour >=15 and datetime.datetime.now().hour < 19:
+  elif current_hour >=15 and current_hour < 19:
     logger.info("Entering peak hour mode.")
     hass.services.call("climate", "set_temperature", {"entity_id": thermostat, "temperature": peak_hours_temp}, False)
   else:

@@ -38,8 +38,3 @@ sensor: !include sensors.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 template: !include templates.yaml
-
-logger:
-  default: warning
-  logs:
-    homeassistant.components.python_script: info

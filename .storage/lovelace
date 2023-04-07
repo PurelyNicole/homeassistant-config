@@ -278,7 +278,7 @@
             },
             {
               "type": "custom:clock-weather-card",
-              "entity": "weather.possum_den",
+              "entity": "weather.ecobee_thermostat",
               "time_format": 12
             }
           ]
@@ -300,7 +300,7 @@
               "cards": [
                 {
                   "type": "custom:clock-weather-card",
-                  "entity": "weather.possum_den",
+                  "entity": "weather.ecobee_thermostat",
                   "time_format": 12
                 },
                 {
@@ -349,7 +349,6 @@
                       "color": "#A79B8E"
                     }
                   ],
-                  "name": "Calendar Card",
                   "enableModeChange": true,
                   "firstDayOfWeek": 1,
                   "maxDaysToShow": 7,
@@ -1492,9 +1491,6 @@
                     },
                     {
                       "entity": "sensor.hot_water_heater_flood_sensor_battery_level"
-                    },
-                    {
-                      "entity": "sensor.master_bathroom_sensor_battery_level"
                     },
                     {
                       "entity": "sensor.nicole_office_sensor_battery_level"

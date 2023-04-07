@@ -1150,6 +1150,9 @@
   - platform: state
     entity_id:
     - input_boolean.dte_peak_season
+  - platform: time_pattern
+    hours: '1'
+    alias: Every hour
   condition:
   - condition: state
     entity_id: input_boolean.vacation_mode
