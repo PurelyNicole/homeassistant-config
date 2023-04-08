@@ -40,8 +40,7 @@ main_floor_lights:
   entities:
     - group.garage_lights
     - group.kitchen_lights
-    - light.dining_room_table_dimmer
-    - light.dining_room_wall_dimmer
+    - group.living_dining_room_lights
   icon: mdi:lightbulb-group
 downstairs_lights:
   name: Downstairs Lights
@@ -72,6 +71,7 @@ nicole_office_lights:
   entities:
     - light.nicole_office_lights
     - light.nicole_office_floor_lamp
+    - light.nicole_office_file_cabinet_lamp
     - light.nicole_office_closet_light
   icon: mdi:lightbulb-group
 garage_lights:
@@ -105,4 +105,13 @@ kitchen_lights:
     - light.kitchen_overhead_lights
     - light.kitchen_table_light
     - light.kitchen_mudroom_dimmer
+    - light.entryway_light
+  icon: mdi:lightbulb-group
+living_dining_room_lights:
+  name: Living/Dining Room Lights
+  entities:
+    - light.living_room_wall_dimmer
+    - light.living_room_lamps
+    - light.dining_room_table_dimmer
+    - light.dining_room_wall_dimmer
   icon: mdi:lightbulb-group

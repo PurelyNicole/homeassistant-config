@@ -364,23 +364,6 @@
       message: Smoke detector has been activiated.
       title: Smoke Detector Activated!
   mode: single
-- id: master_bath_humidity
-  alias: Master Bathroom - Humidity Management
-  description: ''
-  trigger:
-  - type: humidity
-    platform: device
-    device_id: 7ba36598dccd4e9310bf7c044decd042
-    entity_id: sensor.master_bathroom_sensor_humidity
-    domain: sensor
-    below: 60
-  condition: []
-  action:
-  - type: turn_off
-    device_id: a661b2686aff252c938e2863135cd183
-    entity_id: switch.master_bath_fan
-    domain: switch
-  mode: single
 - id: master_bath_motion
   alias: Master Bathroom - Turn off lights when no motion detected
   description: ''
@@ -566,6 +549,10 @@
         device_id: 84233bfe9142301d0caf5e3ba80fef60
         entity_id: light.nicole_office_floor_lamp
         domain: light
+      - type: turn_on
+        device_id: 310e0e6bf98c0b9f552045d210041997
+        entity_id: light.nicole_office_file_cabinet_lamp
+        domain: light
   mode: single
 - id: niocole_office_closet_light
   alias: Nicole Office - Turn closet light off/on with door
@@ -604,6 +591,10 @@
     entity_id:
     - climate.ecobee_thermostat
     attribute: temperature
+  - platform: state
+    entity_id:
+    - climate.ecobee_thermostat
+    attribute: target_temp_low
   - platform: state
     entity_id:
     - climate.ecobee_thermostat
@@ -1162,4 +1153,58 @@
     data:
       weather: weather.ecobee_thermostat
       thermostat: climate.ecobee_thermostat
+  mode: single
+- id: '1680551064164'
+  alias: Notification - Notify when oven is done preheating
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.oven_oven_job_state
+    from: preheat
+    to: cooking
+  condition: []
+  action:
+  - service: notify.notify_nicole_and_eric
+    data:
+      message: Oven is preheated.
+  mode: single
+- id: '1680787939672'
+  alias: Lighting - Turn on basement lights when door opened.
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 14446959dbf188c58e6943d51605b8f2
+    entity_id: binary_sensor.basement_door
+    domain: binary_sensor
+  - platform: state
+    entity_id:
+    - binary_sensor.basement_outside_door
+    to: 'on'
+  condition: []
+  action:
+  - service: light.turn_on
+    data: {}
+    target:
+      area_id: basement
+  mode: single
+- id: '1680889724633'
+  alias: Lighting - Turn basement lights off when no motion for an hour
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.basement_sensor_home_security_motion_detection
+    to: 'off'
+    for:
+      hours: 1
+      minutes: 0
+      seconds: 0
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      area_id: basement
   mode: single

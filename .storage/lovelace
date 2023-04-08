@@ -31,13 +31,17 @@
           "badges": [],
           "cards": [
             {
-              "type": "entities",
-              "entities": [
-                "person.eric",
-                "person.nicole"
-              ],
-              "title": "People",
-              "show_header_toggle": true
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "tile",
+                  "entity": "person.eric"
+                },
+                {
+                  "type": "tile",
+                  "entity": "person.nicole"
+                }
+              ]
             },
             {
               "show_current": true,
@@ -49,6 +53,9 @@
             {
               "type": "entities",
               "entities": [
+                {
+                  "entity": "scene.watch_tv_main_floor"
+                },
                 {
                   "entity": "scene.watch_tv"
                 },
@@ -326,6 +333,27 @@
               "type": "vertical-stack",
               "cards": [
                 {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "tile",
+                      "entity": "person.eric",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/map"
+                      }
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "person.nicole",
+                      "tap_action": {
+                        "action": "navigate",
+                        "navigation_path": "/map"
+                      }
+                    }
+                  ]
+                },
+                {
                   "type": "custom:atomic-calendar-revive",
                   "entities": [
                     {
@@ -466,25 +494,6 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "light.garage_lights_north"
-                    },
-                    {
-                      "entity": "light.garage_lights_south"
-                    },
-                    {
-                      "entity": "light.dining_room_table_dimmer"
-                    },
-                    {
-                      "entity": "light.dining_room_wall_dimmer"
-                    }
-                  ],
-                  "state_color": true,
-                  "title": "Main Floor Lights"
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
                       "entity": "light.half_bath_light"
                     },
                     {
@@ -504,9 +513,30 @@
                     },
                     {
                       "entity": "light.kitchen_overhead_lights"
+                    },
+                    {
+                      "entity": "light.entryway_light"
                     }
                   ],
                   "title": "Kitchen Lights"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.living_room_lamps"
+                    },
+                    {
+                      "entity": "light.living_room_wall_dimmer"
+                    },
+                    {
+                      "entity": "light.dining_room_table_dimmer"
+                    },
+                    {
+                      "entity": "light.dining_room_wall_dimmer"
+                    }
+                  ],
+                  "title": "Living/Dining Room Lights"
                 }
               ]
             },
@@ -634,6 +664,9 @@
                   "entity": "light.nicole_office_floor_lamp"
                 },
                 {
+                  "entity": "light.nicole_office_file_cabinet_lamp"
+                },
+                {
                   "entity": "light.nicole_office_closet_light"
                 }
               ],
@@ -655,6 +688,19 @@
               ],
               "title": "Master Bedroom",
               "state_color": true
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "light.garage_lights_north"
+                },
+                {
+                  "entity": "light.garage_lights_south"
+                }
+              ],
+              "state_color": true,
+              "title": "Garage Lights"
             }
           ]
         },
@@ -726,7 +772,7 @@
                   "entity": "sensor.garage_sensor_humidity"
                 },
                 {
-                  "entity": "sensor.nicole_office_sensor_humidity"
+                  "entity": "sensor.compensation_sensor_nicole_office_sensor_humidity"
                 },
                 {
                   "entity": "sensor.master_bathroom_sensor_humidity"
@@ -760,6 +806,9 @@
                 },
                 {
                   "entity": "binary_sensor.front_door"
+                },
+                {
+                  "entity": "binary_sensor.basement_door"
                 },
                 {
                   "entity": "cover.garage_door"
@@ -1191,36 +1240,32 @@
               "type": "vertical-stack",
               "cards": [
                 {
-                  "type": "entities",
-                  "entities": [
+                  "type": "tile",
+                  "entity": "vacuum.roomba",
+                  "features": [
                     {
-                      "entity": "vacuum.roomba"
-                    },
-                    {
-                      "entity": "sensor.roomba_battery_level"
-                    },
-                    {
-                      "entity": "binary_sensor.roomba_bin_full"
+                      "type": "vacuum-commands",
+                      "commands": [
+                        "start_pause",
+                        "stop",
+                        "locate"
+                      ]
                     }
-                  ],
-                  "state_color": true,
-                  "title": "Roomba - Downstairs"
+                  ]
                 },
                 {
-                  "type": "entities",
-                  "entities": [
+                  "type": "tile",
+                  "entity": "vacuum.roomba_mainfloor",
+                  "features": [
                     {
-                      "entity": "vacuum.roomba_mainfloor"
-                    },
-                    {
-                      "entity": "sensor.roomba_mainfloor_battery_level"
-                    },
-                    {
-                      "entity": "binary_sensor.roomba_mainfloor_bin_full"
+                      "type": "vacuum-commands",
+                      "commands": [
+                        "start_pause",
+                        "stop",
+                        "locate"
+                      ]
                     }
-                  ],
-                  "title": "Roomba - Main Floor",
-                  "state_color": true
+                  ]
                 }
               ]
             },
@@ -1232,20 +1277,6 @@
               "type": "entity",
               "entity": "sensor.dishwasher_status",
               "state_color": true
-            },
-            {
-              "type": "conditional",
-              "conditions": [
-                {
-                  "entity": "sensor.dishwasher_status",
-                  "state_not": "Dirty"
-                }
-              ],
-              "card": {
-                "type": "entity",
-                "entity": "sensor.dishwasher_remaining_program_time",
-                "name": "Dishwasher Finshed At:"
-              }
             }
           ]
         },
@@ -1435,6 +1466,9 @@
                   "type": "entities",
                   "entities": [
                     {
+                      "entity": "sensor.basement_door_battery"
+                    },
+                    {
                       "entity": "sensor.eric_office_motion_sensor_battery"
                     },
                     {
@@ -1444,13 +1478,13 @@
                       "entity": "sensor.fish_tank_water_sensor_battery"
                     },
                     {
+                      "entity": "sensor.half_bath_motion_sensor_battery"
+                    },
+                    {
                       "entity": "sensor.kitchen_sink_water_sensor_battery"
                     },
                     {
                       "entity": "sensor.laundry_room_water_sensor_battery"
-                    },
-                    {
-                      "entity": "sensor.half_bath_motion_sensor_battery"
                     }
                   ],
                   "title": "Zigbee Battery Status",

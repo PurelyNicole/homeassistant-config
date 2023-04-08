@@ -5,7 +5,7 @@
         icon: mdi:washing-machine
         device_class: running
         delay_off:
-          minutes: 5
+          minutes: 6
         state: >
           {{ states('sensor.washing_machine_energy_power')|float > 2 }}
 
@@ -17,16 +17,3 @@
     unit_of_measurement: "°F"
     state_class: measurement
     device_class: temperature
-  - name: "Dishwasher Status"
-    unique_id: sensor.dishwasher_status
-    icon: mdi:dishwasher
-    state: >
-      {% if is_state("sensor.dishwasher_operation_state", "Finished") -%}
-        Clean
-      {%- elif is_state("sensor.dishwasher_operation_state", "Run") -%}
-        Running: {{states("sensor.dishwasher_program_progress")}}% complete.
-      {%- elif is_state("sensor.dishwasher_operation_state", "Inactive") -%}
-        Dirty
-      {%- else %}
-        Unknown  
-      {%- endif %}

@@ -3,13 +3,17 @@ nicole_office_humidity_corrected:
   data_points:
     - [44, 38]
     - [52, 44]
+    - [53, 49]
   unit_of_measurement: "%"
+  unique_id: nicole_office_humidity_corrected
 nicole_office_temp_corrected:
   source: sensor.nicole_office_sensor_air_temperature
   data_points:
+    - [67.6, 65.8]
     - [69.5, 68.2]
     - [68.8, 67.1]
     - [70.6, 68.7] 
+  unique_id: nicole_office_temp_corrected
 # master_bath_humidity_corrected:
 #   source: sensor.master_bathroom_sensor_humidity
 #   data_points:
