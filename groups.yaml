@@ -94,6 +94,7 @@ den_lights:
     - light.den_stair_landing
     - light.kitchenette_led_strip
     - light.fireplace_dimmer
+    - light.cd_shelf_dimmer
   icon: mdi:lightbulb-group
 kitchen_lights:
   name: Kitchen Lights

@@ -86,9 +86,14 @@
     light.kitchenette_spot_lights:
       color_mode: brightness
       brightness: 145
+    light.cd_shelf_dimmer:
+      color_mode: brightness
+      brightness: 38
       state: 'on'
   icon: mdi:television-classic
-  metadata: {}
+  metadata:
+    light.cd_shelf_dimmer:
+      entity_only: true
 - id: nicole_wind_down_scene
   name: Wind Down - Nicole
   entities:
@@ -136,6 +141,14 @@
       color_mode: brightness
       brightness: 145
       state: 'on'
+    light.living_room_lamps:
+      state: 'off'
+    light.living_room_wall_dimmer:
+      color_mode: brightness
+      brightness: 150
+      state: 'on'
+    light.entryway_light:
+      state: 'off'
   icon: mdi:television
   metadata: {}
 - id: good_morning_eric

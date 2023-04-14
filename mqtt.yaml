@@ -70,7 +70,7 @@ light:
     payload_not_available: "Offline"
     retain: false
     unique_id: EricOfficeLight
-  # Den Stairs
+  # Den Stairs - 3 Way
   - name: "Den Stair Landing"
     state_topic: "stat/den_stair_landing/POWER1"
     command_topic: "cmnd/den_stair_landing/EVENT"
@@ -81,6 +81,16 @@ light:
     payload_available: "Online"
     payload_not_available: "Offline"
     unique_id: DenStairLanding
+  # Shelly Dimmers - Not autodiscoverable
+  - name: CD Shelf Dimmer
+    schema: template
+    state_topic: "shellies/cd-shelf-dimmer/light/0/status"
+    state_template: "{% if value_json.ison %} on {% else %} off {% endif %}"
+    command_topic: "shellies/cd-shelf-dimmer/light/0/set"
+    command_on_template: '{"turn": "on"{% if brightness is defined %}, "brightness": {{(brightness | float * 0.3882 + 1) | round(0)}}{% endif %}}'
+    command_off_template: '{"turn": "off"}'
+    brightness_template: "{{ (value_json.brightness | float * 2.55) | round(0) }}"
+    unique_id: cd_shelf_dimmer
 
 sensor:
   - name: "Energy Bridge"
