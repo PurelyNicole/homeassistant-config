@@ -86,6 +86,7 @@
     light.kitchenette_spot_lights:
       color_mode: brightness
       brightness: 145
+      state: 'on'
     light.cd_shelf_dimmer:
       color_mode: brightness
       brightness: 38
