@@ -453,6 +453,14 @@
       hours: 0
       minutes: 35
       seconds: 0
+  - platform: state
+    entity_id:
+    - device_tracker.cooper_se
+    to: Tree Farm
+    for:
+      hours: 0
+      minutes: 35
+      seconds: 0
   condition:
   - condition: template
     value_template: '{{state_attr("weather.possum_den", "temperature") >= 75}}'
@@ -621,7 +629,7 @@
         main_thermostat: climate.ecobee_thermostat
         fr_thermostat: climate.family_room_thermostat
       alias: Set based on ecobee
-  mode: single
+  mode: restart
 - id: '1666969652329'
   alias: Notification - Notify when fish feeder goes offline
   description: ''
@@ -802,7 +810,7 @@
         data: {}
         target:
           entity_id: light.kitchen_window_seat_light
-  mode: single
+  mode: restart
 - id: '1676849212991'
   alias: 'Notification - Dishwasher finished '
   description: ''
@@ -1009,7 +1017,10 @@
     domain: cover
     entity_id: cover.garage_door
     type: opened
-  condition: []
+  condition:
+  - condition: sun
+    before: sunrise
+    after: sunset
   action:
   - type: turn_on
     device_id: 391560c1060dcc4b55637e30ceea5a35
@@ -1153,7 +1164,7 @@
     data:
       weather: weather.ecobee_thermostat
       thermostat: climate.ecobee_thermostat
-  mode: single
+  mode: restart
 - id: '1680551064164'
   alias: Notification - Notify when oven is done preheating
   description: ''
