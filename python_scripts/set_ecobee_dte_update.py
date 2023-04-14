@@ -16,11 +16,11 @@ peak_hours = (hass.states.get("schedule.dte_peak_hours")).state
 def normalOperation():
   logger.info("Enter normal operation mode.")
   # Set thermostat mode based on forecasted high temperature.
-  if today_high > 74:
+  if today_high > 79:
     logger.info("Setting mode to cool.")
     operation_mode = "cool"
   # Sets heat_cool variables.
-  elif today_high >= 55 and today_high <= 74:
+  elif today_high >= 55 and today_high <= 79:
     logger.info("Setting mode to heat_cool.")
     operation_mode = "heat_cool"
   # Sets heat variables.
@@ -32,8 +32,13 @@ def normalOperation():
 
   # Call set_preset_mode based on home mode and time of day, using the service data above.
   if home_mode == "Home":
-    logger.info("In home mode.")
-    hass.services.call("climate", "set_preset_mode", {"entity_id": thermostat, "preset_mode": "Home"}, False)
+    logger.info("People are home.")
+    if hass.states.is_state("binary_sensor.night", "on") and operation_mode != "heat":
+      log.info("Nighttime when it's warm. Start sleep cooling early.")
+      hass.services.call("climate", "set_preset_mode", {"entity_id": thermostat, "preset_mode": "Sleep"}, False)
+    else:    
+      logger.info("It is not night. Set thermostat to home.")
+      hass.services.call("climate", "set_preset_mode", {"entity_id": thermostat, "preset_mode": "Home"}, False)
   elif home_mode == "Away":
     logger.info("Away mode.")
     hass.services.call("climate", "set_preset_mode", {"entity_id": thermostat, "preset_mode": "Away"}, False)
