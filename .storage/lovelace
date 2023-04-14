@@ -47,7 +47,7 @@
               "show_current": true,
               "show_forecast": true,
               "type": "weather-forecast",
-              "entity": "weather.possum_den",
+              "entity": "weather.ecobee_thermostat",
               "secondary_info_attribute": "humidity"
             },
             {
@@ -168,6 +168,9 @@
                     },
                     {
                       "entity": "light.den_stair_landing"
+                    },
+                    {
+                      "entity": "light.cd_shelf_dimmer"
                     },
                     {
                       "entity": "light.fireplace_dimmer"
@@ -337,19 +340,11 @@
                   "cards": [
                     {
                       "type": "tile",
-                      "entity": "person.eric",
-                      "tap_action": {
-                        "action": "navigate",
-                        "navigation_path": "/map"
-                      }
+                      "entity": "person.eric"
                     },
                     {
                       "type": "tile",
-                      "entity": "person.nicole",
-                      "tap_action": {
-                        "action": "navigate",
-                        "navigation_path": "/map"
-                      }
+                      "entity": "person.nicole"
                     }
                   ]
                 },
@@ -584,6 +579,9 @@
                       "entity": "light.fireplace_dimmer"
                     },
                     {
+                      "entity": "light.cd_shelf_dimmer"
+                    },
+                    {
                       "entity": "switch.fish_tank_lights"
                     },
                     {
@@ -772,7 +770,7 @@
                   "entity": "sensor.garage_sensor_humidity"
                 },
                 {
-                  "entity": "sensor.compensation_sensor_nicole_office_sensor_humidity"
+                  "entity": "sensor.nicole_office_sensor_humidity"
                 },
                 {
                   "entity": "sensor.master_bathroom_sensor_humidity"
@@ -1274,9 +1272,22 @@
               "entity": "binary_sensor.washing_machine"
             },
             {
-              "type": "entity",
-              "entity": "sensor.dishwasher_status",
-              "state_color": true
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entity",
+                  "name": "Dishwasher is...",
+                  "entity": "sensor.dishwasher_status"
+                },
+                {
+                  "type": "tile",
+                  "entity": "button.set_dishwasher_to_clean",
+                  "vertical": false,
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                }
+              ]
             }
           ]
         },
@@ -1374,7 +1385,7 @@
                   "show_current": true,
                   "show_forecast": true,
                   "type": "weather-forecast",
-                  "entity": "weather.possum_den_hourly"
+                  "entity": "weather.ecobee_thermostat"
                 },
                 {
                   "type": "custom:weather-radar-card",
