@@ -640,10 +640,10 @@
                   "entity": "light.basement_landing_lights"
                 },
                 {
-                  "entity": "light.north_basement_lights"
+                  "entity": "light.basement_lights_north"
                 },
                 {
-                  "entity": "light.south_basement_lights"
+                  "entity": "light.basement_lights_south"
                 },
                 {
                   "entity": "light.utility_room_light"
@@ -656,7 +656,7 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "light.nicole_office_lights"
+                  "entity": "light.nicole_office_wall_switch"
                 },
                 {
                   "entity": "light.nicole_office_floor_lamp"

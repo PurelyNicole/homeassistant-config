@@ -1,3 +1,4 @@
+# Fans
 fan:
   - name: "Family Room Fan - South"
     qos: 1
@@ -22,7 +23,7 @@ fan:
     payload_on: "ON"
     payload_off: "OFF"
     unique_id: family_room_fan_south
-
+# Lights
 light:
   # MJ Dimmers - These do not work well with Tasmota integration.
   - name: "Family Room Track Light - Back"
@@ -80,8 +81,9 @@ light:
     payload_off: "OFF"
     payload_available: "Online"
     payload_not_available: "Offline"
+    retain: false
     unique_id: DenStairLanding
-  # Shelly Dimmers - Not autodiscoverable
+  # Shelly LED Strip Lights
   - name: CD Shelf Dimmer
     schema: template
     state_topic: "shellies/cd-shelf-dimmer/light/0/status"
@@ -90,8 +92,76 @@ light:
     command_on_template: '{"turn": "on"{% if brightness is defined %}, "brightness": {{(brightness | float * 0.3882 + 1) | round(0)}}{% endif %}}'
     command_off_template: '{"turn": "off"}'
     brightness_template: "{{ (value_json.brightness | float * 2.55) | round(0) }}"
+    retain: false
     unique_id: cd_shelf_dimmer
-
+  # Shelly Switches
+  - name: "Basement Landing Lights"
+    command_topic: "shellies/basement-landing-lights/relay/0/command"
+    state_topic: "shellies/basement-landing-lights/relay/0"
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "shellies/basement-landing-lights/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    retain: false
+    unique_id: basement-landing-lights
+    qos: 0
+  - name: "Basement Lights - North"
+    command_topic: "shellies/basement-lights-north/relay/0/command"
+    state_topic: "shellies/basement-lights-north/relay/0"
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "shellies/basement-lights-north/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    retain: false
+    unique_id: basement-lights-north
+    qos: 0
+  - name: "Basement Lights - South"
+    command_topic: "shellies/basement-lights-south/relay/0/command"
+    state_topic: "shellies/basement-lights-south/relay/0"
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "shellies/basement-lights-south/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    retain: false
+    unique_id: basement-lights-south
+    qos: 0
+  - name: "Garage Lights - North"
+    command_topic: "shellies/garage-lights-north/relay/0/command"
+    state_topic: "shellies/garage-lights-north/relay/0"
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "shellies/garage-lights-north/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    retain: false
+    unique_id: garage-lights-north
+    qos: 0
+  - name: "Garage Lights - South"
+    command_topic: "shellies/garage-lights-south/relay/0/command"
+    state_topic: "shellies/garage-lights-south/relay/0"
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "shellies/garage-lights-south/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    retain: false
+    unique_id: garage-lights-south
+    qos: 0
+  - name: "Nicole Office Wall Switch"
+    command_topic: "shellies/nicole-office-wall-switch/relay/0/command"
+    state_topic: "shellies/nicole-office-wall-switch/relay/0"
+    payload_on: "on"
+    payload_off: "off"
+    availability_topic: "shellies/nicole-office-wall-switch/online"
+    payload_available: "true"
+    payload_not_available: "false"
+    retain: false
+    unique_id: nicole-office-wall-switch
+    qos: 0
+# Sensors    
 sensor:
   - name: "Energy Bridge"
     icon: mdi:home-lightning-bolt

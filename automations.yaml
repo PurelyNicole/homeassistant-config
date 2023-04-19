@@ -228,34 +228,6 @@
           area_id: basement
     default: []
   mode: single
-- id: shellies_announce
-  alias: HACS - Shellies Announce
-  trigger:
-  - platform: homeassistant
-    event: start
-  - platform: time_pattern
-    hours: /1
-  action:
-  - service: mqtt.publish
-    data:
-      topic: shellies/command
-      payload: announce
-- id: shellies_discovery
-  alias: HACS - Shellies Discovery
-  trigger:
-  - platform: mqtt
-    topic: shellies/announce
-  action:
-  - service: python_script.shellies_discovery
-    data:
-      id: '{{ trigger.payload_json.id }}'
-      mac: '{{ trigger.payload_json.mac }}'
-      fw_ver: '{{ trigger.payload_json.fw_ver }}'
-      model: '{{ trigger.payload_json.model }}'
-      mode: '{{ trigger.payload_json.mode | default }}'
-      host: '{{ trigger.payload_json.ip }}'
-  mode: queued
-  max: 999
 - id: nicole_office_motion
   alias: Nicole Office - Turn off lights when no one in office
   description: When no motion is detected in the Office And 5 minutes have passed
@@ -272,10 +244,10 @@
       seconds: 0
   condition: []
   action:
-  - type: turn_off
-    device_id: 3b585a2a41b618f9cb095cd55d94ce74
-    entity_id: light.nicole_office_lights
-    domain: light
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.nicole_office_wall_switch
   mode: single
 - id: sub_controll_remote
   alias: Family Room - Control sub with remote
@@ -432,7 +404,7 @@
       replay_sensor_9: sensor.replay_master_bath_light
       light_target_9: light.master_bath_light
       replay_sensor_10: sensor.replay_nicole_office_lights
-      light_target_10: light.nicole_office_lights
+      light_target_10: light.nicole_office_wall_switch
 - id: mini_cool_after_ride
   alias: Mini - Cool car after ride
   description: ''
@@ -527,31 +499,30 @@
   alias: Nicole Office - Control lights with wall switch
   description: ''
   trigger:
-  - platform: device
-    type: changed_states
-    device_id: 3b585a2a41b618f9cb095cd55d94ce74
-    entity_id: light.nicole_office_lights
-    domain: light
+  - platform: state
+    entity_id:
+    - light.nicole_office_wall_switch
+    to: 'off'
+  - platform: state
+    entity_id:
+    - light.nicole_office_wall_switch
+    to: 'on'
   condition: []
   action:
   - choose:
     - conditions:
-      - condition: device
-        type: is_off
-        device_id: 3b585a2a41b618f9cb095cd55d94ce74
-        entity_id: light.nicole_office_lights
-        domain: light
+      - condition: state
+        entity_id: light.nicole_office_wall_switch
+        state: 'off'
       sequence:
       - service: light.turn_off
         data: {}
         target:
           area_id: nicole_office
     - conditions:
-      - condition: device
-        type: is_on
-        device_id: 3b585a2a41b618f9cb095cd55d94ce74
-        entity_id: light.nicole_office_lights
-        domain: light
+      - condition: state
+        entity_id: light.nicole_office_wall_switch
+        state: 'on'
       sequence:
       - type: turn_on
         device_id: 84233bfe9142301d0caf5e3ba80fef60
@@ -1022,14 +993,12 @@
     before: sunrise
     after: sunset
   action:
-  - type: turn_on
-    device_id: 391560c1060dcc4b55637e30ceea5a35
-    entity_id: light.garage_lights_north
-    domain: light
-  - type: turn_on
-    device_id: 09655dcdc33e62d00633e87860d3ee7b
-    entity_id: light.garage_lights_south
-    domain: light
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id:
+      - light.garage_lights_north
+      - light.garage_lights_south
   mode: single
 - id: mini_quota_workaround
   alias: MINI - Workaround for Quota
@@ -1196,25 +1165,6 @@
   condition: []
   action:
   - service: light.turn_on
-    data: {}
-    target:
-      area_id: basement
-  mode: single
-- id: lighting_basement_lights_no_motion
-  alias: Lighting - Turn basement lights off when no motion for an hour
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - binary_sensor.basement_sensor_home_security_motion_detection
-    to: 'off'
-    for:
-      hours: 1
-      minutes: 0
-      seconds: 0
-  condition: []
-  action:
-  - service: light.turn_off
     data: {}
     target:
       area_id: basement

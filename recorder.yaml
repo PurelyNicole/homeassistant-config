@@ -52,15 +52,8 @@ exclude:
     - sensor.oven_oven_completion_time
     - sensor.zigbeebridge_ssid
     # Change device type switches
-    - switch.basement_landing_lights
-    - switch.den_stair_landing
     - switch.family_room_south_fan
-    - switch.garage_lights_north
-    - switch.garage_lights_south
     - switch.globe_lamp
     - switch.kitchen_overhead_lights
     - switch.nicole_nightstand
     - switch.nicole_office_floor_lamp
-    - switch.nicole_office_lights
-    - switch.north_basement_lights
-    - switch.south_basement_lights

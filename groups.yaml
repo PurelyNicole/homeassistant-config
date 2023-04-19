@@ -54,9 +54,9 @@ basement_lights:
   name: Basement Lights
   entities:
     - light.basement_landing_lights
-    - light.north_basement_lights
+    - light.basement_lights_north
+    - light.basement_lights_south
     - light.basement_stairs_switch
-    - light.south_basement_lights
     - light.utility_room_light
   icon: mdi:lightbulb-group
 # Room Lights
@@ -69,7 +69,7 @@ family_room_lights:
 nicole_office_lights:
   name: Nicole Office Lights
   entities:
-    - light.nicole_office_lights
+    - light.nicole_office_wall_switch
     - light.nicole_office_floor_lamp
     - light.nicole_office_file_cabinet_lamp
     - light.nicole_office_closet_light

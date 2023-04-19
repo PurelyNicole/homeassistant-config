@@ -13,6 +13,7 @@ nicole_office_temp_corrected:
     - [69.5, 68.2]
     - [68.8, 67.1]
     - [70.6, 68.7] 
+    - [73.7, 72.0]
   unique_id: nicole_office_temp_corrected
 # master_bath_humidity_corrected:
 #   source: sensor.master_bathroom_sensor_humidity
