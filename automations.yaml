@@ -591,7 +591,7 @@
         entity_id: light.nicole_office_closet_light
         domain: light
   mode: single
-- id: 'set_family_room_thermostat'
+- id: set_family_room_thermostat
   alias: Family Room Thermostat
   description: ''
   trigger:
@@ -630,7 +630,7 @@
         fr_thermostat: climate.family_room_thermostat
       alias: Set based on ecobee
   mode: restart
-- id: 'notify_fish_feeder_offline'
+- id: notify_fish_feeder_offline
   alias: Notification - Notify when fish feeder goes offline
   description: ''
   trigger:
@@ -648,7 +648,7 @@
     data:
       message: Fish tank feeder is offline.
   mode: single
-- id: 'kitchette_leds_with_wall_switch'
+- id: kitchette_leds_with_wall_switch
   alias: Kitchenette - Turn on LEDs with wall switch
   description: ''
   trigger:
@@ -664,7 +664,7 @@
     entity_id: light.kitchenette_led_strip
     domain: light
   mode: single
-- id: 'living_room_tv_off_receiver'
+- id: living_room_tv_off_receiver
   alias: Living Room - Turn off TV with Receiver
   description: Overriding the art mode.
   trigger:
@@ -685,7 +685,7 @@
     entity_id: switch.main_floor_tv
     domain: switch
   mode: single
-- id: 'notify_oven_on'
+- id: notify_oven_on
   alias: Notification - Everyone left or is sleeping but oven is on.
   description: ''
   trigger:
@@ -708,7 +708,7 @@
     data:
       message: Oven is on.
   mode: single
-- id: 'set_dte_peak_month'
+- id: set_dte_peak_month
   alias: Set DTE Peak Month
   description: ''
   trigger:
@@ -733,7 +733,7 @@
       target:
         entity_id: input_boolean.dte_peak_season
   mode: single
-- id: 'notify_fridge_open'
+- id: notify_fridge_open
   alias: Notification - Upstairs fridge is open.
   description: ''
   trigger:
@@ -752,7 +752,7 @@
     data:
       message: 'Upstairs refridgerator is open. '
   mode: single
-- id: 'mini_preconditon_after_work'
+- id: mini_preconditon_after_work
   alias: Mini - Precondition after work.
   description: ''
   trigger:
@@ -775,7 +775,7 @@
     entity_id: button.cooper_se_activate_air_conditioning
     type: press
   mode: single
-- id: 'kitchen_window_seat_light'
+- id: kitchen_window_seat_light
   alias: Kitchen - Control window seat lights with overhead switch
   description: ''
   trigger:
@@ -811,7 +811,7 @@
         target:
           entity_id: light.kitchen_window_seat_light
   mode: restart
-- id: 'notify_dishwasher_complete'
+- id: notify_dishwasher_complete
   alias: 'Notification - Dishwasher finished '
   description: ''
   trigger:
@@ -825,7 +825,7 @@
     data:
       message: Dishwasher finished.
   mode: single
-- id: 'notify_water_under_sink'
+- id: notify_water_under_sink
   alias: Notification - Water under sink
   description: ''
   trigger:
@@ -840,7 +840,7 @@
     data:
       message: Water detected under kitchen sink.
   mode: single
-- id: 'notify_eric_left_work'
+- id: notify_eric_left_work
   alias: Notification - Notify Nicole when Eric leaves work.
   description: ''
   trigger:
@@ -858,7 +858,7 @@
     data:
       message: Eric is leaving work.
   mode: single
-- id: 'notify_water_under_fish_tank'
+- id: notify_water_under_fish_tank
   alias: Notification - Notifiy if water under fish tank
   description: ''
   trigger:
@@ -873,7 +873,7 @@
     data:
       message: Water detected under fish tank.
   mode: single
-- id: 'notify_water_laundry_room'
+- id: notify_water_laundry_room
   alias: Notification - Notify if water detected in laundry room
   description: ''
   trigger:
@@ -888,7 +888,7 @@
     data:
       message: Water detected in laundry room.
   mode: single
-- id: 'half_bath_lights_motion'
+- id: half_bath_lights_motion
   alias: Half Bath - Control lights with motion
   description: ''
   trigger:
@@ -928,7 +928,7 @@
         entity_id: light.half_bath_light
         domain: light
   mode: single
-- id: 'good_morning_nicole'
+- id: good_morning_nicole
   alias: Nicole - Good Morning Nicole
   description: ''
   trigger:
@@ -955,7 +955,7 @@
       domain: light
     alias: Turn on Kitchen Table Light if before sunrise.
   mode: single
-- id: 'nicole_wind_down'
+- id: nicole_wind_down
   alias: Nicole - Wind Down
   description: ''
   trigger:
@@ -978,7 +978,7 @@
     target:
       entity_id: climate.ecobee_thermostat
   mode: single
-- id: 'good_morning_eric'
+- id: good_morning_eric
   alias: Eric - Good Morning Eric
   description: ''
   trigger:
@@ -1008,7 +1008,7 @@
       entity_id: scene.good_morning_eric
     metadata: {}
   mode: single
-- id: 'garage_door_lights_with_door'
+- id: garage_door_lights_with_door
   alias: Lighting - Turn on Garage Lights when Garage Door opens
   description: ''
   trigger:
@@ -1031,7 +1031,7 @@
     entity_id: light.garage_lights_south
     domain: light
   mode: single
-- id: 'mini_quota_workaround'
+- id: mini_quota_workaround
   alias: MINI - Workaround for Quota
   description: ''
   trigger:
@@ -1052,7 +1052,7 @@
     target:
       entity_id: device_tracker.cooper_se
   mode: single
-- id: 'notify_energy_spike_peak_hours'
+- id: notify_energy_spike_peak_hours
   alias: Notification - Notify when energy peaks during DTE peak hours
   description: ''
   trigger:
@@ -1067,7 +1067,7 @@
     data:
       message: High energy use detected during peak hours.
   mode: single
-- id: 'hair_straightener_off_30_minutes'
+- id: hair_straightener_off_30_minutes
   alias: Hair Straightener - Turn off after 30 minutes
   description: ''
   trigger:
@@ -1092,7 +1092,7 @@
     entity_id: switch.hair_straightener
     domain: switch
   mode: single
-- id: 'lighting_eric_office_no_motion'
+- id: lighting_eric_office_no_motion
   alias: Lighting - Turn off Eric Office lights when no motion detected.
   description: ''
   trigger:
@@ -1112,7 +1112,7 @@
     target:
       area_id: eric_office
   mode: single
-- id: 'notify_washing_machine_complete'
+- id: notify_washing_machine_complete
   alias: Notification - Washing machine complete.
   description: ''
   trigger:
@@ -1127,7 +1127,7 @@
     data:
       message: Washing machine cycle complete.
   mode: single
-- id: 'set_ecobee_dte_update'
+- id: set_ecobee_dte_update
   alias: Set Ecobee - DTE Update
   description: ''
   trigger:
@@ -1165,7 +1165,7 @@
       weather: weather.ecobee_thermostat
       thermostat: climate.ecobee_thermostat
   mode: restart
-- id: 'notify_oven_preheated'
+- id: notify_oven_preheated
   alias: Notification - Notify when oven is done preheating
   description: ''
   trigger:
@@ -1180,7 +1180,7 @@
     data:
       message: Oven is preheated.
   mode: single
-- id: 'lighting_basement_lights_with_door'
+- id: lighting_basement_lights_with_door
   alias: Lighting - Turn on basement lights when door opened.
   description: ''
   trigger:
@@ -1200,7 +1200,7 @@
     target:
       area_id: basement
   mode: single
-- id: 'lighting_basement_lights_no_motion'
+- id: lighting_basement_lights_no_motion
   alias: Lighting - Turn basement lights off when no motion for an hour
   description: ''
   trigger:
