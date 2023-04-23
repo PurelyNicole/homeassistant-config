@@ -420,6 +420,9 @@
                       "entity": "lock.kitchen_door_lock"
                     },
                     {
+                      "entity": "lock.workshop_lock"
+                    },
+                    {
                       "entity": "cover.garage_door"
                     },
                     {
@@ -813,6 +816,9 @@
                 },
                 {
                   "entity": "lock.kitchen_door_lock"
+                },
+                {
+                  "entity": "lock.workshop_lock"
                 }
               ],
               "title": "Doors",
@@ -1518,6 +1524,12 @@
                     },
                     {
                       "entity": "sensor.upstairs_smoke_detector_battery_level"
+                    },
+                    {
+                      "entity": "sensor.kitchen_door_lock_battery_level"
+                    },
+                    {
+                      "entity": "sensor.workshop_lock_battery_level"
                     },
                     {
                       "entity": "sensor.bedroom_window_battery_level"

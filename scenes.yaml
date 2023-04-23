@@ -21,6 +21,10 @@
       state: closed
     lock.kitchen_door_lock:
       state: locked
+    lock.workshop_lock:
+      state: locked
+    lock.cooper_se_lock:
+      state: locked
     switch.hair_straightener:
       state: 'off'
   icon: mdi:weather-night
@@ -49,6 +53,10 @@
     input_select.home_mode:
       state: Away
     lock.kitchen_door_lock:
+      state: locked
+    lock.workshop_lock:
+      state: locked
+    lock.cooper_se_lock:
       state: locked
     switch.hair_straightener:
       state: 'off'
@@ -161,7 +169,7 @@
       color_mode: brightness
       brightness: 255
       state: 'on'
-    light.kitchen_table_light:
+    light.kitchen_sink_dimmer:
       color_mode: brightness
       brightness: 255
       state: 'on'
@@ -171,5 +179,5 @@
       entity_only: true
     light.kitchen_mudroom_dimmer:
       entity_only: true
-    light.kitchen_table_light:
+    light.kitchen_sink_dimmer:
       entity_only: true
