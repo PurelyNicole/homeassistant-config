@@ -747,7 +747,7 @@
     type: press
   mode: single
 - id: kitchen_window_seat_light
-  alias: Kitchen - Control window seat lights with overhead switch
+  alias: Kitchen - Control lights with overhead switch
   description: ''
   trigger:
   - platform: state
@@ -771,7 +771,7 @@
       - service: light.turn_on
         data: {}
         target:
-          entity_id: light.kitchen_window_seat_light
+          area_id: kitchen
     - conditions:
       - condition: state
         entity_id: light.kitchen_overhead_lights
@@ -1169,3 +1169,82 @@
     target:
       area_id: basement
   mode: single
+- id: '1682270507927'
+  alias: Lighting - Set dimmers to max brightness when turned on during day.
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - light.dining_room_table_dimmer
+    to: 'on'
+    from: 'off'
+  - platform: state
+    entity_id:
+    - light.dining_room_wall_dimmer
+    to: 'on'
+    from: 'off'
+  - platform: state
+    entity_id:
+    - light.fireplace_dimmer
+    to: 'on'
+    from: 'off'
+  - platform: state
+    entity_id:
+    - light.kitchen_mudroom_dimmer
+    to: 'on'
+    from: 'off'
+  - platform: state
+    entity_id:
+    - light.kitchen_sink_dimmer
+    to: 'on'
+    from: 'off'
+  - platform: state
+    entity_id:
+    - light.living_room_wall_dimmer
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id:
+    - light.kitchen_under_cabinet_lights
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id:
+    - light.kitchen_table_light
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id:
+    - light.family_room_track_light_back
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id:
+    - light.family_room_track_light_front
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id:
+    - light.kitchenette_led_strip
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id:
+    - light.kitchenette_spot_lights
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id:
+    - light.master_bath_light
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.day
+    state: 'on'
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 100
+  mode: parallel
+  max: 15

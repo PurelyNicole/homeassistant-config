@@ -41,6 +41,8 @@ main_floor_lights:
     - group.garage_lights
     - group.kitchen_lights
     - group.living_dining_room_lights
+    - light.entryway_light
+    - light.half_bath_light
   icon: mdi:lightbulb-group
 downstairs_lights:
   name: Downstairs Lights
@@ -102,11 +104,9 @@ kitchen_lights:
     - light.kitchen_sink_dimmer
     - light.kitchen_window_seat_light
     - light.kitchen_under_cabinet_lights
-    - light.half_bath_light
     - light.kitchen_overhead_lights
     - light.kitchen_table_light
     - light.kitchen_mudroom_dimmer
-    - light.entryway_light
   icon: mdi:lightbulb-group
 living_dining_room_lights:
   name: Living/Dining Room Lights

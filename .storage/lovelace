@@ -436,9 +436,6 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "group.outdoor_lights"
-                    },
-                    {
                       "entity": "group.upstairs_lights"
                     },
                     {
@@ -449,6 +446,9 @@
                     },
                     {
                       "entity": "group.basement_lights"
+                    },
+                    {
+                      "entity": "group.outdoor_lights"
                     }
                   ],
                   "title": "Lights",
@@ -492,9 +492,6 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "light.half_bath_light"
-                    },
-                    {
                       "entity": "light.kitchen_mudroom_dimmer"
                     },
                     {
@@ -514,6 +511,9 @@
                     },
                     {
                       "entity": "light.entryway_light"
+                    },
+                    {
+                      "entity": "light.half_bath_light"
                     }
                   ],
                   "title": "Kitchen Lights"
