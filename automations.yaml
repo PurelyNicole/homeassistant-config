@@ -781,7 +781,8 @@
         data: {}
         target:
           entity_id: light.kitchen_window_seat_light
-  mode: restart
+  mode: queued
+  max: 5
 - id: notify_dishwasher_complete
   alias: 'Notification - Dishwasher finished '
   description: ''
@@ -1013,6 +1014,10 @@
   - platform: zone
     entity_id: person.nicole
     zone: zone.milford_trail
+    event: enter
+  - platform: zone
+    entity_id: person.nicole
+    zone: zone.tree_farm
     event: enter
   condition: []
   action:
@@ -1376,3 +1381,23 @@
           entity_id: light.master_bath_light
   mode: parallel
   max: 13
+- id: notify_low_battery
+  alias: Notification - Low battery level detection
+  description: ''
+  use_blueprint:
+    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
+    input:
+      actions:
+      - service: notify.mobile_app_nicole_iphone
+        data:
+          message: Low battery detected for {{sensors}}.
+      exclude:
+        entity_id:
+        - sensor.cooper_se_charging_level_hv
+        - sensor.erics_ipad_battery_level
+        - sensor.erics_iphone_14_battery_level
+        - sensor.roomba_battery_level
+        - sensor.roomba_mainfloor_battery_level
+        - sensor.nicole_iphone_battery_level
+      time: '11:00:00'
+      threshold: 20
