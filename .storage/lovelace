@@ -1286,12 +1286,23 @@
                   "entity": "sensor.dishwasher_status"
                 },
                 {
-                  "type": "tile",
-                  "entity": "button.set_dishwasher_to_clean",
-                  "vertical": false,
-                  "tap_action": {
-                    "action": "toggle"
-                  }
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "tile",
+                      "entity": "button.set_dishwasher_to_clean_2",
+                      "tap_action": {
+                        "action": "toggle"
+                      }
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "button.set_dishwasher_to_clean",
+                      "tap_action": {
+                        "action": "toggle"
+                      }
+                    }
+                  ]
                 }
               ]
             }
