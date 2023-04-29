@@ -12,7 +12,7 @@ if current_mode == "heat":
   hass.services.call("climate", "set_temperature", {"entity_id": fr_thermostat, "hvac_mode": "heat", "temperature": set_temp}, False)
 elif current_mode == "heat_cool":
   set_temp = (hass.states.get(main_thermostat).attributes['target_temp_low'])
-  logger.info("Set operation to off.")
+  logger.info(f"Set operation to heat and temperature to {set_temp}.")
   hass.services.call("climate", "set_temperature", {"entity_id": fr_thermostat, "hvac_mode": "heat", "temperature": set_temp}, False)
 else:
   logger.info("Set operation to off.")
