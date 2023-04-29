@@ -92,41 +92,6 @@
   action:
   - scene: scene.goodnight
   mode: single
-- id: ecobee_call_script
-  alias: Ecobee - Call thermostat script
-  description: When the Time of Day or Home Mode changes Then Set the Thermostat
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.day
-    to: 'on'
-  - platform: state
-    entity_id: binary_sensor.dusk
-    to: 'on'
-  - platform: state
-    entity_id: binary_sensor.night
-    to: 'on'
-  - platform: state
-    entity_id: input_select.home_mode
-  - platform: state
-    entity_id:
-    - binary_sensor.windows
-    enabled: true
-  - platform: state
-    entity_id:
-    - schedule.dte_peak_hours
-  - platform: state
-    entity_id:
-    - input_boolean.dte_peak_season
-  condition:
-  - condition: state
-    entity_id: input_boolean.vacation_mode
-    state: 'off'
-  action:
-  - service: python_script.set_ecobee
-    data:
-      weather: weather.ecobee_thermostat
-      thermostat: climate.ecobee_thermostat
-  mode: single
 - id: lights_off_sunrise
   alias: Lighting - Turn lights off at sunrise
   description: When the sun rises Then turn off Outdoor Lights And Turn off the nightlight
@@ -1401,3 +1366,28 @@
         - sensor.nicole_iphone_battery_level
       time: '11:00:00'
       threshold: 20
+- id: notify_rainy_mini_windows_down
+  alias: Notification - Notify when it's raining and MINI windows are down.
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - weather.ecobee_thermostat
+    to: rainy
+  - platform: state
+    entity_id:
+    - weather.ecobee_thermostat
+    to: lightning-rainy
+  - platform: state
+    entity_id:
+    - weather.ecobee_thermostat
+    to: pouring
+  condition:
+  - condition: state
+    entity_id: binary_sensor.cooper_se_windows
+    state: 'on'
+  action:
+  - service: notify.notify_nicole_and_eric
+    data:
+      message: Windows are down in the MINI and it's raining.
+  mode: single
