@@ -305,11 +305,11 @@
   alias: Master Bathroom - Turn off lights when no motion detected
   description: ''
   trigger:
-  - type: no_motion
-    platform: device
-    device_id: 7ba36598dccd4e9310bf7c044decd042
-    entity_id: binary_sensor.master_bathroom_sensor_home_security_motion_detection
-    domain: binary_sensor
+  - platform: state
+    entity_id:
+    - binary_sensor.master_bathroom_sensor_home_security_motion_detection
+    from: 'on'
+    to: 'off'
     for:
       hours: 0
       minutes: 5
@@ -756,6 +756,10 @@
     entity_id:
     - sensor.dishwasher_operation_state
     to: Finished
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
   condition: []
   action:
   - service: notify.notify_nicole_and_eric
