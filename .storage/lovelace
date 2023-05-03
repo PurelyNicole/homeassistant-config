@@ -1097,10 +1097,7 @@
             {
               "type": "custom:atomic-calendar-revive",
               "entities": [
-                {
-                  "entity": "calendar.music_announcements",
-                  "name": "Music announcements"
-                }
+                "calendar.music_announcements"
               ],
               "name": "Upcoming Releases",
               "enableModeChange": true,
@@ -1121,7 +1118,8 @@
               "showEventDate": true,
               "calShowDescription": false,
               "showRelativeTime": false,
-              "showLastCalendarWeek": false
+              "showLastCalendarWeek": false,
+              "showMonth": false
             },
             {
               "type": "vertical-stack",
@@ -1297,10 +1295,11 @@
                     },
                     {
                       "type": "tile",
-                      "entity": "button.set_dishwasher_to_clean",
+                      "entity": "button.set_dishwasher_to_dirty",
                       "tap_action": {
                         "action": "toggle"
-                      }
+                      },
+                      "name": "Dishwasher Dirty"
                     }
                   ]
                 }
@@ -1543,6 +1542,9 @@
                       "entity": "sensor.workshop_lock_battery_level"
                     },
                     {
+                      "entity": "sensor.schlage_deadbolt_battery_level"
+                    },
+                    {
                       "entity": "sensor.bedroom_window_battery_level"
                     },
                     {
@@ -1562,6 +1564,9 @@
                     },
                     {
                       "entity": "sensor.nicole_office_sensor_battery_level"
+                    },
+                    {
+                      "entity": "sensor.master_bathroom_sensor_battery_level"
                     }
                   ],
                   "title": "Z-Wave Battery Status",

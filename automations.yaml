@@ -1369,7 +1369,7 @@
         - sensor.roomba_mainfloor_battery_level
         - sensor.nicole_iphone_battery_level
       time: '11:00:00'
-      threshold: 20
+      threshold: 35
 - id: notify_rainy_mini_windows_down
   alias: Notification - Notify when it's raining and MINI windows are down.
   description: ''
