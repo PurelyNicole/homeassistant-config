@@ -13,15 +13,3 @@
   name: Night
   after: sunset
   before: sunrise
-# Workday
-- platform: workday
-  name: Nicole Workday Sensor
-  country: US
-  province: IN
-  remove_holidays:
-    - "Good Friday"
-    - "Primary Election Day"
-    - "Juneteenth National Independence Day"
-    - "Columbus Day"
-    - "Election Day"
-    - "Veterans Day"
