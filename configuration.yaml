@@ -29,7 +29,6 @@ automation: !include automations.yaml
 compensation: !include compensations.yaml
 binary_sensor: !include binary_sensors.yaml
 group: !include groups.yaml
-history: !include history.yaml
 logbook: !include logbook.yaml
 mqtt: !include mqtt.yaml
 notify: !include notify.yaml
@@ -39,6 +38,7 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 template: !include templates.yaml
 
+# Custom Log Levels
 logger:
   default: warning
   logs:
