@@ -557,10 +557,7 @@
                       "entity": "light.eric_office_light"
                     },
                     {
-                      "entity": "fan.family_room_fan_south",
-                      "type": "custom:fan-mode-button-row",
-                      "reverseButtons": true,
-                      "sendStateWithMode": true
+                      "entity": "fan.family_room_fan_south"
                     }
                   ],
                   "title": "Downstairs  Lights",
