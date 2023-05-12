@@ -1,350 +1,355 @@
 - id: home_mode_away
   alias: Home Mode - Set away when everyone leaves
-  description: When everyone leaves And 5 minutes have passed Then the Home Mode switches
+  description:
+    When everyone leaves And 5 minutes have passed Then the Home Mode switches
     to Away
   trigger:
-  - platform: state
-    entity_id: group.people
-    from: home
-    to: not_home
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
+    - platform: state
+      entity_id: group.people
+      from: home
+      to: not_home
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
   condition: []
   action:
-  - service: input_select.select_option
-    target:
-      entity_id: input_select.home_mode
-    data:
-      option: Away
-  - scene: scene.goodbye
+    - service: input_select.select_option
+      target:
+        entity_id: input_select.home_mode
+      data:
+        option: Away
+    - scene: scene.goodbye
   mode: parallel
   max: 10
 - id: welcome_home
   alias: Welcome Home
-  description: 'When someone arrives home: If state is not Sleep, set state to home.
-    If it''s after sunset, turn on dining room light and globe lamp.'
+  description:
+    "When someone arrives home: If state is not Sleep, set state to home.
+    If it's after sunset, turn on dining room light and globe lamp."
   trigger:
-  - platform: state
-    entity_id: group.people
-    to: home
-  - platform: state
-    entity_id: person.eric
-    to: home
-  - platform: state
-    entity_id: person.nicole
-    to: home
+    - platform: state
+      entity_id: group.people
+      to: home
+    - platform: state
+      entity_id: person.eric
+      to: home
+    - platform: state
+      entity_id: person.nicole
+      to: home
   condition: []
   action:
-  - device_id: 151c891fb2dceba4d2d11073ea66cb8f
-    domain: lock
-    entity_id: lock.kitchen_door_lock
-    type: unlock
-  - if:
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: input_select.home_mode
-        state: Sleep
-      alias: Mode is not Sleep
-    then:
-    - service: input_select.select_option
-      data:
-        option: Home
-      target:
-        entity_id: input_select.home_mode
-  - if:
-    - condition: sun
-      after: sunset
-      after_offset: '-1:00'
-      before: sunrise
-    then:
-    - type: turn_on
-      device_id: 9dd57a98dd4307e523095748acd917f1
-      entity_id: light.kitchen_mudroom_dimmer
-      domain: light
-    - type: turn_on
-      device_id: fe2189f8bdcd90fc50adb90d370669f6
-      entity_id: light.den_stair_landing
-      domain: light
-    - type: turn_on
-      device_id: 35744bb4b80d36890ae0f34f1ad22a94
-      entity_id: light.dining_room_table_dimmer
-      domain: light
-    - type: turn_on
-      device_id: b3275c0af7696dc2e67ed8b562004634
-      entity_id: light.kitchen_table_light
-      domain: light
+    - device_id: 151c891fb2dceba4d2d11073ea66cb8f
+      domain: lock
+      entity_id: lock.kitchen_door_lock
+      type: unlock
+    - if:
+        - condition: not
+          conditions:
+            - condition: state
+              entity_id: input_select.home_mode
+              state: Sleep
+          alias: Mode is not Sleep
+      then:
+        - service: input_select.select_option
+          data:
+            option: Home
+          target:
+            entity_id: input_select.home_mode
+    - if:
+        - condition: sun
+          after: sunset
+          after_offset: "-1:00"
+          before: sunrise
+      then:
+        - type: turn_on
+          device_id: 9dd57a98dd4307e523095748acd917f1
+          entity_id: light.kitchen_mudroom_dimmer
+          domain: light
+        - type: turn_on
+          device_id: fe2189f8bdcd90fc50adb90d370669f6
+          entity_id: light.den_stair_landing
+          domain: light
+        - type: turn_on
+          device_id: 35744bb4b80d36890ae0f34f1ad22a94
+          entity_id: light.dining_room_table_dimmer
+          domain: light
+        - type: turn_on
+          device_id: b3275c0af7696dc2e67ed8b562004634
+          entity_id: light.kitchen_table_light
+          domain: light
   mode: parallel
   max: 10
 - id: goodnight_2am
   alias: Scene - Goodnight at 2:00am
-  description: When the time is 2:00am And Someone is home Then call the goodnight
+  description:
+    When the time is 2:00am And Someone is home Then call the goodnight
     scene
   trigger:
-  - platform: time
-    at: 02:00
+    - platform: time
+      at: 02:00
   condition:
-  - condition: state
-    entity_id: group.people
-    state: home
+    - condition: state
+      entity_id: group.people
+      state: home
   action:
-  - scene: scene.goodnight
+    - scene: scene.goodnight
   mode: single
 - id: lights_off_sunrise
   alias: Lighting - Turn lights off at sunrise
   description: When the sun rises Then turn off Outdoor Lights And Turn off the nightlight
   trigger:
-  - platform: sun
-    event: sunrise
-    offset: '0'
+    - platform: sun
+      event: sunrise
+      offset: "0"
   condition: []
   action:
-  - type: turn_off
-    device_id: 270c91f7718161af4127d8eb00d5cf32
-    entity_id: light.nightlight
-    domain: light
-  - service: light.turn_off
-    target:
-      area_id: outdoors
+    - type: turn_off
+      device_id: 270c91f7718161af4127d8eb00d5cf32
+      entity_id: light.nightlight
+      domain: light
+    - service: light.turn_off
+      target:
+        area_id: outdoors
   mode: single
 - id: watch_tv_after_sunset
   alias: Scene - Trigger watch TV when Remote goes from PowerOff after sunset
-  description: ''
+  description: ""
   trigger:
-  - platform: device
-    type: turned_on
-    device_id: d824906b0d4aea07973580f026dc7ed9
-    entity_id: remote.family_room_remote
-    domain: remote
+    - platform: device
+      type: turned_on
+      device_id: d824906b0d4aea07973580f026dc7ed9
+      entity_id: remote.family_room_remote
+      domain: remote
   condition:
-  - condition: sun
-    after: sunset
-    after_offset: '-1:00'
+    - condition: sun
+      after: sunset
+      after_offset: "-1:00"
   action:
-  - scene: scene.watch_tv
+    - scene: scene.watch_tv
   mode: single
 - id: lights_on_sunset
   alias: Lighting - Turn lights on at sunset
   description: When the sun rises Then turn off Outdoor Lights And Turn off the nightlight
   trigger:
-  - platform: sun
-    event: sunset
-    offset: '0'
+    - platform: sun
+      event: sunset
+      offset: "0"
   condition: []
   action:
-  - service: light.turn_on
-    target:
-      area_id: outdoors
-  - type: turn_on
-    device_id: 270c91f7718161af4127d8eb00d5cf32
-    entity_id: light.nightlight
-    domain: light
+    - service: light.turn_on
+      target:
+        area_id: outdoors
+    - type: turn_on
+      device_id: 270c91f7718161af4127d8eb00d5cf32
+      entity_id: light.nightlight
+      domain: light
   mode: single
 - id: notify_water_basement
   alias: Notification - Notify if water detected in basement
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - binary_sensor.hot_water_heater_flood_sensor_water_leak_state
-    to: 'on'
+    - platform: state
+      entity_id:
+        - binary_sensor.hot_water_heater_flood_sensor_water_leak_state
+      to: "on"
   condition: []
   action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Water detected in basement.
+    - service: notify.notify_nicole_and_eric
+      data:
+        message: Water detected in basement.
   mode: single
 - id: basement_lights_single_switch
   alias: Basement - Control lights with single switch
-  description: When the basement light switch is toggled, change the state of the
+  description:
+    When the basement light switch is toggled, change the state of the
     other lights to match.
   trigger:
-  - platform: device
-    type: changed_states
-    device_id: efbcedf9dc139306d474e13da27929f3
-    entity_id: light.basement_stairs_switch
-    domain: light
+    - platform: device
+      type: changed_states
+      device_id: efbcedf9dc139306d474e13da27929f3
+      entity_id: light.basement_stairs_switch
+      domain: light
   condition: []
   action:
-  - choose:
-    - conditions:
-      - condition: device
-        type: is_off
-        device_id: efbcedf9dc139306d474e13da27929f3
-        entity_id: light.basement_stairs_switch
-        domain: light
-      sequence:
-      - service: light.turn_off
-        data: {}
-        target:
-          area_id: basement
-    - conditions:
-      - condition: device
-        type: is_on
-        device_id: efbcedf9dc139306d474e13da27929f3
-        entity_id: light.basement_stairs_switch
-        domain: light
-      sequence:
-      - service: light.turn_on
-        data: {}
-        target:
-          area_id: basement
-    default: []
+    - choose:
+        - conditions:
+            - condition: device
+              type: is_off
+              device_id: efbcedf9dc139306d474e13da27929f3
+              entity_id: light.basement_stairs_switch
+              domain: light
+          sequence:
+            - service: light.turn_off
+              data: {}
+              target:
+                area_id: basement
+        - conditions:
+            - condition: device
+              type: is_on
+              device_id: efbcedf9dc139306d474e13da27929f3
+              entity_id: light.basement_stairs_switch
+              domain: light
+          sequence:
+            - service: light.turn_on
+              data: {}
+              target:
+                area_id: basement
+      default: []
   mode: single
 - id: nicole_office_motion
   alias: Nicole Office - Turn off lights when no one in office
-  description: When no motion is detected in the Office And 5 minutes have passed
+  description:
+    When no motion is detected in the Office And 5 minutes have passed
     Then turn off the lights
   trigger:
-  - type: no_motion
-    platform: device
-    device_id: aa43c0bccd576d4987586522ab5fa9d3
-    entity_id: binary_sensor.nicole_office_sensor_home_security_motion_detection
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 20
-      seconds: 0
+    - type: no_motion
+      platform: device
+      device_id: aa43c0bccd576d4987586522ab5fa9d3
+      entity_id: binary_sensor.nicole_office_sensor_home_security_motion_detection
+      domain: binary_sensor
+      for:
+        hours: 0
+        minutes: 20
+        seconds: 0
   condition: []
   action:
-  - service: light.turn_off
-    data: {}
-    target:
-      entity_id: light.nicole_office_wall_switch
+    - service: light.turn_off
+      data: {}
+      target:
+        entity_id: light.nicole_office_wall_switch
   mode: single
 - id: sub_controll_remote
   alias: Family Room - Control sub with remote
   description: When the remote turns on, turn on the sub.
   trigger:
-  - platform: device
-    type: changed_states
-    device_id: d824906b0d4aea07973580f026dc7ed9
-    entity_id: remote.family_room_remote
-    domain: remote
+    - platform: device
+      type: changed_states
+      device_id: d824906b0d4aea07973580f026dc7ed9
+      entity_id: remote.family_room_remote
+      domain: remote
   condition: []
   action:
-  - choose:
-    - conditions:
-      - condition: device
-        type: is_on
-        device_id: d824906b0d4aea07973580f026dc7ed9
-        entity_id: remote.family_room_remote
-        domain: remote
-      sequence:
-      - type: turn_on
-        device_id: a92e583bc2e9af0c7902a1cf6aca3a3e
-        entity_id: switch.family_room_sub
-        domain: switch
-    - conditions:
-      - condition: device
-        type: is_off
-        device_id: d824906b0d4aea07973580f026dc7ed9
-        entity_id: remote.family_room_remote
-        domain: remote
-      sequence:
-      - type: turn_off
-        device_id: a92e583bc2e9af0c7902a1cf6aca3a3e
-        entity_id: switch.family_room_sub
-        domain: switch
-    default: []
+    - choose:
+        - conditions:
+            - condition: device
+              type: is_on
+              device_id: d824906b0d4aea07973580f026dc7ed9
+              entity_id: remote.family_room_remote
+              domain: remote
+          sequence:
+            - type: turn_on
+              device_id: a92e583bc2e9af0c7902a1cf6aca3a3e
+              entity_id: switch.family_room_sub
+              domain: switch
+        - conditions:
+            - condition: device
+              type: is_off
+              device_id: d824906b0d4aea07973580f026dc7ed9
+              entity_id: remote.family_room_remote
+              domain: remote
+          sequence:
+            - type: turn_off
+              device_id: a92e583bc2e9af0c7902a1cf6aca3a3e
+              entity_id: switch.family_room_sub
+              domain: switch
+      default: []
   mode: single
 - id: notify_smoke_detected
   alias: Notification - Smoke Detector Activated
-  description: ''
+  description: ""
   trigger:
-  - type: problem
-    platform: device
-    device_id: fe22124a5684619e2af2005c3afc93de
-    entity_id: binary_sensor.kitchen_smoke_alarm_smoke_alarm_smoke_alarm_test
-    domain: binary_sensor
-  - type: co
-    platform: device
-    device_id: 5dd20b9615b858ea31f5f02431fde004
-    entity_id: binary_sensor.basement_smoke_detector_co_alarm_carbon_monoxide_detected
-    domain: binary_sensor
-  - type: smoke
-    platform: device
-    device_id: 5dd20b9615b858ea31f5f02431fde004
-    entity_id: binary_sensor.basement_smoke_detector_smoke_alarm_smoke_detected
-    domain: binary_sensor
-  - type: co
-    platform: device
-    device_id: ac353f226d5faf78efe8bd287741ea47
-    entity_id: binary_sensor.downstairs_smoke_detector_co_alarm_carbon_monoxide_detected
-    domain: binary_sensor
-  - type: smoke
-    platform: device
-    device_id: ac353f226d5faf78efe8bd287741ea47
-    entity_id: binary_sensor.downstairs_smoke_detector_smoke_alarm_smoke_detected
-    domain: binary_sensor
-  - type: co
-    platform: device
-    device_id: 5dc7a5753d33064cf1c660f0097e0be2
-    entity_id: binary_sensor.upstairs_smoke_detector_co_alarm_carbon_monoxide_detected
-    domain: binary_sensor
-  - type: smoke
-    platform: device
-    device_id: 5dc7a5753d33064cf1c660f0097e0be2
-    entity_id: binary_sensor.upstairs_smoke_detector_smoke_alarm_smoke_detected
-    domain: binary_sensor
-  - type: smoke
-    platform: device
-    device_id: fe22124a5684619e2af2005c3afc93de
-    entity_id: binary_sensor.smoke_and_carbon_monoxide_alarm_smoke_alarm_smoke_detected
-    domain: binary_sensor
+    - type: problem
+      platform: device
+      device_id: fe22124a5684619e2af2005c3afc93de
+      entity_id: binary_sensor.kitchen_smoke_alarm_smoke_alarm_smoke_alarm_test
+      domain: binary_sensor
+    - type: co
+      platform: device
+      device_id: 5dd20b9615b858ea31f5f02431fde004
+      entity_id: binary_sensor.basement_smoke_detector_co_alarm_carbon_monoxide_detected
+      domain: binary_sensor
+    - type: smoke
+      platform: device
+      device_id: 5dd20b9615b858ea31f5f02431fde004
+      entity_id: binary_sensor.basement_smoke_detector_smoke_alarm_smoke_detected
+      domain: binary_sensor
+    - type: co
+      platform: device
+      device_id: ac353f226d5faf78efe8bd287741ea47
+      entity_id: binary_sensor.downstairs_smoke_detector_co_alarm_carbon_monoxide_detected
+      domain: binary_sensor
+    - type: smoke
+      platform: device
+      device_id: ac353f226d5faf78efe8bd287741ea47
+      entity_id: binary_sensor.downstairs_smoke_detector_smoke_alarm_smoke_detected
+      domain: binary_sensor
+    - type: co
+      platform: device
+      device_id: 5dc7a5753d33064cf1c660f0097e0be2
+      entity_id: binary_sensor.upstairs_smoke_detector_co_alarm_carbon_monoxide_detected
+      domain: binary_sensor
+    - type: smoke
+      platform: device
+      device_id: 5dc7a5753d33064cf1c660f0097e0be2
+      entity_id: binary_sensor.upstairs_smoke_detector_smoke_alarm_smoke_detected
+      domain: binary_sensor
+    - type: smoke
+      platform: device
+      device_id: fe22124a5684619e2af2005c3afc93de
+      entity_id: binary_sensor.smoke_and_carbon_monoxide_alarm_smoke_alarm_smoke_detected
+      domain: binary_sensor
   condition: []
   action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Smoke detector has been activiated.
-      title: Smoke Detector Activated!
+    - service: notify.notify_nicole_and_eric
+      data:
+        message: Smoke detector has been activiated.
+        title: Smoke Detector Activated!
   mode: single
 - id: master_bath_motion
   alias: Master Bathroom - Turn off lights when no motion detected
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - binary_sensor.master_bathroom_sensor_home_security_motion_detection
-    from: 'on'
-    to: 'off'
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
+    - platform: state
+      entity_id:
+        - binary_sensor.master_bathroom_sensor_home_security_motion_detection
+      from: "on"
+      to: "off"
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
   condition: []
   action:
-  - service: light.turn_off
-    data: {}
-    target:
-      entity_id: light.master_bath_light
+    - service: light.turn_off
+      data: {}
+      target:
+        entity_id: light.master_bath_light
   mode: single
 - id: family_room_motion
   alias: Downstairs - Turn off den and family room lights with no motion.
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - binary_sensor.den
-    to: 'off'
-    for:
-      hours: 1
-      minutes: 0
-      seconds: 0
+    - platform: state
+      entity_id:
+        - binary_sensor.den
+      to: "off"
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
   condition: []
   action:
-  - service: light.turn_off
-    data: {}
-    target:
-      area_id:
-      - family_room
-      - den
+    - service: light.turn_off
+      data: {}
+      target:
+        area_id:
+          - family_room
+          - den
   mode: single
 - id: vacation_lighting
   alias: Blueprint - Vacation Lighting
-  description: ''
+  description: ""
   use_blueprint:
     path: vacation_lighting.yaml
     input:
@@ -372,1026 +377,1055 @@
       light_target_10: light.nicole_office_wall_switch
 - id: mini_cool_after_ride
   alias: Mini - Cool car after ride
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - device_tracker.cooper_se
-    to: Hickory Glen
-    for:
-      hours: 0
-      minutes: 30
-      seconds: 0
-  - platform: state
-    entity_id:
-    - device_tracker.cooper_se
-    to: Milford Trail
-    for:
-      hours: 0
-      minutes: 35
-      seconds: 0
-  - platform: state
-    entity_id:
-    - device_tracker.cooper_se
-    to: Tree Farm
-    for:
-      hours: 0
-      minutes: 35
-      seconds: 0
+    - platform: state
+      entity_id:
+        - device_tracker.cooper_se
+      to: Hickory Glen
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+    - platform: state
+      entity_id:
+        - device_tracker.cooper_se
+      to: Milford Trail
+      for:
+        hours: 0
+        minutes: 35
+        seconds: 0
+    - platform: state
+      entity_id:
+        - device_tracker.cooper_se
+      to: Tree Farm
+      for:
+        hours: 0
+        minutes: 35
+        seconds: 0
   condition:
-  - condition: template
-    value_template: '{{state_attr("weather.possum_den", "temperature") >= 75}}'
+    - condition: template
+      value_template: '{{state_attr("weather.possum_den", "temperature") >= 75}}'
   action:
-  - device_id: b7abdbf8fe525eb1a5ac7ea8fd050455
-    domain: button
-    entity_id: button.cooper_se_activate_air_conditioning
-    type: press
+    - device_id: b7abdbf8fe525eb1a5ac7ea8fd050455
+      domain: button
+      entity_id: button.cooper_se_activate_air_conditioning
+      type: press
   mode: single
 - id: fish_tank_lights
   alias: Fish Lights and Feed
-  description: ''
+  description: ""
   trigger:
-  - platform: sun
-    event: sunset
-    offset: 0
+    - platform: sun
+      event: sunset
+      offset: 0
   condition: []
   action:
-  - type: turn_on
-    device_id: a16dc6ccbdc67705acdb84885360d1f8
-    entity_id: switch.fish_tank_lights
-    domain: switch
-  - type: turn_on
-    device_id: e063d491c2a8f543fec0b738f8694367
-    entity_id: switch.fish_feeder
-    domain: switch
-  - delay:
-      hours: 5
-      minutes: 0
-      seconds: 0
-      milliseconds: 0
-  - type: turn_off
-    device_id: a16dc6ccbdc67705acdb84885360d1f8
-    entity_id: switch.fish_tank_lights
-    domain: switch
+    - type: turn_on
+      device_id: a16dc6ccbdc67705acdb84885360d1f8
+      entity_id: switch.fish_tank_lights
+      domain: switch
+    - type: turn_on
+      device_id: e063d491c2a8f543fec0b738f8694367
+      entity_id: switch.fish_feeder
+      domain: switch
+    - delay:
+        hours: 5
+        minutes: 0
+        seconds: 0
+        milliseconds: 0
+    - type: turn_off
+      device_id: a16dc6ccbdc67705acdb84885360d1f8
+      entity_id: switch.fish_tank_lights
+      domain: switch
   mode: single
 - id: vacation_mode_auto
   alias: Vacation Mode
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - input_boolean.vacation_mode
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 0
+    - platform: state
+      entity_id:
+        - input_boolean.vacation_mode
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 0
   condition: []
   action:
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: input_boolean.vacation_mode
-        state: 'on'
-      sequence:
-      - device_id: afeb99ceb8a5bc6e7ae6e6af6eceee3b
-        domain: climate
-        entity_id: climate.family_room_thermostat
-        type: set_hvac_mode
-        hvac_mode: 'off'
-        alias: Turn Family Room Thermostat Off
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: input_boolean.vacation_mode
+              state: "on"
+          sequence:
+            - device_id: afeb99ceb8a5bc6e7ae6e6af6eceee3b
+              domain: climate
+              entity_id: climate.family_room_thermostat
+              type: set_hvac_mode
+              hvac_mode: "off"
+              alias: Turn Family Room Thermostat Off
   mode: single
 - id: nicole_office_lights_off
   alias: Nicole Office - Control lights with wall switch
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - light.nicole_office_wall_switch
-    to: 'off'
-  - platform: state
-    entity_id:
-    - light.nicole_office_wall_switch
-    to: 'on'
+    - platform: state
+      entity_id:
+        - light.nicole_office_wall_switch
+      to: "off"
+    - platform: state
+      entity_id:
+        - light.nicole_office_wall_switch
+      to: "on"
   condition: []
   action:
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: light.nicole_office_wall_switch
-        state: 'off'
-      sequence:
-      - service: light.turn_off
-        data: {}
-        target:
-          area_id: nicole_office
-    - conditions:
-      - condition: state
-        entity_id: light.nicole_office_wall_switch
-        state: 'on'
-      sequence:
-      - type: turn_on
-        device_id: 84233bfe9142301d0caf5e3ba80fef60
-        entity_id: light.nicole_office_floor_lamp
-        domain: light
-      - type: turn_on
-        device_id: 310e0e6bf98c0b9f552045d210041997
-        entity_id: light.nicole_office_file_cabinet_lamp
-        domain: light
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: light.nicole_office_wall_switch
+              state: "off"
+          sequence:
+            - service: light.turn_off
+              data: {}
+              target:
+                area_id: nicole_office
+        - conditions:
+            - condition: state
+              entity_id: light.nicole_office_wall_switch
+              state: "on"
+          sequence:
+            - type: turn_on
+              device_id: 84233bfe9142301d0caf5e3ba80fef60
+              entity_id: light.nicole_office_floor_lamp
+              domain: light
+            - type: turn_on
+              device_id: 310e0e6bf98c0b9f552045d210041997
+              entity_id: light.nicole_office_file_cabinet_lamp
+              domain: light
   mode: single
 - id: niocole_office_closet_light
   alias: Nicole Office - Turn closet light off/on with door
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - binary_sensor.nicole_office_closet_door
+    - platform: state
+      entity_id:
+        - binary_sensor.nicole_office_closet_door
   condition: []
   action:
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: binary_sensor.nicole_office_closet_door
-        state: 'on'
-      sequence:
-      - type: turn_on
-        device_id: 25520ab15610b01545d335b2672717a4
-        entity_id: light.nicole_office_closet_light
-        domain: light
-    - conditions:
-      - condition: state
-        entity_id: binary_sensor.nicole_office_closet_door
-        state: 'off'
-      sequence:
-      - type: turn_off
-        device_id: 25520ab15610b01545d335b2672717a4
-        entity_id: light.nicole_office_closet_light
-        domain: light
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: binary_sensor.nicole_office_closet_door
+              state: "on"
+          sequence:
+            - type: turn_on
+              device_id: 25520ab15610b01545d335b2672717a4
+              entity_id: light.nicole_office_closet_light
+              domain: light
+        - conditions:
+            - condition: state
+              entity_id: binary_sensor.nicole_office_closet_door
+              state: "off"
+          sequence:
+            - type: turn_off
+              device_id: 25520ab15610b01545d335b2672717a4
+              entity_id: light.nicole_office_closet_light
+              domain: light
   mode: single
 - id: set_family_room_thermostat
   alias: Family Room Thermostat
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - climate.ecobee_thermostat
-    attribute: temperature
-  - platform: state
-    entity_id:
-    - climate.ecobee_thermostat
-    attribute: target_temp_low
-  - platform: state
-    entity_id:
-    - climate.ecobee_thermostat
-  - platform: state
-    entity_id:
-    - input_select.home_mode
-    to: Sleep
-  condition: []
-  action:
-  - if:
+    - platform: state
+      entity_id:
+        - climate.ecobee_thermostat
+      attribute: temperature
+    - platform: state
+      entity_id:
+        - climate.ecobee_thermostat
+      attribute: target_temp_low
+    - platform: state
+      entity_id:
+        - climate.ecobee_thermostat
+    - platform: state
+      entity_id:
+        - input_select.home_mode
+      to: Sleep
+    - platform: state
+      entity_id:
+        - input_select.home_mode
+  condition:
     - condition: state
-      entity_id: input_select.home_mode
-      state: Sleep
-    then:
-    - device_id: afeb99ceb8a5bc6e7ae6e6af6eceee3b
-      domain: climate
-      entity_id: climate.family_room_thermostat
-      type: set_hvac_mode
-      hvac_mode: 'off'
-      alias: Set thermostat to off
-    else:
-    - service: python_script.set_fr_thermostat
-      data:
-        main_thermostat: climate.ecobee_thermostat
-        fr_thermostat: climate.family_room_thermostat
-      alias: Set based on ecobee
+      entity_id: input_boolean.vacation_mode
+      state: "off"
+    - condition: template
+      value_template:
+        "{{(state_attr('weather.ecobee_thermostat', 'forecast')[0]['temperature'])
+        < 65}}"
+      alias: Confirm high temperature is less than 65
+  action:
+    - if:
+        - condition: state
+          entity_id: input_select.home_mode
+          state: Sleep
+      then:
+        - device_id: afeb99ceb8a5bc6e7ae6e6af6eceee3b
+          domain: climate
+          entity_id: climate.family_room_thermostat
+          type: set_hvac_mode
+          hvac_mode: "off"
+          alias: Set thermostat to off
+      else:
+        - service: python_script.set_fr_thermostat
+          data:
+            main_thermostat: climate.ecobee_thermostat
+            fr_thermostat: climate.family_room_thermostat
+          alias: Set based on ecobee
   mode: restart
 - id: notify_fish_feeder_offline
   alias: Notification - Notify when fish feeder goes offline
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - switch.fish_feeder
-    to: unavailable
-  - platform: state
-    entity_id:
-    - switch.fish_feeder
-    to: unknown
+    - platform: state
+      entity_id:
+        - switch.fish_feeder
+      to: unavailable
+    - platform: state
+      entity_id:
+        - switch.fish_feeder
+      to: unknown
   condition: []
   action:
-  - service: notify.mobile_app_nicole_iphone
-    data:
-      message: Fish tank feeder is offline.
+    - service: notify.mobile_app_nicole_iphone
+      data:
+        message: Fish tank feeder is offline.
   mode: single
 - id: kitchette_leds_with_wall_switch
   alias: Kitchenette - Turn on LEDs with wall switch
-  description: ''
+  description: ""
   trigger:
-  - platform: device
-    type: turned_on
-    device_id: 3a723969ea70edbaabb321ad14e6924d
-    entity_id: light.kitchenette_spot_lights
-    domain: light
+    - platform: device
+      type: turned_on
+      device_id: 3a723969ea70edbaabb321ad14e6924d
+      entity_id: light.kitchenette_spot_lights
+      domain: light
   condition: []
   action:
-  - type: turn_on
-    device_id: 5cdd36d9da5933171ecacd4e048912ba
-    entity_id: light.kitchenette_led_strip
-    domain: light
+    - type: turn_on
+      device_id: 5cdd36d9da5933171ecacd4e048912ba
+      entity_id: light.kitchenette_led_strip
+      domain: light
   mode: single
 - id: living_room_tv_off_receiver
   alias: Living Room - Turn off TV with Receiver
   description: Overriding the art mode.
   trigger:
-  - platform: device
-    device_id: fd7ae8ebda3faafe21c87fe16cd3070c
-    domain: media_player
-    entity_id: media_player.main_floor_musiccast
-    type: turned_off
+    - platform: device
+      device_id: fd7ae8ebda3faafe21c87fe16cd3070c
+      domain: media_player
+      entity_id: media_player.main_floor_musiccast
+      type: turned_off
   condition: []
   action:
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 2
-      milliseconds: 0
-  - type: turn_off
-    device_id: 527bcce84a0020ad4805403d7c88110a
-    entity_id: switch.main_floor_tv
-    domain: switch
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 2
+        milliseconds: 0
+    - type: turn_off
+      device_id: 527bcce84a0020ad4805403d7c88110a
+      entity_id: switch.main_floor_tv
+      domain: switch
   mode: single
 - id: notify_oven_on
   alias: Notification - Everyone left or is sleeping but oven is on.
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - group.people
-    to: away
-  - platform: state
-    entity_id:
-    - input_select.home_mode
-    to: Sleep
+    - platform: state
+      entity_id:
+        - group.people
+      to: away
+    - platform: state
+      entity_id:
+        - input_select.home_mode
+      to: Sleep
   condition:
-  - condition: not
-    conditions:
-    - condition: state
-      entity_id: sensor.oven_oven_machine_state
-      state: ready
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: sensor.oven_oven_machine_state
+          state: ready
   action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Oven is on.
+    - service: notify.notify_nicole_and_eric
+      data:
+        message: Oven is on.
   mode: single
 - id: set_dte_peak_month
   alias: Set DTE Peak Month
-  description: ''
+  description: ""
   trigger:
-  - platform: homeassistant
-    event: start
-  - platform: time
-    at: 00:00:01
+    - platform: homeassistant
+      event: start
+    - platform: time
+      at: 00:00:01
   condition: []
   action:
-  - if:
-    - condition: template
-      value_template: '{{(now().month > 5)  and (now().month < 10)}}'
-      alias: Current month is between June and September
-    then:
-    - service: input_boolean.turn_on
-      data: {}
-      target:
-        entity_id: input_boolean.dte_peak_season
-    else:
-    - service: input_boolean.turn_off
-      data: {}
-      target:
-        entity_id: input_boolean.dte_peak_season
+    - if:
+        - condition: template
+          value_template: "{{(now().month > 5)  and (now().month < 10)}}"
+          alias: Current month is between June and September
+      then:
+        - service: input_boolean.turn_on
+          data: {}
+          target:
+            entity_id: input_boolean.dte_peak_season
+      else:
+        - service: input_boolean.turn_off
+          data: {}
+          target:
+            entity_id: input_boolean.dte_peak_season
   mode: single
 - id: notify_fridge_open
   alias: Notification - Upstairs fridge is open.
-  description: ''
+  description: ""
   trigger:
-  - type: opened
-    platform: device
-    device_id: 825c675de049294dc0a55919bdfbf156
-    entity_id: binary_sensor.upstairs_refrigerator_door_open
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 2
-      seconds: 0
+    - type: opened
+      platform: device
+      device_id: 825c675de049294dc0a55919bdfbf156
+      entity_id: binary_sensor.upstairs_refrigerator_door_open
+      domain: binary_sensor
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
   condition: []
   action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: 'Upstairs refridgerator is open. '
+    - service: notify.notify_nicole_and_eric
+      data:
+        message: "Upstairs refridgerator is open. "
   mode: single
 - id: mini_preconditon_after_work
   alias: Mini - Precondition after work.
-  description: ''
+  description: ""
   trigger:
-  - platform: time
-    at: '16:45:00'
-  - platform: time
-    at: 04:45:00
+    - platform: time
+      at: "16:45:00"
+    - platform: time
+      at: 04:45:00
   condition:
-  - condition: or
-    conditions:
-    - condition: zone
-      entity_id: device_tracker.cooper_se
-      zone: zone.itc
-    - condition: zone
-      entity_id: device_tracker.cooper_se
-      zone: zone.itc_ann_arbor
+    - condition: or
+      conditions:
+        - condition: zone
+          entity_id: device_tracker.cooper_se
+          zone: zone.itc
+        - condition: zone
+          entity_id: device_tracker.cooper_se
+          zone: zone.itc_ann_arbor
   action:
-  - device_id: b7abdbf8fe525eb1a5ac7ea8fd050455
-    domain: button
-    entity_id: button.cooper_se_activate_air_conditioning
-    type: press
+    - device_id: b7abdbf8fe525eb1a5ac7ea8fd050455
+      domain: button
+      entity_id: button.cooper_se_activate_air_conditioning
+      type: press
   mode: single
 - id: kitchen_window_seat_light
   alias: Kitchen - Control lights with overhead switch
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - light.kitchen_overhead_lights
-    to: 'on'
-    from: 'off'
-  - platform: state
-    entity_id:
-    - light.kitchen_overhead_lights
-    to: 'off'
-    from: 'on'
+    - platform: state
+      entity_id:
+        - light.kitchen_overhead_lights
+      to: "on"
+      from: "off"
+    - platform: state
+      entity_id:
+        - light.kitchen_overhead_lights
+      to: "off"
+      from: "on"
   condition: []
   action:
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: light.kitchen_overhead_lights
-        state: 'on'
-      sequence:
-      - service: light.turn_on
-        data: {}
-        target:
-          area_id: kitchen
-    - conditions:
-      - condition: state
-        entity_id: light.kitchen_overhead_lights
-        state: 'off'
-      sequence:
-      - service: light.turn_off
-        data: {}
-        target:
-          entity_id: light.kitchen_window_seat_light
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: light.kitchen_overhead_lights
+              state: "on"
+          sequence:
+            - service: light.turn_on
+              data: {}
+              target:
+                area_id: kitchen
+        - conditions:
+            - condition: state
+              entity_id: light.kitchen_overhead_lights
+              state: "off"
+          sequence:
+            - service: light.turn_off
+              data: {}
+              target:
+                entity_id: light.kitchen_window_seat_light
   mode: queued
   max: 5
 - id: notify_dishwasher_complete
-  alias: 'Notification - Dishwasher finished '
-  description: ''
+  alias: "Notification - Dishwasher finished "
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - sensor.dishwasher_operation_state
-    to: Finished
-    for:
-      hours: 0
-      minutes: 1
-      seconds: 0
+    - platform: state
+      entity_id:
+        - sensor.dishwasher_operation_state
+      to: Finished
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
   condition: []
   action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Dishwasher finished.
+    - service: notify.notify_nicole_and_eric
+      data:
+        message: Dishwasher finished.
   mode: single
 - id: notify_water_under_sink
   alias: Notification - Water under sink
-  description: ''
+  description: ""
   trigger:
-  - type: moist
-    platform: device
-    device_id: 820f34bfa02aded8df58b18f667a8e29
-    entity_id: binary_sensor.kitchen_sink_water_sensor
-    domain: binary_sensor
+    - type: moist
+      platform: device
+      device_id: 820f34bfa02aded8df58b18f667a8e29
+      entity_id: binary_sensor.kitchen_sink_water_sensor
+      domain: binary_sensor
   condition: []
   action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Water detected under kitchen sink.
+    - service: notify.notify_nicole_and_eric
+      data:
+        message: Water detected under kitchen sink.
   mode: single
 - id: notify_eric_left_work
   alias: Notification - Notify Nicole when Eric leaves work.
-  description: ''
+  description: ""
   trigger:
-  - platform: zone
-    entity_id: person.eric
-    zone: zone.itc
-    event: leave
-  - platform: zone
-    entity_id: person.eric
-    zone: zone.itc_ann_arbor
-    event: leave
+    - platform: zone
+      entity_id: person.eric
+      zone: zone.itc
+      event: leave
+    - platform: zone
+      entity_id: person.eric
+      zone: zone.itc_ann_arbor
+      event: leave
   condition: []
   action:
-  - service: notify.mobile_app_nicole_iphone
-    data:
-      message: Eric is leaving work.
+    - service: notify.mobile_app_nicole_iphone
+      data:
+        message: Eric is leaving work.
   mode: single
 - id: notify_water_under_fish_tank
   alias: Notification - Notifiy if water under fish tank
-  description: ''
+  description: ""
   trigger:
-  - type: moist
-    platform: device
-    device_id: b98319a1990e48df55701f9bf318167c
-    entity_id: binary_sensor.fish_tank_water_sensor
-    domain: binary_sensor
+    - type: moist
+      platform: device
+      device_id: b98319a1990e48df55701f9bf318167c
+      entity_id: binary_sensor.fish_tank_water_sensor
+      domain: binary_sensor
   condition: []
   action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Water detected under fish tank.
+    - service: notify.notify_nicole_and_eric
+      data:
+        message: Water detected under fish tank.
   mode: single
 - id: notify_water_laundry_room
   alias: Notification - Notify if water detected in laundry room
-  description: ''
+  description: ""
   trigger:
-  - type: moist
-    platform: device
-    device_id: 61a98c1c226600fd7f6dab560abf7f8b
-    entity_id: binary_sensor.laundry_room_water_sensor_iaszone
-    domain: binary_sensor
+    - type: moist
+      platform: device
+      device_id: 61a98c1c226600fd7f6dab560abf7f8b
+      entity_id: binary_sensor.laundry_room_water_sensor_iaszone
+      domain: binary_sensor
   condition: []
   action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Water detected in laundry room.
+    - service: notify.notify_nicole_and_eric
+      data:
+        message: Water detected in laundry room.
   mode: single
 - id: half_bath_lights_motion
   alias: Half Bath - Control lights with motion
-  description: ''
+  description: ""
   trigger:
-  - type: occupied
-    platform: device
-    device_id: 12b7dc73a4601643d79a3274b66d4c62
-    entity_id: binary_sensor.half_bath_motion_sensor_occupancy
-    domain: binary_sensor
-  - type: not_occupied
-    platform: device
-    device_id: 12b7dc73a4601643d79a3274b66d4c62
-    entity_id: binary_sensor.half_bath_motion_sensor_occupancy
-    domain: binary_sensor
+    - type: occupied
+      platform: device
+      device_id: 12b7dc73a4601643d79a3274b66d4c62
+      entity_id: binary_sensor.half_bath_motion_sensor_occupancy
+      domain: binary_sensor
+    - type: not_occupied
+      platform: device
+      device_id: 12b7dc73a4601643d79a3274b66d4c62
+      entity_id: binary_sensor.half_bath_motion_sensor_occupancy
+      domain: binary_sensor
   condition: []
   action:
-  - choose:
-    - conditions:
-      - type: is_not_occupied
-        condition: device
-        device_id: 12b7dc73a4601643d79a3274b66d4c62
-        entity_id: binary_sensor.half_bath_motion_sensor_occupancy
-        domain: binary_sensor
-      sequence:
-      - type: turn_off
-        device_id: 10f945d73ec4f5a56d053445e3ef3f9b
-        entity_id: light.half_bath_light
-        domain: light
-    - conditions:
-      - type: is_occupied
-        condition: device
-        device_id: 12b7dc73a4601643d79a3274b66d4c62
-        entity_id: binary_sensor.half_bath_motion_sensor_occupancy
-        domain: binary_sensor
-      sequence:
-      - type: turn_on
-        device_id: 10f945d73ec4f5a56d053445e3ef3f9b
-        entity_id: light.half_bath_light
-        domain: light
+    - choose:
+        - conditions:
+            - type: is_not_occupied
+              condition: device
+              device_id: 12b7dc73a4601643d79a3274b66d4c62
+              entity_id: binary_sensor.half_bath_motion_sensor_occupancy
+              domain: binary_sensor
+          sequence:
+            - type: turn_off
+              device_id: 10f945d73ec4f5a56d053445e3ef3f9b
+              entity_id: light.half_bath_light
+              domain: light
+        - conditions:
+            - type: is_occupied
+              condition: device
+              device_id: 12b7dc73a4601643d79a3274b66d4c62
+              entity_id: binary_sensor.half_bath_motion_sensor_occupancy
+              domain: binary_sensor
+          sequence:
+            - type: turn_on
+              device_id: 10f945d73ec4f5a56d053445e3ef3f9b
+              entity_id: light.half_bath_light
+              domain: light
   mode: single
 - id: good_morning_nicole
   alias: Nicole - Good Morning Nicole
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - input_button.good_morning_nicole
-    alias: When Good Morning Nicole button is pressed
+    - platform: state
+      entity_id:
+        - input_button.good_morning_nicole
+      alias: When Good Morning Nicole button is pressed
   condition:
-  - condition: state
-    entity_id: person.nicole
-    state: home
+    - condition: state
+      entity_id: person.nicole
+      state: home
   action:
-  - service: scene.turn_on
-    target:
-      entity_id: scene.good_morning
-    metadata: {}
-  - if:
-    - condition: sun
-      before: sunrise
-    then:
-    - type: turn_on
-      device_id: b3275c0af7696dc2e67ed8b562004634
-      entity_id: light.kitchen_table_light
-      domain: light
-    alias: Turn on Kitchen Table Light if before sunrise.
+    - service: scene.turn_on
+      target:
+        entity_id: scene.good_morning
+      metadata: {}
+    - if:
+        - condition: sun
+          before: sunrise
+      then:
+        - type: turn_on
+          device_id: b3275c0af7696dc2e67ed8b562004634
+          entity_id: light.kitchen_table_light
+          domain: light
+      alias: Turn on Kitchen Table Light if before sunrise.
   mode: single
 - id: nicole_wind_down
   alias: Nicole - Wind Down
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - input_button.wind_down_nicole
-    alias: When Wind Down Nicole Button is pressed
+    - platform: state
+      entity_id:
+        - input_button.wind_down_nicole
+      alias: When Wind Down Nicole Button is pressed
   condition:
-  - condition: state
-    entity_id: person.nicole
-    state: home
+    - condition: state
+      entity_id: person.nicole
+      state: home
   action:
-  - service: scene.turn_on
-    target:
-      entity_id: scene.wind_down_nicole
-    metadata: {}
-  - service: climate.set_preset_mode
-    data:
-      preset_mode: Sleep
-    target:
-      entity_id: climate.ecobee_thermostat
+    - service: scene.turn_on
+      target:
+        entity_id: scene.wind_down_nicole
+      metadata: {}
+    - service: climate.set_preset_mode
+      data:
+        preset_mode: Sleep
+      target:
+        entity_id: climate.ecobee_thermostat
   mode: single
 - id: good_morning_eric
   alias: Eric - Good Morning Eric
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - input_button.good_morning_eric
+    - platform: state
+      entity_id:
+        - input_button.good_morning_eric
   condition:
-  - condition: and
-    conditions:
-    - condition: not
+    - condition: and
       conditions:
-      - condition: state
-        entity_id: input_select.home_mode
-        state: Home
-      alias: Home Mode is not Home
-    - condition: state
-      entity_id: person.eric
-      state: home
-    alias: Home Mode is not Home and Eric is Home
+        - condition: not
+          conditions:
+            - condition: state
+              entity_id: input_select.home_mode
+              state: Home
+          alias: Home Mode is not Home
+        - condition: state
+          entity_id: person.eric
+          state: home
+      alias: Home Mode is not Home and Eric is Home
   action:
-  - service: scene.turn_on
-    target:
-      entity_id: scene.good_morning
-    metadata: {}
-  - service: scene.turn_on
-    target:
-      entity_id: scene.good_morning_eric
-    metadata: {}
+    - service: scene.turn_on
+      target:
+        entity_id: scene.good_morning
+      metadata: {}
+    - service: scene.turn_on
+      target:
+        entity_id: scene.good_morning_eric
+      metadata: {}
   mode: single
 - id: garage_door_lights_with_door
   alias: Lighting - Turn on Garage Lights when Garage Door opens
-  description: ''
+  description: ""
   trigger:
-  - platform: device
-    device_id: 21959ccd3bcee083d4554dd0e553d051
-    domain: cover
-    entity_id: cover.garage_door
-    type: opened
+    - platform: device
+      device_id: 21959ccd3bcee083d4554dd0e553d051
+      domain: cover
+      entity_id: cover.garage_door
+      type: opened
   condition:
-  - condition: sun
-    before: sunrise
-    after: sunset
+    - condition: sun
+      before: sunrise
+      after: sunset
   action:
-  - service: light.turn_on
-    data: {}
-    target:
-      entity_id:
-      - light.garage_lights_north
-      - light.garage_lights_south
+    - service: light.turn_on
+      data: {}
+      target:
+        entity_id:
+          - light.garage_lights_north
+          - light.garage_lights_south
   mode: single
 - id: mini_quota_workaround
   alias: MINI - Workaround for Quota
-  description: ''
+  description: ""
   trigger:
-  - platform: time_pattern
-    minutes: '15'
-  - platform: zone
-    entity_id: person.nicole
-    zone: zone.hickory_glen
-    event: enter
-  - platform: zone
-    entity_id: person.nicole
-    zone: zone.milford_trail
-    event: enter
-  - platform: zone
-    entity_id: person.nicole
-    zone: zone.tree_farm
-    event: enter
+    - platform: time_pattern
+      minutes: "15"
+    - platform: zone
+      entity_id: person.nicole
+      zone: zone.hickory_glen
+      event: enter
+    - platform: zone
+      entity_id: person.nicole
+      zone: zone.milford_trail
+      event: enter
+    - platform: zone
+      entity_id: person.nicole
+      zone: zone.tree_farm
+      event: enter
   condition: []
   action:
-  - service: homeassistant.update_entity
-    data: {}
-    target:
-      entity_id: device_tracker.cooper_se
+    - service: homeassistant.update_entity
+      data: {}
+      target:
+        entity_id: device_tracker.cooper_se
   mode: single
 - id: notify_energy_spike_peak_hours
   alias: Notification - Notify when energy peaks during DTE peak hours
-  description: ''
+  description: ""
   trigger:
-  - platform: template
-    value_template: '{{ states(''sensor.energy_bridge'')|float > 5000}}'
+    - platform: template
+      value_template: "{{ states('sensor.energy_bridge')|float > 5000}}"
   condition:
-  - condition: state
-    entity_id: schedule.dte_peak_hours
-    state: 'on'
+    - condition: state
+      entity_id: schedule.dte_peak_hours
+      state: "on"
   action:
-  - service: notify.mobile_app_nicole_iphone
-    data:
-      message: High energy use detected during peak hours.
+    - service: notify.mobile_app_nicole_iphone
+      data:
+        message: High energy use detected during peak hours.
   mode: single
 - id: hair_straightener_off_30_minutes
   alias: Hair Straightener - Turn off after 30 minutes
-  description: ''
+  description: ""
   trigger:
-  - platform: device
-    type: turned_on
-    device_id: ca79eaed962b1a630ce3466878b3a0d0
-    entity_id: switch.hair_straightener
-    domain: switch
-    for:
-      hours: 0
-      minutes: 30
-      seconds: 0
+    - platform: device
+      type: turned_on
+      device_id: ca79eaed962b1a630ce3466878b3a0d0
+      entity_id: switch.hair_straightener
+      domain: switch
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
   condition:
-  - condition: not
-    conditions:
-    - condition: state
-      entity_id: sensor.hair_straightener_energy_power
-      state: '0'
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: sensor.hair_straightener_energy_power
+          state: "0"
   action:
-  - type: turn_off
-    device_id: ca79eaed962b1a630ce3466878b3a0d0
-    entity_id: switch.hair_straightener
-    domain: switch
+    - type: turn_off
+      device_id: ca79eaed962b1a630ce3466878b3a0d0
+      entity_id: switch.hair_straightener
+      domain: switch
   mode: single
 - id: lighting_eric_office_no_motion
   alias: Lighting - Turn off Eric Office lights when no motion detected.
-  description: ''
+  description: ""
   trigger:
-  - type: no_motion
-    platform: device
-    device_id: c129d1289ba41f785e7c3f9f3063173d
-    entity_id: binary_sensor.eric_office_motion_sensor_motion
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 15
-      seconds: 0
+    - type: no_motion
+      platform: device
+      device_id: c129d1289ba41f785e7c3f9f3063173d
+      entity_id: binary_sensor.eric_office_motion_sensor_motion
+      domain: binary_sensor
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
   condition: []
   action:
-  - service: light.turn_off
-    data: {}
-    target:
-      area_id: eric_office
+    - service: light.turn_off
+      data: {}
+      target:
+        area_id: eric_office
   mode: single
 - id: notify_washing_machine_complete
   alias: Notification - Washing machine complete.
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - binary_sensor.washing_machine
-    from: 'on'
-    to: 'off'
+    - platform: state
+      entity_id:
+        - binary_sensor.washing_machine
+      from: "on"
+      to: "off"
   condition: []
   action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Washing machine cycle complete.
+    - service: notify.notify_nicole_and_eric
+      data:
+        message: Washing machine cycle complete.
   mode: single
 - id: set_ecobee_dte_update
   alias: Set Ecobee - DTE Update
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id: binary_sensor.day
-    to: 'on'
-  - platform: state
-    entity_id: binary_sensor.dusk
-    to: 'on'
-  - platform: state
-    entity_id: binary_sensor.night
-    to: 'on'
-  - platform: state
-    entity_id: input_select.home_mode
-  - platform: state
-    entity_id:
-    - binary_sensor.windows
-    enabled: true
-  - platform: state
-    entity_id:
-    - schedule.dte_peak_hours
-  - platform: state
-    entity_id:
-    - input_boolean.dte_peak_season
-  - platform: time_pattern
-    hours: '1'
-    alias: Every hour
+    - platform: state
+      entity_id: binary_sensor.day
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.dusk
+      to: "on"
+    - platform: state
+      entity_id: binary_sensor.night
+      to: "on"
+    - platform: state
+      entity_id: input_select.home_mode
+    - platform: state
+      entity_id:
+        - binary_sensor.windows
+      enabled: true
+    - platform: state
+      entity_id:
+        - schedule.dte_peak_hours
+    - platform: state
+      entity_id:
+        - input_boolean.dte_peak_season
+    - platform: time_pattern
+      hours: "/1"
+      alias: Every hour
   condition:
-  - condition: state
-    entity_id: input_boolean.vacation_mode
-    state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: "off"
   action:
-  - service: python_script.set_ecobee_dte_update
-    data:
-      weather: weather.ecobee_thermostat
-      thermostat: climate.ecobee_thermostat
+    - service: python_script.set_ecobee_dte_update
+      data:
+        weather: weather.ecobee_thermostat
+        thermostat: climate.ecobee_thermostat
   mode: restart
 - id: notify_oven_preheated
   alias: Notification - Notify when oven is done preheating
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - sensor.oven_oven_job_state
-    from: preheat
-    to: cooking
+    - platform: state
+      entity_id:
+        - sensor.oven_oven_job_state
+      from: preheat
+      to: cooking
   condition: []
   action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Oven is preheated.
+    - service: notify.notify_nicole_and_eric
+      data:
+        message: Oven is preheated.
   mode: single
 - id: lighting_basement_lights_with_door
   alias: Lighting - Turn on basement lights when door opened.
-  description: ''
+  description: ""
   trigger:
-  - type: opened
-    platform: device
-    device_id: 14446959dbf188c58e6943d51605b8f2
-    entity_id: binary_sensor.basement_door
-    domain: binary_sensor
-  - platform: state
-    entity_id:
-    - binary_sensor.basement_outside_door
-    to: 'on'
+    - type: opened
+      platform: device
+      device_id: 14446959dbf188c58e6943d51605b8f2
+      entity_id: binary_sensor.basement_door
+      domain: binary_sensor
+    - platform: state
+      entity_id:
+        - binary_sensor.basement_outside_door
+      to: "on"
   condition: []
   action:
-  - service: light.turn_on
-    data: {}
-    target:
-      area_id: basement
+    - service: light.turn_on
+      data: {}
+      target:
+        area_id: basement
   mode: single
 - id: set_dimmers_max_during_day
   alias: Lighting - Set dimmers to max brightness when turned on during day.
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - light.dining_room_table_dimmer
-    to: 'on'
-    from: 'off'
-    id: Dining Room Table Dimmer On
-  - platform: state
-    entity_id:
-    - light.dining_room_wall_dimmer
-    to: 'on'
-    from: 'off'
-    id: Dining Room Wall Dimmer On
-  - platform: state
-    entity_id:
-    - light.fireplace_dimmer
-    to: 'on'
-    from: 'off'
-    id: Fireplace Dimmer On
-  - platform: state
-    entity_id:
-    - light.kitchen_mudroom_dimmer
-    to: 'on'
-    from: 'off'
-    id: Kitchen Mudroom Dimmer On
-  - platform: state
-    entity_id:
-    - light.kitchen_sink_dimmer
-    to: 'on'
-    from: 'off'
-    id: Kitchen Sink Dimmer On
-  - platform: state
-    entity_id:
-    - light.living_room_wall_dimmer
-    from: 'off'
-    to: 'on'
-    id: Living Room Wall Dimmer On
-  - platform: state
-    entity_id:
-    - light.kitchen_under_cabinet_lights
-    from: 'off'
-    to: 'on'
-    id: Kitchen Under Cabinet Lights On
-  - platform: state
-    entity_id:
-    - light.kitchen_table_light
-    from: 'off'
-    to: 'on'
-    id: Kitchen Table Light On
-  - platform: state
-    entity_id:
-    - light.family_room_track_light_back
-    from: 'off'
-    to: 'on'
-    id: Family Room Track Light Back On
-  - platform: state
-    entity_id:
-    - light.family_room_track_light_front
-    from: 'off'
-    to: 'on'
-    id: Family Room Track Light Front On
-  - platform: state
-    entity_id:
-    - light.kitchenette_led_strip
-    from: 'off'
-    to: 'on'
-    id: Kitchenette LED Strip Lights On
-  - platform: state
-    entity_id:
-    - light.kitchenette_spot_lights
-    from: 'off'
-    to: 'on'
-    id: Kitchenette Spot Lights On
-  - platform: state
-    entity_id:
-    - light.master_bath_light
-    from: 'off'
-    to: 'on'
-    id: Master Bath Lights On
+    - platform: state
+      entity_id:
+        - light.dining_room_table_dimmer
+      to: "on"
+      from: "off"
+      id: Dining Room Table Dimmer On
+    - platform: state
+      entity_id:
+        - light.dining_room_wall_dimmer
+      to: "on"
+      from: "off"
+      id: Dining Room Wall Dimmer On
+    - platform: state
+      entity_id:
+        - light.fireplace_dimmer
+      to: "on"
+      from: "off"
+      id: Fireplace Dimmer On
+    - platform: state
+      entity_id:
+        - light.kitchen_mudroom_dimmer
+      to: "on"
+      from: "off"
+      id: Kitchen Mudroom Dimmer On
+    - platform: state
+      entity_id:
+        - light.kitchen_sink_dimmer
+      to: "on"
+      from: "off"
+      id: Kitchen Sink Dimmer On
+    - platform: state
+      entity_id:
+        - light.living_room_wall_dimmer
+      from: "off"
+      to: "on"
+      id: Living Room Wall Dimmer On
+    - platform: state
+      entity_id:
+        - light.kitchen_under_cabinet_lights
+      from: "off"
+      to: "on"
+      id: Kitchen Under Cabinet Lights On
+    - platform: state
+      entity_id:
+        - light.kitchen_table_light
+      from: "off"
+      to: "on"
+      id: Kitchen Table Light On
+    - platform: state
+      entity_id:
+        - light.family_room_track_light_back
+      from: "off"
+      to: "on"
+      id: Family Room Track Light Back On
+    - platform: state
+      entity_id:
+        - light.family_room_track_light_front
+      from: "off"
+      to: "on"
+      id: Family Room Track Light Front On
+    - platform: state
+      entity_id:
+        - light.kitchenette_led_strip
+      from: "off"
+      to: "on"
+      id: Kitchenette LED Strip Lights On
+    - platform: state
+      entity_id:
+        - light.kitchenette_spot_lights
+      from: "off"
+      to: "on"
+      id: Kitchenette Spot Lights On
+    - platform: state
+      entity_id:
+        - light.master_bath_light
+      from: "off"
+      to: "on"
+      id: Master Bath Lights On
   condition:
-  - condition: state
-    entity_id: binary_sensor.day
-    state: 'on'
+    - condition: state
+      entity_id: binary_sensor.day
+      state: "on"
   action:
-  - choose:
-    - conditions:
-      - condition: trigger
-        id: Dining Room Table Dimmer
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.dining_room_table_dimmer
-    - conditions:
-      - condition: trigger
-        id: Dining Room Wall Dimmer On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.dining_room_wall_dimmer
-    - conditions:
-      - condition: trigger
-        id: Fireplace Dimmer On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.fireplace_dimmer
-    - conditions:
-      - condition: trigger
-        id: Kitchen Mudroom Dimmer On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.kitchen_mudroom_dimmer
-    - conditions:
-      - condition: trigger
-        id: Kitchen Sink Dimmer On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.kitchen_sink_dimmer
-    - conditions:
-      - condition: trigger
-        id: Living Room Wall Dimmer On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.living_room_wall_dimmer
-    - conditions:
-      - condition: trigger
-        id: Kitchen Under Cabinet Lights On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.kitchen_under_cabinet_lights
-    - conditions:
-      - condition: trigger
-        id: Kitchen Table Light On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.kitchen_table_light
-    - conditions:
-      - condition: trigger
-        id: Family Room Track Light Back On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.family_room_track_light_back
-    - conditions:
-      - condition: trigger
-        id: Family Room Track Light Front On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.family_room_track_light_front
-    - conditions:
-      - condition: trigger
-        id: Kitchenette LED Strip Lights On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.kitchenette_led_strip
-    - conditions:
-      - condition: trigger
-        id: Kitchenette Spot Lights On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.kitchenette_spot_lights
-    - conditions:
-      - condition: trigger
-        id: Master Bath Lights On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.master_bath_light
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: Dining Room Table Dimmer
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness: 255
+              target:
+                entity_id: light.dining_room_table_dimmer
+        - conditions:
+            - condition: trigger
+              id: Dining Room Wall Dimmer On
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness: 255
+              target:
+                entity_id: light.dining_room_wall_dimmer
+        - conditions:
+            - condition: trigger
+              id: Fireplace Dimmer On
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness: 255
+              target:
+                entity_id: light.fireplace_dimmer
+        - conditions:
+            - condition: trigger
+              id: Kitchen Mudroom Dimmer On
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness: 255
+              target:
+                entity_id: light.kitchen_mudroom_dimmer
+        - conditions:
+            - condition: trigger
+              id: Kitchen Sink Dimmer On
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness: 255
+              target:
+                entity_id: light.kitchen_sink_dimmer
+        - conditions:
+            - condition: trigger
+              id: Living Room Wall Dimmer On
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness: 255
+              target:
+                entity_id: light.living_room_wall_dimmer
+        - conditions:
+            - condition: trigger
+              id: Kitchen Under Cabinet Lights On
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness: 255
+              target:
+                entity_id: light.kitchen_under_cabinet_lights
+        - conditions:
+            - condition: trigger
+              id: Kitchen Table Light On
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness: 255
+              target:
+                entity_id: light.kitchen_table_light
+        - conditions:
+            - condition: trigger
+              id: Family Room Track Light Back On
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness: 255
+              target:
+                entity_id: light.family_room_track_light_back
+        - conditions:
+            - condition: trigger
+              id: Family Room Track Light Front On
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness: 255
+              target:
+                entity_id: light.family_room_track_light_front
+        - conditions:
+            - condition: trigger
+              id: Kitchenette LED Strip Lights On
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness: 255
+              target:
+                entity_id: light.kitchenette_led_strip
+        - conditions:
+            - condition: trigger
+              id: Kitchenette Spot Lights On
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness: 255
+              target:
+                entity_id: light.kitchenette_spot_lights
+        - conditions:
+            - condition: trigger
+              id: Master Bath Lights On
+          sequence:
+            - service: light.turn_on
+              data:
+                brightness: 255
+              target:
+                entity_id: light.master_bath_light
   mode: parallel
   max: 13
 - id: notify_low_battery
   alias: Notification - Low battery level detection
-  description: ''
+  description: ""
   use_blueprint:
     path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
     input:
       actions:
-      - service: notify.mobile_app_nicole_iphone
-        data:
-          message: Low battery detected for {{sensors}}.
+        - service: notify.mobile_app_nicole_iphone
+          data:
+            message: Low battery detected for {{sensors}}.
       exclude:
         entity_id:
-        - sensor.cooper_se_charging_level_hv
-        - sensor.erics_ipad_battery_level
-        - sensor.erics_iphone_14_battery_level
-        - sensor.roomba_battery_level
-        - sensor.roomba_mainfloor_battery_level
-        - sensor.nicole_iphone_battery_level
-      time: '11:00:00'
+          - sensor.cooper_se_charging_level_hv
+          - sensor.erics_ipad_battery_level
+          - sensor.erics_iphone_14_battery_level
+          - sensor.roomba_battery_level
+          - sensor.roomba_mainfloor_battery_level
+          - sensor.nicole_iphone_battery_level
+      time: "11:00:00"
       threshold: 35
 - id: notify_rainy_mini_windows_down
   alias: Notification - Notify when it's raining and MINI windows are down.
-  description: ''
+  description: ""
   trigger:
-  - platform: state
-    entity_id:
-    - weather.ecobee_thermostat
-    to: rainy
-  - platform: state
-    entity_id:
-    - weather.ecobee_thermostat
-    to: lightning-rainy
-  - platform: state
-    entity_id:
-    - weather.ecobee_thermostat
-    to: pouring
+    - platform: state
+      entity_id:
+        - weather.ecobee_thermostat
+      to: rainy
+    - platform: state
+      entity_id:
+        - weather.ecobee_thermostat
+      to: lightning-rainy
+    - platform: state
+      entity_id:
+        - weather.ecobee_thermostat
+      to: pouring
   condition:
-  - condition: state
-    entity_id: binary_sensor.cooper_se_windows
-    state: 'on'
+    - condition: state
+      entity_id: binary_sensor.cooper_se_windows
+      state: "on"
   action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Windows are down in the MINI and it's raining.
+    - service: notify.notify_nicole_and_eric
+      data:
+        message: Windows are down in the MINI and it's raining.
+  mode: single
+- id: vacation_mode_start_vacuum
+  alias: Vacation - Vacuum at 8am
+  description: ""
+  trigger:
+    - platform: time
+      at: 08:00:00
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: "on"
+  action:
+    - service: vacuum.start
+      data: {}
+      target:
+        device_id:
+          - b1393875f60de525a9a916b60d079b35
+          - 0738239cc67de3bfc21e9424be3d5ae5
   mode: single
