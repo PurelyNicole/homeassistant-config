@@ -1,5 +1,5 @@
 # This script is designed to work with ecobee thermostats. It assumes the Comfort Settings are properly set within the Ecobee app.
-logger.debug("Script is running.")
+logger.debug("Set Ecobee script is running.")
 
 # Get thermostat to update
 thermostat = data.get("thermostat")
