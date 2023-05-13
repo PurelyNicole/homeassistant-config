@@ -68,6 +68,22 @@
               "type": "entities",
               "entities": [
                 {
+                  "entity": "cover.garage_door"
+                },
+                {
+                  "entity": "lock.kitchen_door_lock"
+                },
+                {
+                  "entity": "lock.workshop_lock"
+                }
+              ],
+              "title": "Doors",
+              "state_color": true
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
                   "entity": "group.outdoor_lights"
                 },
                 {
@@ -682,6 +698,21 @@
                 },
                 {
                   "entity": "light.nicole_nightstand"
+                },
+                {
+                  "entity": "number.masterbedroom_hvac_boost_fan_speed_override"
+                },
+                {
+                  "entity": "fan.masterbedroom_hvac_boost_friendly_name_override_enable"
+                },
+                {
+                  "entity": "sensor.masterbedroom_hvac_boost_temperature"
+                },
+                {
+                  "entity": "sensor.masterbedroom_hvac_boost_master_bedroom_fan_1_speed"
+                },
+                {
+                  "entity": "sensor.masterbedroom_hvac_boost_master_bedroom_fan_2_speed"
                 }
               ],
               "title": "Master Bedroom",
@@ -975,19 +1006,62 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "binary_sensor.smoke_and_carbon_monoxide_alarm_smoke_alarm_smoke_detected"
+                  "entity": "binary_sensor.kitchen_smoke_detector_carbon_monoxide_detected",
+                  "name": "Carbon monoxide detected"
                 },
                 {
-                  "entity": "sensor.kitchen_smoke_alarm_alarmtype"
+                  "entity": "binary_sensor.kitchen_smoke_detector_smoke_detected",
+                  "name": "Smoke detected"
                 },
                 {
-                  "entity": "sensor.kitchen_smoke_alarm_alarmlevel"
+                  "entity": "binary_sensor.kitchen_smoke_detector_replacement_required_end_of_life",
+                  "name": "Replacement Required"
                 },
                 {
-                  "entity": "sensor.kitchen_smoke_alarm_battery_level"
+                  "entity": "sensor.kitchen_smoke_detector_battery_level",
+                  "name": "Battery Level"
                 }
               ],
-              "title": "Kitchen Smoke Alarm",
+              "title": "Kitchen Smoke Detector",
+              "state_color": true
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.workshop_smoke_and_carbon_monoxide_alarm_smoke_alarm_smoke_detected"
+                },
+                {
+                  "entity": "sensor.workshop_smoke_detector_alarmtype"
+                },
+                {
+                  "entity": "sensor.workshop_smoke_detector_alarmlevel"
+                },
+                {
+                  "entity": "sensor.workshop_smoke_detector_battery_level"
+                }
+              ],
+              "title": "Workshop Smoke Detector",
+              "state_color": true
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.hot_water_heater_flood_sensor_water_leak_state",
+                  "name": "Hot Water Heater Water Sensor"
+                },
+                {
+                  "entity": "binary_sensor.kitchen_sink_water_sensor"
+                },
+                {
+                  "entity": "binary_sensor.fish_tank_water_sensor"
+                },
+                {
+                  "entity": "binary_sensor.laundry_room_water_sensor_iaszone"
+                }
+              ],
+              "title": "Water Sensors",
               "state_color": true
             },
             {
@@ -1019,26 +1093,6 @@
                 }
               ],
               "title": "Motion",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "binary_sensor.hot_water_heater_flood_sensor_water_leak_state",
-                  "name": "Hot Water Heater Water Sensor"
-                },
-                {
-                  "entity": "binary_sensor.kitchen_sink_water_sensor"
-                },
-                {
-                  "entity": "binary_sensor.fish_tank_water_sensor"
-                },
-                {
-                  "entity": "binary_sensor.laundry_room_water_sensor_iaszone"
-                }
-              ],
-              "title": "Water Sensors",
               "state_color": true
             }
           ]
@@ -1527,19 +1581,19 @@
                       "entity": "sensor.downstairs_smoke_detector_battery_level"
                     },
                     {
-                      "entity": "sensor.kitchen_smoke_alarm_battery_level"
+                      "entity": "sensor.kitchen_door_lock_battery_level"
                     },
                     {
                       "entity": "sensor.upstairs_smoke_detector_battery_level"
                     },
                     {
-                      "entity": "sensor.kitchen_door_lock_battery_level"
+                      "entity": "sensor.workshop_smoke_detector_battery_level"
+                    },
+                    {
+                      "entity": "sensor.kitchen_smoke_detector_battery_level"
                     },
                     {
                       "entity": "sensor.workshop_lock_battery_level"
-                    },
-                    {
-                      "entity": "sensor.schlage_deadbolt_battery_level"
                     },
                     {
                       "entity": "sensor.bedroom_window_battery_level"

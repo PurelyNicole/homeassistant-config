@@ -254,11 +254,6 @@
   alias: Notification - Smoke Detector Activated
   description: ''
   trigger:
-  - type: problem
-    platform: device
-    device_id: fe22124a5684619e2af2005c3afc93de
-    entity_id: binary_sensor.kitchen_smoke_alarm_smoke_alarm_smoke_alarm_test
-    domain: binary_sensor
   - type: co
     platform: device
     device_id: 5dd20b9615b858ea31f5f02431fde004
@@ -292,7 +287,17 @@
   - type: smoke
     platform: device
     device_id: fe22124a5684619e2af2005c3afc93de
-    entity_id: binary_sensor.smoke_and_carbon_monoxide_alarm_smoke_alarm_smoke_detected
+    entity_id: binary_sensor.workshop_smoke_and_carbon_monoxide_alarm_smoke_alarm_smoke_detected
+    domain: binary_sensor
+  - type: co
+    platform: device
+    device_id: 26b21ed8d1534bfcb780c21dd47b035f
+    entity_id: binary_sensor.kitchen_smoke_detector_carbon_monoxide_detected
+    domain: binary_sensor
+  - type: smoke
+    platform: device
+    device_id: 26b21ed8d1534bfcb780c21dd47b035f
+    entity_id: binary_sensor.kitchen_smoke_detector_smoke_detected
     domain: binary_sensor
   condition: []
   action:
