@@ -211,10 +211,7 @@
                       "entity": "scene.watch_tv"
                     },
                     {
-                      "entity": "fan.family_room_fan_south",
-                      "type": "custom:fan-mode-button-row",
-                      "reverseButtons": true,
-                      "sendStateWithMode": true
+                      "entity": "fan.family_room_fan_south"
                     }
                   ],
                   "title": "Family Room Lights",
@@ -571,9 +568,6 @@
                     },
                     {
                       "entity": "light.eric_office_light"
-                    },
-                    {
-                      "entity": "fan.family_room_fan_south"
                     }
                   ],
                   "title": "Downstairs  Lights",
@@ -698,21 +692,6 @@
                 },
                 {
                   "entity": "light.nicole_nightstand"
-                },
-                {
-                  "entity": "number.masterbedroom_hvac_boost_fan_speed_override"
-                },
-                {
-                  "entity": "fan.masterbedroom_hvac_boost_friendly_name_override_enable"
-                },
-                {
-                  "entity": "sensor.masterbedroom_hvac_boost_temperature"
-                },
-                {
-                  "entity": "sensor.masterbedroom_hvac_boost_master_bedroom_fan_1_speed"
-                },
-                {
-                  "entity": "sensor.masterbedroom_hvac_boost_master_bedroom_fan_2_speed"
                 }
               ],
               "title": "Master Bedroom",
@@ -817,6 +796,84 @@
                 }
               ],
               "title": "Humidity"
+            },
+            {
+              "type": "tile",
+              "entity": "fan.family_room_fan_south",
+              "features": [
+                {
+                  "type": "fan-speed"
+                }
+              ]
+            },
+            {
+              "chart_type": "line",
+              "period": "hour",
+              "type": "statistics-graph",
+              "entities": [
+                "sensor.masterbedroom_hvac_boost_master_bedroom_fan_1_speed",
+                "sensor.masterbedroom_hvac_boost_master_bedroom_fan_2_speed"
+              ],
+              "title": "MB HVAC Fan Speed",
+              "stat_types": [
+                "mean"
+              ],
+              "hide_legend": false,
+              "days_to_show": 3
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.masterbedroom_hvac_boost_temperature"
+                },
+                {
+                  "entity": "switch.nodered_73429d9c97f825a1",
+                  "name": "Master HVAC Speed Override Enable",
+                  "icon": "mdi:fan-alert"
+                },
+                {
+                  "entity": "number.masterbedroom_hvac_boost_fan_speed_override_1"
+                },
+                {
+                  "entity": "number.masterbedroom_hvac_boost_fan_speed_override_2"
+                },
+                {
+                  "entity": "input_number.master_hvac_booster_override_speed"
+                }
+              ],
+              "state_color": true
+            },
+            {
+              "type": "history-graph",
+              "entities": [
+                {
+                  "entity": "sensor.basement_sensor_air_temperature"
+                },
+                {
+                  "entity": "sensor.bedroom_ecobee_sensor_temperature"
+                },
+                {
+                  "entity": "sensor.ecobee_thermostat_temperature"
+                },
+                {
+                  "entity": "sensor.eric_office_temperature"
+                },
+                {
+                  "entity": "sensor.family_room_temperature"
+                },
+                {
+                  "entity": "sensor.master_bathroom_sensor_air_temperature"
+                },
+                {
+                  "entity": "sensor.masterbedroom_hvac_boost_temperature"
+                },
+                {
+                  "entity": "sensor.compensation_sensor_nicole_office_sensor_air_temperature"
+                }
+              ],
+              "hours_to_show": 72,
+              "title": "House Temperatures"
             }
           ]
         },
@@ -1218,6 +1275,12 @@
                   "entity": "device_tracker.cooper_se"
                 },
                 {
+                  "entity": "sensor.cooper_se_charging_level_hv"
+                },
+                {
+                  "entity": "sensor.cooper_se_remaining_range_electric"
+                },
+                {
                   "entity": "sensor.cooper_se_charging_status"
                 },
                 {
@@ -1237,9 +1300,6 @@
                 },
                 {
                   "entity": "sensor.cooper_se_mileage"
-                },
-                {
-                  "entity": "sensor.cooper_se_remaining_range_electric"
                 },
                 {
                   "entity": "binary_sensor.cooper_se_windows"
@@ -1615,9 +1675,6 @@
                     },
                     {
                       "entity": "sensor.nicole_office_sensor_battery_level"
-                    },
-                    {
-                      "entity": "sensor.master_bathroom_sensor_battery_level"
                     }
                   ],
                   "title": "Z-Wave Battery Status",

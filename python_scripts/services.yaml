@@ -1,16 +1,5 @@
 set_ecobee:
-  name: Set Ecobee
-  description: Sets the Ecobee Operation Mode and Preset based on the home mode, time of day, and forecasted high temperature.
-  fields:
-    thermostat:
-      description: The thermostat to set.
-      example: climate.ecobee_thermostat
-    weather:
-      description: The ecobee weather entitiy to use for getting the high temperature
-      example: weather.ecobee_thermostat
-
-set_ecobee_dte_update:
-  name: Set Ecobee DTE Update
+  name: Set Ecobee Thermostat
   description: Sets the Ecobee Operation Mode with Peak Billing
   fields:
     thermostat:

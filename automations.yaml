@@ -671,8 +671,9 @@
   action:
   - if:
     - condition: template
-      value_template: '{{(now().month > 5)  and (now().month < 10)}}'
-      alias: Current month is between June and September
+      value_template: '{{((now().month > 5) and (now().month < 10)) and (now().isoweekday()
+        < 6)}}'
+      alias: Current month is between June and September and it's a weekday
     then:
     - service: input_boolean.turn_on
       data: {}
@@ -1086,7 +1087,7 @@
       message: Washing machine cycle complete.
   mode: single
 - id: set_ecobee_dte_update
-  alias: Set Ecobee - DTE Update
+  alias: Climate - Set Ecobee Thermostat
   description: ''
   trigger:
   - platform: state
@@ -1118,7 +1119,7 @@
     entity_id: input_boolean.vacation_mode
     state: 'off'
   action:
-  - service: python_script.set_ecobee_dte_update
+  - service: python_script.set_ecobee
     data:
       weather: weather.ecobee_thermostat
       thermostat: climate.ecobee_thermostat
@@ -1428,7 +1429,7 @@
       - b1393875f60de525a9a916b60d079b35
       - 0738239cc67de3bfc21e9424be3d5ae5
   mode: single
-- id: 'notify_lower_blinds_hvac'
+- id: notify_lower_blinds_hvac
   alias: Notification - Put down blinds when HVAC is AC
   description: ''
   trigger:

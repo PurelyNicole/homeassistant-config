@@ -17,4 +17,3 @@ elif current_mode == "heat_cool":
 else:
   logger.info("Set operation to off.")
   hass.services.call("climate", "set_hvac_mode", {"entity_id": fr_thermostat, "hvac_mode": "off"}, False)
-
