@@ -366,9 +366,9 @@
       replay_sensor_5: sensor.replay_garage_lights
       light_target_5: group.garage_lights
       replay_sensor_6: sensor.replay_kitchen_overhead_lights
-      light_target_6: light.kitchen_overhead_lights
-      replay_sensor_7: sensor.replay_kitchen_sink_dimmer
-      light_target_7: light.kitchen_sink_dimmer
+      light_target_6: group.kitchen_lights
+      replay_sensor_7: sensor.replay_living_room_wall_dimmer
+      light_target_7: light.living_room_wall_dimmer
       replay_sensor_8: sensor.replay_kitchenette_spot_lights
       light_target_8: light.kitchenette_spot_lights
       replay_sensor_9: sensor.replay_master_bath_light
@@ -385,7 +385,7 @@
     to: Hickory Glen
     for:
       hours: 0
-      minutes: 30
+      minutes: 40
       seconds: 0
   - platform: state
     entity_id:
@@ -393,7 +393,7 @@
     to: Milford Trail
     for:
       hours: 0
-      minutes: 35
+      minutes: 45
       seconds: 0
   - platform: state
     entity_id:
@@ -401,11 +401,11 @@
     to: Tree Farm
     for:
       hours: 0
-      minutes: 35
+      minutes: 45
       seconds: 0
   condition:
   - condition: template
-    value_template: '{{state_attr("weather.ecobee_thermostat", "temperature") >= 75}}'
+    value_template: '{{state_attr("weather.ecobee_thermostat", "temperature") >= 70}}'
   action:
   - device_id: b7abdbf8fe525eb1a5ac7ea8fd050455
     domain: button
@@ -990,7 +990,7 @@
   description: ''
   trigger:
   - platform: time_pattern
-    minutes: '15'
+    minutes: /15
   - platform: zone
     entity_id: person.nicole
     zone: zone.hickory_glen
@@ -1427,4 +1427,34 @@
       device_id:
       - b1393875f60de525a9a916b60d079b35
       - 0738239cc67de3bfc21e9424be3d5ae5
+  mode: single
+- id: 'notify_lower_blinds_hvac'
+  alias: Notification - Put down blinds when HVAC is AC
+  description: ''
+  trigger:
+  - type: value
+    platform: device
+    device_id: b01d0e96489e63ced4992645adf0f323
+    entity_id: sensor.sun_solar_azimuth
+    domain: sensor
+    above: 250
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: person.nicole
+      state: home
+    - condition: not
+      conditions:
+      - condition: device
+        device_id: 80e2ea7676adeea018b6e96cb57a3af5
+        domain: climate
+        entity_id: climate.ecobee_thermostat
+        type: is_hvac_mode
+        hvac_mode: heat
+        alias: Thermostat in heat mode
+  action:
+  - service: notify.mobile_app_nicole_iphone
+    data:
+      message: Close living room blinds.
   mode: single

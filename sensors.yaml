@@ -7,7 +7,7 @@
 # History Stats - Used for vacation lighting
 - platform: history_stats
   name: "replay_nicole_office_lights"
-  entity_id: group.nicole_office_lights
+  entity_id: light.nicole_office_wall_switch
   state: "on"
   type: count
   start: >
@@ -78,8 +78,8 @@
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
 - platform: history_stats
-  name: "replay_kitchen_sink_dimmer"
-  entity_id: light.kitchen_sink_dimmer
+  name: "replay_living_room_wall_dimmer"
+  entity_id: light.living_room_wall_dimmer
   state: "on"
   type: count
   start: >
