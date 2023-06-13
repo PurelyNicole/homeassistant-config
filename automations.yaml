@@ -709,9 +709,9 @@
   description: ''
   trigger:
   - platform: time
-    at: '16:45:00'
+    at: '16:30:00'
   - platform: time
-    at: 04:45:00
+    at: 04:30:00
   condition:
   - condition: or
     conditions:
@@ -726,6 +726,10 @@
     domain: button
     entity_id: button.cooper_se_activate_air_conditioning
     type: press
+  - device_id: b7abdbf8fe525eb1a5ac7ea8fd050455
+    domain: lock
+    entity_id: lock.cooper_se_lock
+    type: unlock
   mode: single
 - id: kitchen_window_seat_light
   alias: Kitchen - Control lights with overhead switch
@@ -1438,7 +1442,7 @@
     device_id: b01d0e96489e63ced4992645adf0f323
     entity_id: sensor.sun_solar_azimuth
     domain: sensor
-    above: 250
+    above: 248
   condition:
   - condition: and
     conditions:

@@ -5,6 +5,8 @@ custom_components
 deps
 esphome
 node-red
+notebooks
+themes
 tts
 www
 
