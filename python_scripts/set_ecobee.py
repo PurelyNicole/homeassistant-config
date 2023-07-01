@@ -66,9 +66,9 @@ def dtePeakSeasonMode():
   current_hour = datetime.datetime.now().hour
   
   # Set pre-chill temperatures
-  if today_high >= 60 and today_high <= 85:
+  if today_high >= 75 and today_high <= 84:
     pre_chill_temp = 70
-  elif today_high > 85:
+  elif today_high > 84:
     pre_chill_temp = 68
   else:
     pre_chill_temp = 72
@@ -84,8 +84,8 @@ def dtePeakSeasonMode():
     logger.info("It's after 7. Start cooling bedroom.")
     hass.services.call("climate", "set_preset_mode", {"entity_id": thermostat, "preset_mode": "Sleep"}, False)
   else:
-    logger.info(f"Current hour is {current_hour}. Defaulting back to 72.")
-    hass.services.call("climate", "set_temperature", {"entity_id": thermostat, "temperature": 72}, False)
+    logger.info(f"Current hour is {current_hour}. Return to normal operation.")
+    normalOperation()
 
 # Determine peak season
 if peak_season == "on":

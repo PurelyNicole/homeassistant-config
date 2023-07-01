@@ -51,6 +51,68 @@
               "secondary_info_attribute": "humidity"
             },
             {
+              "type": "conditional",
+              "conditions": [
+                {
+                  "entity": "binary_sensor.air_quailty_unhealthy",
+                  "state": "on"
+                }
+              ],
+              "card": {
+                "type": "gauge",
+                "entity": "sensor.airnow_aqi",
+                "name": "Air Quality Index",
+                "max": 500,
+                "segments": [
+                  {
+                    "from": 0,
+                    "color": "#00e400"
+                  },
+                  {
+                    "from": 51,
+                    "color": "#ffff00"
+                  },
+                  {
+                    "from": 101,
+                    "color": "#ff7e00"
+                  },
+                  {
+                    "from": 151,
+                    "color": "#ff0000"
+                  },
+                  {
+                    "from": 201,
+                    "color": "#8f3f97"
+                  },
+                  {
+                    "from": 301,
+                    "color": "#7e0023"
+                  }
+                ],
+                "needle": true
+              }
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "cover.garage_door"
+                },
+                {
+                  "entity": "binary_sensor.front_door",
+                  "secondary_info": "last-changed"
+                },
+                {
+                  "entity": "lock.kitchen_door_lock"
+                },
+                {
+                  "entity": "lock.workshop_lock"
+                }
+              ],
+              "title": "Doors",
+              "state_color": true
+            },
+            {
               "type": "entities",
               "entities": [
                 {
@@ -63,22 +125,6 @@
                   "entity": "scene.goodnight"
                 }
               ]
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "cover.garage_door"
-                },
-                {
-                  "entity": "lock.kitchen_door_lock"
-                },
-                {
-                  "entity": "lock.workshop_lock"
-                }
-              ],
-              "title": "Doors",
-              "state_color": true
             },
             {
               "type": "entities",
@@ -206,9 +252,6 @@
                     },
                     {
                       "entity": "light.family_room_track_light_back"
-                    },
-                    {
-                      "entity": "scene.watch_tv"
                     }
                   ],
                   "title": "Family Room Lights",
@@ -223,6 +266,18 @@
             {
               "type": "vertical-stack",
               "cards": [
+                {
+                  "type": "tile",
+                  "entity": "scene.watch_tv",
+                  "show_entity_picture": false,
+                  "vertical": false,
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "icon_tap_action": {
+                    "action": "toggle"
+                  }
+                },
                 {
                   "type": "custom:harmony-card",
                   "entity": "remote.family_room_remote",
@@ -273,10 +328,6 @@
                       "hide": true
                     }
                   }
-                },
-                {
-                  "type": "media-control",
-                  "entity": "media_player.downstairs_musiccast"
                 }
               ]
             },
@@ -363,6 +414,48 @@
             {
               "type": "vertical-stack",
               "cards": [
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "binary_sensor.air_quailty_unhealthy",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "gauge",
+                    "entity": "sensor.airnow_aqi",
+                    "name": "Air Quality Index",
+                    "max": 500,
+                    "segments": [
+                      {
+                        "from": 0,
+                        "color": "#00e400"
+                      },
+                      {
+                        "from": 51,
+                        "color": "#ffff00"
+                      },
+                      {
+                        "from": 101,
+                        "color": "#ff7e00"
+                      },
+                      {
+                        "from": 151,
+                        "color": "#ff0000"
+                      },
+                      {
+                        "from": 201,
+                        "color": "#8f3f97"
+                      },
+                      {
+                        "from": 301,
+                        "color": "#7e0023"
+                      }
+                    ],
+                    "needle": true
+                  }
+                },
                 {
                   "type": "horizontal-stack",
                   "cards": [
@@ -461,6 +554,13 @@
                     },
                     {
                       "entity": "binary_sensor.basement_outside_door"
+                    },
+                    {
+                      "entity": "binary_sensor.garage_kitchen_door"
+                    },
+                    {
+                      "entity": "binary_sensor.front_door",
+                      "secondary_info": "last-changed"
                     }
                   ],
                   "title": "Doors",
@@ -912,7 +1012,11 @@
                   "entity": "binary_sensor.basement_outside_door"
                 },
                 {
-                  "entity": "binary_sensor.front_door"
+                  "entity": "binary_sensor.garage_kitchen_door"
+                },
+                {
+                  "entity": "binary_sensor.front_door",
+                  "secondary_info": "last-changed"
                 },
                 {
                   "entity": "binary_sensor.basement_door"
@@ -1161,13 +1265,16 @@
                   "entity": "binary_sensor.master_bathroom_sensor_home_security_motion_detection"
                 },
                 {
-                  "entity": "binary_sensor.eric_office_motion_sensor_motion"
+                  "entity": "binary_sensor.basement"
                 },
                 {
                   "entity": "binary_sensor.den"
                 },
                 {
                   "entity": "binary_sensor.basement_sensor_home_security_motion_detection"
+                },
+                {
+                  "entity": "binary_sensor.basement"
                 }
               ],
               "title": "Motion",
@@ -1555,26 +1662,129 @@
               ]
             },
             {
-              "type": "gauge",
-              "entity": "sensor.allergy_index_today",
-              "min": 0,
-              "max": 12,
-              "severity": {
-                "green": 0,
-                "yellow": 4.9,
-                "red": 9.6
-              }
-            },
-            {
-              "type": "gauge",
-              "entity": "sensor.allergy_index_tomorrow",
-              "min": 0,
-              "max": 12,
-              "severity": {
-                "green": 0,
-                "yellow": 4.9,
-                "red": 9.6
-              }
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "gauge",
+                  "entity": "sensor.airnow_aqi",
+                  "name": "Air Quality Index",
+                  "max": 500,
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#00e400"
+                    },
+                    {
+                      "from": 51,
+                      "color": "#ffff00"
+                    },
+                    {
+                      "from": 101,
+                      "color": "#ff7e00"
+                    },
+                    {
+                      "from": 151,
+                      "color": "#ff0000"
+                    },
+                    {
+                      "from": 201,
+                      "color": "#8f3f97"
+                    },
+                    {
+                      "from": 301,
+                      "color": "#7e0023"
+                    }
+                  ],
+                  "needle": true
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.allergy_index_today",
+                  "min": 0,
+                  "max": 12,
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#03672a"
+                    },
+                    {
+                      "from": 2.5,
+                      "color": "#8dc300"
+                    },
+                    {
+                      "from": 4.9,
+                      "color": "#F3C700"
+                    },
+                    {
+                      "from": 7.3,
+                      "color": "#E2841B"
+                    },
+                    {
+                      "from": 9.7,
+                      "color": "#D74302"
+                    }
+                  ],
+                  "needle": true
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.allergy_index_tomorrow",
+                  "min": 0,
+                  "max": 12,
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#03672a"
+                    },
+                    {
+                      "from": 2.5,
+                      "color": "#8dc300"
+                    },
+                    {
+                      "from": 4.9,
+                      "color": "#F3C700"
+                    },
+                    {
+                      "from": 7.3,
+                      "color": "#E2841B"
+                    },
+                    {
+                      "from": 9.7,
+                      "color": "#D74302"
+                    }
+                  ],
+                  "needle": true
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.current_uv_index",
+                  "segments": [
+                    {
+                      "from": 1,
+                      "color": "#8dc300"
+                    },
+                    {
+                      "from": 3,
+                      "color": "#F3C700"
+                    },
+                    {
+                      "from": 6,
+                      "color": "#ff7e00"
+                    },
+                    {
+                      "from": 8,
+                      "color": "#ff0000"
+                    },
+                    {
+                      "from": 11,
+                      "color": "#8f3f97"
+                    }
+                  ],
+                  "needle": true,
+                  "min": 1,
+                  "max": 12
+                }
+              ]
             }
           ]
         },

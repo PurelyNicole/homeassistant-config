@@ -45,8 +45,6 @@ exclude:
     - sensor.fish_feeder_status
     - sensor.grocy_chores
     - sensor.hacs
-    - sensor.main_floor_tv_tv_channel
-    - sensor.main_floor_tv_tv_channel_name
     - sensor.omv_sdb
     - sensor.omv_uptime
     - sensor.oven_oven_completion_time
