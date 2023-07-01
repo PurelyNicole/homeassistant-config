@@ -135,12 +135,17 @@
   condition: []
   action:
   - service: light.turn_on
+    data: {}
     target:
-      area_id: outdoors
-  - type: turn_on
-    device_id: 270c91f7718161af4127d8eb00d5cf32
-    entity_id: light.nightlight
-    domain: light
+      device_id:
+      - 02c517a4bbd982fbb94580a2581f32bb
+      - 59fb234a872f7b1592c41cf5872dfc73
+      - fe4d2fd7ba38bb414264d6cb2ec4a0df
+      - e855716b2b521c96d15c475e3a3a1fc2
+      - c5d4704456f2bca2bb6559bc1025d599
+      - bc22bbca714f8db27c1bff2770a63be9
+      - f6585b3ebe18ef959870e09bd1afa8cc
+      - 270c91f7718161af4127d8eb00d5cf32
   mode: single
 - id: notify_water_basement
   alias: Notification - Notify if water detected in basement
@@ -589,10 +594,18 @@
     entity_id:
     - switch.fish_feeder
     to: unavailable
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
   - platform: state
     entity_id:
     - switch.fish_feeder
     to: unknown
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
   condition: []
   action:
   - service: notify.mobile_app_nicole_iphone
@@ -872,6 +885,10 @@
         device_id: 12b7dc73a4601643d79a3274b66d4c62
         entity_id: binary_sensor.half_bath_motion_sensor_occupancy
         domain: binary_sensor
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
       sequence:
       - type: turn_off
         device_id: 10f945d73ec4f5a56d053445e3ef3f9b
@@ -888,7 +905,7 @@
         device_id: 10f945d73ec4f5a56d053445e3ef3f9b
         entity_id: light.half_bath_light
         domain: light
-  mode: single
+  mode: restart
 - id: good_morning_nicole
   alias: Nicole - Good Morning Nicole
   description: ''
@@ -1389,7 +1406,7 @@
         - sensor.roomba_mainfloor_battery_level
         - sensor.nicole_iphone_battery_level
       time: '11:00:00'
-      threshold: 35
+      threshold: 45
 - id: notify_rainy_mini_windows_down
   alias: Notification - Notify when it's raining and MINI windows are down.
   description: ''
