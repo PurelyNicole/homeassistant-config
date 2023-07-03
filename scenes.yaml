@@ -27,8 +27,12 @@
       state: locked
     switch.hair_straightener:
       state: 'off'
+    switch.magic_mirror_screen:
+      state: 'off'
   icon: mdi:weather-night
-  metadata: {}
+  metadata:
+    switch.magic_mirror_screen:
+      entity_only: true
 - id: good_morning_scene
   name: Good Morning
   entities:
@@ -60,9 +64,13 @@
       state: locked
     switch.hair_straightener:
       state: 'off'
+    switch.magic_mirror_screen:
+      state: 'off'
   icon: mdi:run
   metadata:
     switch.hair_straightener:
+      entity_only: true
+    switch.magic_mirror_screen:
       entity_only: true
 - id: watch_tv_scene
   name: 'Watch TV - Downstairs '
@@ -119,8 +127,14 @@
   name: Good night - Nicole
   entities:
     group.master_bedroom_lights:
+      entity_id:
+      state: 'off'
+    switch.magic_mirror_screen:
       state: 'off'
   icon: mdi:chat-sleep-outline
+  metadata:
+    switch.magic_mirror_screen:
+      entity_only: true
 - id: watch_tv_main_floor_scene
   name: Watch TV - Main Floor
   entities:

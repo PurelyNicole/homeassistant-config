@@ -1,0 +1,25 @@
+# Magic Mirror Commands
+mm_screen_off:
+  url: "http://192.168.1.40:8080/api/monitor/off"
+  headers:
+    authorization: !secret mm_remote_control
+  method: get
+  content_type: "application/json"
+mm_screen_on:
+  url: "http://192.168.1.40:8080/api/monitor/on"
+  headers:
+    authorization: !secret mm_remote_control
+  method: get
+  content_type: "application/json"
+mm_set_display:
+  url: "http://192.168.1.40:8080/api/command/setDisplay"
+  headers:
+    authorization: !secret mm_remote_control
+  method: get
+  content_type: "application/json"
+mm_set_screensaver_timeout:
+  url: "http://192.168.1.40:8080/api/command/setScreensaverTimeout"
+  headers:
+    authorization: !secret mm_remote_control
+  method: get
+  content_type: "application/json"

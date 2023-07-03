@@ -1,0 +1,10 @@
+- platform: template
+  switches:
+    magic_mirror_screen:
+      friendly_name: Magic Mirror Screen
+      unique_id: magic_mirror_screen
+      turn_on:
+        service: rest_command.mm_screen_on
+      turn_off:
+        service: rest_command.mm_screen_off
+      icon_template: mdi:auto-fix

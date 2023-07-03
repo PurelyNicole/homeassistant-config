@@ -54,6 +54,9 @@
         option: Home
       target:
         entity_id: input_select.home_mode
+    - service: rest_command.mm_screen_on
+      data: {}
+      alias: Turn On MagicMirror
   - if:
     - condition: sun
       after: sunset
@@ -84,7 +87,7 @@
     scene
   trigger:
   - platform: time
-    at: 02:00
+    at: 02:00:00
   condition:
   - condition: state
     entity_id: group.people

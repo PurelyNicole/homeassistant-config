@@ -813,6 +813,9 @@
                 },
                 {
                   "entity": "light.nicole_nightstand"
+                },
+                {
+                  "entity": "switch.magic_mirror_screen"
                 }
               ],
               "title": "Master Bedroom",
@@ -1754,35 +1757,6 @@
                     }
                   ],
                   "needle": true
-                },
-                {
-                  "type": "gauge",
-                  "entity": "sensor.current_uv_index",
-                  "segments": [
-                    {
-                      "from": 1,
-                      "color": "#8dc300"
-                    },
-                    {
-                      "from": 3,
-                      "color": "#F3C700"
-                    },
-                    {
-                      "from": 6,
-                      "color": "#ff7e00"
-                    },
-                    {
-                      "from": 8,
-                      "color": "#ff0000"
-                    },
-                    {
-                      "from": 11,
-                      "color": "#8f3f97"
-                    }
-                  ],
-                  "needle": true,
-                  "min": 1,
-                  "max": 12
                 }
               ]
             }
