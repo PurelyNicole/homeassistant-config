@@ -37,7 +37,7 @@
     to: home
   condition: []
   action:
-  - device_id: 151c891fb2dceba4d2d11073ea66cb8f
+  - device_id: 35b0a2a05a9a45379fc7c5f05f6f57fd
     domain: lock
     entity_id: lock.kitchen_door_lock
     type: unlock
@@ -54,9 +54,10 @@
         option: Home
       target:
         entity_id: input_select.home_mode
-    - service: rest_command.mm_screen_on
+    - service: switch.turn_on
       data: {}
-      alias: Turn On MagicMirror
+      target:
+        entity_id: switch.magic_mirror_screen
   - if:
     - condition: sun
       after: sunset
@@ -67,18 +68,21 @@
       device_id: 9dd57a98dd4307e523095748acd917f1
       entity_id: light.kitchen_mudroom_dimmer
       domain: light
-    - type: turn_on
-      device_id: fe2189f8bdcd90fc50adb90d370669f6
-      entity_id: light.den_stair_landing
-      domain: light
+      brightness_pct: 100
     - type: turn_on
       device_id: 35744bb4b80d36890ae0f34f1ad22a94
       entity_id: light.dining_room_table_dimmer
       domain: light
+      brightness_pct: 100
     - type: turn_on
       device_id: b3275c0af7696dc2e67ed8b562004634
       entity_id: light.kitchen_table_light
       domain: light
+      brightness_pct: 100
+    - service: light.turn_on
+      data: {}
+      target:
+        entity_id: light.den_stair_landing
   mode: parallel
   max: 10
 - id: goodnight_2am

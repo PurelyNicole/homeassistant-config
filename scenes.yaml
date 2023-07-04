@@ -38,7 +38,12 @@
   entities:
     input_select.home_mode:
       state: Home
+    switch.magic_mirror_screen:
+      state: 'on'
   icon: mdi:weather-sunny
+  metadata:
+    switch.magic_mirror_screen:
+      entity_only: true
 - id: goodbye_scene
   name: Goodbye
   entities:

@@ -1387,7 +1387,9 @@
                 {
                   "type": "tile",
                   "entity": "sensor.random_release",
-                  "name": "You Should Listen To..."
+                  "show_entity_picture": true,
+                  "name": "You Should Listen To...",
+                  "vertical": false
                 }
               ]
             }
