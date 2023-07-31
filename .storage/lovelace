@@ -755,6 +755,12 @@
                   "entity": "light.workshop_lights"
                 },
                 {
+                  "entity": "light.pixel_post_light"
+                },
+                {
+                  "entity": "light.driveway_post_and_tree_lights"
+                },
+                {
                   "entity": "group.rgb_flood_lights"
                 }
               ],
@@ -1025,6 +1031,9 @@
                   "entity": "binary_sensor.basement_door"
                 },
                 {
+                  "entity": "binary_sensor.utility_room_door"
+                },
+                {
                   "entity": "cover.garage_door"
                 },
                 {
@@ -1277,7 +1286,7 @@
                   "entity": "binary_sensor.basement_sensor_home_security_motion_detection"
                 },
                 {
-                  "entity": "binary_sensor.basement"
+                  "entity": "binary_sensor.basement_motion_group"
                 }
               ],
               "title": "Motion",
@@ -1812,6 +1821,9 @@
                   "entities": [
                     {
                       "entity": "sensor.basement_door_battery"
+                    },
+                    {
+                      "entity": "sensor.utility_room_door_battery"
                     },
                     {
                       "entity": "sensor.eric_office_motion_sensor_battery"

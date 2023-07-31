@@ -19,6 +19,7 @@ outdoor_lights:
     - light.porch_light
     - light.outside_workshop_light
     - light.grill_lights
+    - light.driveway_post_and_tree_lights
     - group.rgb_flood_lights
   icon: mdi:lightbulb-group
 # RGB Outdoor Lights

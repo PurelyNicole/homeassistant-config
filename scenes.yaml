@@ -17,6 +17,8 @@
       state: 'on'
     light.family_room_deck_light_back:
       state: 'on'
+    light.pixel_post_light:
+      state: 'off'
     cover.garage_door:
       state: closed
     lock.kitchen_door_lock:
@@ -37,12 +39,31 @@
   name: Good Morning
   entities:
     input_select.home_mode:
+      options:
+      - Home
+      - Away
+      - Sleep
+      editable: true
+      icon: mdi:home
+      friendly_name: Home Mode
       state: Home
     switch.magic_mirror_screen:
+      assumed_state: true
+      icon: mdi:auto-fix
+      friendly_name: Magic Mirror Screen
+      state: 'on'
+    light.pixel_post_light:
+      supported_color_modes:
+      - onoff
+      color_mode: onoff
+      friendly_name: Pixel Post Light
+      supported_features: 0
       state: 'on'
   icon: mdi:weather-sunny
   metadata:
     switch.magic_mirror_screen:
+      entity_only: true
+    light.pixel_post_light:
       entity_only: true
 - id: goodbye_scene
   name: Goodbye
@@ -133,12 +154,29 @@
   entities:
     group.master_bedroom_lights:
       entity_id:
+      - light.master_bath_light
+      - light.nicole_nightstand
+      - switch.master_bath_fan
+      order: 10
+      icon: mdi:lightbulb-group
+      friendly_name: Master Bedroom Lights
       state: 'off'
     switch.magic_mirror_screen:
+      assumed_state: true
+      icon: mdi:auto-fix
+      friendly_name: Magic Mirror Screen
+      state: 'off'
+    light.shellyplus2pm_c049ef86a3d0_switch_1:
+      supported_color_modes:
+      - onoff
+      friendly_name: Pixel Post Light
+      supported_features: 0
       state: 'off'
   icon: mdi:chat-sleep-outline
   metadata:
     switch.magic_mirror_screen:
+      entity_only: true
+    light.shellyplus2pm_c049ef86a3d0_switch_1:
       entity_only: true
 - id: watch_tv_main_floor_scene
   name: Watch TV - Main Floor
