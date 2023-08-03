@@ -115,6 +115,16 @@
   - service: light.turn_off
     target:
       area_id: outdoors
+    data: {}
+  - wait_for_trigger:
+    - platform: state
+      entity_id:
+      - light.pixel_post_light
+      to: 'off'
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.pixel_post_light
   mode: single
 - id: watch_tv_after_sunset
   alias: Scene - Trigger watch TV when Remote goes from PowerOff after sunset
@@ -131,30 +141,6 @@
     after_offset: '-1:00'
   action:
   - scene: scene.watch_tv
-  mode: single
-- id: lights_on_sunset
-  alias: Lighting - Turn lights on at sunset
-  description: When the sun rises Then turn off Outdoor Lights And Turn off the nightlight
-  trigger:
-  - platform: sun
-    event: sunset
-    offset: '0'
-  condition: []
-  action:
-  - service: light.turn_on
-    data: {}
-    target:
-      device_id:
-      - 02c517a4bbd982fbb94580a2581f32bb
-      - 59fb234a872f7b1592c41cf5872dfc73
-      - fe4d2fd7ba38bb414264d6cb2ec4a0df
-      - e855716b2b521c96d15c475e3a3a1fc2
-      - c5d4704456f2bca2bb6559bc1025d599
-      - bc22bbca714f8db27c1bff2770a63be9
-      - f6585b3ebe18ef959870e09bd1afa8cc
-      - 270c91f7718161af4127d8eb00d5cf32
-      - 5f07a560ea7a3904f082031094f49e65
-      entity_id: light.driveway_post_and_tree_lights
   mode: single
 - id: notify_water_basement
   alias: Notification - Notify if water detected in basement
@@ -1572,4 +1558,69 @@
         device_id: 87cae5bef616e2da5f81d501bf1575ba
         entity_id: 957be681148125d3791991ccef10ea33
         domain: light
+  mode: single
+- id: lights_on_post_light
+  alias: Outdoor Lights - Turn on with Pixel Post
+  description: ''
+  trigger:
+  - platform: template
+    value_template: '{{states("sensor.pixel_post_light_power")|float > 0}}'
+    id: Pixel Post Light On
+    alias: Pixel Post Light On
+  - platform: template
+    value_template: '{{states("sensor.pixel_post_light_power")|float == 0}}'
+    id: Pixel Post Light Off
+    alias: Pixel Post Light Off
+  condition:
+  - condition: not
+    conditions:
+    - condition: time
+      after: '22:00:00'
+      before: sensor.sun_next_rising
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - Pixel Post Light On
+      sequence:
+      - service: light.turn_on
+        data: {}
+        target:
+          entity_id:
+          - light.family_room_deck_light_side
+          - light.outdoor_garage_lights
+          - light.garage_flood_lights_west
+          - light.service_door_light
+          - light.porch_light
+          - light.outside_workshop_light
+          - light.driveway_post_and_tree_lights
+          - light.rgb_flood1
+          - light.rgb_flood2
+    - conditions:
+      - condition: trigger
+        id:
+        - Pixel Post Light Off
+      sequence:
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id:
+          - light.family_room_deck_light_side
+          - light.outdoor_garage_lights
+          - light.garage_flood_lights_west
+          - light.service_door_light
+          - light.porch_light
+          - light.outside_workshop_light
+          - light.driveway_post_and_tree_lights
+          - light.rgb_flood1
+          - light.rgb_flood2
   mode: single
