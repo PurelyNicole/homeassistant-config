@@ -16,11 +16,11 @@ peak_hours = (hass.states.get("schedule.dte_peak_hours")).state
 def normalOperation():
   logger.info("Enter normal operation mode.")
   # Set thermostat mode based on forecasted high temperature.
-  if today_high > 70:
+  if today_high > 65:
     logger.info(f"Today's high: {today_high}. Setting mode to cool.")
     operation_mode = "cool"
   # Sets heat_cool variables.
-  elif today_high >= 55 and today_high <= 70:
+  elif today_high >= 55 and today_high <= 65:
     logger.info(f"Today's high: {today_high}. Setting mode to heat_cool.")
     operation_mode = "heat_cool"
   # Sets heat variables.
