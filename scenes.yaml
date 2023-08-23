@@ -25,8 +25,6 @@
       state: locked
     lock.workshop_lock:
       state: locked
-    lock.cooper_se_lock:
-      state: locked
     switch.hair_straightener:
       state: 'off'
     switch.magic_mirror_screen:
@@ -157,20 +155,13 @@
       - light.master_bath_light
       - light.nicole_nightstand
       - switch.master_bath_fan
-      order: 10
-      icon: mdi:lightbulb-group
-      friendly_name: Master Bedroom Lights
       state: 'off'
     switch.magic_mirror_screen:
       assumed_state: true
       icon: mdi:auto-fix
       friendly_name: Magic Mirror Screen
       state: 'off'
-    light.shellyplus2pm_c049ef86a3d0_switch_1:
-      supported_color_modes:
-      - onoff
-      friendly_name: Pixel Post Light
-      supported_features: 0
+    light.pixel_post_light:
       state: 'off'
   icon: mdi:chat-sleep-outline
   metadata:

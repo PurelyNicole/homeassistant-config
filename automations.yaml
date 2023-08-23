@@ -59,10 +59,15 @@
       target:
         entity_id: switch.magic_mirror_screen
   - if:
-    - condition: sun
-      after: sunset
-      after_offset: '-1:00'
-      before: sunrise
+    - condition: or
+      conditions:
+      - condition: sun
+        after: sunset
+        after_offset: '-1:00'
+        before: sunrise
+      - condition: template
+        value_template: '{{states("sensor.pixel_post_light_power")|float > 0}}'
+        alias: Pixel Post Light is on
     then:
     - type: turn_on
       device_id: 9dd57a98dd4307e523095748acd917f1
@@ -430,7 +435,7 @@
     domain: switch
   - type: turn_on
     device_id: e063d491c2a8f543fec0b738f8694367
-    entity_id: switch.fish_feeder
+    entity_id: switch.den_fish_feeder
     domain: switch
   - delay:
       hours: 5
@@ -594,7 +599,7 @@
   trigger:
   - platform: state
     entity_id:
-    - switch.fish_feeder
+    - switch.den_fish_feeder
     to: unavailable
     for:
       hours: 0
@@ -602,7 +607,7 @@
       seconds: 30
   - platform: state
     entity_id:
-    - switch.fish_feeder
+    - switch.den_fish_feeder
     to: unknown
     for:
       hours: 0
@@ -1408,32 +1413,7 @@
         - sensor.roomba_mainfloor_battery_level
         - sensor.nicole_iphone_battery_level
       time: '11:00:00'
-      threshold: 45
-- id: notify_rainy_mini_windows_down
-  alias: Notification - Notify when it's raining and MINI windows are down.
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - weather.ecobee_thermostat
-    to: rainy
-  - platform: state
-    entity_id:
-    - weather.ecobee_thermostat
-    to: lightning-rainy
-  - platform: state
-    entity_id:
-    - weather.ecobee_thermostat
-    to: pouring
-  condition:
-  - condition: state
-    entity_id: binary_sensor.cooper_se_windows
-    state: 'on'
-  action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Windows are down in the MINI and it's raining.
-  mode: single
+      threshold: 30
 - id: vacation_mode_start_vacuum
   alias: Vacation - Vacuum at 8am
   description: ''
@@ -1495,9 +1475,17 @@
     - schedule.dte_peak_hours
     to: 'off'
   condition:
-  - condition: state
-    entity_id: input_boolean.vacation_mode
-    state: 'off'
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: not
+      conditions:
+      - condition: time
+        weekday:
+        - thu
+      alias: Day is not Thursday
   action:
   - choose:
     - conditions:
@@ -1571,6 +1559,10 @@
     value_template: '{{states("sensor.pixel_post_light_power")|float == 0}}'
     id: Pixel Post Light Off
     alias: Pixel Post Light Off
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 15
   condition:
   - condition: not
     conditions:

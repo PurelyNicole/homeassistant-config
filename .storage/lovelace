@@ -170,6 +170,10 @@
                   "entity": "calendar.holidays_in_united_states",
                   "name": "Holidays",
                   "color": "#A79B8E"
+                },
+                {
+                  "entity": "calendar.greenwood_travel",
+                  "color": "#0B8043"
                 }
               ],
               "name": "Calendar Card",
@@ -716,7 +720,7 @@
                       "entity": "switch.fish_tank_lights"
                     },
                     {
-                      "entity": "switch.fish_feeder"
+                      "entity": "switch.den_fish_feeder"
                     }
                   ],
                   "title": "Den Lights",
