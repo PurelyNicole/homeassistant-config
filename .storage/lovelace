@@ -106,7 +106,7 @@
                   "entity": "lock.kitchen_door_lock"
                 },
                 {
-                  "entity": "lock.workshop_lock"
+                  "entity": "lock.workshop"
                 }
               ],
               "title": "Doors",
@@ -551,7 +551,7 @@
                       "entity": "lock.kitchen_door_lock"
                     },
                     {
-                      "entity": "lock.workshop_lock"
+                      "entity": "lock.workshop"
                     },
                     {
                       "entity": "cover.garage_door"
@@ -1044,7 +1044,7 @@
                   "entity": "lock.kitchen_door_lock"
                 },
                 {
-                  "entity": "lock.workshop_lock"
+                  "entity": "lock.workshop"
                 }
               ],
               "title": "Doors",
@@ -1846,6 +1846,9 @@
                     },
                     {
                       "entity": "sensor.laundry_room_water_sensor_battery"
+                    },
+                    {
+                      "entity": "sensor.workshop_battery"
                     }
                   ],
                   "title": "Zigbee Battery Status",
@@ -1874,9 +1877,6 @@
                     },
                     {
                       "entity": "sensor.kitchen_smoke_detector_battery_level"
-                    },
-                    {
-                      "entity": "sensor.workshop_lock_battery_level"
                     },
                     {
                       "entity": "sensor.bedroom_window_battery_level"

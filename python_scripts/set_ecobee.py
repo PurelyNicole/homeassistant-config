@@ -74,7 +74,7 @@ def dtePeakSeasonMode():
     pre_chill_temp = 72
 
   # Prechill before the peak hours start
-  if current_hour > 6 and current_hour < 15:
+  if current_hour >= 0 and current_hour < 15:
     logger.info("Prechilling the house")
     hass.services.call("climate", "set_temperature", {"entity_id": thermostat, "temperature": pre_chill_temp}, False)
   elif current_hour >=15 and current_hour < 19:

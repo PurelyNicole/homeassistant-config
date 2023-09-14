@@ -485,36 +485,36 @@
     entity_id:
     - light.nicole_office_wall_switch
     to: 'off'
+    id: nicole_office_wall_switch_off
   - platform: state
     entity_id:
     - light.nicole_office_wall_switch
     to: 'on'
+    id: nicole_office_wall_switch_on
   condition: []
   action:
   - choose:
     - conditions:
-      - condition: state
-        entity_id: light.nicole_office_wall_switch
-        state: 'off'
+      - condition: trigger
+        id:
+        - nicole_office_wall_switch_off
       sequence:
       - service: light.turn_off
         data: {}
         target:
           area_id: nicole_office
     - conditions:
-      - condition: state
-        entity_id: light.nicole_office_wall_switch
-        state: 'on'
+      - condition: trigger
+        id:
+        - nicole_office_wall_switch_on
       sequence:
-      - type: turn_on
-        device_id: 84233bfe9142301d0caf5e3ba80fef60
-        entity_id: light.nicole_office_floor_lamp
-        domain: light
-      - type: turn_on
-        device_id: 310e0e6bf98c0b9f552045d210041997
-        entity_id: light.nicole_office_file_cabinet_lamp
-        domain: light
-  mode: single
+      - service: light.turn_on
+        data: {}
+        target:
+          device_id:
+          - a66483a59eede368e5e98d0066d9c795
+          - 84233bfe9142301d0caf5e3ba80fef60
+  mode: restart
 - id: niocole_office_closet_light
   alias: Nicole Office - Turn closet light off/on with door
   description: ''
@@ -555,10 +555,7 @@
   - platform: state
     entity_id:
     - climate.ecobee_thermostat
-    attribute: target_temp_low
-  - platform: state
-    entity_id:
-    - climate.ecobee_thermostat
+    to: heat
   - platform: state
     entity_id:
     - input_select.home_mode
@@ -570,10 +567,9 @@
   - condition: state
     entity_id: input_boolean.vacation_mode
     state: 'off'
-  - condition: template
-    value_template: '{{(state_attr(''weather.ecobee_thermostat'', ''forecast'')[0][''temperature''])
-      < 65}}'
-    alias: Confirm high temperature is less than 65
+  - condition: state
+    entity_id: climate.ecobee_thermostat
+    state: heat
   action:
   - if:
     - condition: state
