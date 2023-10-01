@@ -1588,8 +1588,55 @@
           - light.porch_light
           - light.outside_workshop_light
           - light.driveway_post_and_tree_lights
-          - light.rgb_flood1
-          - light.rgb_flood2
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{(now().month == 10)}}'
+            alias: If it's October...
+          sequence:
+          - service: light.turn_on
+            data:
+              rgb_color:
+              - 165
+              - 0
+              - 255
+              brightness: 255
+            target:
+              entity_id:
+              - light.rgb_flood1
+              - light.rgb_flood2
+        - conditions:
+          - condition: template
+            value_template: '{{((now().month == 12) and (now().day > 26))}}'
+            alias: If it's December and Before Christmas...
+          sequence:
+          - service: light.turn_on
+            data:
+              brightness: 255
+              color_name: red
+            target:
+              entity_id:
+              - light.rgb_flood1
+          - service: light.turn_on
+            data:
+              color_name: green
+              brightness: 255
+            target:
+              entity_id: light.rgb_flood2
+        - conditions:
+          - condition: template
+            value_template: '{{((now().month == 10) == false) and (((now().month ==
+              12) and (now().day > 26)) == false)}}'
+            alias: If it's any other time...
+          sequence:
+          - service: light.turn_on
+            data:
+              kelvin: 3200
+              brightness: 133
+            target:
+              entity_id:
+              - light.rgb_flood1
+              - light.rgb_flood2
     - conditions:
       - condition: trigger
         id:
