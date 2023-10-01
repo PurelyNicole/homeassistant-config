@@ -53,5 +53,4 @@ exclude:
     - switch.family_room_south_fan
     - switch.globe_lamp
     - switch.kitchen_overhead_lights
-    - switch.nicole_nightstand
     - switch.nicole_office_floor_lamp

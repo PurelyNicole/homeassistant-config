@@ -121,11 +121,6 @@
     target:
       area_id: outdoors
     data: {}
-  - wait_for_trigger:
-    - platform: state
-      entity_id:
-      - light.pixel_post_light
-      to: 'off'
   - service: light.turn_on
     data: {}
     target:
@@ -146,6 +141,10 @@
     after_offset: '-1:00'
   action:
   - scene: scene.watch_tv
+  - service: scene.turn_on
+    target:
+      entity_id: scene.watch_tv_main_floor
+    metadata: {}
   mode: single
 - id: notify_water_basement
   alias: Notification - Notify if water detected in basement
@@ -333,27 +332,6 @@
     data: {}
     target:
       entity_id: light.master_bath_light
-  mode: single
-- id: family_room_motion
-  alias: Downstairs - Turn off den and family room lights with no motion.
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - binary_sensor.den
-    to: 'off'
-    for:
-      hours: 1
-      minutes: 0
-      seconds: 0
-  condition: []
-  action:
-  - service: light.turn_off
-    data: {}
-    target:
-      area_id:
-      - family_room
-      - den
   mode: single
 - id: vacation_lighting
   alias: Blueprint - Vacation Lighting
@@ -1035,21 +1013,6 @@
     target:
       entity_id: device_tracker.cooper_se
   mode: single
-- id: notify_energy_spike_peak_hours
-  alias: Notification - Notify when energy peaks during DTE peak hours
-  description: ''
-  trigger:
-  - platform: template
-    value_template: '{{ states(''sensor.energy_bridge'')|float > 5000}}'
-  condition:
-  - condition: state
-    entity_id: schedule.dte_peak_hours
-    state: 'on'
-  action:
-  - service: notify.mobile_app_nicole_iphone
-    data:
-      message: High energy use detected during peak hours.
-  mode: single
 - id: hair_straightener_off_30_minutes
   alias: Hair Straightener - Turn off after 30 minutes
   description: ''
@@ -1265,6 +1228,18 @@
     from: 'off'
     to: 'on'
     id: Master Bath Lights On
+  - platform: state
+    entity_id:
+    - light.nicole_nightstand_light
+    from: 'off'
+    to: 'on'
+    id: Nicole Nightstand On
+  - platform: state
+    entity_id:
+    - light.eric_nightstand_light
+    from: 'off'
+    to: 'on'
+    id: Eric Nightstand On
   condition:
   - condition: state
     entity_id: binary_sensor.day
@@ -1388,6 +1363,26 @@
           brightness: 255
         target:
           entity_id: light.master_bath_light
+    - conditions:
+      - condition: trigger
+        id:
+        - Nicole Nightstand On
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness: 255
+        target:
+          entity_id: light.nicole_nightstand_light
+    - conditions:
+      - condition: trigger
+        id:
+        - Eric Nightstand On
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness: 255
+        target:
+          entity_id: light.eric_nightstand_light
   mode: parallel
   max: 13
 - id: notify_low_battery
@@ -1435,9 +1430,9 @@
   - type: value
     platform: device
     device_id: b01d0e96489e63ced4992645adf0f323
-    entity_id: sensor.sun_solar_azimuth
+    entity_id: b8dc822880b56fe02236f325e6155a4f
     domain: sensor
-    above: 248
+    below: 45
   condition:
   - condition: and
     conditions:
@@ -1453,6 +1448,8 @@
         type: is_hvac_mode
         hvac_mode: heat
         alias: Thermostat in heat mode
+    - condition: time
+      after: '12:00:00'
   action:
   - service: notify.mobile_app_nicole_iphone
     data:
@@ -1611,4 +1608,41 @@
           - light.driveway_post_and_tree_lights
           - light.rgb_flood1
           - light.rgb_flood2
+  mode: single
+- id: '1696178568866'
+  alias: Lighting - Control Den Step Lights with Wall Switch
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - light.den_stair_landing
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.den_stair_landing
+        state: 'on'
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness: 255
+        target:
+          entity_id: light.step_lights
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: light.den_stair_landing
+          state: 'off'
+        - condition: device
+          type: is_off
+          device_id: d824906b0d4aea07973580f026dc7ed9
+          entity_id: 8f28b37a84c7fecd099d5dca969d7974
+          domain: remote
+      sequence:
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: light.step_lights
   mode: single

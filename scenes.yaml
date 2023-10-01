@@ -69,8 +69,6 @@
       state: locked
     lock.workshop:
       state: locked
-    lock.cooper_se_lock:
-      state: locked
     switch.hair_straightener:
       state: "off"
     switch.magic_mirror_screen:
@@ -116,9 +114,15 @@
       color_mode: brightness
       brightness: 38
       state: "on"
+    light.step_lights:
+      color_mode: brightness
+      brightness: 31
+      state: "on"
   icon: mdi:television-classic
   metadata:
     light.cd_shelf_dimmer:
+      entity_only: true
+    light.step_lights:
       entity_only: true
 - id: nicole_wind_down_scene
   name: Wind Down - Nicole
@@ -127,8 +131,13 @@
       color_mode: brightness
       brightness: 3
       state: "on"
-    light.nicole_nightstand:
-      color_mode: onoff
+    light.nicole_nightstand_light:
+      color_mode: brightness
+      brightness: 64
+      state: "on"
+    light.eric_nightstand_light:
+      color_mode: brightness
+      brightness: 64
       state: "on"
   icon: mdi:alarm-check
   metadata: {}
@@ -185,8 +194,14 @@
       state: "on"
     light.entryway_light:
       state: "off"
+    light.step_lights:
+      color_mode: brightness
+      brightness: 31
+      state: "on"
   icon: mdi:television
-  metadata: {}
+  metadata:
+    light.step_lights:
+      entity_only: true
 - id: good_morning_eric
   name: Good Morning Eric
   entities:
@@ -200,6 +215,10 @@
       color_mode: brightness
       brightness: 255
       state: "on"
+    light.step_lights:
+      color_mode: brightness
+      brightness: 255
+      state: "on"
   icon: mdi:sun-clock
   metadata:
     light.den_stair_landing:
@@ -208,3 +227,18 @@
       entity_only: true
     light.kitchen_sink_dimmer:
       entity_only: true
+    light.step_lights:
+      entity_only: true
+- id: "1695244285537"
+  name: Dim Bedroom
+  entities:
+    light.eric_nightstand_light:
+      supported_color_modes:
+      color_mode: brightness
+      brightness: 189
+      state: "on"
+    light.nicole_nightstand_light:
+      color_mode: brightness
+      brightness: 128
+      state: "on"
+  metadata: {}

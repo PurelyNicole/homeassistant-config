@@ -521,23 +521,6 @@
                   "showDatePerEvent": false,
                   "calShowDescription": false,
                   "showLastCalendarWeek": false
-                },
-                {
-                  "type": "custom:frigate-card",
-                  "cameras": [
-                    {
-                      "camera_entity": "camera.blueiris_garage",
-                      "live_provider": "auto"
-                    },
-                    {
-                      "camera_entity": "camera.blueiris_reolink_duo_left",
-                      "live_provider": "auto"
-                    },
-                    {
-                      "camera_entity": "camera.blueiris_reolink_duo_right",
-                      "live_provider": "auto"
-                    }
-                  ]
                 }
               ]
             },
@@ -708,6 +691,9 @@
                       "entity": "light.kitchenette_spot_lights"
                     },
                     {
+                      "entity": "light.step_lights"
+                    },
+                    {
                       "entity": "light.den_stair_landing"
                     },
                     {
@@ -822,7 +808,10 @@
                   "entity": "light.master_bath_light"
                 },
                 {
-                  "entity": "light.nicole_nightstand"
+                  "entity": "light.nicole_nightstand_light"
+                },
+                {
+                  "entity": "light.eric_nightstand_light"
                 },
                 {
                   "entity": "switch.magic_mirror_screen"
@@ -1291,6 +1280,9 @@
                 },
                 {
                   "entity": "binary_sensor.basement_motion_group"
+                },
+                {
+                  "entity": "binary_sensor.eric_office_motion_sensor_motion"
                 }
               ],
               "title": "Motion",

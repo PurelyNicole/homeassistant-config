@@ -87,7 +87,8 @@ master_bedroom_lights:
   name: Master Bedroom Lights
   entities:
     - light.master_bath_light
-    - light.nicole_nightstand
+    - light.eric_nightstand_light
+    - light.nicole_nightstand_light
     - switch.master_bath_fan
   icon: mdi:lightbulb-group
 den_lights:
@@ -98,6 +99,7 @@ den_lights:
     - light.kitchenette_led_strip
     - light.fireplace_dimmer
     - light.cd_shelf_dimmer
+    - light.step_lights
   icon: mdi:lightbulb-group
 kitchen_lights:
   name: Kitchen Lights
