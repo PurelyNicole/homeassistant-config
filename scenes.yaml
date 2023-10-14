@@ -42,11 +42,17 @@
       state: "on"
     light.pixel_post_light:
       state: "on"
+    light.nicole_nightstand_light:
+      color_mode: brightness
+      brightness: 3
+      state: 'on'
   icon: mdi:weather-sunny
   metadata:
     switch.magic_mirror_screen:
       entity_only: true
     light.pixel_post_light:
+      entity_only: true
+    light.nicole_nightstand_light:
       entity_only: true
 - id: goodbye_scene
   name: Goodbye
