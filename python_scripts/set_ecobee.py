@@ -20,11 +20,11 @@ def normalOperation():
     logger.info(f"Today's high: {today_high}. Setting mode to cool.")
     operation_mode = "cool"
   # Sets heat_cool variables.
-  elif today_high >= 55 and today_high <= 65:
+  elif today_high > 55 and today_high <= 65:
     logger.info(f"Today's high: {today_high}. Setting mode to heat_cool.")
     operation_mode = "heat_cool"
   # Sets heat variables.
-  elif today_high < 55:
+  elif today_high <= 55:
     logger.info(f"Today's high: {today_high}. Setting mode to heat.")
     operation_mode = "heat"
   else:

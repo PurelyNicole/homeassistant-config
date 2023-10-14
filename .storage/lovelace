@@ -1779,11 +1779,13 @@
               "type": "vertical-stack",
               "cards": [
                 {
-                  "type": "entities",
-                  "entities": [
-                    "input_select.home_mode"
-                  ],
-                  "title": "Home Status"
+                  "type": "tile",
+                  "entity": "input_select.home_mode",
+                  "features": [
+                    {
+                      "type": "select-options"
+                    }
+                  ]
                 },
                 {
                   "type": "entities",

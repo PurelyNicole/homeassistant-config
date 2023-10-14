@@ -541,6 +541,9 @@
   - platform: state
     entity_id:
     - input_select.home_mode
+  - platform: time_pattern
+    hours: /1
+    alias: Every hour
   condition:
   - condition: state
     entity_id: input_boolean.vacation_mode
@@ -548,6 +551,7 @@
   - condition: state
     entity_id: climate.ecobee_thermostat
     state: heat
+    enabled: false
   action:
   - if:
     - condition: state
