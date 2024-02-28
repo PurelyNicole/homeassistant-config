@@ -10,13 +10,13 @@ day_of_week = dt.weekday()
 current_hour = dt.hour
 
 # Set fr_thermostat based on main_thermost
-if (current_mode == "heat"):
+if (current_mode != "cool"):
   logger.info("Ecobee is heat, set to heat mode.")
   if ((workday == "off") or (current_hour > 15)):
-    logger.warn("It's weekend/evening. Match ecobee temperature.")
+    logger.info("It's weekend/evening. Match ecobee temperature.")
     set_temp = (hass.states.get(main_thermostat).attributes['temperature'])
   else:
-    logger.warn("Its a weekday morning. Set to 60.")
+    logger.info("Its a weekday morning. Set to 60.")
     set_temp = 60
   logger.info(f"Set operation to heat and temperature to {set_temp}.")
   hass.services.call("climate", "set_temperature", {"entity_id": fr_thermostat, "hvac_mode": "heat", "temperature": set_temp}, False)

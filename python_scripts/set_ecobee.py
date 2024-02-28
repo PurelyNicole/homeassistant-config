@@ -33,7 +33,7 @@ def normalOperation():
   # Call set_preset_mode based on home mode and time of day, using the service data above.
   if home_mode == "Home":
     logger.info("People are home.")
-    if hass.states.is_state("binary_sensor.night", "on") and operation_mode != "heat":
+    if hass.states.is_state("binary_sensor.night", "on") and operation_mode == "cool":
       logger.info("Nighttime when it's warm. Start sleep cooling early.")
       hass.services.call("climate", "set_preset_mode", {"entity_id": thermostat, "preset_mode": "Sleep"}, False)
     else:    
