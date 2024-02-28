@@ -8,6 +8,230 @@
       "views": [
         {
           "theme": "Backend-selected",
+          "title": "Kitchen Dash",
+          "path": "kitchen-dash",
+          "visible": [
+            {
+              "user": "4df26c21b64743d683213ba2dfd50dd7"
+            }
+          ],
+          "icon": "mdi:countertop-outline",
+          "badges": [],
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "custom:clock-weather-card",
+                  "entity": "weather.ecobee_thermostat",
+                  "time_format": 12
+                },
+                {
+                  "type": "custom:weather-radar-card",
+                  "frame_count": 10,
+                  "center_latitude": 42.59099219695002,
+                  "center_longitude": -83.39325635707908,
+                  "marker_latitude": 42.59099219695002,
+                  "marker_longitude": -83.39325635707908,
+                  "show_marker": true,
+                  "show_range": true,
+                  "show_zoom": true,
+                  "show_recenter": true,
+                  "show_playback": true,
+                  "zoom_level": 8,
+                  "extra_labels": false,
+                  "show_scale": false,
+                  "static_map": false
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "binary_sensor.air_quailty_unhealthy",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "gauge",
+                    "entity": "sensor.airnow_aqi",
+                    "name": "Air Quality Index",
+                    "max": 500,
+                    "segments": [
+                      {
+                        "from": 0,
+                        "color": "#00e400"
+                      },
+                      {
+                        "from": 51,
+                        "color": "#ffff00"
+                      },
+                      {
+                        "from": 101,
+                        "color": "#ff7e00"
+                      },
+                      {
+                        "from": 151,
+                        "color": "#ff0000"
+                      },
+                      {
+                        "from": 201,
+                        "color": "#8f3f97"
+                      },
+                      {
+                        "from": 301,
+                        "color": "#7e0023"
+                      }
+                    ],
+                    "needle": true
+                  }
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "tile",
+                      "entity": "person.eric"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "person.nicole"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:atomic-calendar-revive",
+                  "entities": [
+                    {
+                      "entity": "calendar.eric_calendar",
+                      "name": "Eric",
+                      "color": "#3F51B5"
+                    },
+                    {
+                      "entity": "calendar.eric_nicole_calendar",
+                      "name": "Eric & Nicole",
+                      "color": "#8E24AA"
+                    },
+                    {
+                      "entity": "calendar.nicole_calendar",
+                      "name": "Nicole",
+                      "color": "#D81B60"
+                    },
+                    {
+                      "entity": "calendar.holidays_in_united_states",
+                      "name": "Holidays",
+                      "color": "#A79B8E"
+                    }
+                  ],
+                  "enableModeChange": true,
+                  "firstDayOfWeek": 1,
+                  "maxDaysToShow": 7,
+                  "refreshInterval": 60,
+                  "hideFinishedEvents": true,
+                  "showRelativeTime": false,
+                  "showMultiDay": true,
+                  "showDate": true,
+                  "sortByStartTime": true,
+                  "hideDuplicates": true,
+                  "showCurrentEventLine": false,
+                  "showMonth": false,
+                  "showProgressBar": false,
+                  "showWeekDay": true,
+                  "showNoEventsForToday": false,
+                  "showEventIcon": false,
+                  "showFullDayProgress": false,
+                  "showHiddenText": false,
+                  "showCalendarName": false,
+                  "showWeekNumber": false,
+                  "showEventDate": true,
+                  "showDatePerEvent": false,
+                  "calShowDescription": false,
+                  "showLastCalendarWeek": false
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "lock.kitchen_door_lock"
+                    },
+                    {
+                      "entity": "lock.workshop"
+                    },
+                    {
+                      "entity": "cover.garage_door"
+                    },
+                    {
+                      "entity": "binary_sensor.basement_outside_door"
+                    },
+                    {
+                      "entity": "binary_sensor.garage_kitchen_door"
+                    },
+                    {
+                      "entity": "binary_sensor.front_door",
+                      "secondary_info": "last-changed"
+                    }
+                  ],
+                  "title": "Doors",
+                  "state_color": true
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "group.upstairs_lights"
+                    },
+                    {
+                      "entity": "group.main_floor_lights"
+                    },
+                    {
+                      "entity": "group.downstairs_lights"
+                    },
+                    {
+                      "entity": "group.basement_lights"
+                    },
+                    {
+                      "entity": "group.outdoor_lights"
+                    }
+                  ],
+                  "title": "Lights",
+                  "state_color": true
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entity",
+                  "entity": "sensor.dishwasher_status",
+                  "state_color": true
+                },
+                {
+                  "type": "custom:grocy-chores-card",
+                  "entity": "sensor.grocy_chores",
+                  "title": "Chorin'",
+                  "show_quantity": 5,
+                  "show_days": 3,
+                  "show_assigned": false,
+                  "show_last_tracked": true,
+                  "show_last_tracked_by": false,
+                  "show_track_button": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
           "path": "default_view",
           "title": "Home",
           "icon": "mdi:home",
@@ -236,6 +460,9 @@
                       "entity": "light.den_stair_landing"
                     },
                     {
+                      "entity": "light.step_lights"
+                    },
+                    {
                       "entity": "light.cd_shelf_dimmer"
                     },
                     {
@@ -338,14 +565,15 @@
             {
               "type": "custom:simple-thermostat",
               "entity": "climate.family_room_thermostat",
-              "header": {},
               "layout": {
                 "mode": {
-                  "names": false,
                   "headings": false,
-                  "icons": true
+                  "icons": true,
+                  "names": true
                 }
-              }
+              },
+              "step_size": 1,
+              "decimals": 0
             },
             {
               "type": "vertical-stack",
@@ -371,230 +599,6 @@
                   "type": "custom:clock-weather-card",
                   "entity": "weather.ecobee_thermostat",
                   "time_format": 12
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "theme": "Backend-selected",
-          "title": "Kitchen Dash",
-          "path": "kitchen-dash",
-          "visible": [
-            {
-              "user": "4df26c21b64743d683213ba2dfd50dd7"
-            }
-          ],
-          "icon": "mdi:countertop-outline",
-          "badges": [],
-          "cards": [
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
-                  "type": "custom:clock-weather-card",
-                  "entity": "weather.ecobee_thermostat",
-                  "time_format": 12
-                },
-                {
-                  "type": "custom:weather-radar-card",
-                  "frame_count": 10,
-                  "center_latitude": 42.59099219695002,
-                  "center_longitude": -83.39325635707908,
-                  "marker_latitude": 42.59099219695002,
-                  "marker_longitude": -83.39325635707908,
-                  "show_marker": true,
-                  "show_range": true,
-                  "show_zoom": true,
-                  "show_recenter": true,
-                  "show_playback": true,
-                  "zoom_level": 8,
-                  "extra_labels": false,
-                  "show_scale": false,
-                  "static_map": false
-                }
-              ]
-            },
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
-                  "type": "conditional",
-                  "conditions": [
-                    {
-                      "entity": "binary_sensor.air_quailty_unhealthy",
-                      "state": "on"
-                    }
-                  ],
-                  "card": {
-                    "type": "gauge",
-                    "entity": "sensor.airnow_aqi",
-                    "name": "Air Quality Index",
-                    "max": 500,
-                    "segments": [
-                      {
-                        "from": 0,
-                        "color": "#00e400"
-                      },
-                      {
-                        "from": 51,
-                        "color": "#ffff00"
-                      },
-                      {
-                        "from": 101,
-                        "color": "#ff7e00"
-                      },
-                      {
-                        "from": 151,
-                        "color": "#ff0000"
-                      },
-                      {
-                        "from": 201,
-                        "color": "#8f3f97"
-                      },
-                      {
-                        "from": 301,
-                        "color": "#7e0023"
-                      }
-                    ],
-                    "needle": true
-                  }
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "tile",
-                      "entity": "person.eric"
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "person.nicole"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:atomic-calendar-revive",
-                  "entities": [
-                    {
-                      "entity": "calendar.eric_calendar",
-                      "name": "Eric",
-                      "color": "#3F51B5"
-                    },
-                    {
-                      "entity": "calendar.eric_nicole_calendar",
-                      "name": "Eric & Nicole",
-                      "color": "#8E24AA"
-                    },
-                    {
-                      "entity": "calendar.nicole_calendar",
-                      "name": "Nicole",
-                      "color": "#D81B60"
-                    },
-                    {
-                      "entity": "calendar.holidays_in_united_states",
-                      "name": "Holidays",
-                      "color": "#A79B8E"
-                    }
-                  ],
-                  "enableModeChange": true,
-                  "firstDayOfWeek": 1,
-                  "maxDaysToShow": 7,
-                  "refreshInterval": 60,
-                  "hideFinishedEvents": true,
-                  "showRelativeTime": false,
-                  "showMultiDay": true,
-                  "showDate": true,
-                  "sortByStartTime": true,
-                  "hideDuplicates": true,
-                  "showCurrentEventLine": false,
-                  "showMonth": false,
-                  "showProgressBar": false,
-                  "showWeekDay": true,
-                  "showNoEventsForToday": false,
-                  "showEventIcon": false,
-                  "showFullDayProgress": false,
-                  "showHiddenText": false,
-                  "showCalendarName": false,
-                  "showWeekNumber": false,
-                  "showEventDate": true,
-                  "showDatePerEvent": false,
-                  "calShowDescription": false,
-                  "showLastCalendarWeek": false
-                }
-              ]
-            },
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "lock.kitchen_door_lock"
-                    },
-                    {
-                      "entity": "lock.workshop"
-                    },
-                    {
-                      "entity": "cover.garage_door"
-                    },
-                    {
-                      "entity": "binary_sensor.basement_outside_door"
-                    },
-                    {
-                      "entity": "binary_sensor.garage_kitchen_door"
-                    },
-                    {
-                      "entity": "binary_sensor.front_door",
-                      "secondary_info": "last-changed"
-                    }
-                  ],
-                  "title": "Doors",
-                  "state_color": true
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "group.upstairs_lights"
-                    },
-                    {
-                      "entity": "group.main_floor_lights"
-                    },
-                    {
-                      "entity": "group.downstairs_lights"
-                    },
-                    {
-                      "entity": "group.basement_lights"
-                    },
-                    {
-                      "entity": "group.outdoor_lights"
-                    }
-                  ],
-                  "title": "Lights",
-                  "state_color": true
-                }
-              ]
-            },
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
-                  "type": "entity",
-                  "entity": "sensor.dishwasher_status",
-                  "state_color": true
-                },
-                {
-                  "type": "custom:grocy-chores-card",
-                  "entity": "sensor.grocy_chores",
-                  "title": "Chorin'",
-                  "show_quantity": 5,
-                  "show_days": 3,
-                  "show_assigned": false,
-                  "show_last_tracked": true,
-                  "show_last_tracked_by": false,
-                  "show_track_button": true
                 }
               ]
             }
@@ -850,7 +854,18 @@
                 },
                 {
                   "type": "thermostat",
-                  "entity": "climate.family_room_thermostat"
+                  "entity": "climate.family_room_thermostat",
+                  "features": [
+                    {
+                      "type": "climate-hvac-modes",
+                      "hvac_modes": [
+                        "off",
+                        "heat_cool",
+                        "cool",
+                        "heat"
+                      ]
+                    }
+                  ]
                 }
               ]
             },
@@ -1363,7 +1378,9 @@
               "calShowDescription": false,
               "showRelativeTime": false,
               "showLastCalendarWeek": false,
-              "showMonth": false
+              "showMonth": false,
+              "hoursOnSameLine": false,
+              "showAllDayHours": false
             },
             {
               "type": "vertical-stack",
@@ -1537,7 +1554,7 @@
                   "cards": [
                     {
                       "type": "tile",
-                      "entity": "button.set_dishwasher_to_clean_2",
+                      "entity": "button.set_dishwasher_to_clean",
                       "tap_action": {
                         "action": "toggle"
                       }
