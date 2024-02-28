@@ -548,10 +548,6 @@
   - condition: state
     entity_id: input_boolean.vacation_mode
     state: 'off'
-  - condition: state
-    entity_id: climate.ecobee_thermostat
-    state: heat
-    enabled: false
   action:
   - if:
     - condition: state
@@ -908,7 +904,8 @@
     target:
       entity_id: scene.good_morning
     metadata: {}
-  - if:
+  - alias: Turn on Kitchen Table Light if before sunrise.
+    if:
     - condition: sun
       before: sunrise
     then:
@@ -916,7 +913,21 @@
       device_id: b3275c0af7696dc2e67ed8b562004634
       entity_id: light.kitchen_table_light
       domain: light
-    alias: Turn on Kitchen Table Light if before sunrise.
+      brightness_pct: 100
+  - if:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: person.eric
+        state: home
+      alias: Eric is not home
+    then:
+    - service: light.turn_on
+      data:
+        brightness_pct: 1
+      target:
+        device_id: bcd2c05bc2b25d9bc12e142fdaf388b1
+    alias: Turn on nightstand lamp if Eric is not home
   mode: single
 - id: nicole_wind_down
   alias: Nicole - Wind Down
@@ -1071,7 +1082,13 @@
     - binary_sensor.washing_machine
     from: 'on'
     to: 'off'
-  condition: []
+  condition:
+  - condition: not
+    conditions:
+    - condition: time
+      after: 00:00:00
+      before: 08:00:00
+    alias: It is not between Midnight and 8am
   action:
   - service: notify.notify_nicole_and_eric
     data:
@@ -1105,6 +1122,10 @@
   - platform: time_pattern
     hours: /1
     alias: Every hour
+  - platform: state
+    entity_id:
+    - climate.ecobee_thermostat
+    from: unavailable
   condition:
   - condition: state
     entity_id: input_boolean.vacation_mode
@@ -1238,6 +1259,7 @@
     from: 'off'
     to: 'on'
     id: Nicole Nightstand On
+    enabled: false
   - platform: state
     entity_id:
     - light.eric_nightstand_light
@@ -1245,9 +1267,14 @@
     to: 'on'
     id: Eric Nightstand On
   condition:
-  - condition: state
-    entity_id: binary_sensor.day
-    state: 'on'
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.day
+      state: 'on'
+    - condition: time
+      after: 02:00:00
+      before: 09:00:00
   action:
   - choose:
     - conditions:
@@ -1459,51 +1486,6 @@
     data:
       message: Close living room blinds.
   mode: single
-- id: laptop_off_peak_hours
-  alias: Nicole Office - Turn off laptop charging during peak hours.
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - schedule.dte_peak_hours
-    to: 'on'
-  - platform: state
-    entity_id:
-    - schedule.dte_peak_hours
-    to: 'off'
-  condition:
-  - condition: and
-    conditions:
-    - condition: state
-      entity_id: input_boolean.vacation_mode
-      state: 'off'
-    - condition: not
-      conditions:
-      - condition: time
-        weekday:
-        - thu
-      alias: Day is not Thursday
-  action:
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: schedule.dte_peak_hours
-        state: 'on'
-      sequence:
-      - type: turn_off
-        device_id: 310e0e6bf98c0b9f552045d210041997
-        entity_id: 7b37168b4cb27af7e41d574a963a1197
-        domain: switch
-    - conditions:
-      - condition: state
-        entity_id: schedule.dte_peak_hours
-        state: 'off'
-      sequence:
-      - type: turn_on
-        device_id: 310e0e6bf98c0b9f552045d210041997
-        entity_id: 7b37168b4cb27af7e41d574a963a1197
-        domain: switch
-  mode: single
 - id: utility_lights_door
   alias: Lighting - Control utility room lights with door.
   description: ''
@@ -1610,9 +1592,9 @@
               - light.rgb_flood1
               - light.rgb_flood2
         - conditions:
-          - condition: template
-            value_template: '{{((now().month == 12) and (now().day > 26))}}'
-            alias: If it's December and Before Christmas...
+          - alias: If it's December and Before Christmas...
+            condition: template
+            value_template: '{{((now().month == 12) and (now().day < 26))}}'
           sequence:
           - service: light.turn_on
             data:
@@ -1660,7 +1642,7 @@
           - light.rgb_flood1
           - light.rgb_flood2
   mode: single
-- id: '1696178568866'
+- id: den_lights_wall_switch
   alias: Lighting - Control Den Step Lights with Wall Switch
   description: ''
   trigger:
@@ -1696,4 +1678,50 @@
         data: {}
         target:
           entity_id: light.step_lights
+  mode: single
+- id: '1703890878917'
+  alias: Kitchen - MuiscCast speakers to kitchen when source is airplay.
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - media_player.main_floor_musiccast
+    attribute: source
+    id: MainFloorMusicCastAirplay
+    to: AirPlay
+  - platform: state
+    entity_id:
+    - media_player.main_floor_musiccast
+    attribute: source
+    id: MainFloorMusicCastNotAirplay
+    from: AirPlay
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - MainFloorMusicCastAirplay
+      sequence:
+      - type: turn_off
+        device_id: fd7ae8ebda3faafe21c87fe16cd3070c
+        entity_id: cf8b4b8ca77b5f0c6f69b8bd94277650
+        domain: switch
+      - type: turn_on
+        device_id: fd7ae8ebda3faafe21c87fe16cd3070c
+        entity_id: bbdd762dcdb29668bcc8a8113aa7f587
+        domain: switch
+    - conditions:
+      - condition: trigger
+        id:
+        - MainFloorMusicCastNotAirplay
+      sequence:
+      - type: turn_on
+        device_id: fd7ae8ebda3faafe21c87fe16cd3070c
+        entity_id: cf8b4b8ca77b5f0c6f69b8bd94277650
+        domain: switch
+      - type: turn_off
+        device_id: fd7ae8ebda3faafe21c87fe16cd3070c
+        entity_id: bbdd762dcdb29668bcc8a8113aa7f587
+        domain: switch
   mode: single
