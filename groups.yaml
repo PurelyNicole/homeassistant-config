@@ -86,6 +86,7 @@ garage_lights:
 master_bedroom_lights:
   name: Master Bedroom Lights
   entities:
+    - light.master_bedroom_light
     - light.master_bath_light
     - light.eric_nightstand_light
     - light.nicole_nightstand_light

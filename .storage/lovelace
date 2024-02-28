@@ -806,16 +806,19 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "switch.master_bath_fan"
-                },
-                {
-                  "entity": "light.master_bath_light"
+                  "entity": "light.master_bedroom_light"
                 },
                 {
                   "entity": "light.nicole_nightstand_light"
                 },
                 {
                   "entity": "light.eric_nightstand_light"
+                },
+                {
+                  "entity": "light.master_bath_light"
+                },
+                {
+                  "entity": "switch.master_bath_fan"
                 },
                 {
                   "entity": "switch.magic_mirror_screen"
