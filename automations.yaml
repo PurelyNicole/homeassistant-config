@@ -1266,6 +1266,12 @@
     from: 'off'
     to: 'on'
     id: Eric Nightstand On
+  - platform: state
+    entity_id:
+    - light.master_bedroom_light
+    from: 'off'
+    to: 'on'
+    id: Master Bedroom Light On
   condition:
   - condition: or
     conditions:
@@ -1414,6 +1420,17 @@
           brightness: 255
         target:
           entity_id: light.eric_nightstand_light
+    - conditions:
+      - condition: trigger
+        id:
+        - Master Bedroom Light On
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness: 255
+        target:
+          entity_id:
+          - light.master_bedroom_light
   mode: parallel
   max: 13
 - id: notify_low_battery
