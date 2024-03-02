@@ -4,21 +4,21 @@
     input_select.home_mode:
       state: Sleep
     group.basement_lights:
-      state: "off"
+      state: 'off'
     group.downstairs_lights:
-      state: "off"
+      state: 'off'
     group.upstairs_lights:
-      state: "off"
+      state: 'off'
     group.main_floor_lights:
-      state: "off"
+      state: 'off'
     switch.fish_tank_lights:
-      state: "off"
+      state: 'off'
     light.grill_lights:
-      state: "on"
+      state: 'on'
     light.family_room_deck_light_back:
-      state: "on"
+      state: 'on'
     light.pixel_post_light:
-      state: "off"
+      state: 'off'
     cover.garage_door:
       state: closed
     lock.kitchen_door_lock:
@@ -26,9 +26,9 @@
     lock.workshop:
       state: locked
     switch.hair_straightener:
-      state: "off"
+      state: 'off'
     switch.magic_mirror_screen:
-      state: "off"
+      state: 'off'
   icon: mdi:weather-night
   metadata:
     switch.magic_mirror_screen:
@@ -39,9 +39,9 @@
     input_select.home_mode:
       state: Home
     switch.magic_mirror_screen:
-      state: "on"
+      state: 'on'
     light.pixel_post_light:
-      state: "on"
+      state: 'on'
   icon: mdi:weather-sunny
   metadata:
     switch.magic_mirror_screen:
@@ -52,15 +52,15 @@
   name: Goodbye
   entities:
     group.downstairs_lights:
-      state: "off"
+      state: 'off'
     group.basement_lights:
-      state: "off"
+      state: 'off'
     group.main_floor_lights:
-      state: "off"
+      state: 'off'
     group.upstairs_lights:
-      state: "off"
+      state: 'off'
     remote.family_room_remote:
-      state: "off"
+      state: 'off'
     select.family_room_remote_activities:
       state: power_off
     input_select.home_mode:
@@ -70,9 +70,9 @@
     lock.workshop:
       state: locked
     switch.hair_straightener:
-      state: "off"
+      state: 'off'
     switch.magic_mirror_screen:
-      state: "off"
+      state: 'off'
   icon: mdi:run
   metadata:
     switch.hair_straightener:
@@ -80,44 +80,44 @@
     switch.magic_mirror_screen:
       entity_only: true
 - id: watch_tv_scene
-  name: "Watch TV - Downstairs "
+  name: 'Watch TV - Downstairs '
   entities:
     light.family_room_track_light_front:
       color_mode: brightness
       brightness: 92
-      state: "on"
+      state: 'on'
     light.family_room_track_light_back:
       color_mode: brightness
       brightness: 92
-      state: "on"
+      state: 'on'
     light.grill_lights:
-      state: "off"
+      state: 'off'
     light.family_room_deck_light_back:
-      state: "off"
+      state: 'off'
     light.den_stair_landing:
-      state: "off"
+      state: 'off'
     light.kitchenette_led_strip:
       color_mode: hs
       brightness: 153
       hs_color:
-        - 30
-        - 0
+      - 30
+      - 0
       effect: Solid
-      state: "on"
+      state: 'on'
     light.fireplace_dimmer:
-      state: "off"
+      state: 'off'
     light.kitchenette_spot_lights:
       color_mode: brightness
       brightness: 145
-      state: "on"
+      state: 'on'
     light.cd_shelf_dimmer:
       color_mode: brightness
       brightness: 38
-      state: "on"
+      state: 'on'
     light.step_lights:
       color_mode: brightness
       brightness: 31
-      state: "on"
+      state: 'on'
   icon: mdi:television-classic
   metadata:
     light.cd_shelf_dimmer:
@@ -130,9 +130,9 @@
     light.master_bath_light:
       color_mode: brightness
       brightness: 3
-      state: "on"
+      state: 'on'
     light.master_bedroom_light:
-      state: "on"
+      state: 'on'
       brightness: 75
   icon: mdi:alarm-check
   metadata: {}
@@ -141,11 +141,11 @@
   entities:
     group.master_bedroom_lights:
       entity_id:
-      state: "off"
+      state: 'off'
     switch.magic_mirror_screen:
-      state: "off"
+      state: 'off'
     light.pixel_post_light:
-      state: "off"
+      state: 'off'
   icon: mdi:chat-sleep-outline
   metadata:
     switch.magic_mirror_screen:
@@ -158,41 +158,41 @@
     light.dining_room_wall_dimmer:
       color_mode: brightness
       brightness: 150
-      state: "on"
+      state: 'on'
     light.dining_room_table_dimmer:
       color_mode: brightness
       brightness: 150
-      state: "on"
+      state: 'on'
     light.kitchen_mudroom_dimmer:
-      state: "off"
+      state: 'off'
     switch.kitchen_overhead_lights:
-      state: "off"
+      state: 'off'
     light.kitchen_overhead_lights:
-      state: "off"
+      state: 'off'
     light.kitchen_under_cabinet_lights:
       color_mode: brightness
       brightness: 125
-      state: "on"
+      state: 'on'
     light.kitchen_sink_dimmer:
       color_mode: brightness
       brightness: 125
-      state: "on"
+      state: 'on'
     light.kitchen_table_light:
       color_mode: brightness
       brightness: 145
-      state: "on"
+      state: 'on'
     light.living_room_lamps:
-      state: "off"
+      state: 'off'
     light.living_room_wall_dimmer:
       color_mode: brightness
       brightness: 150
-      state: "on"
+      state: 'on'
     light.entryway_light:
-      state: "off"
+      state: 'off'
     light.step_lights:
       color_mode: brightness
       brightness: 31
-      state: "on"
+      state: 'on'
   icon: mdi:television
   metadata:
     light.step_lights:
@@ -201,19 +201,19 @@
   name: Good Morning Eric
   entities:
     light.den_stair_landing:
-      state: "on"
+      state: 'on'
     light.kitchen_mudroom_dimmer:
       color_mode: brightness
       brightness: 255
-      state: "on"
+      state: 'on'
     light.kitchen_sink_dimmer:
       color_mode: brightness
       brightness: 255
-      state: "on"
+      state: 'on'
     light.step_lights:
       color_mode: brightness
       brightness: 255
-      state: "on"
+      state: 'on'
   icon: mdi:sun-clock
   metadata:
     light.den_stair_landing:
@@ -223,4 +223,23 @@
     light.kitchen_sink_dimmer:
       entity_only: true
     light.step_lights:
+      entity_only: true
+- id: dim_bedroom_lights
+  name: Dim Bedroom Lights
+  entities:
+    light.master_bedroom_light:
+      color_mode: brightness
+      brightness: 128
+      state: 'on'
+    light.master_bedroom_closet:
+      state: 'off'
+    light.master_bath_light:
+      state: 'off'
+  icon: mdi:lightbulb-on-50
+  metadata:
+    light.master_bedroom_light:
+      entity_only: true
+    light.master_bedroom_closet:
+      entity_only: true
+    light.master_bath_light:
       entity_only: true
