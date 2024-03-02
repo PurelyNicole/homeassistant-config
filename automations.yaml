@@ -914,20 +914,6 @@
       entity_id: light.kitchen_table_light
       domain: light
       brightness_pct: 100
-  - if:
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: person.eric
-        state: home
-      alias: Eric is not home
-    then:
-    - service: light.turn_on
-      data:
-        brightness_pct: 1
-      target:
-        device_id: bcd2c05bc2b25d9bc12e142fdaf388b1
-    alias: Turn on nightstand lamp if Eric is not home
   mode: single
 - id: nicole_wind_down
   alias: Nicole - Wind Down
@@ -1255,19 +1241,6 @@
     id: Master Bath Lights On
   - platform: state
     entity_id:
-    - light.nicole_nightstand_light
-    from: 'off'
-    to: 'on'
-    id: Nicole Nightstand On
-    enabled: false
-  - platform: state
-    entity_id:
-    - light.eric_nightstand_light
-    from: 'off'
-    to: 'on'
-    id: Eric Nightstand On
-  - platform: state
-    entity_id:
     - light.master_bedroom_light
     from: 'off'
     to: 'on'
@@ -1400,26 +1373,6 @@
           brightness: 255
         target:
           entity_id: light.master_bath_light
-    - conditions:
-      - condition: trigger
-        id:
-        - Nicole Nightstand On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.nicole_nightstand_light
-    - conditions:
-      - condition: trigger
-        id:
-        - Eric Nightstand On
-      sequence:
-      - service: light.turn_on
-        data:
-          brightness: 255
-        target:
-          entity_id: light.eric_nightstand_light
     - conditions:
       - condition: trigger
         id:

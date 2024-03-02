@@ -809,10 +809,7 @@
                   "entity": "light.master_bedroom_light"
                 },
                 {
-                  "entity": "light.nicole_nightstand_light"
-                },
-                {
-                  "entity": "light.eric_nightstand_light"
+                  "entity": "light.master_bedroom_closet"
                 },
                 {
                   "entity": "light.master_bath_light"
@@ -1860,6 +1857,9 @@
                     },
                     {
                       "entity": "sensor.laundry_room_water_sensor_battery"
+                    },
+                    {
+                      "entity": "sensor.nightstand_dimmer_remote_battery"
                     },
                     {
                       "entity": "sensor.workshop_battery"

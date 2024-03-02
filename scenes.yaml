@@ -48,8 +48,6 @@
       entity_only: true
     light.pixel_post_light:
       entity_only: true
-    light.nicole_nightstand_light:
-      entity_only: true
 - id: goodbye_scene
   name: Goodbye
   entities:
@@ -134,15 +132,8 @@
       brightness: 3
       state: "on"
     light.master_bedroom_light:
-      state: "off"
-    light.nicole_nightstand_light:
-      color_mode: brightness
-      brightness: 64
       state: "on"
-    light.eric_nightstand_light:
-      color_mode: brightness
-      brightness: 64
-      state: "on"
+      brightness: 75
   icon: mdi:alarm-check
   metadata: {}
 - id: goodnight_nicole_scene

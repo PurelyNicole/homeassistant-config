@@ -3,6 +3,7 @@ exclude:
   entity_globs:
     - group.*_lights # Light Groups
     - binary_sensor.omv_*_service # OMV
+    - sensor.*_last_seen
     - sensor.*_node_status # Zwave
     - sensor.replay_* # Replay Sensors
   entities:

@@ -88,8 +88,7 @@ master_bedroom_lights:
   entities:
     - light.master_bedroom_light
     - light.master_bath_light
-    - light.eric_nightstand_light
-    - light.nicole_nightstand_light
+    - light.master_bedroom_closet
     - switch.master_bath_fan
   icon: mdi:lightbulb-group
 den_lights:
