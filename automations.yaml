@@ -1649,7 +1649,7 @@
         target:
           entity_id: light.step_lights
   mode: single
-- id: '1703890878917'
+- id: kitchen_speakers_airplay
   alias: Kitchen - MuiscCast speakers to kitchen when source is airplay.
   description: ''
   trigger:
