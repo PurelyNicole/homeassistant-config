@@ -1695,3 +1695,20 @@
         entity_id: bbdd762dcdb29668bcc8a8113aa7f587
         domain: switch
   mode: single
+- id: '1709577057770'
+  alias: Lighting - Turn off bedroom closet light with overhead light
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: eaa06b0699424ef42111fb9c99d08b51
+    entity_id: 6995b68a83031b1f5f85ae383883c5d7
+    domain: light
+  condition: []
+  action:
+  - service: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.master_bedroom_closet
+  mode: single

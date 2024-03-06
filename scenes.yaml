@@ -84,11 +84,11 @@
   entities:
     light.family_room_track_light_front:
       color_mode: brightness
-      brightness: 92
+      brightness: 128
       state: 'on'
     light.family_room_track_light_back:
       color_mode: brightness
-      brightness: 92
+      brightness: 128
       state: 'on'
     light.grill_lights:
       state: 'off'
