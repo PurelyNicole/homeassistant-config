@@ -1516,7 +1516,7 @@
   - condition: not
     conditions:
     - condition: time
-      after: '22:00:00'
+      after: '21:30:00'
       before: sensor.sun_next_rising
       weekday:
       - mon

@@ -5,12 +5,12 @@
       icon: mdi:washing-machine
       device_class: running
       delay_off:
-        minutes: 6
+        minutes: 10
       state: >
         {% if is_state('sensor.washing_machine_energy_power', 'unavailable') %}
           off
         {% else %}
-          {{ states('sensor.washing_machine_energy_power')|float > 2 }}
+          {{ states('sensor.washing_machine_energy_power')|float > 3 }}
         {% endif %}
     - name: "Air Quailty Unhealthy"
       unique_id: binary_sensor.air_quaility_unhealthy
