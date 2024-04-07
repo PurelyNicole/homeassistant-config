@@ -5,26 +5,31 @@ logger.debug("Set Ecobee script is running.")
 thermostat = data.get("thermostat")
 weather = data.get("weather")
 
+# Get forecast data
+service_data = {"type": "daily", "entity_id": weather}
+current_forecast = hass.services.call("weather", "get_forecasts", service_data, blocking=True, return_response=True)
+
 # Get current home mode and forecasted high temperature for the day.
 home_mode = (hass.states.get("input_select.home_mode")).state
 current_mode = (hass.states.get(thermostat)).state
-today_high = (hass.states.get(weather).attributes['forecast'][0]['temperature'])
+today_high = (current_forecast[weather]["forecast"][0]["temperature"])
 window_satus = (hass.states.get("binary_sensor.windows")).state
 peak_season = (hass.states.get("input_boolean.dte_peak_season")).state
 peak_hours = (hass.states.get("schedule.dte_peak_hours")).state
+current_month = datetime.datetime.now().month
 
 def normalOperation():
   logger.info("Enter normal operation mode.")
   # Set thermostat mode based on forecasted high temperature.
-  if today_high > 65:
+  if today_high > 65 and current_month > 4:
     logger.info(f"Today's high: {today_high}. Setting mode to cool.")
     operation_mode = "cool"
   # Sets heat_cool variables.
-  elif today_high > 55 and today_high <= 65:
+  elif today_high > 55 and today_high <= 65 and current_month > 4:
     logger.info(f"Today's high: {today_high}. Setting mode to heat_cool.")
     operation_mode = "heat_cool"
   # Sets heat variables.
-  elif today_high <= 55:
+  elif today_high <= 55 or current_month < 5:
     logger.info(f"Today's high: {today_high}. Setting mode to heat.")
     operation_mode = "heat"
   else:
