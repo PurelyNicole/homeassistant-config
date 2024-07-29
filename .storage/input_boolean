@@ -13,6 +13,10 @@
         "id": "dte_peak_season",
         "name": "DTE Peak Season",
         "icon": "mdi:calendar"
+      },
+      {
+        "id": "hvac_override",
+        "name": "HVAC Override"
       }
     ]
   }

@@ -88,7 +88,7 @@
 
 # Open EVSE
 - platform: openevse
-  host: 192.168.50.8
+  host: 192.168.50.133
   monitored_variables:
     - status
     - charge_time

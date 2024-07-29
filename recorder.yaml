@@ -13,7 +13,6 @@ exclude:
     - sensor.eric_ipad* # Eric iPad sensors
     - sensor.nicole_iphone_* # Nicole iPhone sensors
     - sensor.*_energy_yesterday # Can get this by looking at "today" value for previous day
-    - sensor.*_ip # Only care about current, not historical
   entities:
     # Automations
     - automation.shellies_announce

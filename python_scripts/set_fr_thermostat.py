@@ -4,13 +4,13 @@ fr_thermostat = data.get("fr_thermostat")
 
 # Get the mode of main thermostat.
 current_mode = (hass.states.get(main_thermostat)).state
-workday = (hass.states.get("binary_sensor.nicole_workday_sensor")).state
+workday = (hass.states.get("binary_sensor.eric_workday_sensor")).state
 dt = datetime.datetime.now()
 day_of_week = dt.weekday()
 current_hour = dt.hour
 
 # Set fr_thermostat based on main_thermost
-if (current_mode != "cool"):
+if ((current_mode == "heat") or (current_mode == "heat_cool")):
   logger.info("Ecobee is heat, set to heat mode.")
   if ((workday == "off") or (current_hour > 15)):
     logger.info("It's weekend/evening. Match ecobee temperature.")
