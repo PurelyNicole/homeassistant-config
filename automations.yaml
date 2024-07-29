@@ -146,20 +146,6 @@
       entity_id: scene.watch_tv_main_floor
     metadata: {}
   mode: single
-- id: notify_water_basement
-  alias: Notification - Notify if water detected in basement
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - binary_sensor.hot_water_heater_flood_sensor_water_leak_state
-    to: 'on'
-  condition: []
-  action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Water detected in basement.
-  mode: single
 - id: basement_lights_single_switch
   alias: Basement - Control lights with single switch
   description: When the basement light switch is toggled, change the state of the
@@ -450,10 +436,15 @@
         type: set_hvac_mode
         hvac_mode: 'off'
         alias: Turn Family Room Thermostat Off
-      - service: switch.turn_off
+      - service: cover.close_cover
+        metadata: {}
         data: {}
         target:
-          entity_id: switch.nicole_laptop
+          entity_id: cover.all_shades
+      - type: turn_off
+        device_id: 527bcce84a0020ad4805403d7c88110a
+        entity_id: 1b1ec3e92b573c166e96b68716ac16a3
+        domain: switch
   mode: single
 - id: nicole_office_lights_off
   alias: Nicole Office - Control lights with wall switch
@@ -490,8 +481,8 @@
         data: {}
         target:
           device_id:
-          - a66483a59eede368e5e98d0066d9c795
           - 84233bfe9142301d0caf5e3ba80fef60
+          - 718d00abc7d9e96085a977f33b56e17e
   mode: restart
 - id: niocole_office_closet_light
   alias: Nicole Office - Turn closet light off/on with door
@@ -577,16 +568,16 @@
     to: unavailable
     for:
       hours: 0
-      minutes: 0
-      seconds: 30
+      minutes: 1
+      seconds: 0
   - platform: state
     entity_id:
     - switch.den_fish_feeder
     to: unknown
     for:
       hours: 0
-      minutes: 0
-      seconds: 30
+      minutes: 1
+      seconds: 0
   condition: []
   action:
   - service: notify.mobile_app_nicole_iphone
@@ -608,27 +599,6 @@
     device_id: 5cdd36d9da5933171ecacd4e048912ba
     entity_id: light.kitchenette_led_strip
     domain: light
-  mode: single
-- id: living_room_tv_off_receiver
-  alias: Living Room - Turn off TV with Receiver
-  description: Overriding the art mode.
-  trigger:
-  - platform: device
-    device_id: fd7ae8ebda3faafe21c87fe16cd3070c
-    domain: media_player
-    entity_id: media_player.main_floor_musiccast
-    type: turned_off
-  condition: []
-  action:
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 2
-      milliseconds: 0
-  - type: turn_off
-    device_id: 527bcce84a0020ad4805403d7c88110a
-    entity_id: switch.main_floor_tv
-    domain: switch
   mode: single
 - id: notify_oven_on
   alias: Notification - Everyone left or is sleeping but oven is on.
@@ -703,9 +673,7 @@
   description: ''
   trigger:
   - platform: time
-    at: '16:30:00'
-  - platform: time
-    at: 04:30:00
+    at: '15:45:00'
   condition:
   - condition: or
     conditions:
@@ -739,7 +707,12 @@
     - light.kitchen_overhead_lights
     to: 'off'
     from: 'on'
-  condition: []
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.home_mode
+      state: Sleep
   action:
   - choose:
     - conditions:
@@ -780,21 +753,6 @@
     data:
       message: Dishwasher finished.
   mode: single
-- id: notify_water_under_sink
-  alias: Notification - Water under sink
-  description: ''
-  trigger:
-  - type: moist
-    platform: device
-    device_id: 820f34bfa02aded8df58b18f667a8e29
-    entity_id: binary_sensor.kitchen_sink_water_sensor
-    domain: binary_sensor
-  condition: []
-  action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Water detected under kitchen sink.
-  mode: single
 - id: notify_eric_left_work
   alias: Notification - Notify Nicole when Eric leaves work.
   description: ''
@@ -813,58 +771,83 @@
     data:
       message: Eric is leaving work.
   mode: single
-- id: notify_water_under_fish_tank
-  alias: Notification - Notifiy if water under fish tank
+- id: notify_water_detected
+  alias: Notify when moisture sensor detects moisture
   description: ''
   trigger:
+  - type: moist
+    platform: device
+    device_id: f1988841f3fd56b85b26e5b1cfcfccab
+    entity_id: 959f8050e1559d76f127d4a303bae5db
+    domain: binary_sensor
   - type: moist
     platform: device
     device_id: b98319a1990e48df55701f9bf318167c
     entity_id: binary_sensor.fish_tank_water_sensor
     domain: binary_sensor
-  condition: []
-  action:
-  - service: notify.notify_nicole_and_eric
-    data:
-      message: Water detected under fish tank.
-  mode: single
-- id: notify_water_laundry_room
-  alias: Notification - Notify if water detected in laundry room
-  description: ''
-  trigger:
+  - type: moist
+    platform: device
+    device_id: 31e9606e62abd30bc5e6305603d8e67c
+    entity_id: ba0bb7cf245fcdb75dd5c2468ace79e4
+    domain: binary_sensor
+  - type: moist
+    platform: device
+    device_id: 820f34bfa02aded8df58b18f667a8e29
+    entity_id: 430f2ac6745f738cc321493f16595210
+    domain: binary_sensor
   - type: moist
     platform: device
     device_id: 61a98c1c226600fd7f6dab560abf7f8b
-    entity_id: binary_sensor.laundry_room_water_sensor_iaszone
+    entity_id: 68c9965b29ab40584a13268141e23576
+    domain: binary_sensor
+  - type: moist
+    platform: device
+    device_id: 277c359a3c513cdd82f879b02205de11
+    entity_id: cf265bad7fe9fbfbae4461256e6ad9b6
+    domain: binary_sensor
+  - type: moist
+    platform: device
+    device_id: 56da0d66327053ee3fe0cc28cd08925c
+    entity_id: 87efdf059c8158bb6cad2d1334acd4e9
     domain: binary_sensor
   condition: []
   action:
   - service: notify.notify_nicole_and_eric
     data:
-      message: Water detected in laundry room.
+      message: '{{ trigger.to_state.attributes.friendly_name }} started detecting
+        moisture.'
   mode: single
 - id: half_bath_lights_motion
   alias: Half Bath - Control lights with motion
   description: ''
   trigger:
-  - type: occupied
+  - type: motion
     platform: device
     device_id: 12b7dc73a4601643d79a3274b66d4c62
-    entity_id: binary_sensor.half_bath_motion_sensor_occupancy
+    entity_id: 23ec488c93780565cbf76d77209b40c4
     domain: binary_sensor
   - type: not_occupied
     platform: device
     device_id: 12b7dc73a4601643d79a3274b66d4c62
     entity_id: binary_sensor.half_bath_motion_sensor_occupancy
     domain: binary_sensor
+  - type: no_motion
+    platform: device
+    device_id: 12b7dc73a4601643d79a3274b66d4c62
+    entity_id: 23ec488c93780565cbf76d77209b40c4
+    domain: binary_sensor
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
   condition: []
   action:
   - choose:
     - conditions:
-      - type: is_not_occupied
+      - type: is_no_motion
         condition: device
         device_id: 12b7dc73a4601643d79a3274b66d4c62
-        entity_id: binary_sensor.half_bath_motion_sensor_occupancy
+        entity_id: 23ec488c93780565cbf76d77209b40c4
         domain: binary_sensor
         for:
           hours: 0
@@ -934,7 +917,7 @@
     metadata: {}
   - service: climate.set_preset_mode
     data:
-      preset_mode: Sleep
+      preset_mode: sleep
     target:
       entity_id: climate.ecobee_thermostat
   mode: single
@@ -1057,7 +1040,7 @@
   - service: light.turn_off
     data: {}
     target:
-      area_id: eric_office
+      device_id: a286d07c98ea8f359f523bcc9d4c5cda
   mode: single
 - id: notify_washing_machine_complete
   alias: Notification - Washing machine complete.
@@ -1115,6 +1098,9 @@
   condition:
   - condition: state
     entity_id: input_boolean.vacation_mode
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.hvac_override
     state: 'off'
   action:
   - service: python_script.set_ecobee
@@ -1423,23 +1409,17 @@
       device_id:
       - b1393875f60de525a9a916b60d079b35
       - 0738239cc67de3bfc21e9424be3d5ae5
+      - 18fc3eac9e0c2dd98544b84368340d91
   mode: single
 - id: notify_lower_blinds_hvac
-  alias: Notification - Put down blinds when HVAC is AC
+  alias: Cover - Put down blinds when HVAC is AC
   description: ''
   trigger:
-  - type: value
-    platform: device
-    device_id: b01d0e96489e63ced4992645adf0f323
-    entity_id: b8dc822880b56fe02236f325e6155a4f
-    domain: sensor
-    below: 45
+  - platform: time
+    at: '15:00:00'
   condition:
   - condition: and
     conditions:
-    - condition: state
-      entity_id: person.nicole
-      state: home
     - condition: not
       conditions:
       - condition: device
@@ -1449,47 +1429,58 @@
         type: is_hvac_mode
         hvac_mode: heat
         alias: Thermostat in heat mode
-    - condition: time
-      after: '12:00:00'
+      - condition: time
+        weekday:
+        - sat
+        - sun
   action:
-  - service: notify.mobile_app_nicole_iphone
-    data:
-      message: Close living room blinds.
+  - if:
+    - condition: state
+      entity_id: binary_sensor.kitchen_window
+      state: 'on'
+    then:
+    - service: cover.close_cover
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+        - cover.living_room_shades_center_cover
+        - cover.dining_room_shades_cover
+    else:
+    - service: cover.close_cover
+      metadata: {}
+      data: {}
+      target:
+        entity_id: cover.all_shades
   mode: single
 - id: utility_lights_door
   alias: Lighting - Control utility room lights with door.
   description: ''
   trigger:
-  - type: opened
-    platform: device
-    device_id: f0158ed5434f030f3059a87f63b6c160
-    entity_id: 43bafbf47eae5f5413f032242ca177d0
-    domain: binary_sensor
-  - type: not_opened
-    platform: device
-    device_id: f0158ed5434f030f3059a87f63b6c160
-    entity_id: 43bafbf47eae5f5413f032242ca177d0
-    domain: binary_sensor
+  - platform: state
+    entity_id:
+    - binary_sensor.utility_room_doors
+    to: 'on'
+  - platform: state
+    entity_id:
+    - binary_sensor.utility_room_doors
+    to: 'off'
   condition: []
   action:
   - choose:
     - conditions:
-      - type: is_open
-        condition: device
-        device_id: f0158ed5434f030f3059a87f63b6c160
-        entity_id: 43bafbf47eae5f5413f032242ca177d0
-        domain: binary_sensor
+      - condition: state
+        entity_id: binary_sensor.utility_room_doors
+        state: 'on'
       sequence:
       - type: turn_on
         device_id: 87cae5bef616e2da5f81d501bf1575ba
         entity_id: 957be681148125d3791991ccef10ea33
         domain: light
     - conditions:
-      - type: is_not_open
-        condition: device
-        device_id: f0158ed5434f030f3059a87f63b6c160
-        entity_id: 43bafbf47eae5f5413f032242ca177d0
-        domain: binary_sensor
+      - condition: state
+        entity_id: binary_sensor.utility_room_doors
+        state: 'off'
       sequence:
       - type: turn_off
         device_id: 87cae5bef616e2da5f81d501bf1575ba
@@ -1711,4 +1702,166 @@
     data: {}
     target:
       entity_id: light.master_bedroom_closet
+  mode: single
+- id: '1712235457271'
+  alias: Notify - Workshop lock jammed
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 2bc75cb02bff7d6fe5c4794fe89e99da
+    domain: lock
+    entity_id: c899559e86684ccf953a6e0ed5ad0169
+    type: jammed
+  condition: []
+  action:
+  - service: notify.notify_nicole_and_eric
+    data:
+      message: Issue with Workshop Lock. Check if door is closed.
+  mode: single
+- id: '1713967151104'
+  alias: Turn on Lava Lamp on Eric WFH Days
+  description: ''
+  trigger:
+  - platform: time
+    at: 04:00:00
+  condition:
+  - condition: state
+    state: 'on'
+    entity_id: binary_sensor.eric_at_home_workday_sensor
+  action:
+  - type: turn_on
+    device_id: 310e0e6bf98c0b9f552045d210041997
+    entity_id: 7b37168b4cb27af7e41d574a963a1197
+    domain: switch
+  mode: single
+- id: '1713967270254'
+  alias: Turn Off Lava Lamp at 4:00PM
+  description: ''
+  trigger:
+  - platform: time
+    at: '16:00:00'
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 310e0e6bf98c0b9f552045d210041997
+    entity_id: 7b37168b4cb27af7e41d574a963a1197
+    domain: switch
+  mode: single
+- id: '1717264432700'
+  alias: Cover - Open shades when sun sets
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 0
+  - platform: time
+    at: '19:00:00'
+  condition:
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'off'
+  action:
+  - service: cover.open_cover
+    metadata: {}
+    data: {}
+    target:
+      entity_id: cover.all_shades
+  mode: single
+- id: '1719534522240'
+  alias: Turn Off Dehumidifiers during peak hours
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - schedule.dte_peak_hours
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: schedule.dte_peak_hours
+        state: 'on'
+      sequence:
+      - type: turn_off
+        device_id: 3a53683188654a1d7626ff893117c84e
+        entity_id: d38be84d36d295254ee6042589bff0e9
+        domain: switch
+    - conditions:
+      - condition: state
+        entity_id: schedule.dte_peak_hours
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.windows
+        state: 'off'
+      sequence:
+      - type: turn_on
+        device_id: 3a53683188654a1d7626ff893117c84e
+        entity_id: d38be84d36d295254ee6042589bff0e9
+        domain: switch
+  mode: single
+- id: '1719773372343'
+  alias: Dehumidifier - Turn off when windows open
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.windows
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.windows
+        state: 'on'
+      sequence:
+      - type: turn_off
+        device_id: 3a53683188654a1d7626ff893117c84e
+        entity_id: d38be84d36d295254ee6042589bff0e9
+        domain: switch
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.windows
+        state: 'off'
+      sequence:
+      - type: turn_on
+        device_id: 3a53683188654a1d7626ff893117c84e
+        entity_id: d38be84d36d295254ee6042589bff0e9
+        domain: switch
+  mode: single
+- id: '1720812976067'
+  alias: Turn off Main Floor TV with MusicCast
+  description: ''
+  trigger:
+  - platform: device
+    device_id: fd7ae8ebda3faafe21c87fe16cd3070c
+    domain: media_player
+    entity_id: ba2ee0936469db5b23a0def4b2183286
+    type: turned_off
+  condition: []
+  action:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+  - type: turn_off
+    device_id: 527bcce84a0020ad4805403d7c88110a
+    entity_id: 1b1ec3e92b573c166e96b68716ac16a3
+    domain: switch
+  mode: single
+- id: '1722274871912'
+  alias: Notification on doorbell ring
+  description: ''
+  trigger:
+  - type: turned_on
+    platform: device
+    device_id: 763791b3c6dd38ebe82dd8ea919cce99
+    entity_id: 07249e572542f3ad36721694f4b90fcf
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.notify_nicole_and_eric
+    metadata: {}
+    data:
+      message: Someone at front door.
   mode: single

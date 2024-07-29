@@ -272,7 +272,8 @@
               "show_forecast": true,
               "type": "weather-forecast",
               "entity": "weather.ecobee_thermostat",
-              "secondary_info_attribute": "humidity"
+              "secondary_info_attribute": "humidity",
+              "forecast_type": "daily"
             },
             {
               "type": "conditional",
@@ -347,6 +348,9 @@
                 },
                 {
                   "entity": "scene.goodnight"
+                },
+                {
+                  "entity": "scene.dim_bedroom_lights"
                 }
               ]
             },
@@ -680,6 +684,9 @@
                     },
                     {
                       "entity": "light.eric_office_light"
+                    },
+                    {
+                      "entity": "light.lava_lamp"
                     }
                   ],
                   "title": "Downstairs  Lights",
@@ -850,7 +857,13 @@
               "cards": [
                 {
                   "type": "thermostat",
-                  "entity": "climate.ecobee_thermostat"
+                  "entity": "climate.ecobee_thermostat",
+                  "features": [
+                    {
+                      "type": "climate-hvac-modes"
+                    }
+                  ],
+                  "show_current_as_primary": false
                 },
                 {
                   "type": "thermostat",
@@ -931,6 +944,9 @@
                 },
                 {
                   "entity": "sensor.workshop_sensor_humidity"
+                },
+                {
+                  "entity": "switch.sonoffoutlet1_s31"
                 }
               ],
               "title": "Humidity"
@@ -1004,9 +1020,6 @@
                   "entity": "sensor.master_bathroom_sensor_air_temperature"
                 },
                 {
-                  "entity": "sensor.masterbedroom_hvac_boost_temperature"
-                },
-                {
                   "entity": "sensor.compensation_sensor_nicole_office_sensor_air_temperature"
                 }
               ],
@@ -1019,9 +1032,30 @@
           "theme": "Backend-selected",
           "title": "Doors and Windows",
           "path": "doors-and-windows",
-          "icon": "mdi:door-closed",
-          "badges": [],
+          "icon": "mdi:roller-shade",
           "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.doorbell_motion",
+                  "secondary_info": "last-changed"
+                },
+                {
+                  "entity": "binary_sensor.doorbell_package",
+                  "secondary_info": "last-changed"
+                },
+                {
+                  "entity": "binary_sensor.doorbell_person",
+                  "secondary_info": "last-changed"
+                },
+                {
+                  "entity": "binary_sensor.doorbell_visitor",
+                  "secondary_info": "last-changed"
+                }
+              ],
+              "title": "Front Door"
+            },
             {
               "type": "entities",
               "entities": [
@@ -1039,7 +1073,7 @@
                   "entity": "binary_sensor.basement_door"
                 },
                 {
-                  "entity": "binary_sensor.utility_room_door"
+                  "entity": "binary_sensor.utility_room_doors"
                 },
                 {
                   "entity": "cover.garage_door"
@@ -1058,9 +1092,6 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "binary_sensor.dining_room_window_window_door_is_open"
-                },
-                {
                   "entity": "binary_sensor.bedroom_window"
                 },
                 {
@@ -1068,9 +1099,38 @@
                 },
                 {
                   "entity": "binary_sensor.kitchen_window"
+                },
+                {
+                  "entity": "binary_sensor.eric_office_window"
                 }
               ],
               "title": "Windows",
+              "state_color": true
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "cover.all_shades"
+                },
+                {
+                  "entity": "cover.living_room_shades_left_cover",
+                  "name": "Living Room Left"
+                },
+                {
+                  "entity": "cover.living_room_shades_center_cover",
+                  "name": "Living Room Center"
+                },
+                {
+                  "entity": "cover.living_room_shades_right_cover",
+                  "name": "Living Room Right"
+                },
+                {
+                  "entity": "cover.dining_room_shades_cover",
+                  "name": "Dining Room"
+                }
+              ],
+              "title": "Shades",
               "state_color": true
             }
           ]
@@ -1082,6 +1142,14 @@
           "icon": "mdi:camera",
           "badges": [],
           "cards": [
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "entity": "camera.blueiris_doorbell",
+              "camera_image": "camera.blueiris_doorbell"
+            },
             {
               "show_state": true,
               "show_name": true,
@@ -1261,6 +1329,15 @@
                 },
                 {
                   "entity": "binary_sensor.laundry_room_water_sensor_iaszone"
+                },
+                {
+                  "entity": "binary_sensor.master_bath_water_sensor_moisture"
+                },
+                {
+                  "entity": "binary_sensor.blue_bath_water_sensor_moisture"
+                },
+                {
+                  "entity": "binary_sensor.half_bath_water_sensor_moisture"
                 }
               ],
               "title": "Water Sensors",
@@ -1509,7 +1586,21 @@
               "cards": [
                 {
                   "type": "tile",
-                  "entity": "vacuum.roomba",
+                  "entity": "vacuum.roborock_main_floor",
+                  "features": [
+                    {
+                      "type": "vacuum-commands",
+                      "commands": [
+                        "start_pause",
+                        "stop",
+                        "clean_spot"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "vacuum.roomba_mainfloor",
                   "features": [
                     {
                       "type": "vacuum-commands",
@@ -1523,7 +1614,7 @@
                 },
                 {
                   "type": "tile",
-                  "entity": "vacuum.roomba_mainfloor",
+                  "entity": "vacuum.roomba",
                   "features": [
                     {
                       "type": "vacuum-commands",
@@ -1557,7 +1648,8 @@
                       "entity": "button.set_dishwasher_to_clean",
                       "tap_action": {
                         "action": "toggle"
-                      }
+                      },
+                      "name": "Dishwasher Clean"
                     },
                     {
                       "type": "tile",
@@ -1578,7 +1670,6 @@
           "icon": "mdi:printer-3d-nozzle",
           "title": "3D Printer",
           "path": "3d-printer",
-          "badges": [],
           "cards": [
             {
               "type": "entities",
@@ -1651,7 +1742,8 @@
               "type": "picture-entity",
               "entity": "camera.3d_printer"
             }
-          ]
+          ],
+          "visible": []
         },
         {
           "theme": "Backend-selected",
@@ -1824,102 +1916,85 @@
                 {
                   "type": "entities",
                   "entities": [
-                    "input_boolean.vacation_mode"
+                    {
+                      "entity": "input_boolean.vacation_mode"
+                    },
+                    {
+                      "entity": "input_boolean.hvac_override"
+                    }
                   ],
-                  "title": "System Toggles"
+                  "title": "System Toggles",
+                  "state_color": true
                 }
               ]
             },
             {
-              "type": "vertical-stack",
-              "cards": [
+              "title": "Battery Status",
+              "type": "custom:battery-state-card",
+              "secondary_info": "{last_changed}",
+              "round": 0,
+              "filter": {
+                "include": [
+                  {
+                    "name": "attributes.device_class",
+                    "value": "battery"
+                  }
+                ],
+                "exclude": [
+                  {
+                    "name": "entity_id",
+                    "value": "binary_sensor.*"
+                  },
+                  {
+                    "name": "entity_id",
+                    "value": "sensor.*ipad*"
+                  },
+                  {
+                    "name": "entity_id",
+                    "value": "sensor.*iphone*"
+                  },
+                  {
+                    "name": "entity_id",
+                    "value": "sensor.*roborock*"
+                  },
+                  {
+                    "name": "entity_id",
+                    "value": "sensor.*cooper*"
+                  },
+                  {
+                    "name": "entity_id",
+                    "value": "sensor.*roomba*"
+                  }
+                ]
+              },
+              "sort": {
+                "by": "state"
+              },
+              "collapse": 8,
+              "bulk_rename": [
                 {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "sensor.basement_door_battery"
-                    },
-                    {
-                      "entity": "sensor.utility_room_door_battery"
-                    },
-                    {
-                      "entity": "sensor.eric_office_motion_sensor_battery"
-                    },
-                    {
-                      "entity": "sensor.family_room_thermostat_battery"
-                    },
-                    {
-                      "entity": "sensor.fish_tank_water_sensor_battery"
-                    },
-                    {
-                      "entity": "sensor.half_bath_motion_sensor_battery"
-                    },
-                    {
-                      "entity": "sensor.kitchen_sink_water_sensor_battery"
-                    },
-                    {
-                      "entity": "sensor.laundry_room_water_sensor_battery"
-                    },
-                    {
-                      "entity": "sensor.nightstand_dimmer_remote_battery"
-                    },
-                    {
-                      "entity": "sensor.workshop_battery"
-                    }
-                  ],
-                  "title": "Zigbee Battery Status",
-                  "state_color": true
+                  "from": " Battery"
                 },
                 {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "sensor.basement_smoke_detector_battery_level"
-                    },
-                    {
-                      "entity": "sensor.eric_office_smoke_detector_battery_level"
-                    },
-                    {
-                      "entity": "sensor.downstairs_smoke_detector_battery_level"
-                    },
-                    {
-                      "entity": "sensor.kitchen_door_lock_battery_level"
-                    },
-                    {
-                      "entity": "sensor.upstairs_smoke_detector_battery_level"
-                    },
-                    {
-                      "entity": "sensor.workshop_smoke_detector_battery_level"
-                    },
-                    {
-                      "entity": "sensor.kitchen_smoke_detector_battery_level"
-                    },
-                    {
-                      "entity": "sensor.bedroom_window_battery_level"
-                    },
-                    {
-                      "entity": "sensor.dining_room_window_battery_level"
-                    },
-                    {
-                      "entity": "sensor.kitchen_window_battery_level"
-                    },
-                    {
-                      "entity": "sensor.nicole_office_window_battery_level"
-                    },
-                    {
-                      "entity": "sensor.nicole_office_closet_door_battery_level"
-                    },
-                    {
-                      "entity": "sensor.hot_water_heater_flood_sensor_battery_level"
-                    },
-                    {
-                      "entity": "sensor.nicole_office_sensor_battery_level"
-                    }
-                  ],
-                  "title": "Z-Wave Battery Status",
-                  "state_color": true
+                  "from": " level"
                 }
-              ]
+              ],
+              "colors": {
+                "steps": [
+                  {
+                    "value": 30,
+                    "color": "red"
+                  },
+                  {
+                    "value": 60,
+                    "color": "orange"
+                  },
+                  {
+                    "value": 100,
+                    "color": "green"
+                  }
+                ]
+              }
             },
             {
               "type": "history-graph",

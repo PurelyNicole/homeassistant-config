@@ -46,4 +46,4 @@ logger:
   logs:
     roombapy.roomba: error
     custom_components.openmediavault.omv_api: error
-    homeassistant.components.openevse.sensor: error
+    homeassistant.components.openevse: error
