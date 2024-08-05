@@ -161,6 +161,9 @@
                   "type": "entities",
                   "entities": [
                     {
+                      "entity": "lock.front_door_lock"
+                    },
+                    {
                       "entity": "lock.kitchen_door_lock"
                     },
                     {
@@ -170,14 +173,14 @@
                       "entity": "cover.garage_door"
                     },
                     {
+                      "entity": "binary_sensor.front_door",
+                      "secondary_info": "last-changed"
+                    },
+                    {
                       "entity": "binary_sensor.basement_outside_door"
                     },
                     {
                       "entity": "binary_sensor.garage_kitchen_door"
-                    },
-                    {
-                      "entity": "binary_sensor.front_door",
-                      "secondary_info": "last-changed"
                     }
                   ],
                   "title": "Doors",
@@ -817,6 +820,9 @@
               "entities": [
                 {
                   "entity": "light.master_bedroom_light"
+                },
+                {
+                  "entity": "fan.master_bedroom_fan"
                 },
                 {
                   "entity": "light.master_bedroom_closet"

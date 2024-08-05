@@ -298,6 +298,8 @@
     data:
       message: Smoke detector has been activiated.
       title: Smoke Detector Activated!
+      data:
+        url: /lovelace/alarms
   mode: single
 - id: master_bath_motion
   alias: Master Bathroom - Turn off lights when no motion detected
@@ -752,6 +754,8 @@
   - service: notify.notify_nicole_and_eric
     data:
       message: Dishwasher finished.
+      data:
+        url: /lovelace/chores
   mode: single
 - id: notify_eric_left_work
   alias: Notification - Notify Nicole when Eric leaves work.
@@ -816,6 +820,7 @@
     data:
       message: '{{ trigger.to_state.attributes.friendly_name }} started detecting
         moisture.'
+      url: /lovelace/alarms
   mode: single
 - id: half_bath_lights_motion
   alias: Half Bath - Control lights with motion
@@ -1062,6 +1067,8 @@
   - service: notify.notify_nicole_and_eric
     data:
       message: Washing machine cycle complete.
+      data:
+        url: /lovelace/chores
   mode: single
 - id: set_ecobee_dte_update
   alias: Climate - Set Ecobee Thermostat
@@ -1382,6 +1389,7 @@
       - service: notify.mobile_app_nicole_iphone
         data:
           message: Low battery detected for {{sensors}}.
+          url: /lovelace/settings
       exclude:
         entity_id:
         - sensor.cooper_se_charging_level_hv
@@ -1717,6 +1725,8 @@
   - service: notify.notify_nicole_and_eric
     data:
       message: Issue with Workshop Lock. Check if door is closed.
+      data:
+        url: /lovelace/doors-and-windows
   mode: single
 - id: '1713967151104'
   alias: Turn on Lava Lamp on Eric WFH Days
@@ -1768,7 +1778,7 @@
       entity_id: cover.all_shades
   mode: single
 - id: '1719534522240'
-  alias: Turn Off Dehumidifiers during peak hours
+  alias: Turn Off Dehumidifiers and turn up fan during peak hours
   description: ''
   trigger:
   - platform: state
@@ -1786,6 +1796,12 @@
         device_id: 3a53683188654a1d7626ff893117c84e
         entity_id: d38be84d36d295254ee6042589bff0e9
         domain: switch
+      - service: fan.set_percentage
+        metadata: {}
+        data:
+          percentage: 100
+        target:
+          entity_id: fan.master_bedroom_fan
     - conditions:
       - condition: state
         entity_id: schedule.dte_peak_hours
@@ -1798,6 +1814,12 @@
         device_id: 3a53683188654a1d7626ff893117c84e
         entity_id: d38be84d36d295254ee6042589bff0e9
         domain: switch
+      - service: fan.set_percentage
+        metadata: {}
+        data:
+          percentage: 25
+        target:
+          entity_id: fan.master_bedroom_fan
   mode: single
 - id: '1719773372343'
   alias: Dehumidifier - Turn off when windows open
@@ -1849,8 +1871,8 @@
     entity_id: 1b1ec3e92b573c166e96b68716ac16a3
     domain: switch
   mode: single
-- id: '1722274871912'
-  alias: Notification on doorbell ring
+- id: '1722293989725'
+  alias: Notify on doorbell ring.
   description: ''
   trigger:
   - type: turned_on
@@ -1860,8 +1882,101 @@
     domain: binary_sensor
   condition: []
   action:
+  - service: camera.snapshot
+    target:
+      entity_id: camera.doorbell_fluent
+    data:
+      filename: /config/www/doorbell/{{ expand('binary_sensor.doorbell_visitor')[0].last_changed
+        | as_timestamp  | timestamp_custom("%Y-%m-%d_%H-%M-%S") }}.jpg
+  - service: notify.notify_nicole_and_eric
+    data:
+      data:
+        attachment:
+          content-type: jpg
+          hide-thumbnail: false
+          url: /local/doorbell/{{ expand('binary_sensor.doorbell_visitor')[0].last_changed
+            | as_timestamp  | timestamp_custom("%Y-%m-%d_%H-%M-%S") }}.jpg
+        url: /lovelace/cameras
+      message: Someone is at the front door.
+    enabled: true
+  - service: notify.persistent_notification
+    metadata: {}
+    data:
+      message: '![image](/local/doorbell/{{ expand(''binary_sensor.doorbell_visitor'')[0].last_changed
+        | as_timestamp  | timestamp_custom("%Y-%m-%d_%H-%M-%S") }}.jpg)'
+      title: Someone is at the door.
+  mode: single
+- id: '1722441545108'
+  alias: Notify on package delivery
+  description: ''
+  trigger:
+  - type: turned_on
+    platform: device
+    device_id: 763791b3c6dd38ebe82dd8ea919cce99
+    entity_id: 7b4332b28910776392a67484de7b974e
+    domain: binary_sensor
+  condition: []
+  action:
   - service: notify.notify_nicole_and_eric
     metadata: {}
     data:
-      message: Someone at front door.
+      message: 'A package has been delivered. '
+      data:
+        url: /lovelace/cameras
+  mode: single
+- id: '1722870045891'
+  alias: Switch Master Bedroom Fan Direction with HVAC Mode
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 80e2ea7676adeea018b6e96cb57a3af5
+    domain: climate
+    entity_id: 54b1fea52a0a813e5b05b1655dfba00b
+    type: hvac_mode_changed
+    to: heat
+    alias: Ecobee Changes to Heat
+  - platform: device
+    device_id: 80e2ea7676adeea018b6e96cb57a3af5
+    domain: climate
+    entity_id: 54b1fea52a0a813e5b05b1655dfba00b
+    type: hvac_mode_changed
+    to: cool
+    alias: Ecobee Changes to Cool
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: device
+        device_id: 80e2ea7676adeea018b6e96cb57a3af5
+        domain: climate
+        entity_id: 54b1fea52a0a813e5b05b1655dfba00b
+        type: is_hvac_mode
+        hvac_mode: cool
+        alias: Ecobee is Cooling
+      sequence:
+      - service: fan.set_direction
+        metadata: {}
+        data:
+          direction: reverse
+        target:
+          entity_id: fan.master_bedroom_fan
+        alias: Set fan to reverse
+      alias: When Ecobee is cooling switch fan to reverse
+    - conditions:
+      - condition: device
+        device_id: 80e2ea7676adeea018b6e96cb57a3af5
+        domain: climate
+        entity_id: 54b1fea52a0a813e5b05b1655dfba00b
+        type: is_hvac_mode
+        hvac_mode: heat
+        alias: Ecobee is Heating
+      sequence:
+      - alias: Set bedroom fan to forward
+        service: fan.set_direction
+        metadata: {}
+        data:
+          direction: forward
+        target:
+          entity_id: fan.master_bedroom_fan
+      alias: When Ecobee is heating switch fan to forward
   mode: single

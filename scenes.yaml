@@ -32,6 +32,10 @@
     switch.magic_mirror_screen:
       state: 'off'
     fan.family_room_fan_south:
+      percentage: 75
+      state: 'on'
+    fan.master_bedroom_fan:
+      percentage: 25
       state: 'on'
   icon: mdi:weather-night
   metadata:
@@ -126,6 +130,9 @@
       color_mode: brightness
       brightness: 31
       state: 'on'
+    fan.family_room_fan_south:
+      state: 'on'
+      percentage: 25
   icon: mdi:television-classic
   metadata:
     light.cd_shelf_dimmer:
@@ -137,13 +144,20 @@
   entities:
     light.master_bath_light:
       color_mode: brightness
-      brightness: 3
+      brightness: 26
+    fan.master_bedroom_fan:
+      percentage: 25
       state: 'on'
     light.master_bedroom_light:
+      color_mode: brightness
+      brightness: 25.5
       state: 'on'
-      brightness: 75
   icon: mdi:alarm-check
-  metadata: {}
+  metadata:
+    fan.master_bedroom_fan:
+      entity_only: true
+    light.master_bedroom_light:
+      entity_only: true
 - id: goodnight_nicole_scene
   name: Good night - Nicole
   entities:
@@ -242,6 +256,8 @@
     light.master_bedroom_closet:
       state: 'off'
     light.master_bath_light:
+      state: 'off'
+    fan.master_bedroom_fan:
       state: 'off'
   icon: mdi:lightbulb-on-50
   metadata:
