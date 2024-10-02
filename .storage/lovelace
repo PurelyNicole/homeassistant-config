@@ -125,10 +125,29 @@
                       "entity": "calendar.holidays_in_united_states",
                       "name": "Holidays",
                       "color": "#A79B8E"
+                    },
+                    {
+                      "entity": "calendar.indiana_fever",
+                      "name": "Indiana Fever",
+                      "color": "navy"
+                    },
+                    {
+                      "entity": "calendar.detroit_lions",
+                      "name": "Detroit Lions",
+                      "color": "#0076B6"
+                    },
+                    {
+                      "entity": "calendar.detroit_red_wings",
+                      "name": "Detroit Red Wings",
+                      "color": "#ce1126"
+                    },
+                    {
+                      "entity": "calendar.michigan_wolverines_football",
+                      "name": "Michigan Wolverines",
+                      "color": "#FFCB05"
                     }
                   ],
                   "enableModeChange": true,
-                  "firstDayOfWeek": 1,
                   "maxDaysToShow": 7,
                   "refreshInterval": 60,
                   "hideFinishedEvents": true,
@@ -150,7 +169,8 @@
                   "showEventDate": true,
                   "showDatePerEvent": false,
                   "calShowDescription": false,
-                  "showLastCalendarWeek": false
+                  "showLastCalendarWeek": false,
+                  "firstDayOfWeek": 0
                 }
               ]
             },
@@ -406,8 +426,28 @@
                   "color": "#A79B8E"
                 },
                 {
-                  "entity": "calendar.greenwood_travel",
-                  "color": "#0B8043"
+                  "entity": "calendar.lions_schedule",
+                  "name": "Lions Schedule"
+                },
+                {
+                  "entity": "calendar.detroit_lions",
+                  "name": "Detroit Lions",
+                  "color": "#0076b6"
+                },
+                {
+                  "entity": "calendar.indiana_fever",
+                  "name": "Indiana Fever",
+                  "color": "navy"
+                },
+                {
+                  "entity": "calendar.detroit_red_wings",
+                  "name": "Detroit Red Wings",
+                  "color": "#ce1126"
+                },
+                {
+                  "entity": "calendar.michigan_wolverines_football",
+                  "name": "Michigan Wolverines",
+                  "color": "#FFCB05"
                 }
               ],
               "name": "Calendar Card",
@@ -477,9 +517,6 @@
                     },
                     {
                       "entity": "light.fireplace_dimmer"
-                    },
-                    {
-                      "entity": "switch.fish_tank_lights"
                     }
                   ],
                   "state_color": true,
@@ -686,9 +723,6 @@
                       "entity": "light.family_room_track_light_back"
                     },
                     {
-                      "entity": "light.globe_lamp"
-                    },
-                    {
                       "entity": "light.eric_office_light"
                     },
                     {
@@ -718,12 +752,6 @@
                     },
                     {
                       "entity": "light.cd_shelf_dimmer"
-                    },
-                    {
-                      "entity": "switch.fish_tank_lights"
-                    },
-                    {
-                      "entity": "switch.den_fish_feeder"
                     }
                   ],
                   "title": "Den Lights",
@@ -806,9 +834,6 @@
                   "entity": "light.nicole_office_floor_lamp"
                 },
                 {
-                  "entity": "light.nicole_office_file_cabinet_lamp"
-                },
-                {
                   "entity": "light.nicole_office_closet_light"
                 }
               ],
@@ -822,7 +847,7 @@
                   "entity": "light.master_bedroom_light"
                 },
                 {
-                  "entity": "fan.master_bedroom_fan"
+                  "entity": "light.nightstand_lamps"
                 },
                 {
                   "entity": "light.master_bedroom_closet"
@@ -852,6 +877,19 @@
               ],
               "state_color": true,
               "title": "Garage Lights"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "light.closet_room_closet_light"
+                },
+                {
+                  "entity": "light.closet_room_wall_switch"
+                }
+              ],
+              "title": "Closet Room Lights",
+              "state_color": true
             }
           ]
         },
@@ -925,6 +963,9 @@
                 },
                 {
                   "entity": "sensor.workshop_sensor_air_temperature"
+                },
+                {
+                  "entity": "sensor.den_temperature_sensor_temperature"
                 }
               ],
               "title": "Temperature"
@@ -955,17 +996,34 @@
                   "entity": "sensor.workshop_sensor_humidity"
                 },
                 {
+                  "entity": "sensor.den_temperature_sensor_humidity"
+                },
+                {
                   "entity": "switch.sonoffoutlet1_s31"
                 }
               ],
               "title": "Humidity"
             },
             {
-              "type": "tile",
-              "entity": "fan.family_room_fan_south",
-              "features": [
+              "type": "vertical-stack",
+              "cards": [
                 {
-                  "type": "fan-speed"
+                  "type": "tile",
+                  "entity": "fan.family_room_fan_south",
+                  "features": [
+                    {
+                      "type": "fan-speed"
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "fan.master_bedroom_fan",
+                  "features": [
+                    {
+                      "type": "fan-speed"
+                    }
+                  ]
                 }
               ]
             },
@@ -1189,6 +1247,22 @@
               "camera_view": "auto",
               "type": "picture-entity",
               "entity": "camera.blueiris_reolink_duo_left"
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "image": "https://demo.home-assistant.io/stub_config/bedroom.png",
+              "entity": "camera.blueiris_workshop"
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "image": "https://demo.home-assistant.io/stub_config/bedroom.png",
+              "entity": "camera.blueiris_workshop_duo"
             }
           ]
         },
@@ -1338,25 +1412,31 @@
               "entities": [
                 {
                   "entity": "binary_sensor.hot_water_heater_flood_sensor_water_leak_state",
-                  "name": "Hot Water Heater Water Sensor"
+                  "name": "Hot Water Heater"
                 },
                 {
-                  "entity": "binary_sensor.kitchen_sink_water_sensor"
+                  "entity": "binary_sensor.kitchen_sink_water_sensor",
+                  "name": "Kitchen Sink"
                 },
                 {
-                  "entity": "binary_sensor.fish_tank_water_sensor"
+                  "entity": "binary_sensor.laundry_room_water_sensor_iaszone",
+                  "name": "Laundry Room"
                 },
                 {
-                  "entity": "binary_sensor.laundry_room_water_sensor_iaszone"
+                  "entity": "binary_sensor.master_bath_water_sensor_moisture",
+                  "name": "Master Bath"
                 },
                 {
-                  "entity": "binary_sensor.master_bath_water_sensor_moisture"
+                  "entity": "binary_sensor.blue_bath_water_sensor_moisture",
+                  "name": "Blue Bath"
                 },
                 {
-                  "entity": "binary_sensor.blue_bath_water_sensor_moisture"
+                  "entity": "binary_sensor.half_bath_water_sensor_moisture",
+                  "name": "Half Bath"
                 },
                 {
-                  "entity": "binary_sensor.half_bath_water_sensor_moisture"
+                  "entity": "binary_sensor.downstairs_bath_water_sensor",
+                  "name": "Downstairs Bath"
                 }
               ],
               "title": "Water Sensors",
@@ -1413,23 +1493,7 @@
             },
             {
               "type": "media-control",
-              "entity": "media_player.downstairs_musiccast"
-            },
-            {
-              "type": "media-control",
               "entity": "media_player.garage_volumio"
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "remote.family_room_remote"
-                },
-                {
-                  "entity": "switch.family_room_sub"
-                }
-              ],
-              "state_color": true
             },
             {
               "type": "entities",
@@ -1510,6 +1574,55 @@
                   "vertical": false
                 }
               ]
+            },
+            {
+              "type": "custom:atomic-calendar-revive",
+              "name": "Upcoming Games",
+              "enableModeChange": true,
+              "entities": [
+                {
+                  "entity": "calendar.detroit_lions",
+                  "name": "Detroit Lions",
+                  "color": "#0076b6"
+                },
+                {
+                  "entity": "calendar.indiana_fever",
+                  "name": "Indiana Fever",
+                  "color": "navy"
+                },
+                {
+                  "entity": "calendar.detroit_red_wings",
+                  "name": "Detroit Red Wings",
+                  "color": "#ce1126"
+                },
+                {
+                  "entity": "calendar.michigan_wolverines_football",
+                  "name": "Michigan Wolverines",
+                  "color": "#FFCB05"
+                }
+              ],
+              "firstDayOfWeek": 0,
+              "calShowDescription": false,
+              "disableCalEventLink": false,
+              "showLastCalendarWeek": false,
+              "showEventIcon": true,
+              "showCalendarName": false,
+              "showEventDate": true,
+              "hoursOnSameLine": false,
+              "showRelativeTime": false,
+              "linkTarget": "_self",
+              "showMonth": false,
+              "showCurrentEventLine": false,
+              "defaultMode": "Event",
+              "sortBy": "start",
+              "showDeclined": false,
+              "hideFinishedEvents": true,
+              "showDate": false,
+              "showLocation": false,
+              "offsetHeaderDate": false,
+              "showDatePerEvent": false,
+              "disableCalLink": false,
+              "hideDuplicates": false
             }
           ]
         },

@@ -35,6 +35,7 @@ upstairs_lights:
   entities:
     - group.nicole_office_lights
     - group.master_bedroom_lights
+    - group.closet_room_lights
   icon: mdi:lightbulb-group
 main_floor_lights:
   name: Main Floor Lights
@@ -75,7 +76,6 @@ nicole_office_lights:
   entities:
     - light.nicole_office_wall_switch
     - light.nicole_office_floor_lamp
-    - light.nicole_office_file_cabinet_lamp
     - light.nicole_office_closet_light
   icon: mdi:lightbulb-group
 garage_lights:
@@ -93,6 +93,7 @@ master_bedroom_lights:
     - light.bedroom_closet_2
     - light.master_bedroom_closet
     - switch.master_bath_fan
+    - light.nightstand_lamps
   icon: mdi:lightbulb-group
 den_lights:
   name: Den Lights
@@ -121,4 +122,10 @@ living_dining_room_lights:
     - light.living_room_lamps
     - light.dining_room_table_dimmer
     - light.dining_room_wall_dimmer
+  icon: mdi:lightbulb-group
+closet_room_lights:
+  name: Closet Room Lights
+  entities:
+    - light.closet_room_closet_light
+    - light.closet_room_wall_switch
   icon: mdi:lightbulb-group
