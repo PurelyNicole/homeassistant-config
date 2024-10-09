@@ -1,6 +1,8 @@
 # Folders
 .cloud
 .vscode
+addons_autoscripts
+addons_config
 custom_components
 deps
 esphome

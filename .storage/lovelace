@@ -234,6 +234,73 @@
               "type": "vertical-stack",
               "cards": [
                 {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "calendar.mealie_dinner",
+                      "state": "on"
+                    },
+                    {
+                      "condition": "and",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.mealie_recipe_image_id",
+                          "state_not": ""
+                        },
+                        {
+                          "condition": "state",
+                          "entity": "sensor.mealie_recipe_image_id",
+                          "state_not": "None"
+                        }
+                      ]
+                    }
+                  ],
+                  "card": {
+                    "show_state": true,
+                    "show_name": true,
+                    "camera_view": "auto",
+                    "type": "picture-entity",
+                    "entity": "sensor.tonight_dinner_name",
+                    "camera_image": "camera.dinner_recipe_image",
+                    "name": "Tonight's Dinner",
+                    "card_mod": {
+                      "style": "ha-card {\nmax-height: 200px !important;\noverflow: hidden;\ndisplay: flex;\nalign-items: center;\njustify-content: center;\n}\n"
+                    }
+                  }
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "calendar.mealie_dinner",
+                      "state": "on"
+                    },
+                    {
+                      "condition": "or",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.mealie_recipe_image_id",
+                          "state": "None"
+                        },
+                        {
+                          "condition": "state",
+                          "entity": "sensor.mealie_recipe_image_id",
+                          "state": ""
+                        }
+                      ]
+                    }
+                  ],
+                  "card": {
+                    "type": "entity",
+                    "entity": "sensor.tonight_dinner_name",
+                    "name": "Tonight's Dinner"
+                  }
+                },
+                {
                   "type": "entity",
                   "entity": "sensor.dishwasher_status",
                   "state_color": true
@@ -242,7 +309,7 @@
                   "type": "custom:grocy-chores-card",
                   "entity": "sensor.grocy_chores",
                   "title": "Chorin'",
-                  "show_quantity": 5,
+                  "show_quantity": 4,
                   "show_days": 3,
                   "show_assigned": false,
                   "show_last_tracked": true,

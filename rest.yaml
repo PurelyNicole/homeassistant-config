@@ -1,0 +1,26 @@
+- resource: "http://192.168.1.50:9090/api/groups/mealplans/today"
+  method: GET
+  headers:
+    Authorization: !secret mealie_api
+  scan_interval: 3600
+  sensor:
+    - name: Mealie Dinner Recipe ID
+      value_template: "{{ value_json[0]['recipe']['id'] }}"
+      icon: mdi:identifier
+      force_update: true
+      unique_id: mealie_dinner_recipe_id
+    - name: Mealie Dinner Recipe Name
+      value_template: "{{ value_json[0]['recipe']['name'] }}"
+      icon: mdi:silverware-fork-knife
+      force_update: true
+      unique_id: mealie_dinner_recipe_name
+    - name: Mealie Recipe Image ID
+      value_template: "{{ value_json[0]['recipe']['image'] }}"
+      icon: mdi:identifier
+      force_update: true
+      unique_id: mealie_recipe_image_id
+    - name: Mealie No Recipe Dinner Name
+      value_template: "{{ value_json[0].title }}"
+      icon: mdi:silverware-fork-knife
+      force_update: true
+      unique_id: mealie_no_recipe_dinner_name
