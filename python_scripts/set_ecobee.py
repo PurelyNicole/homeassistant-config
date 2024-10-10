@@ -21,15 +21,15 @@ current_month = datetime.datetime.now().month
 def normalOperation():
   logger.info("Enter normal operation mode.")
   # Set thermostat mode based on forecasted high temperature.
-  if today_high > 65 and current_month > 3:
+  if today_high > 65:
     logger.info(f"Today's high: {today_high}. Setting mode to cool.")
     operation_mode = "cool"
   # Sets heat_cool variables.
-  elif today_high > 55 and today_high <= 65 and current_month > 3:
+  elif today_high > 55 and today_high <= 65:
     logger.info(f"Today's high: {today_high}. Setting mode to heat_cool.")
     operation_mode = "heat_cool"
   # Sets heat variables.
-  elif today_high <= 55 or current_month < 3:
+  elif today_high <= 55:
     logger.info(f"Today's high: {today_high}. Setting mode to heat.")
     operation_mode = "heat"
   else:

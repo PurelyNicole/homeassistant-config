@@ -10,11 +10,16 @@ day_of_week = dt.weekday()
 current_hour = dt.hour
 
 # Set fr_thermostat based on main_thermost
-if ((current_mode == "heat") or (current_mode == "heat_cool")):
+if (current_mode != "cool"):
   logger.info("Ecobee is heat, set to heat mode.")
   if ((workday == "off") or (current_hour > 15)):
     logger.info("It's weekend/evening. Match ecobee temperature.")
-    set_temp = (hass.states.get(main_thermostat).attributes['temperature'])
+    if (current_mode == "heat"):
+      set_temp = (hass.states.get(main_thermostat).attributes['temperature'])
+    elif (current_mode == "heat_cool"):
+      set_temp = (hass.states.get(main_thermostat).attributes['target_temp_low'])
+    else:
+      logger.warn("Something went wrong, you shouldn't be here.")
   else:
     logger.info("Its a weekday morning. Set to 60.")
     set_temp = 60

@@ -461,6 +461,10 @@
     to: heat
     trigger: state
   - entity_id:
+    - climate.ecobee_thermostat
+    to: heat_cool
+    trigger: state
+  - entity_id:
     - input_select.home_mode
     to: Sleep
     trigger: state
