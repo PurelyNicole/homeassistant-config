@@ -37,6 +37,8 @@
     fan.master_bedroom_fan:
       percentage: 25
       state: 'on'
+    light.workshop_lights:
+      state: 'off'
   icon: mdi:weather-night
   metadata:
     switch.magic_mirror_screen:
@@ -112,8 +114,8 @@
       color_mode: hs
       brightness: 153
       hs_color:
-      - 30
-      - 0
+        - 30
+        - 0
       effect: Solid
       state: 'on'
     light.fireplace_dimmer:
@@ -145,6 +147,7 @@
     light.master_bath_light:
       color_mode: brightness
       brightness: 26
+      state: 'on'
     fan.master_bedroom_fan:
       percentage: 25
       state: 'on'
@@ -152,6 +155,8 @@
       color_mode: brightness
       brightness: 25.5
       state: 'on'
+    light.nightstand_lamps:
+      state: 'off'
   icon: mdi:alarm-check
   metadata:
     fan.master_bedroom_fan:
@@ -258,6 +263,8 @@
     light.master_bath_light:
       state: 'off'
     fan.master_bedroom_fan:
+      state: 'off'
+    light.nightstand_lamps:
       state: 'off'
   icon: mdi:lightbulb-on-50
   metadata:

@@ -901,6 +901,9 @@
                   "entity": "light.nicole_office_floor_lamp"
                 },
                 {
+                  "entity": "light.raccoon_lamp"
+                },
+                {
                   "entity": "light.nicole_office_closet_light"
                 }
               ],
@@ -1694,76 +1697,6 @@
           ]
         },
         {
-          "title": "Vehicles",
-          "path": "vehicles",
-          "icon": "mdi:car",
-          "badges": [],
-          "cards": [
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "device_tracker.cooper_se"
-                },
-                {
-                  "entity": "sensor.cooper_se_charging_level_hv"
-                },
-                {
-                  "entity": "sensor.cooper_se_remaining_range_electric"
-                },
-                {
-                  "entity": "sensor.cooper_se_charging_status"
-                },
-                {
-                  "entity": "binary_sensor.cooper_se_check_control_messages"
-                },
-                {
-                  "entity": "binary_sensor.cooper_se_condition_based_services"
-                },
-                {
-                  "entity": "binary_sensor.cooper_se_connection_status"
-                },
-                {
-                  "entity": "binary_sensor.cooper_se_lids"
-                },
-                {
-                  "entity": "lock.cooper_se_lock"
-                },
-                {
-                  "entity": "sensor.cooper_se_mileage"
-                },
-                {
-                  "entity": "binary_sensor.cooper_se_windows"
-                }
-              ],
-              "title": "MINI",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "sensor.charging_status"
-                },
-                {
-                  "entity": "sensor.charge_time_elapsed"
-                },
-                {
-                  "entity": "sensor.ambient_temperature"
-                },
-                {
-                  "entity": "sensor.total_usage"
-                },
-                {
-                  "entity": "sensor.usage_this_session"
-                }
-              ],
-              "title": "OpenEVSE",
-              "state_color": true
-            }
-          ]
-        },
-        {
           "title": "Chores",
           "path": "chores",
           "icon": "mdi:robot-vacuum",
@@ -1943,6 +1876,76 @@
             }
           ],
           "visible": []
+        },
+        {
+          "title": "Vehicles",
+          "path": "vehicles",
+          "icon": "mdi:car",
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "device_tracker.cooper_se"
+                },
+                {
+                  "entity": "sensor.cooper_se_charging_level_hv"
+                },
+                {
+                  "entity": "sensor.cooper_se_remaining_range_electric"
+                },
+                {
+                  "entity": "sensor.cooper_se_charging_status"
+                },
+                {
+                  "entity": "binary_sensor.cooper_se_check_control_messages"
+                },
+                {
+                  "entity": "binary_sensor.cooper_se_condition_based_services"
+                },
+                {
+                  "entity": "binary_sensor.cooper_se_connection_status"
+                },
+                {
+                  "entity": "binary_sensor.cooper_se_lids"
+                },
+                {
+                  "entity": "lock.cooper_se_lock"
+                },
+                {
+                  "entity": "sensor.cooper_se_mileage"
+                },
+                {
+                  "entity": "binary_sensor.cooper_se_windows"
+                }
+              ],
+              "title": "MINI",
+              "state_color": true
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.charging_status"
+                },
+                {
+                  "entity": "sensor.charge_time_elapsed"
+                },
+                {
+                  "entity": "sensor.ambient_temperature"
+                },
+                {
+                  "entity": "sensor.total_usage"
+                },
+                {
+                  "entity": "sensor.usage_this_session"
+                }
+              ],
+              "title": "OpenEVSE",
+              "state_color": true
+            }
+          ]
         },
         {
           "theme": "Backend-selected",

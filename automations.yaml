@@ -416,6 +416,7 @@
         target:
           device_id:
           - 84233bfe9142301d0caf5e3ba80fef60
+          - a92e583bc2e9af0c7902a1cf6aca3a3e
         action: light.turn_on
   mode: restart
 - id: niocole_office_closet_light

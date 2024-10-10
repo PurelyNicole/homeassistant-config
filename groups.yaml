@@ -4,6 +4,7 @@ people:
     - person.eric
     - person.nicole
   icon: mdi:account-group
+  unique_id: group.people
 
 ###################
 # Lighting Groups #
@@ -22,6 +23,7 @@ outdoor_lights:
     - light.driveway_post_and_tree_lights
     - group.rgb_flood_lights
   icon: mdi:lightbulb-group
+  unique_id: group.outdoor_lights
 # RGB Outdoor Lights
 rgb_flood_lights:
   name: RGB Flood Lights
@@ -29,6 +31,7 @@ rgb_flood_lights:
     - light.rgb_flood1
     - light.rgb_flood2
   icon: mdi:lightbulb-group
+  unique_id: group.rgb_flood_lights
 # Level Lights
 upstairs_lights:
   name: Upstairs Lights
@@ -37,6 +40,7 @@ upstairs_lights:
     - group.master_bedroom_lights
     - group.closet_room_lights
   icon: mdi:lightbulb-group
+  unique_id: group.upstairs_lights
 main_floor_lights:
   name: Main Floor Lights
   entities:
@@ -46,6 +50,7 @@ main_floor_lights:
     - light.entryway_light
     - light.half_bath_light
   icon: mdi:lightbulb-group
+  unique_id: group.main_floor_lights
 downstairs_lights:
   name: Downstairs Lights
   entities:
@@ -55,6 +60,7 @@ downstairs_lights:
     - light.eric_office_light
     - light.lava_lamp
   icon: mdi:lightbulb-group
+  unique_id: group.downstairs_lights
 basement_lights:
   name: Basement Lights
   entities:
@@ -64,6 +70,7 @@ basement_lights:
     - light.basement_stairs_switch
     - light.utility_room_light
   icon: mdi:lightbulb-group
+  unique_id: group.basement_lights
 # Room Lights
 family_room_lights:
   name: Family Room Lights
@@ -71,19 +78,23 @@ family_room_lights:
     - light.family_room_track_light_front
     - light.family_room_track_light_back
   icon: mdi:lightbulb-group
+  unique_id: group.family_room_lights
 nicole_office_lights:
   name: Nicole Office Lights
   entities:
     - light.nicole_office_wall_switch
     - light.nicole_office_floor_lamp
     - light.nicole_office_closet_light
+    - light.raccoon_lamp
   icon: mdi:lightbulb-group
+  unique_id: group.nicole_office_lights
 garage_lights:
   name: Garage Lights
   entities:
     - light.garage_lights_north
     - light.garage_lights_south
   icon: mdi:lightbulb-group
+  unique_id: group.garage_lights
 master_bedroom_lights:
   name: Master Bedroom Lights
   entities:
@@ -95,6 +106,7 @@ master_bedroom_lights:
     - switch.master_bath_fan
     - light.nightstand_lamps
   icon: mdi:lightbulb-group
+  unique_id: group.master_bedroom_lights
 den_lights:
   name: Den Lights
   entities:
@@ -105,6 +117,7 @@ den_lights:
     - light.cd_shelf_dimmer
     - light.step_lights
   icon: mdi:lightbulb-group
+  unique_id: group.den_lights
 kitchen_lights:
   name: Kitchen Lights
   entities: 
@@ -115,6 +128,7 @@ kitchen_lights:
     - light.kitchen_table_light
     - light.kitchen_mudroom_dimmer
   icon: mdi:lightbulb-group
+  unique_id: group.kitchen_lights
 living_dining_room_lights:
   name: Living/Dining Room Lights
   entities:
@@ -123,9 +137,11 @@ living_dining_room_lights:
     - light.dining_room_table_dimmer
     - light.dining_room_wall_dimmer
   icon: mdi:lightbulb-group
+  unique_id: group.living_dining_room_lights
 closet_room_lights:
   name: Closet Room Lights
   entities:
     - light.closet_room_closet_light
     - light.closet_room_wall_switch
   icon: mdi:lightbulb-group
+  unique_id: group.closet_room_lights
