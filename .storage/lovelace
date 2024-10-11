@@ -1544,6 +1544,9 @@
                 },
                 {
                   "entity": "binary_sensor.eric_office_motion_sensor_motion"
+                },
+                {
+                  "entity": "binary_sensor.closet_room_motion_sensor_motion"
                 }
               ],
               "title": "Motion",

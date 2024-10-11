@@ -51,7 +51,6 @@ downstairs_lights:
   entities:
     - group.family_room_lights
     - group.den_lights
-    - light.globe_lamp
     - light.eric_office_light
     - light.lava_lamp
   icon: mdi:lightbulb-group
