@@ -1,0 +1,286 @@
+wind_down_nicole:
+  alias: Wind Down - Nicole
+  sequence:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness: 26
+    target:
+      entity_id: light.master_bath_light
+    alias: Turn on and dim master bathroom light
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness: 25.5
+    target:
+      entity_id: light.master_bedroom_light
+    alias: Turn on and dim master bedroom fan light
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - light.nightstand_lamps
+      - light.master_bedroom_closet
+  - action: climate.set_preset_mode
+    metadata: {}
+    data:
+      preset_mode: sleep
+    target:
+      entity_id: climate.ecobee_thermostat
+  - if:
+    - condition: state
+      entity_id: climate.ecobee_thermostat
+      state: cool
+    then:
+    - action: fan.turn_on
+      metadata: {}
+      data:
+        percentage: 25
+      target:
+        entity_id: fan.master_bedroom_fan
+  description: ''
+  icon: mdi:alarm-snooze
+goodnight:
+  alias: Goodnight
+  sequence:
+  - action: input_select.select_option
+    metadata: {}
+    data:
+      option: Home
+    target:
+      entity_id: input_select.home_mode
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      floor_id:
+      - basement
+      - downstairs
+      - main_floor
+      - upstairs
+      area_id: workshop
+      entity_id: light.pixel_post_light
+  - action: cover.close_cover
+    metadata: {}
+    data: {}
+    target:
+      entity_id: cover.garage_door
+  - action: lock.lock
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - lock.front_door_lock
+      - lock.kitchen_door_lock
+      - lock.workshop
+  - action: fan.turn_on
+    metadata: {}
+    data:
+      percentage: 75
+    target:
+      entity_id: fan.family_room_fan_south
+  - action: fan.turn_on
+    metadata: {}
+    data:
+      percentage: 25
+    target:
+      entity_id: fan.master_bedroom_fan
+  - action: switch.turn_off
+    target:
+      entity_id: switch.magic_mirror_screen
+    data: {}
+  description: ''
+  icon: mdi:weather-night
+good_morning:
+  alias: Good Morning
+  sequence:
+  - action: input_select.select_option
+    metadata: {}
+    data:
+      option: Home
+    target:
+      entity_id: input_select.home_mode
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.magic_mirror_screen
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.pixel_post_light
+  - choose:
+    - conditions:
+      - condition: sun
+        before: sunrise
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.kitchen_table_light
+  description: ''
+  icon: mdi:weather-sunny
+goodbye:
+  alias: Goodbye
+  sequence:
+  - action: input_select.select_option
+    metadata: {}
+    data:
+      option: Away
+    target:
+      entity_id: input_select.home_mode
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      floor_id:
+      - basement
+      - downstairs
+      - main_floor
+      - upstairs
+      area_id: workshop
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - switch.magic_mirror_screen
+      - switch.hair_straightener
+  - action: climate.set_preset_mode
+    metadata: {}
+    data:
+      preset_mode: sleep
+    target:
+      device_id: 80e2ea7676adeea018b6e96cb57a3af5
+  description: ''
+  icon: mdi:run
+watch_tv_downstairs:
+  alias: Watch TV - Downstairs
+  sequence:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness: 128
+    target:
+      entity_id:
+      - light.family_room_track_light_back
+      - light.family_room_track_light_front
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - light.grill_lights
+      - light.den_stair_landing
+      - light.family_room_deck_light_back
+      - light.fireplace_dimmer
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness: 153
+      hs_color: 30,0
+    target:
+      entity_id: light.kitchenette_led_strip
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness: 145
+    target:
+      entity_id: light.kitchenette_spot_lights
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness: 38
+    target:
+      entity_id:
+      - light.cd_shelf_dimmer
+      - light.step_lights
+  - if:
+    - condition: state
+      entity_id: climate.ecobee_thermostat
+      state: cool
+    then:
+    - action: fan.set_percentage
+      metadata: {}
+      data:
+        percentage: 25
+      target:
+        entity_id: fan.family_room_fan_south
+  description: ''
+  icon: mdi:remote-tv
+watch_tv_main_floor:
+  alias: Watch TV - Main Floor
+  sequence:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness: 150
+    target:
+      entity_id:
+      - light.dining_room_wall_dimmer
+      - light.living_room_wall_dimmer
+      - light.dining_room_table_dimmer
+      - light.kitchen_table_light
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness: 125
+    target:
+      entity_id:
+      - light.kitchen_under_cabinet_lights
+      - light.kitchen_sink_dimmer
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - light.kitchen_mudroom_dimmer
+      - light.kitchen_overhead_lights
+      - light.entryway_light
+      - light.living_room_lamps
+  description: ''
+  icon: mdi:television
+dim_bedroom_lights:
+  alias: Dim Bedroom Lights
+  sequence:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 50
+    target:
+      entity_id: light.master_bedroom_light
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - light.nightstand_lamps
+      - light.master_bedroom_closet
+      - light.master_bath_light
+  - if:
+    - condition: state
+      entity_id: climate.ecobee_thermostat
+      state: cool
+    then:
+    - action: fan.turn_on
+      metadata: {}
+      data:
+        percentage: 25
+      target:
+        entity_id: fan.master_bedroom_fan
+    else:
+    - action: fan.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id: fan.master_bedroom_fan
+  description: ''
+  icon: mdi:lightbulb-on-50

@@ -13,13 +13,9 @@
     alias: When everyone is away for more than five minutes
   conditions: []
   actions:
-  - target:
-      entity_id: input_select.home_mode
-    data:
-      option: Away
-    action: input_select.select_option
-    alias: Set mode to away
-  - scene: scene.goodbye
+  - action: script.goodbye
+    metadata: {}
+    data: {}
   mode: parallel
   max: 10
 - id: welcome_home
@@ -140,11 +136,12 @@
   - condition: time
     after: '19:00:00'
   actions:
-  - scene: scene.watch_tv
-  - target:
-      entity_id: scene.watch_tv_main_floor
+  - action: script.watch_tv_downstairs
     metadata: {}
-    action: scene.turn_on
+    data: {}
+  - action: script.watch_tv_main_floor
+    metadata: {}
+    data: {}
   mode: single
 - id: basement_lights_single_switch
   alias: Basement - Control lights with single switch
@@ -797,20 +794,9 @@
     entity_id: person.nicole
     state: home
   actions:
-  - target:
-      entity_id: scene.good_morning
+  - action: script.good_morning
     metadata: {}
-    action: scene.turn_on
-  - alias: Turn on Kitchen Table Light if before sunrise.
-    if:
-    - condition: sun
-      before: sunrise
-    then:
-    - type: turn_on
-      device_id: b3275c0af7696dc2e67ed8b562004634
-      entity_id: light.kitchen_table_light
-      domain: light
-      brightness_pct: 100
+    data: {}
   mode: single
 - id: nicole_wind_down
   alias: Nicole - Wind Down
@@ -852,14 +838,9 @@
       state: home
     alias: Home Mode is not Home and Eric is Home
   actions:
-  - target:
-      entity_id: scene.good_morning
+  - action: script.good_morning
     metadata: {}
-    action: scene.turn_on
-  - target:
-      entity_id: scene.good_morning_eric
-    metadata: {}
-    action: scene.turn_on
+    data: {}
   mode: single
 - id: garage_door_lights_with_door
   alias: Lighting - Turn on Garage Lights when Garage Door opens
@@ -1792,25 +1773,6 @@
           entity_id:
           - light.nightstand_lamps
         data: {}
-  mode: single
-- id: dim_bedroom
-  alias: Dim Bedroom
-  description: ''
-  triggers:
-  - entity_id:
-    - scene.dim_bedroom_lights
-    trigger: state
-  conditions: []
-  actions:
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 2
-      milliseconds: 0
-  - action: scene.turn_on
-    metadata: {}
-    target:
-      entity_id: scene.dim_bedroom_lights
   mode: single
 - id: closet_room_control_lights_with_motion
   alias: Closet Room - Control Lights with Motion

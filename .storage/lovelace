@@ -434,16 +434,16 @@
               "type": "entities",
               "entities": [
                 {
-                  "entity": "scene.watch_tv_main_floor"
+                  "entity": "script.watch_tv_main_floor"
                 },
                 {
-                  "entity": "scene.watch_tv"
+                  "entity": "script.watch_tv_downstairs"
                 },
                 {
-                  "entity": "scene.goodnight"
+                  "entity": "script.dim_bedroom_lights"
                 },
                 {
-                  "entity": "scene.dim_bedroom_lights"
+                  "entity": "script.goodnight"
                 }
               ]
             },
@@ -613,7 +613,7 @@
               "cards": [
                 {
                   "type": "tile",
-                  "entity": "scene.watch_tv",
+                  "entity": "script.watch_tv_downstairs",
                   "show_entity_picture": false,
                   "vertical": false,
                   "tap_action": {
