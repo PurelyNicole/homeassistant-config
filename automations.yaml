@@ -1,8 +1,6 @@
 - id: home_mode_away
   alias: Home Mode - Set away when everyone leaves
-  description:
-    When everyone leaves And 5 minutes have passed Then the Home Mode switches
-    to Away
+  description: ""
   triggers:
     - entity_id: group.people
       from: home
@@ -26,9 +24,7 @@
   max: 10
 - id: welcome_home
   alias: Welcome Home
-  description:
-    "When someone arrives home: If state is not Sleep, set state to home.
-    If it's after sunset, turn on dining room light and globe lamp."
+  description: ""
   triggers:
     - entity_id: group.people
       to: home
@@ -94,9 +90,7 @@
   max: 10
 - id: goodnight_2am
   alias: Scene - Goodnight at 2:00am
-  description:
-    When the time is 2:00am And Someone is home Then call the goodnight
-    scene
+  description: ""
   triggers:
     - at: 02:00:00
       trigger: time
@@ -110,7 +104,7 @@
   mode: single
 - id: lights_off_sunrise
   alias: Lighting - Turn lights off at sunrise
-  description: When the sun rises Then turn off Outdoor Lights And Turn off the nightlight
+  description: ""
   triggers:
     - event: sunrise
       offset: "0"
@@ -152,9 +146,7 @@
   mode: single
 - id: basement_lights_single_switch
   alias: Basement - Control lights with single switch
-  description:
-    When the basement light switch is toggled, change the state of the
-    other lights to match.
+  description: ""
   triggers:
     - type: changed_states
       device_id: efbcedf9dc139306d474e13da27929f3
@@ -194,9 +186,7 @@
   mode: single
 - id: nicole_office_motion
   alias: Nicole Office - Turn off lights when no one in office
-  description:
-    When no motion is detected in the Office And 5 minutes have passed
-    Then turn off the lights
+  description: ""
   triggers:
     - type: no_motion
       device_id: aa43c0bccd576d4987586522ab5fa9d3
