@@ -4,12 +4,15 @@
   after: sunrise
   before: sunset
   before_offset: "-1:00:00"
+  unique_id: tod_day
 - platform: tod
   name: Dusk
   after: sunset
   after_offset: "-1:00:00"
   before: sunset
+  unique_id: tod_dusk
 - platform: tod
   name: Night
   after: sunset
   before: sunrise
+  unique_id: tod_night

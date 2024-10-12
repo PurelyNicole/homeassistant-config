@@ -13,6 +13,7 @@
   start: >
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
+  unique_id: sensor.replay_nicole_office_lights
 - platform: history_stats
   name: "replay_dining_room_dimmer"
   entity_id: light.dining_room_table_dimmer
@@ -21,6 +22,7 @@
   start: >
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
+  unique_id: sensor.replay_dining_room_dinner
 - platform: history_stats
   name: "replay_eric_office_light"
   entity_id: light.eric_office_light
@@ -29,6 +31,7 @@
   start: >
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
+  unique_id: sensor.replay_eric_office_light
 - platform: history_stats
   name: "replay_family_room_track_light_front"
   entity_id: light.family_room_track_light_front
@@ -37,6 +40,7 @@
   start: >
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
+  unique_id: sensor.replay_family_room_track_light_front
 - platform: history_stats
   name: "replay_kitchenette_spot_lights"
   entity_id: light.kitchenette_spot_lights
@@ -45,6 +49,7 @@
   start: >
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
+  unique_id: sensor.replay.kitchenette_spot_lights
 - platform: history_stats
   name: "replay_master_bath_light"
   entity_id: light.master_bath_light
@@ -53,6 +58,7 @@
   start: >
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
+  unique_id: sensor.replay_master_bath_light
 - platform: history_stats
   name: "replay_kitchen_overhead_lights"
   entity_id: light.kitchen_overhead_lights
@@ -61,6 +67,7 @@
   start: >
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
+  unique_id: sensor.kitchen_overhead_lights
 - platform: history_stats
   name: "replay_garage_lights"
   entity_id: light.garage_lights_north
@@ -69,6 +76,7 @@
   start: >
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
+  unique_id: sensor.replay_garage_lights
 - platform: history_stats
   name: "replay_basement_lights"
   entity_id: light.basement_lights
@@ -77,6 +85,7 @@
   start: >
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
+  unique_id: sensor.replay_basement_lights
 - platform: history_stats
   name: "replay_living_room_wall_dimmer"
   entity_id: light.living_room_wall_dimmer
@@ -85,6 +94,7 @@
   start: >
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
+  unique_id: sensor.replay_living_room_wall_dimmer
 
 # Open EVSE
 - platform: openevse
