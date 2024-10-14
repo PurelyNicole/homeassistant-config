@@ -861,9 +861,6 @@
                 },
                 {
                   "entity": "light.driveway_post_and_tree_lights"
-                },
-                {
-                  "entity": "group.rgb_flood_lights"
                 }
               ],
               "title": "Outdoor Lights",
