@@ -33,10 +33,11 @@
     trigger: state
   conditions: []
   actions:
-  - device_id: 35b0a2a05a9a45379fc7c5f05f6f57fd
-    domain: lock
-    entity_id: lock.kitchen_door_lock
-    type: unlock
+  - action: lock.unlock
+    metadata: {}
+    data: {}
+    target:
+      entity_id: lock.kitchen_door_lock
   - if:
     - condition: not
       conditions:
@@ -67,21 +68,14 @@
         alias: Pixel Post Light is on
       alias: If it's dark outside
     then:
-    - type: turn_on
-      device_id: 9dd57a98dd4307e523095748acd917f1
-      entity_id: light.kitchen_mudroom_dimmer
-      domain: light
-      brightness_pct: 100
-    - type: turn_on
-      device_id: 35744bb4b80d36890ae0f34f1ad22a94
-      entity_id: light.dining_room_table_dimmer
-      domain: light
-      brightness_pct: 100
-    - type: turn_on
-      device_id: b3275c0af7696dc2e67ed8b562004634
-      entity_id: light.kitchen_table_light
-      domain: light
-      brightness_pct: 100
+    - action: light.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+        - light.kitchen_table_light
+        - light.kitchen_mudroom_dimmer
+        - light.dining_room_table_dimmer
   mode: parallel
   max: 10
 - id: goodnight_2am
@@ -127,11 +121,10 @@
   alias: Scene - Trigger watch TV when Remote goes from PowerOff after sunset
   description: ''
   triggers:
-  - type: turned_on
-    device_id: d824906b0d4aea07973580f026dc7ed9
-    entity_id: remote.family_room_remote
-    domain: remote
-    trigger: device
+  - trigger: state
+    entity_id:
+    - remote.family_room_remote
+    to: 'on'
   conditions:
   - condition: time
     after: '19:00:00'
@@ -147,31 +140,25 @@
   alias: Basement - Control lights with single switch
   description: ''
   triggers:
-  - type: changed_states
-    device_id: efbcedf9dc139306d474e13da27929f3
-    entity_id: light.basement_stairs_switch
-    domain: light
-    trigger: device
+  - trigger: state
+    entity_id:
+    - light.basement_stairs_switch
   conditions: []
   actions:
   - choose:
     - conditions:
-      - condition: device
-        type: is_off
-        device_id: efbcedf9dc139306d474e13da27929f3
+      - condition: state
         entity_id: light.basement_stairs_switch
-        domain: light
+        state: 'off'
       sequence:
       - data: {}
         target:
           area_id: basement
         action: light.turn_off
     - conditions:
-      - condition: device
-        type: is_on
-        device_id: efbcedf9dc139306d474e13da27929f3
+      - condition: state
         entity_id: light.basement_stairs_switch
-        domain: light
+        state: 'on'
       sequence:
       - data: {}
         target:
@@ -187,15 +174,14 @@
   alias: Nicole Office - Turn off lights when no one in office
   description: ''
   triggers:
-  - type: no_motion
-    device_id: aa43c0bccd576d4987586522ab5fa9d3
-    entity_id: binary_sensor.nicole_office_sensor_home_security_motion_detection
-    domain: binary_sensor
+  - trigger: state
+    entity_id:
+    - binary_sensor.nicole_office_sensor_home_security_motion_detection
+    to: 'off'
     for:
       hours: 0
       minutes: 20
       seconds: 0
-    trigger: device
   conditions: []
   actions:
   - data: {}
@@ -208,51 +194,50 @@
   alias: Notification - Smoke Detector Activated
   description: ''
   triggers:
-  - type: co
-    device_id: 5dd20b9615b858ea31f5f02431fde004
-    entity_id: binary_sensor.basement_smoke_detector_co_alarm_carbon_monoxide_detected
-    domain: binary_sensor
-    trigger: device
-  - type: smoke
-    device_id: 5dd20b9615b858ea31f5f02431fde004
-    entity_id: binary_sensor.basement_smoke_detector_smoke_alarm_smoke_detected
-    domain: binary_sensor
-    trigger: device
-  - type: co
-    device_id: ac353f226d5faf78efe8bd287741ea47
-    entity_id: binary_sensor.downstairs_smoke_detector_co_alarm_carbon_monoxide_detected
-    domain: binary_sensor
-    trigger: device
-  - type: smoke
-    device_id: ac353f226d5faf78efe8bd287741ea47
-    entity_id: binary_sensor.downstairs_smoke_detector_smoke_alarm_smoke_detected
-    domain: binary_sensor
-    trigger: device
-  - type: co
-    device_id: 5dc7a5753d33064cf1c660f0097e0be2
-    entity_id: binary_sensor.upstairs_smoke_detector_co_alarm_carbon_monoxide_detected
-    domain: binary_sensor
-    trigger: device
-  - type: smoke
-    device_id: 5dc7a5753d33064cf1c660f0097e0be2
-    entity_id: binary_sensor.upstairs_smoke_detector_smoke_alarm_smoke_detected
-    domain: binary_sensor
-    trigger: device
-  - type: smoke
-    device_id: fe22124a5684619e2af2005c3afc93de
-    entity_id: binary_sensor.workshop_smoke_and_carbon_monoxide_alarm_smoke_alarm_smoke_detected
-    domain: binary_sensor
-    trigger: device
-  - type: co
-    device_id: 26b21ed8d1534bfcb780c21dd47b035f
-    entity_id: binary_sensor.kitchen_smoke_detector_carbon_monoxide_detected
-    domain: binary_sensor
-    trigger: device
-  - type: smoke
-    device_id: 26b21ed8d1534bfcb780c21dd47b035f
-    entity_id: binary_sensor.kitchen_smoke_detector_smoke_detected
-    domain: binary_sensor
-    trigger: device
+  - trigger: state
+    entity_id:
+    - binary_sensor.basement_smoke_detector_smoke_alarm_smoke_detected
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.basement_smoke_detector_co_alarm_carbon_monoxide_detected
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.eric_office_smoke_detector_smoke_alarm_smoke_detected
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.eric_office_smoke_detector_co_alarm_carbon_monoxide_detected
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.downstairs_smoke_detector_smoke_alarm_smoke_detected
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.downstairs_smoke_detector_co_alarm_carbon_monoxide_detected
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.upstairs_smoke_detector_smoke_alarm_smoke_detected
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.upstairs_smoke_detector_co_alarm_carbon_monoxide_detected
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.kitchen_smoke_detector_smoke_detected
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.kitchen_smoke_detector_carbon_monoxide_detected
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.workshop_smoke_and_carbon_monoxide_alarm_smoke_alarm_smoke_detected
+    to: 'on'
   conditions: []
   actions:
   - data:
@@ -341,11 +326,13 @@
   conditions:
   - condition: template
     value_template: '{{state_attr("weather.ecobee_thermostat", "temperature") >= 70}}'
+    alias: Temperature is above 70
   actions:
-  - device_id: b7abdbf8fe525eb1a5ac7ea8fd050455
-    domain: button
-    entity_id: button.cooper_se_activate_air_conditioning
-    type: press
+  - action: button.press
+    metadata: {}
+    data: {}
+    target:
+      entity_id: button.cooper_se_activate_air_conditioning
   mode: single
 - id: vacation_mode_auto
   alias: Vacation Mode
@@ -366,21 +353,31 @@
         entity_id: input_boolean.vacation_mode
         state: 'on'
       sequence:
-      - device_id: afeb99ceb8a5bc6e7ae6e6af6eceee3b
-        domain: climate
-        entity_id: climate.family_room_thermostat
-        type: set_hvac_mode
-        hvac_mode: 'off'
-        alias: Turn Family Room Thermostat Off
+      - action: climate.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: climate.family_room_thermostat
       - metadata: {}
         data: {}
         target:
           entity_id: cover.all_shades
         action: cover.close_cover
-      - type: turn_off
-        device_id: 527bcce84a0020ad4805403d7c88110a
-        entity_id: 1b1ec3e92b573c166e96b68716ac16a3
-        domain: switch
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.main_floor_tv
+      - action: media_player.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: media_player.main_floor_musiccast
+      - action: remote.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: remote.family_room_remote
   mode: single
 - id: nicole_office_lights_off
   alias: Nicole Office - Control lights with wall switch
@@ -407,11 +404,11 @@
         state: 'on'
       sequence:
       - data: {}
-        target:
-          device_id:
-          - 84233bfe9142301d0caf5e3ba80fef60
-          - a92e583bc2e9af0c7902a1cf6aca3a3e
         action: light.turn_on
+        target:
+          entity_id:
+          - light.nicole_office_floor_lamp
+          - light.raccoon_lamp
   mode: restart
 - id: niocole_office_closet_light
   alias: Nicole Office - Turn closet light off/on with door
@@ -428,19 +425,21 @@
         entity_id: binary_sensor.nicole_office_closet_door
         state: 'on'
       sequence:
-      - type: turn_on
-        device_id: 25520ab15610b01545d335b2672717a4
-        entity_id: light.nicole_office_closet_light
-        domain: light
+      - action: light.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.nicole_office_closet_light
     - conditions:
       - condition: state
         entity_id: binary_sensor.nicole_office_closet_door
         state: 'off'
       sequence:
-      - type: turn_off
-        device_id: 25520ab15610b01545d335b2672717a4
-        entity_id: light.nicole_office_closet_light
-        domain: light
+      - action: light.turn_off
+        target:
+          entity_id:
+          - light.nicole_office_closet_light
+        data: {}
   mode: single
 - id: set_family_room_thermostat
   alias: Family Room Thermostat
@@ -448,19 +447,6 @@
   triggers:
   - entity_id:
     - climate.ecobee_thermostat
-    attribute: temperature
-    trigger: state
-  - entity_id:
-    - climate.ecobee_thermostat
-    to: heat
-    trigger: state
-  - entity_id:
-    - climate.ecobee_thermostat
-    to: heat_cool
-    trigger: state
-  - entity_id:
-    - input_select.home_mode
-    to: Sleep
     trigger: state
   - entity_id:
     - input_select.home_mode
@@ -478,12 +464,12 @@
       entity_id: input_select.home_mode
       state: Sleep
     then:
-    - device_id: afeb99ceb8a5bc6e7ae6e6af6eceee3b
-      domain: climate
-      entity_id: climate.family_room_thermostat
-      type: set_hvac_mode
-      hvac_mode: 'off'
-      alias: Set thermostat to off
+    - action: climate.set_hvac_mode
+      metadata: {}
+      data:
+        hvac_mode: 'off'
+      target:
+        entity_id: climate.family_room_thermostat
     else:
     - data:
         main_thermostat: climate.ecobee_thermostat
@@ -495,17 +481,17 @@
   alias: Kitchenette - Turn on LEDs with wall switch
   description: ''
   triggers:
-  - type: turned_on
-    device_id: 3a723969ea70edbaabb321ad14e6924d
-    entity_id: light.kitchenette_spot_lights
-    domain: light
-    trigger: device
+  - trigger: state
+    entity_id:
+    - light.kitchenette_spot_lights
+    to: 'on'
   conditions: []
   actions:
-  - type: turn_on
-    device_id: 5cdd36d9da5933171ecacd4e048912ba
-    entity_id: light.kitchenette_led_strip
-    domain: light
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.kitchenette_led_strip
   mode: single
 - id: notify_oven_on
   alias: Notification - Everyone left or is sleeping but oven is on.
@@ -560,15 +546,14 @@
   alias: Notification - Upstairs fridge is open.
   description: ''
   triggers:
-  - type: opened
-    device_id: 825c675de049294dc0a55919bdfbf156
-    entity_id: binary_sensor.upstairs_refrigerator_door_open
-    domain: binary_sensor
+  - trigger: state
+    entity_id:
+    - binary_sensor.upstairs_refrigerator_door_open
     for:
       hours: 0
       minutes: 2
       seconds: 0
-    trigger: device
+    to: 'on'
   conditions: []
   actions:
   - data:
@@ -590,15 +575,18 @@
     - condition: zone
       entity_id: device_tracker.cooper_se
       zone: zone.itc_ann_arbor
+    alias: MINI is at work
   actions:
-  - device_id: b7abdbf8fe525eb1a5ac7ea8fd050455
-    domain: button
-    entity_id: button.cooper_se_activate_air_conditioning
-    type: press
-  - device_id: b7abdbf8fe525eb1a5ac7ea8fd050455
-    domain: lock
-    entity_id: lock.cooper_se_lock
-    type: unlock
+  - action: button.press
+    metadata: {}
+    data: {}
+    target:
+      entity_id: button.cooper_se_activate_air_conditioning
+  - action: lock.unlock
+    metadata: {}
+    data: {}
+    target:
+      entity_id: lock.cooper_se_lock
   mode: single
 - id: kitchen_window_seat_light
   alias: Kitchen - Control lights with overhead switch
@@ -629,7 +617,12 @@
       sequence:
       - data: {}
         target:
-          area_id: kitchen
+          entity_id:
+          - light.kitchen_mudroom_dimmer
+          - light.kitchen_sink_dimmer
+          - light.kitchen_table_light
+          - light.kitchen_under_cabinet_lights
+          - light.kitchen_window_seat_light
         action: light.turn_on
     - conditions:
       - condition: state
@@ -678,47 +671,42 @@
   actions:
   - data:
       message: Eric is leaving work.
+      data:
+        url: /map/0
     action: notify.mobile_app_nicole_iphone
   mode: single
 - id: notify_water_detected
   alias: Notification - Notify when water sensor detects moisture
   description: ''
   triggers:
-  - type: moist
-    device_id: f1988841f3fd56b85b26e5b1cfcfccab
-    entity_id: 959f8050e1559d76f127d4a303bae5db
-    domain: binary_sensor
-    trigger: device
-  - type: moist
-    device_id: 31e9606e62abd30bc5e6305603d8e67c
-    entity_id: ba0bb7cf245fcdb75dd5c2468ace79e4
-    domain: binary_sensor
-    trigger: device
-  - type: moist
-    device_id: 820f34bfa02aded8df58b18f667a8e29
-    entity_id: 430f2ac6745f738cc321493f16595210
-    domain: binary_sensor
-    trigger: device
-  - type: moist
-    device_id: 61a98c1c226600fd7f6dab560abf7f8b
-    entity_id: 68c9965b29ab40584a13268141e23576
-    domain: binary_sensor
-    trigger: device
-  - type: moist
-    device_id: 277c359a3c513cdd82f879b02205de11
-    entity_id: cf265bad7fe9fbfbae4461256e6ad9b6
-    domain: binary_sensor
-    trigger: device
-  - type: moist
-    device_id: 56da0d66327053ee3fe0cc28cd08925c
-    entity_id: 87efdf059c8158bb6cad2d1334acd4e9
-    domain: binary_sensor
-    trigger: device
-  - type: moist
-    device_id: b98319a1990e48df55701f9bf318167c
-    entity_id: 0f7884915ab276689aab31aac731fbf0
-    domain: binary_sensor
-    trigger: device
+  - trigger: state
+    entity_id:
+    - binary_sensor.hot_water_heater_flood_sensor_water_leak_state
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.master_bath_water_sensor_moisture
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.kitchen_sink_water_sensor
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.laundry_room_water_sensor_iaszone
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.half_bath_water_sensor_moisture
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.blue_bath_water_sensor_moisture
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.downstairs_bath_water_sensor
+    to: 'on'
   conditions: []
   actions:
   - data:
@@ -732,54 +720,35 @@
   alias: Half Bath - Control lights with motion
   description: ''
   triggers:
-  - type: motion
-    device_id: 12b7dc73a4601643d79a3274b66d4c62
-    entity_id: 23ec488c93780565cbf76d77209b40c4
-    domain: binary_sensor
-    trigger: device
-  - type: not_occupied
-    device_id: 12b7dc73a4601643d79a3274b66d4c62
-    entity_id: binary_sensor.half_bath_motion_sensor_occupancy
-    domain: binary_sensor
-    trigger: device
-  - type: no_motion
-    device_id: 12b7dc73a4601643d79a3274b66d4c62
-    entity_id: 23ec488c93780565cbf76d77209b40c4
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 10
-      seconds: 0
-    trigger: device
+  - trigger: state
+    entity_id:
+    - binary_sensor.half_bath_motion_sensor
+  - trigger: state
+    entity_id:
+    - binary_sensor.half_bath_motion_sensor_occupancy
   conditions: []
   actions:
   - choose:
     - conditions:
-      - type: is_no_motion
-        condition: device
-        device_id: 12b7dc73a4601643d79a3274b66d4c62
-        entity_id: 23ec488c93780565cbf76d77209b40c4
-        domain: binary_sensor
-        for:
-          hours: 0
-          minutes: 10
-          seconds: 0
-      sequence:
-      - type: turn_off
-        device_id: 10f945d73ec4f5a56d053445e3ef3f9b
-        entity_id: light.half_bath_light
-        domain: light
-    - conditions:
-      - type: is_occupied
-        condition: device
-        device_id: 12b7dc73a4601643d79a3274b66d4c62
+      - condition: state
         entity_id: binary_sensor.half_bath_motion_sensor_occupancy
-        domain: binary_sensor
+        state: 'off'
       sequence:
-      - type: turn_on
-        device_id: 10f945d73ec4f5a56d053445e3ef3f9b
-        entity_id: light.half_bath_light
-        domain: light
+      - action: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.half_bath_light
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.half_bath_motion_sensor_occupancy
+        state: 'on'
+      sequence:
+      - action: light.turn_on
+        target:
+          entity_id:
+          - light.half_bath_light
+        data: {}
   mode: restart
 - id: good_morning_nicole
   alias: Nicole - Good Morning Nicole
@@ -825,18 +794,9 @@
     - input_button.good_morning_eric
     trigger: state
   conditions:
-  - condition: and
-    conditions:
-    - condition: not
-      conditions:
-      - condition: state
-        entity_id: input_select.home_mode
-        state: Home
-      alias: Home Mode is not Home
-    - condition: state
-      entity_id: person.eric
-      state: home
-    alias: Home Mode is not Home and Eric is Home
+  - condition: state
+    entity_id: person.eric
+    state: home
   actions:
   - action: script.good_morning
     metadata: {}
@@ -846,15 +806,18 @@
   alias: Lighting - Turn on Garage Lights when Garage Door opens
   description: ''
   triggers:
-  - device_id: 21959ccd3bcee083d4554dd0e553d051
-    domain: cover
-    entity_id: cover.garage_door
-    type: opened
-    trigger: device
+  - trigger: state
+    entity_id:
+    - cover.garage_door
+    to: open
+  - trigger: state
+    entity_id:
+    - cover.garage_door
+    to: opening
   conditions:
-  - condition: sun
-    before: sunrise
-    after: sunset
+  - condition: template
+    value_template: '{{states("sensor.pixel_post_light_power")|float > 0}}'
+    alias: Pixel Post Light is on
   actions:
   - data: {}
     target:
@@ -892,15 +855,14 @@
   alias: Hair Straightener - Turn off after 30 minutes
   description: ''
   triggers:
-  - type: turned_on
-    device_id: ca79eaed962b1a630ce3466878b3a0d0
-    entity_id: switch.hair_straightener
-    domain: switch
+  - trigger: state
+    entity_id:
+    - switch.hair_straightener
+    to: 'on'
     for:
       hours: 0
       minutes: 30
       seconds: 0
-    trigger: device
   conditions:
   - condition: not
     conditions:
@@ -908,29 +870,29 @@
       entity_id: sensor.hair_straightener_energy_power
       state: '0'
   actions:
-  - type: turn_off
-    device_id: ca79eaed962b1a630ce3466878b3a0d0
-    entity_id: switch.hair_straightener
-    domain: switch
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.hair_straightener
   mode: single
 - id: lighting_eric_office_no_motion
   alias: Lighting - Turn off Eric Office lights when no motion detected.
   description: ''
   triggers:
-  - type: no_motion
-    device_id: c129d1289ba41f785e7c3f9f3063173d
-    entity_id: binary_sensor.eric_office_motion_sensor_motion
-    domain: binary_sensor
+  - trigger: state
+    entity_id:
+    - binary_sensor.eric_office_motion_sensor_motion
+    to: 'off'
     for:
       hours: 0
       minutes: 15
       seconds: 0
-    trigger: device
   conditions: []
   actions:
   - data: {}
     target:
-      device_id: a286d07c98ea8f359f523bcc9d4c5cda
+      entity_id: light.eric_office_light
     action: light.turn_off
   mode: single
 - id: notify_washing_machine_complete
@@ -1020,20 +982,19 @@
   alias: Lighting - Turn on basement lights when door opened.
   description: ''
   triggers:
-  - type: opened
-    device_id: 14446959dbf188c58e6943d51605b8f2
-    entity_id: binary_sensor.basement_door
-    domain: binary_sensor
-    trigger: device
   - entity_id:
     - binary_sensor.basement_outside_door
     to: 'on'
     trigger: state
+  - trigger: state
+    entity_id:
+    - binary_sensor.basement_door
+    to: 'on'
   conditions: []
   actions:
   - data: {}
     target:
-      device_id: efbcedf9dc139306d474e13da27929f3
+      entity_id: light.basement_stairs_switch
     action: light.turn_on
   mode: single
 - id: set_dimmers_max_during_day
@@ -1114,11 +1075,10 @@
   - condition: or
     conditions:
     - condition: state
-      entity_id: binary_sensor.day
-      state: 'on'
+      entity_id: input_select.home_mode
+      state: Home
     - condition: time
-      after: 02:00:00
-      before: 09:00:00
+      before: '19:00:00'
   actions:
   - action: light.turn_on
     target:
@@ -1136,11 +1096,12 @@
       actions:
       - data:
           message: Low battery detected for {{sensors}}.
+          data:
+            url: /lovelace/system
         action: notify.mobile_app_nicole_iphone
       exclude:
         entity_id:
         - sensor.cooper_se_charging_level_hv
-        - sensor.erics_ipad_battery_level
         - sensor.erics_iphone_14_battery_level
         - sensor.roomba_battery_level
         - sensor.roomba_mainfloor_battery_level
@@ -1160,10 +1121,10 @@
   actions:
   - data: {}
     target:
-      device_id:
-      - b1393875f60de525a9a916b60d079b35
-      - 0738239cc67de3bfc21e9424be3d5ae5
-      - 18fc3eac9e0c2dd98544b84368340d91
+      entity_id:
+      - vacuum.roborock_main_floor
+      - vacuum.roomba
+      - vacuum.roomba_mainfloor
     action: vacuum.start
   mode: single
 - id: notify_lower_blinds_hvac
@@ -1181,12 +1142,9 @@
         weekday:
         - sat
         - sun
-  - condition: device
-    device_id: 80e2ea7676adeea018b6e96cb57a3af5
-    domain: climate
-    entity_id: 54b1fea52a0a813e5b05b1655dfba00b
-    type: is_hvac_mode
-    hvac_mode: cool
+  - condition: state
+    entity_id: climate.ecobee_thermostat
+    state: cool
   actions:
   - if:
     - condition: state
@@ -1222,19 +1180,21 @@
         entity_id: binary_sensor.utility_room_doors
         state: 'on'
       sequence:
-      - type: turn_on
-        device_id: 87cae5bef616e2da5f81d501bf1575ba
-        entity_id: 957be681148125d3791991ccef10ea33
-        domain: light
+      - action: light.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.utility_room_light
     - conditions:
       - condition: state
         entity_id: binary_sensor.utility_room_doors
         state: 'off'
       sequence:
-      - type: turn_off
-        device_id: 87cae5bef616e2da5f81d501bf1575ba
-        entity_id: 957be681148125d3791991ccef10ea33
-        domain: light
+      - action: light.turn_off
+        target:
+          entity_id:
+          - light.utility_room_light
+        data: {}
   mode: single
 - id: lights_on_post_light
   alias: Outdoor Lights - Turn on with Pixel Post
@@ -1338,11 +1298,9 @@
         - condition: state
           entity_id: light.den_stair_landing
           state: 'off'
-        - condition: device
-          type: is_off
-          device_id: d824906b0d4aea07973580f026dc7ed9
-          entity_id: 8f28b37a84c7fecd099d5dca969d7974
-          domain: remote
+        - condition: state
+          entity_id: remote.family_room_remote
+          state: 'off'
       sequence:
       - data: {}
         target:
@@ -1373,27 +1331,31 @@
         id:
         - MainFloorMusicCastAirplay
       sequence:
-      - type: turn_off
-        device_id: fd7ae8ebda3faafe21c87fe16cd3070c
-        entity_id: cf8b4b8ca77b5f0c6f69b8bd94277650
-        domain: switch
-      - type: turn_on
-        device_id: fd7ae8ebda3faafe21c87fe16cd3070c
-        entity_id: bbdd762dcdb29668bcc8a8113aa7f587
-        domain: switch
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.main_floor_musiccast_speaker_a
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.main_floor_musiccast_speaker_b
     - conditions:
       - condition: trigger
         id:
         - MainFloorMusicCastNotAirplay
       sequence:
-      - type: turn_on
-        device_id: fd7ae8ebda3faafe21c87fe16cd3070c
-        entity_id: cf8b4b8ca77b5f0c6f69b8bd94277650
-        domain: switch
-      - type: turn_off
-        device_id: fd7ae8ebda3faafe21c87fe16cd3070c
-        entity_id: bbdd762dcdb29668bcc8a8113aa7f587
-        domain: switch
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.main_floor_musiccast_speaker_a
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.main_floor_musiccast_speaker_b
   mode: single
 - id: lighting_turn_off_bedroom_closet_light_with_overhead_light
   alias: Lighting - Turn off bedroom closet light with overhead light
@@ -1415,12 +1377,10 @@
   alias: Notify - Workshop lock jammed
   description: ''
   triggers:
-  - device_id: 2bc75cb02bff7d6fe5c4794fe89e99da
-    domain: lock
-    entity_id: c899559e86684ccf953a6e0ed5ad0169
-    type: jammed
-    trigger: device
-    alias: Workshop lock is jammed
+  - trigger: state
+    entity_id:
+    - lock.workshop
+    to: jammed
   conditions: []
   actions:
   - data:
@@ -1440,10 +1400,11 @@
     state: 'on'
     entity_id: binary_sensor.eric_at_home_workday_sensor
   actions:
-  - type: turn_on
-    device_id: 310e0e6bf98c0b9f552045d210041997
-    entity_id: 7b37168b4cb27af7e41d574a963a1197
-    domain: switch
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.lava_lamp
   mode: single
 - id: turn_off_lava_lamp_at_4_00pm
   alias: Turn Off Lava Lamp at 4:00PM
@@ -1453,10 +1414,11 @@
     trigger: time
   conditions: []
   actions:
-  - type: turn_off
-    device_id: 310e0e6bf98c0b9f552045d210041997
-    entity_id: 7b37168b4cb27af7e41d574a963a1197
-    domain: switch
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.lava_lamp
   mode: single
 - id: cover_open_shades_when_sun_sets
   alias: Cover - Open shades when sun sets
@@ -1496,16 +1458,17 @@
         entity_id: schedule.dte_peak_hours
         state: 'on'
       sequence:
-      - type: turn_off
-        device_id: 3a53683188654a1d7626ff893117c84e
-        entity_id: d38be84d36d295254ee6042589bff0e9
-        domain: switch
       - metadata: {}
         data:
           percentage: 100
         target:
           entity_id: fan.master_bedroom_fan
         action: fan.set_percentage
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.dehumidifier
     - conditions:
       - condition: state
         entity_id: schedule.dte_peak_hours
@@ -1514,16 +1477,17 @@
         entity_id: binary_sensor.windows
         state: 'off'
       sequence:
-      - type: turn_on
-        device_id: 3a53683188654a1d7626ff893117c84e
-        entity_id: d38be84d36d295254ee6042589bff0e9
-        domain: switch
       - metadata: {}
         data:
           percentage: 25
         target:
           entity_id: fan.master_bedroom_fan
         action: fan.set_percentage
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.dehumidifier
   mode: single
 - id: dehumidifier_turn_off_when_windows_open
   alias: Dehumidifier - Turn off when windows open
@@ -1540,29 +1504,30 @@
         entity_id: binary_sensor.windows
         state: 'on'
       sequence:
-      - type: turn_off
-        device_id: 3a53683188654a1d7626ff893117c84e
-        entity_id: d38be84d36d295254ee6042589bff0e9
-        domain: switch
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.dehumidifier
     - conditions:
       - condition: state
         entity_id: binary_sensor.windows
         state: 'off'
       sequence:
-      - type: turn_on
-        device_id: 3a53683188654a1d7626ff893117c84e
-        entity_id: d38be84d36d295254ee6042589bff0e9
-        domain: switch
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.dehumidifier
   mode: single
 - id: doorbell_snapshot
   alias: Notify on doorbell ring.
   description: ''
   triggers:
-  - type: turned_on
-    device_id: 763791b3c6dd38ebe82dd8ea919cce99
-    entity_id: 07249e572542f3ad36721694f4b90fcf
-    domain: binary_sensor
-    trigger: device
+  - trigger: state
+    entity_id:
+    - binary_sensor.doorbell_visitor
+    to: 'on'
   conditions: []
   actions:
   - target:
@@ -1593,11 +1558,10 @@
   alias: Notify on package delivery
   description: ''
   triggers:
-  - type: turned_on
-    device_id: 763791b3c6dd38ebe82dd8ea919cce99
-    entity_id: 7b4332b28910776392a67484de7b974e
-    domain: binary_sensor
-    trigger: device
+  - trigger: state
+    entity_id:
+    - binary_sensor.doorbell_package
+    to: 'on'
   conditions: []
   actions:
   - metadata: {}
@@ -1611,31 +1575,16 @@
   alias: Switch Master Bedroom Fan Direction with HVAC Mode
   description: ''
   triggers:
-  - device_id: 80e2ea7676adeea018b6e96cb57a3af5
-    domain: climate
-    entity_id: 54b1fea52a0a813e5b05b1655dfba00b
-    type: hvac_mode_changed
-    to: heat
-    alias: Ecobee Changes to Heat
-    trigger: device
-  - device_id: 80e2ea7676adeea018b6e96cb57a3af5
-    domain: climate
-    entity_id: 54b1fea52a0a813e5b05b1655dfba00b
-    type: hvac_mode_changed
-    to: cool
-    alias: Ecobee Changes to Cool
-    trigger: device
+  - trigger: state
+    entity_id:
+    - climate.ecobee_thermostat
   conditions: []
   actions:
   - choose:
     - conditions:
-      - condition: device
-        device_id: 80e2ea7676adeea018b6e96cb57a3af5
-        domain: climate
-        entity_id: 54b1fea52a0a813e5b05b1655dfba00b
-        type: is_hvac_mode
-        hvac_mode: cool
-        alias: Ecobee is Cooling
+      - condition: state
+        entity_id: climate.ecobee_thermostat
+        state: cool
       sequence:
       - metadata: {}
         data:
@@ -1646,13 +1595,9 @@
         action: fan.set_direction
       alias: When Ecobee is cooling switch fan to reverse
     - conditions:
-      - condition: device
-        device_id: 80e2ea7676adeea018b6e96cb57a3af5
-        domain: climate
-        entity_id: 54b1fea52a0a813e5b05b1655dfba00b
-        type: is_hvac_mode
-        hvac_mode: heat
-        alias: Ecobee is Heating
+      - condition: state
+        entity_id: climate.ecobee_thermostat
+        state: heat
       sequence:
       - alias: Set bedroom fan to forward
         metadata: {}
@@ -1784,5 +1729,7 @@
     metadata: {}
     data: {}
     target:
-      entity_id: light.master_bedroom_light
+      entity_id:
+      - light.master_bedroom_light
+      - light.master_bedroom_closet
   mode: single
