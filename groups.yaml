@@ -81,8 +81,6 @@ master_bedroom_lights:
   entities:
     - light.master_bedroom_light
     - light.master_bath_light
-    - light.bedroom_closet_1
-    - light.bedroom_closet_2
     - light.master_bedroom_closet
     - switch.master_bath_fan
     - light.nightstand_lamps
