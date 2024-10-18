@@ -47,33 +47,14 @@ goodnight:
   - action: input_select.select_option
     metadata: {}
     data:
-      option: Home
+      option: Sleep
     target:
       entity_id: input_select.home_mode
-  - action: light.turn_off
-    metadata: {}
-    data: {}
-    target:
-      floor_id:
-      - basement
-      - downstairs
-      - main_floor
-      - upstairs
-      area_id: workshop
-      entity_id: light.pixel_post_light
   - action: cover.close_cover
     metadata: {}
     data: {}
     target:
       entity_id: cover.garage_door
-  - action: lock.lock
-    metadata: {}
-    data: {}
-    target:
-      entity_id:
-      - lock.front_door_lock
-      - lock.kitchen_door_lock
-      - lock.workshop
   - action: fan.turn_on
     metadata: {}
     data:
@@ -90,6 +71,25 @@ goodnight:
     target:
       entity_id: switch.magic_mirror_screen
     data: {}
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      floor_id:
+      - basement
+      - downstairs
+      - main_floor
+      - upstairs
+      area_id: workshop
+      entity_id: light.pixel_post_light
+  - action: lock.lock
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - lock.front_door_lock
+      - lock.kitchen_door_lock
+      - lock.workshop
   description: ''
   icon: mdi:weather-night
 good_morning:
@@ -177,17 +177,19 @@ watch_tv_downstairs:
       - light.den_stair_landing
       - light.family_room_deck_light_back
       - light.fireplace_dimmer
+      - light.garage_lights_north
+      - light.garage_lights_south
   - action: light.turn_on
     metadata: {}
     data:
       brightness: 153
-      hs_color: 30,0
+      kelvin: 4363
     target:
       entity_id: light.kitchenette_led_strip
   - action: light.turn_on
     metadata: {}
     data:
-      brightness: 145
+      brightness_pct: 50
     target:
       entity_id: light.kitchenette_spot_lights
   - action: light.turn_on
@@ -263,8 +265,8 @@ dim_bedroom_lights:
     target:
       entity_id:
       - light.nightstand_lamps
-      - light.master_bedroom_closet
       - light.master_bath_light
+      - light.master_bedroom_closet
   - if:
     - condition: state
       entity_id: climate.ecobee_thermostat

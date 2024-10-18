@@ -803,7 +803,7 @@
     data: {}
   mode: single
 - id: garage_door_lights_with_door
-  alias: Lighting - Turn on Garage Lights when Garage Door opens
+  alias: Garage - Turn on Garage Lights when Garage Door opens
   description: ''
   triggers:
   - trigger: state
@@ -814,17 +814,48 @@
     entity_id:
     - cover.garage_door
     to: opening
-  conditions:
-  - condition: state
-    entity_id: binary_sensor.pixel_post_light_on
-    state: 'on'
+  - trigger: state
+    entity_id:
+    - cover.garage_door
+    to: closed
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  conditions: []
   actions:
-  - data: {}
-    target:
-      entity_id:
-      - light.garage_lights_north
-      - light.garage_lights_south
-    action: light.turn_on
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: cover.garage_door
+          state: open
+        - condition: state
+          entity_id: cover.garage_door
+          state: opening
+        alias: If Garage Door is Open or Opening
+      - condition: state
+        entity_id: binary_sensor.pixel_post_light_on
+        state: 'on'
+      sequence:
+      - data: {}
+        target:
+          entity_id:
+          - light.garage_lights_north
+          - light.garage_lights_south
+        action: light.turn_on
+    - conditions:
+      - condition: state
+        entity_id: cover.garage_door
+        state: closed
+      sequence:
+      - action: light.turn_off
+        target:
+          entity_id:
+          - light.garage_lights_north
+          - light.garage_lights_south
+        data: {}
   mode: single
 - id: mini_quota_workaround
   alias: MINI - Workaround for Quota
@@ -1218,7 +1249,7 @@
   - choose:
     - conditions:
       - condition: state
-        entity_id: light.pixel_post_light
+        entity_id: binary_sensor.pixel_post_light_on
         state: 'on'
       sequence:
       - data: {}
@@ -1720,4 +1751,45 @@
       entity_id:
       - light.master_bedroom_light
       - light.master_bedroom_closet
+  mode: single
+- id: basement_control_basement_lights_with_motion
+  alias: Basement - Control basement lights with motion
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.basement_motion_group
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  - trigger: state
+    entity_id:
+    - binary_sensor.basement_motion_group
+    to: 'on'
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.basement_motion_group
+        state: 'on'
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id:
+          - light.basement_stairs_switch
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.basement_motion_group
+        state: 'off'
+      sequence:
+      - action: light.turn_off
+        target:
+          entity_id:
+          - light.basement_stairs_switch
+        data: {}
   mode: single

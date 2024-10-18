@@ -1,4 +1,4 @@
-- resource: "http://192.168.1.50:9090/api/groups/mealplans/today"
+- resource: "http://192.168.1.50:9090/api/households/mealplans/today"
   method: GET
   headers:
     Authorization: !secret mealie_api
