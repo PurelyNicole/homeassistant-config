@@ -132,9 +132,14 @@
   - action: script.watch_tv_downstairs
     metadata: {}
     data: {}
-  - action: script.watch_tv_main_floor
-    metadata: {}
-    data: {}
+  - if:
+    - condition: state
+      entity_id: binary_sensor.kitchen_motion_sensor_occupancy
+      state: 'off'
+    then:
+    - action: script.watch_tv_main_floor
+      metadata: {}
+      data: {}
   mode: single
 - id: basement_lights_single_switch
   alias: Basement - Control lights with single switch
@@ -290,7 +295,7 @@
       replay_sensor_7: sensor.replay_living_room_wall_dimmer
       light_target_7: light.living_room_wall_dimmer
       replay_sensor_8: sensor.replay_kitchenette_spot_lights
-      light_target_8: light.kitchenette_spot_lights
+      light_target_8: group.den_lights
       replay_sensor_9: sensor.replay_master_bath_light
       light_target_9: light.master_bath_light
       replay_sensor_10: sensor.replay_nicole_office_lights
@@ -1792,4 +1797,20 @@
           entity_id:
           - light.basement_stairs_switch
         data: {}
+  mode: single
+- id: kitchen_turn_off_lights_with_motion
+  alias: Kitchen - Turn off lights with motion
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.kitchen_motion_sensor_occupancy
+    to: 'off'
+  conditions: []
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id: kitchen
   mode: single

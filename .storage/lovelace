@@ -1519,7 +1519,13 @@
                   "entity": "binary_sensor.half_bath_motion_sensor"
                 },
                 {
+                  "entity": "binary_sensor.kitchen_motion_sensor_motion"
+                },
+                {
                   "entity": "binary_sensor.nicole_office_sensor_home_security_motion_detection"
+                },
+                {
+                  "entity": "binary_sensor.closet_room_motion_sensor_motion"
                 },
                 {
                   "entity": "binary_sensor.bedroom_ecobee_sensor_occupancy"
@@ -1528,22 +1534,13 @@
                   "entity": "binary_sensor.master_bathroom_sensor_home_security_motion_detection"
                 },
                 {
-                  "entity": "binary_sensor.basement"
+                  "entity": "binary_sensor.eric_office_motion_sensor_motion"
                 },
                 {
                   "entity": "binary_sensor.den"
                 },
                 {
-                  "entity": "binary_sensor.basement_sensor_home_security_motion_detection"
-                },
-                {
                   "entity": "binary_sensor.basement_motion_group"
-                },
-                {
-                  "entity": "binary_sensor.eric_office_motion_sensor_motion"
-                },
-                {
-                  "entity": "binary_sensor.closet_room_motion_sensor_motion"
                 }
               ],
               "title": "Motion",
