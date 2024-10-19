@@ -440,10 +440,10 @@
                   "entity": "script.watch_tv_downstairs"
                 },
                 {
-                  "entity": "script.dim_bedroom_lights"
+                  "entity": "script.goodnight"
                 },
                 {
-                  "entity": "script.goodnight"
+                  "entity": "script.dim_bedroom_lights"
                 }
               ]
             },
@@ -857,10 +857,13 @@
                   "entity": "light.workshop_lights"
                 },
                 {
+                  "entity": "light.driveway_post_and_tree_lights"
+                },
+                {
                   "entity": "light.pixel_post_light"
                 },
                 {
-                  "entity": "light.driveway_post_and_tree_lights"
+                  "entity": "light.holiday_lights"
                 }
               ],
               "title": "Outdoor Lights",
