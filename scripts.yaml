@@ -2,6 +2,7 @@ wind_down_nicole:
   alias: Wind Down - Nicole
   sequence:
   - action: light.turn_on
+    continue_on_error: true
     metadata: {}
     data:
       brightness: 26
@@ -9,6 +10,7 @@ wind_down_nicole:
       entity_id: light.master_bath_light
     alias: Turn on and dim master bathroom light
   - action: light.turn_on
+    continue_on_error: true
     metadata: {}
     data:
       brightness: 25.5
@@ -16,6 +18,7 @@ wind_down_nicole:
       entity_id: light.master_bedroom_light
     alias: Turn on and dim master bedroom fan light
   - action: light.turn_off
+    continue_on_error: true
     metadata: {}
     data: {}
     target:
@@ -23,6 +26,7 @@ wind_down_nicole:
       - light.nightstand_lamps
       - light.master_bedroom_closet
   - action: climate.set_preset_mode
+    continue_on_error: true
     metadata: {}
     data:
       preset_mode: sleep
@@ -34,6 +38,7 @@ wind_down_nicole:
       state: cool
     then:
     - action: fan.turn_on
+      continue_on_error: true
       metadata: {}
       data:
         percentage: 25
@@ -45,33 +50,39 @@ goodnight:
   alias: Goodnight
   sequence:
   - action: input_select.select_option
+    continue_on_error: true
     metadata: {}
     data:
       option: Sleep
     target:
       entity_id: input_select.home_mode
   - action: cover.close_cover
+    continue_on_error: true
     metadata: {}
     data: {}
     target:
       entity_id: cover.garage_door
   - action: fan.turn_on
+    continue_on_error: true
     metadata: {}
     data:
       percentage: 75
     target:
       entity_id: fan.family_room_fan_south
   - action: fan.turn_on
+    continue_on_error: true
     metadata: {}
     data:
       percentage: 25
     target:
       entity_id: fan.master_bedroom_fan
   - action: switch.turn_off
+    continue_on_error: true
     target:
       entity_id: switch.magic_mirror_screen
     data: {}
   - action: light.turn_off
+    continue_on_error: true
     metadata: {}
     data: {}
     target:
@@ -90,7 +101,9 @@ goodnight:
       - light.service_door_light
       - light.outside_workshop_light
       - light.driveway_post_and_tree_lights
+      - light.holiday_lights
   - action: lock.lock
+    continue_on_error: true
     metadata: {}
     data: {}
     target:
@@ -104,17 +117,20 @@ good_morning:
   alias: Good Morning
   sequence:
   - action: input_select.select_option
+    continue_on_error: true
     metadata: {}
     data:
       option: Home
     target:
       entity_id: input_select.home_mode
   - action: switch.turn_on
+    continue_on_error: true
     metadata: {}
     data: {}
     target:
       entity_id: switch.magic_mirror_screen
   - action: light.turn_on
+    continue_on_error: true
     metadata: {}
     data: {}
     target:
@@ -125,6 +141,7 @@ good_morning:
         before: sunrise
       sequence:
       - action: light.turn_on
+        continue_on_error: true
         metadata: {}
         data: {}
         target:
@@ -135,12 +152,14 @@ goodbye:
   alias: Goodbye
   sequence:
   - action: input_select.select_option
+    continue_on_error: true
     metadata: {}
     data:
       option: Away
     target:
       entity_id: input_select.home_mode
   - action: light.turn_off
+    continue_on_error: true
     metadata: {}
     data: {}
     target:
@@ -151,6 +170,7 @@ goodbye:
       - upstairs
       area_id: workshop
   - action: switch.turn_off
+    continue_on_error: true
     metadata: {}
     data: {}
     target:
@@ -158,17 +178,28 @@ goodbye:
       - switch.magic_mirror_screen
       - switch.hair_straightener
   - action: climate.set_preset_mode
+    continue_on_error: true
     metadata: {}
     data:
       preset_mode: sleep
     target:
       device_id: 80e2ea7676adeea018b6e96cb57a3af5
+  - action: lock.lock
+    continue_on_error: true
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - lock.front_door_lock
+      - lock.kitchen_door_lock
+      - lock.workshop
   description: ''
   icon: mdi:run
 watch_tv_downstairs:
   alias: Watch TV - Downstairs
   sequence:
   - action: light.turn_on
+    continue_on_error: true
     metadata: {}
     data:
       brightness: 128
@@ -177,6 +208,7 @@ watch_tv_downstairs:
       - light.family_room_track_light_back
       - light.family_room_track_light_front
   - action: light.turn_off
+    continue_on_error: true
     metadata: {}
     data: {}
     target:
@@ -187,20 +219,24 @@ watch_tv_downstairs:
       - light.fireplace_dimmer
       - light.garage_lights_north
       - light.garage_lights_south
+      - light.downstairs_hallway_light
   - action: light.turn_on
+    continue_on_error: true
     metadata: {}
     data:
-      brightness: 153
-      kelvin: 4363
+      brightness_pct: 60
+      white: true
     target:
       entity_id: light.kitchenette_led_strip
   - action: light.turn_on
+    continue_on_error: true
     metadata: {}
     data:
       brightness_pct: 50
     target:
       entity_id: light.kitchenette_spot_lights
   - action: light.turn_on
+    continue_on_error: true
     metadata: {}
     data:
       brightness_pct: 10
@@ -214,6 +250,7 @@ watch_tv_downstairs:
       state: cool
     then:
     - action: fan.set_percentage
+      continue_on_error: true
       metadata: {}
       data:
         percentage: 25
@@ -225,6 +262,7 @@ watch_tv_main_floor:
   alias: Watch TV - Main Floor
   sequence:
   - action: light.turn_on
+    continue_on_error: true
     metadata: {}
     data:
       brightness: 150
@@ -235,6 +273,7 @@ watch_tv_main_floor:
       - light.dining_room_table_dimmer
       - light.kitchen_table_light
   - action: light.turn_on
+    continue_on_error: true
     metadata: {}
     data:
       brightness: 125
@@ -242,12 +281,13 @@ watch_tv_main_floor:
       entity_id:
       - light.kitchen_under_cabinet_lights
       - light.kitchen_sink_dimmer
+      - light.kitchen_mudroom_dimmer
   - action: light.turn_off
+    continue_on_error: true
     metadata: {}
     data: {}
     target:
       entity_id:
-      - light.kitchen_mudroom_dimmer
       - light.kitchen_overhead_lights
       - light.entryway_light
       - light.living_room_lamps
@@ -257,6 +297,7 @@ dim_bedroom_lights:
   alias: Dim Bedroom Lights
   sequence:
   - action: light.turn_on
+    continue_on_error: true
     metadata: {}
     data:
       brightness_pct: 50
@@ -268,6 +309,7 @@ dim_bedroom_lights:
       seconds: 1
       milliseconds: 0
   - action: light.turn_off
+    continue_on_error: true
     metadata: {}
     data: {}
     target:
@@ -281,6 +323,7 @@ dim_bedroom_lights:
       state: cool
     then:
     - action: fan.turn_on
+      continue_on_error: true
       metadata: {}
       data:
         percentage: 25
@@ -288,9 +331,48 @@ dim_bedroom_lights:
         entity_id: fan.master_bedroom_fan
     else:
     - action: fan.turn_off
+      continue_on_error: true
       metadata: {}
       data: {}
       target:
         entity_id: fan.master_bedroom_fan
   description: ''
   icon: mdi:lightbulb-on-50
+holiday_lighting:
+  alias: Holiday Lighting
+  sequence:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{(now().month == 10)}}'
+        alias: If it's October...
+      sequence:
+      - device_id: 8298a2b1b686ae77cf250c42d9b41b4d
+        domain: select
+        entity_id: 4f5ddc3926c19e27cee8f875c09a16b5
+        type: select_option
+        option: Halloween Gradient
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: calendar.holidays_in_united_states
+          state: 'on'
+        - condition: state
+          entity_id: calendar.holidays_in_united_states
+          attribute: message
+          state: Thanksgiving Day
+        alias: If it's Thanksgiving day...
+      sequence:
+      - device_id: 8298a2b1b686ae77cf250c42d9b41b4d
+        domain: select
+        entity_id: 4f5ddc3926c19e27cee8f875c09a16b5
+        type: select_option
+        option: Thanksgiving
+      alias: If it's Thanksgiving...
+    - conditions:
+      - condition: template
+        value_template: '{{((now().month == 12))}}'
+        alias: If it's December...
+      sequence: []
+  description: ''
