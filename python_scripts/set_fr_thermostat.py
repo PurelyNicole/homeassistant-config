@@ -10,7 +10,7 @@ day_of_week = dt.weekday()
 current_hour = dt.hour
 
 # Set fr_thermostat based on main_thermost
-if (current_mode != "cool"):
+if ((current_mode != "cool") and (current_mode != "off")):
   logger.info("Ecobee is heat, set to heat mode.")
   if ((workday == "off") or (current_hour > 15)):
     logger.info("It's weekend/evening. Match ecobee temperature.")
