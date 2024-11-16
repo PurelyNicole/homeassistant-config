@@ -94,6 +94,7 @@ den_lights:
     - light.fireplace_dimmer
     - light.cd_shelf_dimmer
     - light.step_lights
+    - light.downstairs_hallway_light
   icon: mdi:lightbulb-group
 kitchen_lights:
   name: Kitchen Lights

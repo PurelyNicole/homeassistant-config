@@ -9,14 +9,6 @@ wind_down_nicole:
     target:
       entity_id: light.master_bath_light
     alias: Turn on and dim master bathroom light
-  - action: light.turn_on
-    continue_on_error: true
-    metadata: {}
-    data:
-      brightness: 25.5
-    target:
-      entity_id: light.master_bedroom_light
-    alias: Turn on and dim master bedroom fan light
   - action: light.turn_off
     continue_on_error: true
     metadata: {}
@@ -32,6 +24,13 @@ wind_down_nicole:
       preset_mode: sleep
     target:
       entity_id: climate.ecobee_thermostat
+  - action: light.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      brightness_pct: 44
+    target:
+      entity_id: light.nightstand_lamps
   - if:
     - condition: state
       entity_id: climate.ecobee_thermostat

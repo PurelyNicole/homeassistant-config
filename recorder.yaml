@@ -2,7 +2,6 @@ exclude:
   domains:
     - button
     - camera
-    - media_player
     - number
     - update
   entity_globs:

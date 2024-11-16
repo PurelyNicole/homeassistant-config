@@ -137,11 +137,6 @@
                       "color": "#0076B6"
                     },
                     {
-                      "entity": "calendar.detroit_red_wings",
-                      "name": "Detroit Red Wings",
-                      "color": "#ce1126"
-                    },
-                    {
                       "entity": "calendar.michigan_wolverines_football",
                       "name": "Michigan Wolverines",
                       "color": "#FFCB05"
@@ -246,13 +241,8 @@
                       "conditions": [
                         {
                           "condition": "state",
-                          "entity": "sensor.mealie_recipe_image_id",
+                          "entity": "sensor.mealie_dinner_recipe_id",
                           "state_not": ""
-                        },
-                        {
-                          "condition": "state",
-                          "entity": "sensor.mealie_recipe_image_id",
-                          "state_not": "None"
                         }
                       ]
                     }
@@ -283,12 +273,7 @@
                       "conditions": [
                         {
                           "condition": "state",
-                          "entity": "sensor.mealie_recipe_image_id",
-                          "state": "None"
-                        },
-                        {
-                          "condition": "state",
-                          "entity": "sensor.mealie_recipe_image_id",
+                          "entity": "sensor.mealie_dinner_recipe_id",
                           "state": ""
                         }
                       ]
@@ -507,11 +492,6 @@
                   "color": "navy"
                 },
                 {
-                  "entity": "calendar.detroit_red_wings",
-                  "name": "Detroit Red Wings",
-                  "color": "#ce1126"
-                },
-                {
                   "entity": "calendar.michigan_wolverines_football",
                   "name": "Michigan Wolverines",
                   "color": "#FFCB05"
@@ -584,6 +564,9 @@
                     },
                     {
                       "entity": "light.fireplace_dimmer"
+                    },
+                    {
+                      "entity": "light.downstairs_hallway_light"
                     }
                   ],
                   "state_color": true,
@@ -807,6 +790,9 @@
                     },
                     {
                       "entity": "light.kitchenette_spot_lights"
+                    },
+                    {
+                      "entity": "light.downstairs_hallway_light"
                     },
                     {
                       "entity": "light.step_lights"
@@ -1333,6 +1319,15 @@
               "type": "picture-entity",
               "image": "https://demo.home-assistant.io/stub_config/bedroom.png",
               "entity": "camera.blueiris_workshop_duo"
+            },
+            {
+              "show_state": true,
+              "show_name": true,
+              "camera_view": "auto",
+              "type": "picture-entity",
+              "image": "https://demo.home-assistant.io/stub_config/bedroom.png",
+              "camera_image": "camera.blueiris_easy_yard_duo",
+              "entity": "camera.blueiris_easy_yard_duo"
             }
           ]
         },
@@ -1563,7 +1558,7 @@
             },
             {
               "type": "media-control",
-              "entity": "media_player.garage_volumio"
+              "entity": "media_player.downstairs_musiccast"
             },
             {
               "type": "entities",
@@ -1761,8 +1756,20 @@
               ]
             },
             {
-              "type": "entity",
-              "entity": "binary_sensor.washing_machine"
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entity",
+                  "entity": "binary_sensor.washing_machine",
+                  "state_color": true
+                },
+                {
+                  "type": "entity",
+                  "entity": "binary_sensor.dryer_vibration",
+                  "name": "Dryer",
+                  "state_color": true
+                }
+              ]
             },
             {
               "type": "vertical-stack",
@@ -2084,140 +2091,158 @@
         },
         {
           "title": "System",
-          "path": "system",
           "icon": "mdi:wrench-cog-outline",
           "badges": [],
-          "cards": [
+          "cards": [],
+          "type": "sections",
+          "sections": [
             {
-              "type": "vertical-stack",
+              "type": "grid",
               "cards": [
                 {
-                  "type": "tile",
-                  "entity": "input_select.home_mode",
-                  "features": [
+                  "type": "vertical-stack",
+                  "cards": [
                     {
-                      "type": "select-options"
+                      "type": "tile",
+                      "entity": "input_select.home_mode",
+                      "features": [
+                        {
+                          "type": "select-options"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "entities",
+                      "entities": [
+                        {
+                          "entity": "binary_sensor.day"
+                        },
+                        {
+                          "entity": "binary_sensor.dusk"
+                        },
+                        {
+                          "entity": "binary_sensor.night"
+                        }
+                      ],
+                      "title": "Time Of Day"
+                    },
+                    {
+                      "type": "entities",
+                      "entities": [
+                        {
+                          "entity": "input_boolean.vacation_mode"
+                        },
+                        {
+                          "entity": "input_boolean.hvac_override"
+                        }
+                      ],
+                      "title": "System Toggles",
+                      "state_color": true
                     }
                   ]
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "binary_sensor.day"
-                    },
-                    {
-                      "entity": "binary_sensor.dusk"
-                    },
-                    {
-                      "entity": "binary_sensor.night"
-                    }
-                  ],
-                  "title": "Time Of Day"
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "input_boolean.vacation_mode"
-                    },
-                    {
-                      "entity": "input_boolean.hvac_override"
-                    }
-                  ],
-                  "title": "System Toggles",
-                  "state_color": true
                 }
               ]
             },
             {
-              "title": "Battery Status",
-              "type": "custom:battery-state-card",
-              "secondary_info": "{last_changed}",
-              "round": 0,
-              "filter": {
-                "include": [
-                  {
-                    "name": "attributes.device_class",
-                    "value": "battery"
-                  }
-                ],
-                "exclude": [
-                  {
-                    "name": "entity_id",
-                    "value": "binary_sensor.*"
-                  },
-                  {
-                    "name": "entity_id",
-                    "value": "sensor.*ipad*"
-                  },
-                  {
-                    "name": "entity_id",
-                    "value": "sensor.*iphone*"
-                  },
-                  {
-                    "name": "entity_id",
-                    "value": "sensor.*roborock*"
-                  },
-                  {
-                    "name": "entity_id",
-                    "value": "sensor.*cooper*"
-                  },
-                  {
-                    "name": "entity_id",
-                    "value": "sensor.*roomba*"
-                  }
-                ]
-              },
-              "sort": {
-                "by": "state"
-              },
-              "collapse": 8,
-              "bulk_rename": [
+              "type": "grid",
+              "cards": [
                 {
-                  "from": " Battery"
+                  "title": "Battery Status",
+                  "type": "custom:battery-state-card",
+                  "secondary_info": "{last_changed}",
+                  "round": 0,
+                  "filter": {
+                    "include": [
+                      {
+                        "name": "attributes.device_class",
+                        "value": "battery"
+                      }
+                    ],
+                    "exclude": [
+                      {
+                        "name": "entity_id",
+                        "value": "binary_sensor.*"
+                      },
+                      {
+                        "name": "entity_id",
+                        "value": "sensor.*ipad*"
+                      },
+                      {
+                        "name": "entity_id",
+                        "value": "sensor.*iphone*"
+                      },
+                      {
+                        "name": "entity_id",
+                        "value": "sensor.*roborock*"
+                      },
+                      {
+                        "name": "entity_id",
+                        "value": "sensor.*cooper*"
+                      },
+                      {
+                        "name": "entity_id",
+                        "value": "sensor.*roomba*"
+                      }
+                    ]
+                  },
+                  "sort": {
+                    "by": "state"
+                  },
+                  "collapse": 8,
+                  "bulk_rename": [
+                    {
+                      "from": " Battery"
+                    },
+                    {
+                      "from": " level"
+                    }
+                  ],
+                  "colors": {
+                    "steps": [
+                      {
+                        "value": 30,
+                        "color": "red"
+                      },
+                      {
+                        "value": 60,
+                        "color": "orange"
+                      },
+                      {
+                        "value": 100,
+                        "color": "green"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.speedtest_download"
+                    }
+                  ],
+                  "hours_to_show": 24,
+                  "refresh_interval": 0,
+                  "title": "Download Speed"
                 },
                 {
-                  "from": " level"
-                }
-              ],
-              "colors": {
-                "steps": [
-                  {
-                    "value": 30,
-                    "color": "red"
-                  },
-                  {
-                    "value": 60,
-                    "color": "orange"
-                  },
-                  {
-                    "value": 100,
-                    "color": "green"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "history-graph",
-              "entities": [
-                {
-                  "entity": "sensor.speedtest_download"
-                }
-              ],
-              "hours_to_show": 24,
-              "refresh_interval": 0,
-              "title": "Download Speed"
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "sensor.samsung_m332x_382x_402x_series_toner_black"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.samsung_m332x_382x_402x_series_toner_black"
+                    }
+                  ]
                 }
               ]
             }
-          ]
+          ],
+          "max_columns": 4,
+          "path": "system"
         }
       ]
     }
