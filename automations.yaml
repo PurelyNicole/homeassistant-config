@@ -1097,8 +1097,13 @@
     from: 'off'
     to: 'on'
   conditions:
-  - condition: or
+  - condition: and
     conditions:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: input_select.home_mode
+        state: Sleep
     - condition: time
       before: '19:00:00'
   actions:
@@ -1903,4 +1908,19 @@
       data: {}
       target:
         entity_id: light.pixel_post_light
+  mode: single
+- id: '1732052377880'
+  alias: Notification - Notify on low rinse aid
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.dishwasher_rinse_aid_nearly_empty
+    from: 'off'
+  conditions: []
+  actions:
+  - action: notify.notify_nicole_and_eric
+    metadata: {}
+    data:
+      message: Add rinse aid to dishwasher.
   mode: single
