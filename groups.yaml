@@ -37,6 +37,7 @@ main_floor_lights:
     - group.living_dining_room_lights
     - light.entryway_light
     - light.half_bath_light
+    - light.stairway_dimmer
   icon: mdi:lightbulb-group
 downstairs_lights:
   name: Downstairs Lights

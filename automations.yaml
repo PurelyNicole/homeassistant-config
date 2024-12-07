@@ -76,6 +76,9 @@
         - light.kitchen_table_light
         - light.kitchen_mudroom_dimmer
         - light.dining_room_table_dimmer
+  - action: script.turn_on_workshop_hvac
+    metadata: {}
+    data: {}
   mode: parallel
   max: 10
 - id: goodnight_2am
@@ -339,7 +342,7 @@
         metadata: {}
         data: {}
         target:
-          entity_id: climate.family_room_thermostat
+          entity_id: climate.workshop_hvac
       - metadata: {}
         data: {}
         target:
@@ -437,9 +440,14 @@
     alias: Every hour
     trigger: time_pattern
   conditions:
-  - condition: state
-    entity_id: input_boolean.vacation_mode
-    state: 'off'
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: state
+      state: 'off'
+      entity_id: input_boolean.hvac_override
   actions:
   - if:
     - condition: state
@@ -1106,6 +1114,7 @@
         state: Sleep
     - condition: time
       before: '19:00:00'
+      after: 03:00:00
   actions:
   - action: light.turn_on
     target:
@@ -1923,4 +1932,19 @@
     metadata: {}
     data:
       message: Add rinse aid to dishwasher.
+  mode: single
+- id: '1733012848142'
+  alias: Christmas Tree on at Sunset
+  description: ''
+  triggers:
+  - trigger: sun
+    event: sunset
+    offset: '-1:00'
+  conditions: []
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.christmas_tree
   mode: single

@@ -110,6 +110,18 @@ goodnight:
       - lock.front_door_lock
       - lock.kitchen_door_lock
       - lock.workshop
+  - action: switch.turn_off
+    continue_on_error: true
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.christmas_tree
+  - action: climate.turn_off
+    continue_on_error: true
+    metadata: {}
+    data: {}
+    target:
+      entity_id: climate.workshop_hvac
   description: ''
   icon: mdi:weather-night
 good_morning:
@@ -133,18 +145,12 @@ good_morning:
     metadata: {}
     data: {}
     target:
-      entity_id: light.pixel_post_light
-  - choose:
-    - conditions:
-      - condition: sun
-        before: sunrise
-      sequence:
-      - action: light.turn_on
-        continue_on_error: true
-        metadata: {}
-        data: {}
-        target:
-          entity_id: light.kitchen_table_light
+      entity_id:
+      - light.pixel_post_light
+      - light.stairway_dimmer
+  - action: script.turn_on_workshop_hvac
+    metadata: {}
+    data: {}
   description: ''
   icon: mdi:weather-sunny
 goodbye:
@@ -192,6 +198,12 @@ goodbye:
       - lock.front_door_lock
       - lock.kitchen_door_lock
       - lock.workshop
+  - action: climate.turn_off
+    continue_on_error: true
+    metadata: {}
+    data: {}
+    target:
+      entity_id: climate.workshop_hvac
   description: ''
   icon: mdi:run
 watch_tv_downstairs:
@@ -201,7 +213,7 @@ watch_tv_downstairs:
     continue_on_error: true
     metadata: {}
     data:
-      brightness: 128
+      brightness: 89
     target:
       entity_id:
       - light.family_room_track_light_back
@@ -290,6 +302,13 @@ watch_tv_main_floor:
       - light.kitchen_overhead_lights
       - light.entryway_light
       - light.living_room_lamps
+  - action: light.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      brightness_pct: 32
+    target:
+      entity_id: light.stairway_dimmer
   description: ''
   icon: mdi:television
 dim_bedroom_lights:
@@ -373,5 +392,42 @@ holiday_lighting:
       - condition: template
         value_template: '{{((now().month == 12))}}'
         alias: If it's December...
-      sequence: []
+      sequence:
+      - device_id: 8298a2b1b686ae77cf250c42d9b41b4d
+        domain: select
+        entity_id: 79bed0071f2c3d4794e56f408e876e1c
+        type: select_option
+        option: 'Christmas '
+  description: ''
+turn_on_workshop_hvac:
+  alias: Turn on Workshop HVAC
+  sequence:
+  - if:
+    - condition: and
+      conditions:
+      - condition: not
+        conditions:
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: input_boolean.dte_peak_season
+            state: 'on'
+          - condition: state
+            entity_id: schedule.dte_peak_hours
+            state: 'on'
+          alias: If peak season peak hours
+        alias: If it's not peak season and peak hours
+      - condition: state
+        entity_id: person.eric
+        state: home
+      - condition: template
+        value_template: '{{states(''sensor.workshop_hvac_outdoor_temperature'')|int
+          < 40 or states(''sensor.workshop_hvac_outdoor_temperature'')|int > 70}}'
+        alias: If outside temperature is below 40 or above 70
+    then:
+    - action: climate.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: climate.workshop_hvac
   description: ''
