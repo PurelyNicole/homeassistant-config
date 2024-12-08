@@ -1781,20 +1781,27 @@
           "path": "chores",
           "icon": "mdi:robot-vacuum",
           "badges": [],
-          "cards": [
+          "cards": [],
+          "type": "sections",
+          "sections": [
             {
-              "type": "custom:grocy-chores-card",
-              "entity": "sensor.grocy_chores",
-              "title": "Chorin'",
-              "show_quantity": 7,
-              "show_days": 3,
-              "show_assigned": false,
-              "show_last_tracked": true,
-              "show_last_tracked_by": false,
-              "show_track_button": true
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:grocy-chores-card",
+                  "entity": "sensor.grocy_chores",
+                  "title": "Chorin'",
+                  "show_quantity": 7,
+                  "show_days": 3,
+                  "show_assigned": false,
+                  "show_last_tracked": true,
+                  "show_last_tracked_by": false,
+                  "show_track_button": true
+                }
+              ]
             },
             {
-              "type": "vertical-stack",
+              "type": "grid",
               "cards": [
                 {
                   "type": "tile",
@@ -1808,7 +1815,10 @@
                         "clean_spot"
                       ]
                     }
-                  ]
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 },
                 {
                   "type": "tile",
@@ -1822,7 +1832,10 @@
                         "locate"
                       ]
                     }
-                  ]
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 },
                 {
                   "type": "tile",
@@ -1836,58 +1849,59 @@
                         "locate"
                       ]
                     }
-                  ]
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 }
               ]
             },
             {
-              "type": "vertical-stack",
+              "type": "grid",
               "cards": [
                 {
                   "type": "entity",
                   "entity": "binary_sensor.washing_machine",
-                  "state_color": true
+                  "state_color": true,
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 },
                 {
-                  "type": "entity",
-                  "entity": "binary_sensor.dryer_vibration",
-                  "name": "Dryer",
-                  "state_color": true
-                }
-              ]
-            },
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
-                  "type": "entity",
-                  "name": "Dishwasher is...",
-                  "entity": "sensor.dishwasher_status"
-                },
-                {
-                  "type": "horizontal-stack",
+                  "type": "vertical-stack",
                   "cards": [
                     {
-                      "type": "tile",
-                      "entity": "button.set_dishwasher_to_clean",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "name": "Dishwasher Clean"
+                      "type": "entity",
+                      "name": "Dishwasher is...",
+                      "entity": "sensor.dishwasher_status"
                     },
                     {
-                      "type": "tile",
-                      "entity": "button.set_dishwasher_to_dirty",
-                      "tap_action": {
-                        "action": "toggle"
-                      },
-                      "name": "Dishwasher Dirty"
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "tile",
+                          "entity": "button.set_dishwasher_to_clean",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "name": "Dishwasher Clean"
+                        },
+                        {
+                          "type": "tile",
+                          "entity": "button.set_dishwasher_to_dirty",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "name": "Dishwasher Dirty"
+                        }
+                      ]
                     }
                   ]
                 }
               ]
             }
-          ]
+          ],
+          "max_columns": 4
         },
         {
           "title": "Vehicles",
