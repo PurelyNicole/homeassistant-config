@@ -28,6 +28,8 @@ upstairs_lights:
     - group.nicole_office_lights
     - group.master_bedroom_lights
     - group.closet_room_lights
+    - light.upstairs_hallway_light
+    - light.stairway_dimmer
   icon: mdi:lightbulb-group
 main_floor_lights:
   name: Main Floor Lights
@@ -37,7 +39,6 @@ main_floor_lights:
     - group.living_dining_room_lights
     - light.entryway_light
     - light.half_bath_light
-    - light.stairway_dimmer
   icon: mdi:lightbulb-group
 downstairs_lights:
   name: Downstairs Lights
