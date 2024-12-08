@@ -17,11 +17,9 @@
           ],
           "icon": "mdi:countertop-outline",
           "badges": [],
-          "cards": [],
-          "type": "sections",
-          "sections": [
+          "cards": [
             {
-              "type": "grid",
+              "type": "vertical-stack",
               "cards": [
                 {
                   "type": "custom:clock-weather-card",
@@ -48,7 +46,7 @@
               ]
             },
             {
-              "type": "grid",
+              "type": "vertical-stack",
               "cards": [
                 {
                   "type": "conditional",
@@ -93,12 +91,17 @@
                   }
                 },
                 {
-                  "type": "tile",
-                  "entity": "person.eric"
-                },
-                {
-                  "type": "tile",
-                  "entity": "person.nicole"
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "tile",
+                      "entity": "person.eric"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "person.nicole"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:atomic-calendar-revive",
@@ -167,7 +170,7 @@
               ]
             },
             {
-              "type": "grid",
+              "type": "vertical-stack",
               "cards": [
                 {
                   "type": "entities",
@@ -223,7 +226,7 @@
               ]
             },
             {
-              "type": "grid",
+              "type": "vertical-stack",
               "cards": [
                 {
                   "type": "conditional",
@@ -285,10 +288,7 @@
                 {
                   "type": "entity",
                   "entity": "sensor.dishwasher_status",
-                  "state_color": true,
-                  "grid_options": {
-                    "columns": "full"
-                  }
+                  "state_color": true
                 },
                 {
                   "type": "custom:grocy-chores-card",
@@ -303,8 +303,7 @@
                 }
               ]
             }
-          ],
-          "max_columns": 4
+          ]
         },
         {
           "theme": "Backend-selected",
