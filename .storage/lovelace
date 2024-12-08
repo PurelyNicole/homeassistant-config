@@ -706,10 +706,17 @@
           "path": "lights",
           "icon": "mdi:lightbulb-outline",
           "badges": [],
-          "cards": [
+          "cards": [],
+          "type": "sections",
+          "sections": [
             {
-              "type": "vertical-stack",
+              "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Main Floor",
+                  "heading_style": "title"
+                },
                 {
                   "type": "entities",
                   "entities": [
@@ -754,36 +761,112 @@
                     },
                     {
                       "entity": "light.dining_room_wall_dimmer"
-                    },
-                    {
-                      "entity": "light.stairway_dimmer"
                     }
                   ],
                   "title": "Living/Dining Room Lights"
-                }
-              ]
-            },
-            {
-              "type": "vertical-stack",
-              "cards": [
+                },
                 {
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "light.family_room_track_light_front"
+                      "entity": "light.garage_lights_north"
                     },
                     {
-                      "entity": "light.family_room_track_light_back"
-                    },
-                    {
-                      "entity": "light.eric_office_light"
-                    },
-                    {
-                      "entity": "light.lava_lamp"
+                      "entity": "light.garage_lights_south"
                     }
                   ],
-                  "title": "Downstairs  Lights",
+                  "state_color": true,
+                  "title": "Garage Lights"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Upstairs",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.master_bedroom_light"
+                    },
+                    {
+                      "entity": "light.nightstand_lamps"
+                    },
+                    {
+                      "entity": "light.master_bedroom_closet"
+                    },
+                    {
+                      "entity": "light.master_bath_light"
+                    },
+                    {
+                      "entity": "switch.master_bath_fan"
+                    },
+                    {
+                      "entity": "switch.magic_mirror_screen"
+                    }
+                  ],
+                  "title": "Master Bedroom",
                   "state_color": true
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.closet_room_closet_light"
+                    },
+                    {
+                      "entity": "light.closet_room_wall_switch"
+                    }
+                  ],
+                  "title": "Closet Room Lights",
+                  "state_color": true
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.stairway_dimmer"
+                    },
+                    {
+                      "entity": "light.upstairs_hallway_light"
+                    }
+                  ],
+                  "state_color": true,
+                  "title": "Upstairs Hallway Lights"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.nicole_office_wall_switch"
+                    },
+                    {
+                      "entity": "light.nicole_office_floor_lamp"
+                    },
+                    {
+                      "entity": "light.raccoon_lamp"
+                    },
+                    {
+                      "entity": "light.nicole_office_closet_light"
+                    }
+                  ],
+                  "title": "Nicole Office Lights",
+                  "state_color": true
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Downstairs & Basement"
                 },
                 {
                   "type": "entities",
@@ -812,145 +895,115 @@
                   ],
                   "title": "Den Lights",
                   "state_color": true
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.family_room_track_light_front"
+                    },
+                    {
+                      "entity": "light.family_room_track_light_back"
+                    },
+                    {
+                      "entity": "switch.christmas_tree"
+                    }
+                  ],
+                  "title": "Family Room Lights",
+                  "state_color": true
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.eric_office_light"
+                    },
+                    {
+                      "entity": "light.lava_lamp"
+                    }
+                  ],
+                  "title": "Eric Office Lights",
+                  "state_color": true
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.basement_stairs_switch"
+                    },
+                    {
+                      "entity": "light.basement_landing_lights"
+                    },
+                    {
+                      "entity": "light.basement_lights_north"
+                    },
+                    {
+                      "entity": "light.basement_lights_south"
+                    },
+                    {
+                      "entity": "light.utility_room_light"
+                    }
+                  ],
+                  "state_color": true,
+                  "title": "Basement Lights"
                 }
               ]
             },
             {
-              "type": "entities",
-              "entities": [
+              "type": "grid",
+              "cards": [
                 {
-                  "entity": "light.family_room_deck_light_back"
+                  "type": "heading",
+                  "heading": "Outdoors",
+                  "heading_style": "title"
                 },
                 {
-                  "entity": "light.family_room_deck_light_side"
-                },
-                {
-                  "entity": "light.grill_lights"
-                },
-                {
-                  "entity": "light.outdoor_garage_lights"
-                },
-                {
-                  "entity": "light.garage_flood_lights_west"
-                },
-                {
-                  "entity": "light.service_door_light"
-                },
-                {
-                  "entity": "light.porch_light"
-                },
-                {
-                  "entity": "light.outside_workshop_light"
-                },
-                {
-                  "entity": "light.workshop_lights"
-                },
-                {
-                  "entity": "light.driveway_post_and_tree_lights"
-                },
-                {
-                  "entity": "light.pixel_post_light"
-                },
-                {
-                  "entity": "light.holiday_lights"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.family_room_deck_light_back"
+                    },
+                    {
+                      "entity": "light.family_room_deck_light_side"
+                    },
+                    {
+                      "entity": "light.grill_lights"
+                    },
+                    {
+                      "entity": "light.outdoor_garage_lights"
+                    },
+                    {
+                      "entity": "light.garage_flood_lights_west"
+                    },
+                    {
+                      "entity": "light.service_door_light"
+                    },
+                    {
+                      "entity": "light.porch_light"
+                    },
+                    {
+                      "entity": "light.outside_workshop_light"
+                    },
+                    {
+                      "entity": "light.workshop_lights"
+                    },
+                    {
+                      "entity": "light.driveway_post_and_tree_lights"
+                    },
+                    {
+                      "entity": "light.pixel_post_light"
+                    },
+                    {
+                      "entity": "light.holiday_lights"
+                    }
+                  ],
+                  "title": "Outdoor Lights",
+                  "state_color": true
                 }
-              ],
-              "title": "Outdoor Lights",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "light.basement_stairs_switch"
-                },
-                {
-                  "entity": "light.basement_landing_lights"
-                },
-                {
-                  "entity": "light.basement_lights_north"
-                },
-                {
-                  "entity": "light.basement_lights_south"
-                },
-                {
-                  "entity": "light.utility_room_light"
-                }
-              ],
-              "state_color": true,
-              "title": "Basement Lights"
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "light.nicole_office_wall_switch"
-                },
-                {
-                  "entity": "light.nicole_office_floor_lamp"
-                },
-                {
-                  "entity": "light.raccoon_lamp"
-                },
-                {
-                  "entity": "light.nicole_office_closet_light"
-                }
-              ],
-              "title": "Nicole Office Lights",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "light.master_bedroom_light"
-                },
-                {
-                  "entity": "light.nightstand_lamps"
-                },
-                {
-                  "entity": "light.master_bedroom_closet"
-                },
-                {
-                  "entity": "light.master_bath_light"
-                },
-                {
-                  "entity": "switch.master_bath_fan"
-                },
-                {
-                  "entity": "switch.magic_mirror_screen"
-                }
-              ],
-              "title": "Master Bedroom",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "light.garage_lights_north"
-                },
-                {
-                  "entity": "light.garage_lights_south"
-                }
-              ],
-              "state_color": true,
-              "title": "Garage Lights"
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "light.closet_room_closet_light"
-                },
-                {
-                  "entity": "light.closet_room_wall_switch"
-                }
-              ],
-              "title": "Closet Room Lights",
-              "state_color": true
+              ]
             }
-          ]
+          ],
+          "max_columns": 4
         },
         {
           "title": "Climate",
