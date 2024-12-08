@@ -1999,34 +1999,29 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "show_current": true,
-                      "show_forecast": true,
-                      "type": "weather-forecast",
-                      "entity": "weather.ecobee_thermostat",
-                      "forecast_type": "daily",
-                      "secondary_info_attribute": "humidity"
-                    },
-                    {
-                      "type": "custom:weather-radar-card",
-                      "frame_count": 10,
-                      "center_latitude": 42.59099219695002,
-                      "center_longitude": -83.39325635707908,
-                      "marker_latitude": 42.59099219695002,
-                      "marker_longitude": -83.39325635707908,
-                      "show_marker": true,
-                      "show_range": true,
-                      "show_zoom": true,
-                      "show_recenter": true,
-                      "show_playback": true,
-                      "zoom_level": 8,
-                      "extra_labels": false,
-                      "show_scale": false,
-                      "static_map": false
-                    }
-                  ]
+                  "show_current": true,
+                  "show_forecast": true,
+                  "type": "weather-forecast",
+                  "entity": "weather.ecobee_thermostat",
+                  "forecast_type": "daily",
+                  "secondary_info_attribute": "humidity"
+                },
+                {
+                  "type": "custom:weather-radar-card",
+                  "frame_count": 10,
+                  "center_latitude": 42.59099219695002,
+                  "center_longitude": -83.39325635707908,
+                  "marker_latitude": 42.59099219695002,
+                  "marker_longitude": -83.39325635707908,
+                  "show_marker": true,
+                  "show_range": true,
+                  "show_zoom": true,
+                  "show_recenter": true,
+                  "show_playback": true,
+                  "zoom_level": 8,
+                  "extra_labels": false,
+                  "show_scale": false,
+                  "static_map": false
                 }
               ]
             },
@@ -2034,100 +2029,95 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "vertical-stack",
-                  "cards": [
+                  "type": "gauge",
+                  "entity": "sensor.airnow_aqi",
+                  "name": "Air Quality Index",
+                  "max": 500,
+                  "segments": [
                     {
-                      "type": "gauge",
-                      "entity": "sensor.airnow_aqi",
-                      "name": "Air Quality Index",
-                      "max": 500,
-                      "segments": [
-                        {
-                          "from": 0,
-                          "color": "#00e400"
-                        },
-                        {
-                          "from": 51,
-                          "color": "#ffff00"
-                        },
-                        {
-                          "from": 101,
-                          "color": "#ff7e00"
-                        },
-                        {
-                          "from": 151,
-                          "color": "#ff0000"
-                        },
-                        {
-                          "from": 201,
-                          "color": "#8f3f97"
-                        },
-                        {
-                          "from": 301,
-                          "color": "#7e0023"
-                        }
-                      ],
-                      "needle": true
+                      "from": 0,
+                      "color": "#00e400"
                     },
                     {
-                      "type": "gauge",
-                      "entity": "sensor.allergy_index_today",
-                      "min": 0,
-                      "max": 12,
-                      "segments": [
-                        {
-                          "from": 0,
-                          "color": "#03672a"
-                        },
-                        {
-                          "from": 2.5,
-                          "color": "#8dc300"
-                        },
-                        {
-                          "from": 4.9,
-                          "color": "#F3C700"
-                        },
-                        {
-                          "from": 7.3,
-                          "color": "#E2841B"
-                        },
-                        {
-                          "from": 9.7,
-                          "color": "#D74302"
-                        }
-                      ],
-                      "needle": true
+                      "from": 51,
+                      "color": "#ffff00"
                     },
                     {
-                      "type": "gauge",
-                      "entity": "sensor.allergy_index_tomorrow",
-                      "min": 0,
-                      "max": 12,
-                      "segments": [
-                        {
-                          "from": 0,
-                          "color": "#03672a"
-                        },
-                        {
-                          "from": 2.5,
-                          "color": "#8dc300"
-                        },
-                        {
-                          "from": 4.9,
-                          "color": "#F3C700"
-                        },
-                        {
-                          "from": 7.3,
-                          "color": "#E2841B"
-                        },
-                        {
-                          "from": 9.7,
-                          "color": "#D74302"
-                        }
-                      ],
-                      "needle": true
+                      "from": 101,
+                      "color": "#ff7e00"
+                    },
+                    {
+                      "from": 151,
+                      "color": "#ff0000"
+                    },
+                    {
+                      "from": 201,
+                      "color": "#8f3f97"
+                    },
+                    {
+                      "from": 301,
+                      "color": "#7e0023"
                     }
-                  ]
+                  ],
+                  "needle": true
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.allergy_index_today",
+                  "min": 0,
+                  "max": 12,
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#03672a"
+                    },
+                    {
+                      "from": 2.5,
+                      "color": "#8dc300"
+                    },
+                    {
+                      "from": 4.9,
+                      "color": "#F3C700"
+                    },
+                    {
+                      "from": 7.3,
+                      "color": "#E2841B"
+                    },
+                    {
+                      "from": 9.7,
+                      "color": "#D74302"
+                    }
+                  ],
+                  "needle": true
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.allergy_index_tomorrow",
+                  "min": 0,
+                  "max": 12,
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#03672a"
+                    },
+                    {
+                      "from": 2.5,
+                      "color": "#8dc300"
+                    },
+                    {
+                      "from": 4.9,
+                      "color": "#F3C700"
+                    },
+                    {
+                      "from": 7.3,
+                      "color": "#E2841B"
+                    },
+                    {
+                      "from": 9.7,
+                      "color": "#D74302"
+                    }
+                  ],
+                  "needle": true
                 }
               ]
             }
@@ -2145,46 +2135,45 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "vertical-stack",
-                  "cards": [
+                  "type": "tile",
+                  "entity": "input_select.home_mode",
+                  "features": [
                     {
-                      "type": "tile",
-                      "entity": "input_select.home_mode",
-                      "features": [
-                        {
-                          "type": "select-options"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "entities",
-                      "entities": [
-                        {
-                          "entity": "binary_sensor.day"
-                        },
-                        {
-                          "entity": "binary_sensor.dusk"
-                        },
-                        {
-                          "entity": "binary_sensor.night"
-                        }
-                      ],
-                      "title": "Time Of Day"
-                    },
-                    {
-                      "type": "entities",
-                      "entities": [
-                        {
-                          "entity": "input_boolean.vacation_mode"
-                        },
-                        {
-                          "entity": "input_boolean.hvac_override"
-                        }
-                      ],
-                      "title": "System Toggles",
-                      "state_color": true
+                      "type": "select-options"
                     }
-                  ]
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.day"
+                    },
+                    {
+                      "entity": "binary_sensor.dusk"
+                    },
+                    {
+                      "entity": "binary_sensor.night"
+                    }
+                  ],
+                  "title": "Time Of Day"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "input_boolean.vacation_mode"
+                    },
+                    {
+                      "entity": "input_boolean.hvac_override"
+                    }
+                  ],
+                  "title": "System Toggles",
+                  "state_color": true,
+                  "show_header_toggle": false
                 }
               ]
             },
