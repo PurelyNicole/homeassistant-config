@@ -76,9 +76,6 @@
         - light.kitchen_table_light
         - light.kitchen_mudroom_dimmer
         - light.dining_room_table_dimmer
-  - action: script.turn_on_workshop_hvac
-    metadata: {}
-    data: {}
   mode: parallel
   max: 10
 - id: goodnight_2am
@@ -1947,4 +1944,47 @@
     data: {}
     target:
       entity_id: switch.christmas_tree
+  mode: single
+- id: '1733602142510'
+  alias: Climate - Workshop HVAC
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.workshop_hvac_indoor_temperature
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{states(''sensor.workshop_hvac_indoor_temperature'')|int
+          > 50 }}'
+        alias: Workshop temperature is greater than 50
+      sequence:
+      - action: climate.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: climate.workshop_hvac
+      alias: Turn off if temperature is greater than 50
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: template
+          value_template: '{{states(''sensor.workshop_hvac_indoor_temperature'')|int
+            < 40 }}'
+          alias: Workshop temperature is less than 40
+        - condition: state
+          entity_id: person.eric
+          state: home
+        - condition: state
+          entity_id: input_select.home_mode
+          state: Home
+      sequence:
+      - action: climate.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: climate.workshop_hvac
+      alias: Eric Home and temp under 40
   mode: single

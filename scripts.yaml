@@ -148,9 +148,6 @@ good_morning:
       entity_id:
       - light.pixel_post_light
       - light.stairway_dimmer
-  - action: script.turn_on_workshop_hvac
-    metadata: {}
-    data: {}
   description: ''
   icon: mdi:weather-sunny
 goodbye:
