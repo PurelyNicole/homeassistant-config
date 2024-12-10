@@ -1635,145 +1635,163 @@
           "path": "media",
           "icon": "mdi:music",
           "badges": [],
-          "cards": [
+          "cards": [],
+          "type": "sections",
+          "sections": [
             {
-              "type": "media-control",
-              "entity": "media_player.main_floor_musiccast"
-            },
-            {
-              "type": "media-control",
-              "entity": "media_player.downstairs_musiccast"
-            },
-            {
-              "type": "entities",
-              "entities": [
+              "type": "grid",
+              "cards": [
                 {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "media_player.main_floor_musiccast"
+                    },
+                    {
+                      "entity": "switch.main_floor_tv"
+                    },
+                    {
+                      "entity": "sensor.main_floor_tv_media_input_source"
+                    },
+                    {
+                      "entity": "sensor.main_floor_tv_tv_channel_name"
+                    }
+                  ],
+                  "title": "Main Floor TV"
+                },
+                {
+                  "type": "media-control",
                   "entity": "media_player.main_floor_musiccast"
                 },
                 {
-                  "entity": "switch.main_floor_tv"
-                },
-                {
-                  "entity": "sensor.main_floor_tv_media_input_source"
-                },
-                {
-                  "entity": "sensor.main_floor_tv_tv_channel_name"
-                }
-              ],
-              "title": "Main Floor TV"
-            },
-            {
-              "type": "custom:atomic-calendar-revive",
-              "entities": [
-                "calendar.music_announcements"
-              ],
-              "name": "Upcoming Releases",
-              "enableModeChange": true,
-              "firstDayOfWeek": 1,
-              "maxDaysToShow": 30,
-              "refreshInterval": 60,
-              "hideFinishedEvents": false,
-              "showLocation": false,
-              "showDate": false,
-              "hideDuplicates": true,
-              "showDescription": false,
-              "showProgressBar": false,
-              "showCurrentEventLine": false,
-              "showWeekDay": true,
-              "disableEventLink": false,
-              "showEventIcon": false,
-              "showCalendarName": false,
-              "showEventDate": true,
-              "calShowDescription": false,
-              "showRelativeTime": false,
-              "showLastCalendarWeek": false,
-              "showMonth": false,
-              "hoursOnSameLine": false,
-              "showAllDayHours": false
-            },
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
-                  "show_name": true,
-                  "show_icon": true,
-                  "show_state": false,
-                  "type": "glance",
-                  "entities": [
-                    {
-                      "entity": "button.get_random_cd",
-                      "tap_action": {
-                        "action": "toggle"
-                      }
-                    },
-                    {
-                      "entity": "button.get_random_record",
-                      "tap_action": {
-                        "action": "toggle"
-                      }
-                    }
-                  ],
-                  "state_color": false
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.random_release",
-                  "show_entity_picture": true,
-                  "name": "You Should Listen To...",
-                  "vertical": false
+                  "type": "media-control",
+                  "entity": "media_player.downstairs_musiccast"
                 }
               ]
             },
             {
-              "type": "custom:atomic-calendar-revive",
-              "name": "Upcoming Games",
-              "enableModeChange": true,
-              "entities": [
+              "type": "grid",
+              "cards": [
                 {
-                  "entity": "calendar.detroit_lions",
-                  "name": "Detroit Lions",
-                  "color": "#0076b6"
+                  "type": "custom:atomic-calendar-revive",
+                  "entities": [
+                    "calendar.music_announcements"
+                  ],
+                  "name": "Upcoming Releases",
+                  "enableModeChange": true,
+                  "firstDayOfWeek": 1,
+                  "maxDaysToShow": 30,
+                  "refreshInterval": 60,
+                  "hideFinishedEvents": false,
+                  "showLocation": false,
+                  "showDate": false,
+                  "hideDuplicates": true,
+                  "showDescription": false,
+                  "showProgressBar": false,
+                  "showCurrentEventLine": false,
+                  "showWeekDay": true,
+                  "disableEventLink": false,
+                  "showEventIcon": false,
+                  "showCalendarName": false,
+                  "showEventDate": true,
+                  "calShowDescription": false,
+                  "showRelativeTime": false,
+                  "showLastCalendarWeek": false,
+                  "showMonth": false,
+                  "hoursOnSameLine": false,
+                  "showAllDayHours": false
                 },
                 {
-                  "entity": "calendar.indiana_fever",
-                  "name": "Indiana Fever",
-                  "color": "navy"
-                },
-                {
-                  "entity": "calendar.detroit_red_wings",
-                  "name": "Detroit Red Wings",
-                  "color": "#ce1126"
-                },
-                {
-                  "entity": "calendar.michigan_wolverines_football",
-                  "name": "Michigan Wolverines",
-                  "color": "#FFCB05"
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "show_name": true,
+                      "show_icon": true,
+                      "show_state": false,
+                      "type": "glance",
+                      "entities": [
+                        {
+                          "entity": "button.get_random_cd",
+                          "tap_action": {
+                            "action": "toggle"
+                          }
+                        },
+                        {
+                          "entity": "button.get_random_record",
+                          "tap_action": {
+                            "action": "toggle"
+                          }
+                        }
+                      ],
+                      "state_color": false
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.random_release",
+                      "show_entity_picture": true,
+                      "name": "You Should Listen To...",
+                      "vertical": false
+                    }
+                  ]
                 }
-              ],
-              "firstDayOfWeek": 0,
-              "calShowDescription": false,
-              "disableCalEventLink": false,
-              "showLastCalendarWeek": false,
-              "showEventIcon": true,
-              "showCalendarName": false,
-              "showEventDate": true,
-              "hoursOnSameLine": false,
-              "showRelativeTime": false,
-              "linkTarget": "_self",
-              "showMonth": false,
-              "showCurrentEventLine": false,
-              "defaultMode": "Event",
-              "sortBy": "start",
-              "showDeclined": false,
-              "hideFinishedEvents": true,
-              "showDate": false,
-              "showLocation": false,
-              "offsetHeaderDate": false,
-              "showDatePerEvent": false,
-              "disableCalLink": false,
-              "hideDuplicates": false
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:atomic-calendar-revive",
+                  "name": "Upcoming Games",
+                  "enableModeChange": true,
+                  "entities": [
+                    {
+                      "entity": "calendar.detroit_lions",
+                      "name": "Detroit Lions",
+                      "color": "#0076b6"
+                    },
+                    {
+                      "entity": "calendar.indiana_fever",
+                      "name": "Indiana Fever",
+                      "color": "navy"
+                    },
+                    {
+                      "entity": "calendar.detroit_red_wings",
+                      "name": "Detroit Red Wings",
+                      "color": "#ce1126"
+                    },
+                    {
+                      "entity": "calendar.michigan_wolverines_football",
+                      "name": "Michigan Wolverines",
+                      "color": "#FFCB05"
+                    }
+                  ],
+                  "firstDayOfWeek": 0,
+                  "calShowDescription": false,
+                  "disableCalEventLink": false,
+                  "showLastCalendarWeek": false,
+                  "showEventIcon": true,
+                  "showCalendarName": false,
+                  "showEventDate": true,
+                  "hoursOnSameLine": false,
+                  "showRelativeTime": false,
+                  "linkTarget": "_self",
+                  "showMonth": false,
+                  "showCurrentEventLine": false,
+                  "defaultMode": "Event",
+                  "sortBy": "start",
+                  "showDeclined": false,
+                  "hideFinishedEvents": true,
+                  "showDate": false,
+                  "showLocation": false,
+                  "offsetHeaderDate": false,
+                  "showDatePerEvent": false,
+                  "disableCalLink": false,
+                  "hideDuplicates": false
+                }
+              ]
             }
-          ]
+          ],
+          "max_columns": 4
         },
         {
           "title": "Chores",
