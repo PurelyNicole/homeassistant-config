@@ -294,7 +294,7 @@
                   "type": "custom:grocy-chores-card",
                   "entity": "sensor.grocy_chores",
                   "title": "Chorin'",
-                  "show_quantity": 4,
+                  "show_quantity": 5,
                   "show_days": 3,
                   "show_assigned": false,
                   "show_last_tracked": true,
@@ -904,9 +904,6 @@
                     },
                     {
                       "entity": "light.family_room_track_light_back"
-                    },
-                    {
-                      "entity": "switch.christmas_tree"
                     }
                   ],
                   "title": "Family Room Lights",
@@ -1102,7 +1099,7 @@
                   "entity": "sensor.workshop_hvac_indoor_temperature"
                 },
                 {
-                  "entity": "sensor.den_temperature_sensor_temperature"
+                  "entity": "sensor.den_air_quality_temperature"
                 }
               ],
               "title": "Temperature"
@@ -1133,7 +1130,7 @@
                   "entity": "sensor.workshop_sensor_humidity"
                 },
                 {
-                  "entity": "sensor.den_temperature_sensor_humidity"
+                  "entity": "sensor.den_air_quality_humidity"
                 },
                 {
                   "entity": "switch.dehumidifier"
@@ -1201,10 +1198,7 @@
                   "entity": "sensor.master_bathroom_sensor_air_temperature"
                 },
                 {
-                  "entity": "sensor.compensation_sensor_nicole_office_sensor_air_temperature"
-                },
-                {
-                  "entity": "sensor.den_temperature_sensor_temperature"
+                  "entity": "sensor.den_air_quality_temperature"
                 }
               ],
               "hours_to_show": 72,
@@ -1232,6 +1226,21 @@
                 }
               ],
               "state_color": true
+            },
+            {
+              "type": "history-graph",
+              "entities": [
+                {
+                  "entity": "sensor.den_air_quality_pm25"
+                }
+              ]
+            },
+            {
+              "graph": "line",
+              "type": "sensor",
+              "detail": 2,
+              "entity": "sensor.den_air_quality_pm25",
+              "hours_to_show": 24
             }
           ]
         },
@@ -1421,214 +1430,237 @@
           "path": "alarms",
           "icon": "mdi:alarm-bell",
           "badges": [],
-          "cards": [
+          "cards": [],
+          "type": "sections",
+          "sections": [
             {
-              "type": "entities",
-              "entities": [
+              "type": "grid",
+              "cards": [
                 {
-                  "entity": "binary_sensor.basement_smoke_detector_co_alarm_carbon_monoxide_detected",
-                  "name": "Carbon monoxide detected"
-                },
-                {
-                  "entity": "binary_sensor.basement_smoke_detector_smoke_alarm_smoke_detected",
-                  "name": "Smoke detected"
-                },
-                {
-                  "entity": "binary_sensor.basement_smoke_detector_co_alarm_replacement_required_end_of_life",
-                  "name": "Replacement required"
-                },
-                {
-                  "entity": "sensor.basement_smoke_detector_battery_level",
-                  "name": "Battery Level"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.garage_sensor_home_security_motion_detection"
+                    },
+                    {
+                      "entity": "binary_sensor.half_bath_motion_sensor"
+                    },
+                    {
+                      "entity": "binary_sensor.kitchen_motion_sensor_motion"
+                    },
+                    {
+                      "entity": "binary_sensor.nicole_office_sensor_home_security_motion_detection"
+                    },
+                    {
+                      "entity": "binary_sensor.closet_room_motion_sensor_motion"
+                    },
+                    {
+                      "entity": "binary_sensor.bedroom_ecobee_sensor_occupancy"
+                    },
+                    {
+                      "entity": "binary_sensor.master_bathroom_sensor_home_security_motion_detection"
+                    },
+                    {
+                      "entity": "binary_sensor.eric_office_motion_sensor_motion"
+                    },
+                    {
+                      "entity": "binary_sensor.den"
+                    },
+                    {
+                      "entity": "binary_sensor.basement_motion_group"
+                    }
+                  ],
+                  "title": "Motion",
+                  "state_color": true
                 }
-              ],
-              "title": "Basement Smoke Detector",
-              "state_color": true
+              ]
             },
             {
-              "type": "entities",
-              "entities": [
+              "type": "grid",
+              "cards": [
                 {
-                  "entity": "binary_sensor.downstairs_smoke_detector_co_alarm_carbon_monoxide_detected",
-                  "name": "Carbon monoxide detected"
-                },
-                {
-                  "entity": "binary_sensor.downstairs_smoke_detector_smoke_alarm_smoke_detected",
-                  "name": "Smoke detected"
-                },
-                {
-                  "entity": "binary_sensor.downstairs_smoke_detector_co_alarm_replacement_required_end_of_life",
-                  "name": "Replacement required"
-                },
-                {
-                  "entity": "sensor.downstairs_smoke_detector_battery_level",
-                  "name": "Battery Level"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.hot_water_heater_flood_sensor_water_leak_state",
+                      "name": "Hot Water Heater"
+                    },
+                    {
+                      "entity": "binary_sensor.kitchen_sink_water_sensor",
+                      "name": "Kitchen Sink"
+                    },
+                    {
+                      "entity": "binary_sensor.laundry_room_water_sensor_iaszone",
+                      "name": "Laundry Room"
+                    },
+                    {
+                      "entity": "binary_sensor.master_bath_water_sensor_moisture",
+                      "name": "Master Bath"
+                    },
+                    {
+                      "entity": "binary_sensor.blue_bath_water_sensor_moisture",
+                      "name": "Blue Bath"
+                    },
+                    {
+                      "entity": "binary_sensor.half_bath_water_sensor_moisture",
+                      "name": "Half Bath"
+                    },
+                    {
+                      "entity": "binary_sensor.downstairs_bath_water_sensor",
+                      "name": "Downstairs Bath"
+                    }
+                  ],
+                  "title": "Water Sensors",
+                  "state_color": true
                 }
-              ],
-              "title": "Downstairs Smoke Detector",
-              "state_color": true
+              ]
             },
             {
-              "type": "entities",
-              "entities": [
+              "type": "grid",
+              "cards": [
                 {
-                  "entity": "binary_sensor.upstairs_smoke_detector_co_alarm_carbon_monoxide_detected",
-                  "name": "Carbon monoxide detected"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.upstairs_smoke_detector_co_alarm_carbon_monoxide_detected",
+                      "name": "Carbon monoxide detected"
+                    },
+                    {
+                      "entity": "binary_sensor.upstairs_smoke_detector_smoke_alarm_smoke_detected",
+                      "name": "Smoke detected"
+                    },
+                    {
+                      "entity": "binary_sensor.upstairs_smoke_detector_co_alarm_replacement_required_end_of_life",
+                      "name": "Replacement required"
+                    },
+                    {
+                      "entity": "sensor.upstairs_smoke_detector_battery_level",
+                      "name": "Battery Level"
+                    }
+                  ],
+                  "title": "Upstairs Smoke Detector",
+                  "state_color": true
                 },
                 {
-                  "entity": "binary_sensor.upstairs_smoke_detector_smoke_alarm_smoke_detected",
-                  "name": "Smoke detected"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.kitchen_smoke_detector_carbon_monoxide_detected",
+                      "name": "Carbon monoxide detected"
+                    },
+                    {
+                      "entity": "binary_sensor.kitchen_smoke_detector_smoke_detected",
+                      "name": "Smoke detected"
+                    },
+                    {
+                      "entity": "binary_sensor.kitchen_smoke_detector_replacement_required_end_of_life",
+                      "name": "Replacement Required"
+                    },
+                    {
+                      "entity": "sensor.kitchen_smoke_detector_battery_level",
+                      "name": "Battery Level"
+                    }
+                  ],
+                  "title": "Kitchen Smoke Detector",
+                  "state_color": true
                 },
                 {
-                  "entity": "binary_sensor.upstairs_smoke_detector_co_alarm_replacement_required_end_of_life",
-                  "name": "Replacement required"
-                },
-                {
-                  "entity": "sensor.upstairs_smoke_detector_battery_level",
-                  "name": "Battery Level"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.basement_smoke_detector_co_alarm_carbon_monoxide_detected",
+                      "name": "Carbon monoxide detected"
+                    },
+                    {
+                      "entity": "binary_sensor.basement_smoke_detector_smoke_alarm_smoke_detected",
+                      "name": "Smoke detected"
+                    },
+                    {
+                      "entity": "binary_sensor.basement_smoke_detector_co_alarm_replacement_required_end_of_life",
+                      "name": "Replacement required"
+                    },
+                    {
+                      "entity": "sensor.basement_smoke_detector_battery_level",
+                      "name": "Battery Level"
+                    }
+                  ],
+                  "title": "Basement Smoke Detector",
+                  "state_color": true
                 }
-              ],
-              "title": "Upstairs Smoke Detector",
-              "state_color": true
+              ]
             },
             {
-              "type": "entities",
-              "entities": [
+              "type": "grid",
+              "cards": [
                 {
-                  "entity": "binary_sensor.eric_office_smoke_detector_co_alarm_carbon_monoxide_detected",
-                  "name": "Carbon Monoxide Detected"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.eric_office_smoke_detector_co_alarm_carbon_monoxide_detected",
+                      "name": "Carbon Monoxide Detected"
+                    },
+                    {
+                      "entity": "binary_sensor.eric_office_smoke_detector_smoke_alarm_smoke_detected",
+                      "name": "Smoke Detected"
+                    },
+                    {
+                      "entity": "binary_sensor.eric_office_smoke_detector_co_alarm_replacement_required_end_of_life",
+                      "name": "Replacement Required"
+                    },
+                    {
+                      "entity": "sensor.eric_office_smoke_detector_battery_level",
+                      "name": "Battery Level"
+                    }
+                  ],
+                  "title": "Eric Office Smoke Detector",
+                  "state_color": true
                 },
                 {
-                  "entity": "binary_sensor.eric_office_smoke_detector_smoke_alarm_smoke_detected",
-                  "name": "Smoke Detected"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.workshop_smoke_and_carbon_monoxide_alarm_smoke_alarm_smoke_detected"
+                    },
+                    {
+                      "entity": "sensor.workshop_smoke_detector_alarmtype"
+                    },
+                    {
+                      "entity": "sensor.workshop_smoke_detector_alarmlevel"
+                    },
+                    {
+                      "entity": "sensor.workshop_smoke_detector_battery_level"
+                    }
+                  ],
+                  "title": "Workshop Smoke Detector",
+                  "state_color": true
                 },
                 {
-                  "entity": "binary_sensor.eric_office_smoke_detector_co_alarm_replacement_required_end_of_life",
-                  "name": "Replacement Required"
-                },
-                {
-                  "entity": "sensor.eric_office_smoke_detector_battery_level",
-                  "name": "Battery Level"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.downstairs_smoke_detector_co_alarm_carbon_monoxide_detected",
+                      "name": "Carbon monoxide detected"
+                    },
+                    {
+                      "entity": "binary_sensor.downstairs_smoke_detector_smoke_alarm_smoke_detected",
+                      "name": "Smoke detected"
+                    },
+                    {
+                      "entity": "binary_sensor.downstairs_smoke_detector_co_alarm_replacement_required_end_of_life",
+                      "name": "Replacement required"
+                    },
+                    {
+                      "entity": "sensor.downstairs_smoke_detector_battery_level",
+                      "name": "Battery Level"
+                    }
+                  ],
+                  "title": "Downstairs Smoke Detector",
+                  "state_color": true
                 }
-              ],
-              "title": "Eric Office Smoke Detector",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "binary_sensor.kitchen_smoke_detector_carbon_monoxide_detected",
-                  "name": "Carbon monoxide detected"
-                },
-                {
-                  "entity": "binary_sensor.kitchen_smoke_detector_smoke_detected",
-                  "name": "Smoke detected"
-                },
-                {
-                  "entity": "binary_sensor.kitchen_smoke_detector_replacement_required_end_of_life",
-                  "name": "Replacement Required"
-                },
-                {
-                  "entity": "sensor.kitchen_smoke_detector_battery_level",
-                  "name": "Battery Level"
-                }
-              ],
-              "title": "Kitchen Smoke Detector",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "binary_sensor.workshop_smoke_and_carbon_monoxide_alarm_smoke_alarm_smoke_detected"
-                },
-                {
-                  "entity": "sensor.workshop_smoke_detector_alarmtype"
-                },
-                {
-                  "entity": "sensor.workshop_smoke_detector_alarmlevel"
-                },
-                {
-                  "entity": "sensor.workshop_smoke_detector_battery_level"
-                }
-              ],
-              "title": "Workshop Smoke Detector",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "binary_sensor.hot_water_heater_flood_sensor_water_leak_state",
-                  "name": "Hot Water Heater"
-                },
-                {
-                  "entity": "binary_sensor.kitchen_sink_water_sensor",
-                  "name": "Kitchen Sink"
-                },
-                {
-                  "entity": "binary_sensor.laundry_room_water_sensor_iaszone",
-                  "name": "Laundry Room"
-                },
-                {
-                  "entity": "binary_sensor.master_bath_water_sensor_moisture",
-                  "name": "Master Bath"
-                },
-                {
-                  "entity": "binary_sensor.blue_bath_water_sensor_moisture",
-                  "name": "Blue Bath"
-                },
-                {
-                  "entity": "binary_sensor.half_bath_water_sensor_moisture",
-                  "name": "Half Bath"
-                },
-                {
-                  "entity": "binary_sensor.downstairs_bath_water_sensor",
-                  "name": "Downstairs Bath"
-                }
-              ],
-              "title": "Water Sensors",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "binary_sensor.garage_sensor_home_security_motion_detection"
-                },
-                {
-                  "entity": "binary_sensor.half_bath_motion_sensor"
-                },
-                {
-                  "entity": "binary_sensor.kitchen_motion_sensor_motion"
-                },
-                {
-                  "entity": "binary_sensor.nicole_office_sensor_home_security_motion_detection"
-                },
-                {
-                  "entity": "binary_sensor.closet_room_motion_sensor_motion"
-                },
-                {
-                  "entity": "binary_sensor.bedroom_ecobee_sensor_occupancy"
-                },
-                {
-                  "entity": "binary_sensor.master_bathroom_sensor_home_security_motion_detection"
-                },
-                {
-                  "entity": "binary_sensor.eric_office_motion_sensor_motion"
-                },
-                {
-                  "entity": "binary_sensor.den"
-                },
-                {
-                  "entity": "binary_sensor.basement_motion_group"
-                }
-              ],
-              "title": "Motion",
-              "state_color": true
+              ]
             }
-          ]
+          ],
+          "max_columns": 4
         },
         {
           "title": "Media",
