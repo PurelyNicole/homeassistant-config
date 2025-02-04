@@ -449,9 +449,6 @@
   - if:
     - condition: and
       conditions:
-      - condition: state
-        entity_id: input_select.home_mode
-        state: Sleep
       - condition: device
         device_id: 80e2ea7676adeea018b6e96cb57a3af5
         domain: climate
@@ -459,6 +456,15 @@
         type: is_hvac_mode
         hvac_mode: heat
         alias: Ecobee is heating
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: input_select.home_mode
+          state: Sleep
+        - condition: state
+          entity_id: input_select.home_mode
+          state: Wind Down
+        alias: If Home Mode is Sleep or Wind Down
     then:
     - action: climate.set_temperature
       metadata: {}
@@ -697,15 +703,15 @@
     to: 'on'
   - trigger: state
     entity_id:
-    - binary_sensor.half_bath_water_sensor_moisture
-    to: 'on'
-  - trigger: state
-    entity_id:
-    - binary_sensor.blue_bath_water_sensor_moisture
+    - binary_sensor.green_bath_water_sensor_moisture
     to: 'on'
   - trigger: state
     entity_id:
     - binary_sensor.downstairs_bath_water_sensor
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.half_bath_moisture_sensor_moisture
     to: 'on'
   conditions: []
   actions:
@@ -829,7 +835,8 @@
   actions:
   - choose:
     - conditions:
-      - condition: or
+      - alias: If Garage Door is Open or Opening
+        condition: or
         conditions:
         - condition: state
           entity_id: cover.garage_door
@@ -837,7 +844,6 @@
         - condition: state
           entity_id: cover.garage_door
           state: opening
-        alias: If Garage Door is Open or Opening
       - condition: state
         entity_id: binary_sensor.pixel_post_light_on
         state: 'on'
@@ -1148,6 +1154,7 @@
         - sensor.roomba_battery_level
         - sensor.roomba_mainfloor_battery_level
         - sensor.nicole_iphone_battery_level
+        - sensor.erics_iphone_14_watch_battery
       time: '11:00:00'
       threshold: 30
 - id: vacation_mode_start_vacuum
@@ -1990,4 +1997,106 @@
         target:
           entity_id: climate.workshop_hvac
       alias: Eric Home and temp under 40
+  mode: single
+- id: '1738369807257'
+  alias: Turn on Upstairs Nightlight Motion
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.entryway_nightlight_motion
+    id: entryway-nightlight-motion
+  - trigger: state
+    entity_id:
+    - binary_sensor.upstairs_hallway_nightlight_motion
+    id: upstairs-nightlight-motion
+  - trigger: state
+    entity_id:
+    - binary_sensor.downstairs_hallway_nightlight_motion
+    id: downstairs-nightlight-motion
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - entryway-nightlight-motion
+      sequence:
+      - if:
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: binary_sensor.entryway_nightlight_motion
+            state: 'on'
+          - condition: template
+            value_template: '{{ float(states(''sensor.entryway_nightlight_illuminance''))
+              < 50 }}'
+            alias: Luminance is less than 50
+        then:
+        - action: light.turn_on
+          metadata: {}
+          data: {}
+          target:
+            entity_id: light.entryway_nightlight_light
+        else:
+        - action: light.turn_off
+          metadata: {}
+          data: {}
+          target:
+            entity_id: light.entryway_nightlight_light
+    - conditions:
+      - condition: trigger
+        id:
+        - upstairs-nightlight-motion
+      sequence:
+      - if:
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: binary_sensor.upstairs_hallway_nightlight_motion
+            state: 'on'
+          - alias: Luminance is less than 50
+            condition: template
+            value_template: '{{ float(states(''sensor.upstairs_hallway_nightlight_illuminance''))
+              < 50 }}'
+        then:
+        - action: light.turn_on
+          metadata: {}
+          data: {}
+          target:
+            entity_id:
+            - light.upstairs_hallway_nightlight_light
+        else:
+        - action: light.turn_off
+          metadata: {}
+          data: {}
+          target:
+            entity_id: light.upstairs_hallway_nightlight_light
+    - conditions:
+      - condition: trigger
+        id:
+        - downstairs-nightlight-motion
+      sequence:
+      - if:
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: binary_sensor.downstairs_hallway_nightlight_motion
+            state: 'on'
+          - alias: Luminance is less than 50
+            condition: template
+            value_template: '{{ float(states(''sensor.downstairs_hallway_nightlight_illuminance''))
+              < 50 }}'
+        then:
+        - action: light.turn_on
+          metadata: {}
+          data: {}
+          target:
+            entity_id: light.downstairs_hallway_light
+        else:
+        - action: light.turn_off
+          metadata: {}
+          data: {}
+          target:
+            entity_id: light.downstairs_hallway_nightlight_light
   mode: single

@@ -5,14 +5,15 @@
   "data": {
     "items": [
       {
+        "id": "home_mode",
         "name": "Home Mode",
         "icon": "mdi:home",
         "options": [
           "Home",
           "Away",
-          "Sleep"
-        ],
-        "id": "home_mode"
+          "Sleep",
+          "Wind Down"
+        ]
       }
     ]
   }

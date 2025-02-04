@@ -50,7 +50,7 @@ def normalOperation():
   elif home_mode == "Away":
     logger.info("Away mode.")
     hass.services.call("climate", "set_preset_mode", {"entity_id": thermostat, "preset_mode": "away"}, False)
-  elif home_mode == "Sleep":
+  elif home_mode == "Sleep" or home_mode == "Wind Down":
     logger.info("Sleep mode.")
     hass.services.call("climate", "set_preset_mode", {"entity_id": thermostat, "preset_mode": "sleep"}, False)
   else:
