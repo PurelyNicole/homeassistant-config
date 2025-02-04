@@ -104,6 +104,36 @@
                   ]
                 },
                 {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "tile",
+                      "entity": "script.open_garage_door_start_bmw",
+                      "color": "deep-purple",
+                      "name": "Start BMW Open Garage",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "script.open_garage_door_start_bmw",
+                        "target": {}
+                      }
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "button.cooper_se_activate_air_conditioning",
+                      "name": "Start Mini",
+                      "icon": "mdi:car-electric",
+                      "color": "green",
+                      "tap_action": {
+                        "action": "perform-action",
+                        "perform_action": "button.press",
+                        "target": {
+                          "entity_id": "button.cooper_se_activate_air_conditioning"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
                   "type": "custom:atomic-calendar-revive",
                   "entities": [
                     {
@@ -264,17 +294,17 @@
                   "type": "conditional",
                   "conditions": [
                     {
-                      "condition": "state",
-                      "entity": "calendar.mealie_dinner",
-                      "state": "on"
-                    },
-                    {
                       "condition": "or",
                       "conditions": [
                         {
                           "condition": "state",
                           "entity": "sensor.mealie_dinner_recipe_id",
                           "state": ""
+                        },
+                        {
+                          "condition": "state",
+                          "entity": "sensor.tonight_dinner_name",
+                          "state": "No Plan"
                         }
                       ]
                     }
@@ -429,6 +459,9 @@
                 },
                 {
                   "entity": "script.dim_bedroom_lights"
+                },
+                {
+                  "entity": "script.open_garage_door_start_bmw"
                 }
               ]
             },
@@ -739,10 +772,13 @@
                       "entity": "light.kitchen_overhead_lights"
                     },
                     {
+                      "entity": "light.half_bath_light"
+                    },
+                    {
                       "entity": "light.entryway_light"
                     },
                     {
-                      "entity": "light.half_bath_light"
+                      "entity": "light.entryway_nightlight_light"
                     }
                   ],
                   "title": "Kitchen Lights"
@@ -834,6 +870,9 @@
                     },
                     {
                       "entity": "light.upstairs_hallway_light"
+                    },
+                    {
+                      "entity": "light.upstairs_hallway_nightlight_light"
                     }
                   ],
                   "state_color": true,
@@ -878,9 +917,6 @@
                       "entity": "light.kitchenette_spot_lights"
                     },
                     {
-                      "entity": "light.downstairs_hallway_light"
-                    },
-                    {
                       "entity": "light.step_lights"
                     },
                     {
@@ -891,6 +927,12 @@
                     },
                     {
                       "entity": "light.cd_shelf_dimmer"
+                    },
+                    {
+                      "entity": "light.downstairs_hallway_light"
+                    },
+                    {
+                      "entity": "light.downstairs_hallway_nightlight_light"
                     }
                   ],
                   "title": "Den Lights",
@@ -917,6 +959,12 @@
                     },
                     {
                       "entity": "light.lava_lamp"
+                    },
+                    {
+                      "entity": "light.eric_office_closet_left_light"
+                    },
+                    {
+                      "entity": "light.eric_office_closet_right_light"
                     }
                   ],
                   "title": "Eric Office Lights",
@@ -1498,16 +1546,16 @@
                       "name": "Master Bath"
                     },
                     {
-                      "entity": "binary_sensor.blue_bath_water_sensor_moisture",
-                      "name": "Blue Bath"
-                    },
-                    {
-                      "entity": "binary_sensor.half_bath_water_sensor_moisture",
-                      "name": "Half Bath"
+                      "entity": "binary_sensor.green_bath_water_sensor_moisture",
+                      "name": "Green Bath"
                     },
                     {
                       "entity": "binary_sensor.downstairs_bath_water_sensor",
                       "name": "Downstairs Bath"
+                    },
+                    {
+                      "entity": "binary_sensor.half_bath_moisture_sensor_moisture",
+                      "name": "Half Bath"
                     }
                   ],
                   "title": "Water Sensors",
@@ -1964,44 +2012,601 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "entities",
-                  "entities": [
+                  "type": "custom:vehicle-status-card",
+                  "button_card": [
                     {
-                      "entity": "device_tracker.cooper_se"
+                      "button": {
+                        "primary": "Remote Start",
+                        "secondary": [
+                          {
+                            "entity": "",
+                            "attribute": "",
+                            "state_template": ""
+                          }
+                        ],
+                        "icon": "mdi:car-wireless",
+                        "notify": ""
+                      },
+                      "button_type": "action",
+                      "hide_button": false,
+                      "card_type": "default",
+                      "default_card": [],
+                      "custom_card": [],
+                      "button_action": {
+                        "entity": "button.m240i_xdrive_activate_remote_start",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "button.press",
+                          "target": {
+                            "entity_id": "button.m240i_xdrive_activate_remote_start"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        }
+                      }
                     },
                     {
-                      "entity": "sensor.cooper_se_charging_level_hv"
+                      "button": {
+                        "primary": "Open Garage &  Start",
+                        "secondary": [
+                          {
+                            "entity": "",
+                            "attribute": "",
+                            "state_template": ""
+                          }
+                        ],
+                        "icon": "mdi:garage",
+                        "notify": ""
+                      },
+                      "button_type": "action",
+                      "hide_button": false,
+                      "card_type": "default",
+                      "default_card": [],
+                      "custom_card": [],
+                      "button_action": {
+                        "entity": "script.open_garage_door_start_bmw",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "script.open_garage_door_start_bmw",
+                          "target": {}
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        }
+                      }
                     },
                     {
-                      "entity": "sensor.cooper_se_remaining_range_electric"
+                      "button": {
+                        "primary": "Remote Stop",
+                        "secondary": [
+                          {
+                            "entity": "",
+                            "attribute": "",
+                            "state_template": ""
+                          }
+                        ],
+                        "icon": "mdi:stop-circle",
+                        "notify": ""
+                      },
+                      "button_type": "action",
+                      "hide_button": false,
+                      "card_type": "default",
+                      "default_card": [],
+                      "custom_card": [],
+                      "button_action": {
+                        "entity": "button.m240i_xdrive_deactivate_air_conditioning",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "button.press",
+                          "target": {
+                            "entity_id": "button.m240i_xdrive_deactivate_air_conditioning"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        }
+                      }
                     },
                     {
-                      "entity": "sensor.cooper_se_charging_status"
+                      "button": {
+                        "primary": "Tire Pressure",
+                        "secondary": {
+                          "entity": "",
+                          "attribute": "",
+                          "state_template": ""
+                        },
+                        "notify": "",
+                        "icon": "mdi:tire"
+                      },
+                      "button_type": "default",
+                      "hide_button": false,
+                      "card_type": "tire",
+                      "default_card": [],
+                      "custom_card": [],
+                      "button_action": {
+                        "entity": "",
+                        "tap_action": {
+                          "action": "more-info"
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        }
+                      },
+                      "tire_card": {
+                        "front_left": {
+                          "entity": "sensor.m240i_xdrive_front_left_tire_pressure"
+                        },
+                        "front_right": {
+                          "entity": "sensor.m240i_xdrive_front_right_tire_pressure"
+                        },
+                        "rear_left": {
+                          "entity": "sensor.m240i_xdrive_rear_left_tire_pressure"
+                        },
+                        "rear_right": {
+                          "entity": "sensor.m240i_xdrive_rear_right_tire_pressure"
+                        },
+                        "title": "Tires"
+                      }
                     },
                     {
-                      "entity": "binary_sensor.cooper_se_check_control_messages"
-                    },
-                    {
-                      "entity": "binary_sensor.cooper_se_condition_based_services"
-                    },
-                    {
-                      "entity": "binary_sensor.cooper_se_connection_status"
-                    },
-                    {
-                      "entity": "binary_sensor.cooper_se_lids"
-                    },
-                    {
-                      "entity": "lock.cooper_se_lock"
-                    },
-                    {
-                      "entity": "sensor.cooper_se_mileage"
-                    },
-                    {
-                      "entity": "binary_sensor.cooper_se_windows"
+                      "button": {
+                        "primary": "Lock Car",
+                        "secondary": {
+                          "entity": "",
+                          "attribute": "",
+                          "state_template": ""
+                        },
+                        "icon": "mdi:lock",
+                        "notify": ""
+                      },
+                      "button_type": "action",
+                      "hide_button": false,
+                      "card_type": "default",
+                      "default_card": [],
+                      "custom_card": [],
+                      "button_action": {
+                        "entity": "lock.m240i_xdrive_lock",
+                        "tap_action": {
+                          "action": "more-info"
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        }
+                      }
                     }
                   ],
-                  "title": "MINI",
-                  "state_color": true
+                  "images": [
+                    {
+                      "url": "/api/image/serve/973c72b78d7b7c59e9cf44555c815e65/original",
+                      "title": "BMW-G42_M240I-XDRIVE-COUPE-THUNDERNIGHT-THUMB.PNG"
+                    }
+                  ],
+                  "indicators": {
+                    "group": [
+                      {
+                        "name": "TPM",
+                        "icon": "mdi:tire",
+                        "visibility": "",
+                        "items": [
+                          {
+                            "entity": "sensor.m240i_xdrive_front_left_tire_pressure",
+                            "name": "",
+                            "icon": "",
+                            "attribute": ""
+                          },
+                          {
+                            "entity": "sensor.m240i_xdrive_front_right_tire_pressure",
+                            "name": "",
+                            "icon": "",
+                            "attribute": ""
+                          },
+                          {
+                            "entity": "sensor.m240i_xdrive_rear_left_tire_pressure",
+                            "name": "",
+                            "icon": "",
+                            "attribute": ""
+                          },
+                          {
+                            "entity": "sensor.m240i_xdrive_rear_right_tire_pressure",
+                            "name": "",
+                            "icon": "",
+                            "attribute": ""
+                          }
+                        ]
+                      }
+                    ],
+                    "single": [
+                      {
+                        "entity": "binary_sensor.m240i_xdrive_check_control_messages",
+                        "icon": "",
+                        "attribute": "",
+                        "action_config": {
+                          "entity": "binary_sensor.m240i_xdrive_check_control_messages",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "more-info"
+                          },
+                          "double_tap_action": {
+                            "action": "more-info"
+                          }
+                        }
+                      },
+                      {
+                        "entity": "lock.m240i_xdrive_lock",
+                        "icon": "",
+                        "attribute": "",
+                        "action_config": {
+                          "entity": "lock.m240i_xdrive_lock",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        }
+                      },
+                      {
+                        "entity": "binary_sensor.m240i_xdrive_windows",
+                        "icon": "",
+                        "attribute": "",
+                        "action_config": {
+                          "entity": "binary_sensor.m240i_xdrive_windows",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "more-info"
+                          },
+                          "double_tap_action": {
+                            "action": "more-info"
+                          }
+                        }
+                      },
+                      {
+                        "entity": "sensor.m240i_xdrive_mileage",
+                        "icon": "",
+                        "attribute": "",
+                        "action_config": {
+                          "entity": "sensor.m240i_xdrive_mileage",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "layout_config": {
+                    "button_grid": {
+                      "rows": 2,
+                      "columns": 2,
+                      "swipe": true
+                    },
+                    "hide": {
+                      "button_notify": false,
+                      "buttons": false,
+                      "images": false,
+                      "indicators": false,
+                      "mini_map": false,
+                      "range_info": false,
+                      "map_address": false
+                    },
+                    "theme_config": {
+                      "mode": "auto",
+                      "theme": "default"
+                    },
+                    "section_order": [
+                      "header_info",
+                      "images",
+                      "mini_map",
+                      "buttons"
+                    ]
+                  },
+                  "mini_map": {
+                    "device_tracker": "device_tracker.m240i_xdrive",
+                    "enable_popup": true,
+                    "us_format": true
+                  },
+                  "name": "BMW M240i",
+                  "range_info": [
+                    {
+                      "energy_level": {
+                        "entity": "sensor.m240i_xdrive_remaining_fuel_percent",
+                        "attribute": ""
+                      },
+                      "range_level": {
+                        "entity": "sensor.m240i_xdrive_remaining_range_total",
+                        "attribute": ""
+                      },
+                      "progress_color": "#520E7D"
+                    }
+                  ],
+                  "card_id": "vsc-gyk9m2m"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:vehicle-status-card",
+                  "button_card": [
+                    {
+                      "button": {
+                        "icon": "mdi:car-wireless",
+                        "primary": "Remote Start",
+                        "secondary": {
+                          "state_template": ""
+                        }
+                      },
+                      "button_type": "action",
+                      "card_type": "default",
+                      "custom_card": [],
+                      "default_card": [
+                        {
+                          "collapsed_items": false,
+                          "items": [
+                            {
+                              "entity": "sun.sun"
+                            },
+                            {
+                              "entity": "ensor.sun_next_dawn"
+                            },
+                            {
+                              "entity": "sensor.sun_next_midnight"
+                            },
+                            {
+                              "entity": "sensor.sun_next_noon"
+                            }
+                          ],
+                          "title": "Default Card"
+                        },
+                        {
+                          "collapsed_items": true,
+                          "items": [
+                            {
+                              "entity": "sun.sun"
+                            },
+                            {
+                              "entity": "ensor.sun_next_dawn"
+                            },
+                            {
+                              "entity": "sensor.sun_next_midnight"
+                            },
+                            {
+                              "entity": "sensor.sun_next_noon"
+                            }
+                          ],
+                          "title": "Collapsed Card"
+                        }
+                      ],
+                      "hide_button": false,
+                      "button_action": {
+                        "entity": "button.cooper_se_activate_air_conditioning",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "button.press",
+                          "target": {
+                            "entity_id": "button.cooper_se_activate_air_conditioning"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        }
+                      }
+                    },
+                    {
+                      "button": {
+                        "icon": "mdi:lock",
+                        "primary": "Lock Car",
+                        "secondary": {
+                          "state_template": ""
+                        }
+                      },
+                      "button_type": "action",
+                      "card_type": "custom",
+                      "custom_card": [
+                        {
+                          "entities": [
+                            "sensor.sun_next_dawn",
+                            "sensor.sun_next_midnight",
+                            "sensor.sun_next_noon"
+                          ],
+                          "title": "Custom Card",
+                          "type": "entities"
+                        }
+                      ],
+                      "default_card": [],
+                      "hide_button": false,
+                      "button_action": {
+                        "entity": "lock.cooper_se_lock",
+                        "tap_action": {
+                          "action": "perform-action",
+                          "perform_action": "button.press",
+                          "target": {
+                            "entity_id": "button.cooper_se_activate_air_conditioning"
+                          }
+                        },
+                        "hold_action": {
+                          "action": "none"
+                        },
+                        "double_tap_action": {
+                          "action": "none"
+                        }
+                      }
+                    }
+                  ],
+                  "layout_config": {
+                    "button_grid": {
+                      "rows": 2,
+                      "columns": 2,
+                      "swipe": true
+                    },
+                    "hide": {
+                      "button_notify": false,
+                      "buttons": false,
+                      "images": false,
+                      "indicators": false,
+                      "mini_map": false,
+                      "range_info": false,
+                      "map_address": false
+                    },
+                    "theme_config": {
+                      "mode": "auto",
+                      "theme": "default"
+                    },
+                    "section_order": [
+                      "header_info",
+                      "images",
+                      "mini_map",
+                      "buttons"
+                    ]
+                  },
+                  "name": "Mini SE",
+                  "mini_map": {
+                    "device_tracker": "device_tracker.cooper_se",
+                    "enable_popup": true,
+                    "us_format": true
+                  },
+                  "indicators": {
+                    "single": [
+                      {
+                        "entity": "binary_sensor.cooper_se_check_control_messages",
+                        "icon": "",
+                        "attribute": "",
+                        "action_config": {
+                          "entity": "binary_sensor.cooper_se_check_control_messages",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        }
+                      },
+                      {
+                        "entity": "binary_sensor.cooper_se_connection_status",
+                        "icon": "",
+                        "attribute": "",
+                        "action_config": {
+                          "entity": "binary_sensor.cooper_se_connection_status",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        }
+                      },
+                      {
+                        "entity": "lock.cooper_se_lock",
+                        "icon": "",
+                        "attribute": "",
+                        "action_config": {
+                          "entity": "lock.cooper_se_lock",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        }
+                      },
+                      {
+                        "entity": "binary_sensor.cooper_se_windows",
+                        "icon": "",
+                        "attribute": "",
+                        "action_config": {
+                          "entity": "binary_sensor.cooper_se_windows",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        }
+                      },
+                      {
+                        "entity": "sensor.cooper_se_mileage",
+                        "icon": "",
+                        "attribute": "",
+                        "action_config": {
+                          "entity": "sensor.cooper_se_mileage",
+                          "tap_action": {
+                            "action": "more-info"
+                          },
+                          "hold_action": {
+                            "action": "none"
+                          },
+                          "double_tap_action": {
+                            "action": "none"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "range_info": [
+                    {
+                      "energy_level": {
+                        "entity": "sensor.cooper_se_charging_level_hv",
+                        "attribute": "",
+                        "icon": ""
+                      },
+                      "range_level": {
+                        "entity": "sensor.cooper_se_remaining_range_electric",
+                        "attribute": ""
+                      },
+                      "progress_color": "#004225",
+                      "charging_entity": "sensor.cooper_se_charging_status"
+                    }
+                  ],
+                  "images": [
+                    {
+                      "url": "/api/image/serve/d99810b2a888af57939c172cb72dbfdf/original",
+                      "title": "VCCCRJU8.PNG"
+                    }
+                  ]
                 }
               ]
             },

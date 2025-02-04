@@ -2100,3 +2100,61 @@
           target:
             entity_id: light.downstairs_hallway_nightlight_light
   mode: single
+- id: '1738630217980'
+  alias: Control Eric Office Closet Lights with Door
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.eric_office_closet_door_right_opening
+    id: eric-closet-door-right-changed
+  - trigger: state
+    entity_id:
+    - binary_sensor.eric_office_closet_door_left_opening
+    id: eric-closet-door-left-changed
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - eric-closet-door-right-changed
+      sequence:
+      - if:
+        - condition: state
+          entity_id: binary_sensor.eric_office_closet_door_right_opening
+          state: 'on'
+        then:
+        - action: light.turn_on
+          metadata: {}
+          data: {}
+          target:
+            entity_id: light.eric_office_closet_right_light
+        else:
+        - action: light.turn_off
+          metadata: {}
+          data: {}
+          target:
+            entity_id: light.eric_office_closet_right_light
+    - conditions:
+      - condition: trigger
+        id:
+        - eric-closet-door-left-changed
+      sequence:
+      - if:
+        - condition: state
+          entity_id: binary_sensor.eric_office_closet_door_left_opening
+          state: 'on'
+        then:
+        - action: light.turn_on
+          metadata: {}
+          data: {}
+          target:
+            entity_id: light.eric_office_closet_left_light
+        else:
+        - action: light.turn_off
+          metadata: {}
+          data: {}
+          target:
+            entity_id: light.eric_office_closet_left_light
+  mode: single

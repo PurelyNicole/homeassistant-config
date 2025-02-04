@@ -1,6 +1,13 @@
 wind_down_nicole:
   alias: Wind Down - Nicole
   sequence:
+  - action: input_select.select_option
+    continue_on_error: true
+    metadata: {}
+    data:
+      option: Wind Down
+    target:
+      entity_id: input_select.home_mode
   - action: light.turn_on
     continue_on_error: true
     metadata: {}
@@ -17,6 +24,7 @@ wind_down_nicole:
       entity_id:
       - light.nightstand_lamps
       - light.master_bedroom_closet
+      - light.master_bedroom_light
   - action: climate.set_preset_mode
     continue_on_error: true
     metadata: {}
@@ -434,4 +442,23 @@ turn_on_workshop_hvac:
       data: {}
       target:
         entity_id: climate.workshop_hvac
+  description: ''
+open_garage_door_start_bmw:
+  sequence:
+  - if:
+    - condition: state
+      entity_id: device_tracker.m240i_xdrive
+      state: home
+    then:
+    - action: cover.open_cover
+      metadata: {}
+      data: {}
+      target:
+        entity_id: cover.garage_door
+    - action: button.press
+      metadata: {}
+      data: {}
+      target:
+        entity_id: button.m240i_xdrive_activate_remote_start
+  alias: Open Garage Door & Start BMW
   description: ''
