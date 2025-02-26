@@ -45,6 +45,7 @@ downstairs_lights:
   entities:
     - group.family_room_lights
     - group.den_lights
+    - group.orange_bathroom_lights
     - light.eric_office_light
     - light.lava_lamp
   icon: mdi:lightbulb-group
@@ -121,4 +122,9 @@ closet_room_lights:
   entities:
     - light.closet_room_closet_light
     - light.closet_room_wall_switch
+  icon: mdi:lightbulb-group
+orange_bathroom_lights:
+  name: Orange Bathroom Lights
+  entities:
+    - light.orange_bathroom_shower_switch
   icon: mdi:lightbulb-group

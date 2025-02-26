@@ -39,7 +39,6 @@ sensor: !include sensors.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 switch: !include switches.yaml
-template: !include templates.yaml
 
 # Custom Log Levels
 logger:

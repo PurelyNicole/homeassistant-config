@@ -955,6 +955,19 @@
                   "type": "entities",
                   "entities": [
                     {
+                      "entity": "light.orange_bathroom_lights"
+                    },
+                    {
+                      "entity": "light.orange_bathroom_shower_switch"
+                    }
+                  ],
+                  "title": "Orange Bathroom",
+                  "state_color": true
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
                       "entity": "light.eric_office_light"
                     },
                     {
@@ -1119,7 +1132,7 @@
                   "entity": "sensor.garage_sensor_air_temperature"
                 },
                 {
-                  "entity": "sensor.compensation_sensor_nicole_office_sensor_air_temperature",
+                  "entity": "sensor.nicole_office_air_quality_temperature",
                   "name": "Nicole Office: Temperature"
                 },
                 {
@@ -1148,6 +1161,9 @@
                 },
                 {
                   "entity": "sensor.den_air_quality_temperature"
+                },
+                {
+                  "entity": "sensor.orange_bathroom_shower_switch_aht2x_temperature"
                 }
               ],
               "title": "Temperature"
@@ -1163,7 +1179,7 @@
                   "entity": "sensor.garage_sensor_humidity"
                 },
                 {
-                  "entity": "sensor.nicole_office_sensor_humidity"
+                  "entity": "sensor.nicole_office_air_quality_humidity"
                 },
                 {
                   "entity": "sensor.master_bathroom_sensor_humidity"
@@ -1179,6 +1195,9 @@
                 },
                 {
                   "entity": "sensor.den_air_quality_humidity"
+                },
+                {
+                  "entity": "sensor.orange_bathroom_shower_switch_aht2x_humidity"
                 },
                 {
                   "entity": "switch.dehumidifier"
@@ -1280,6 +1299,9 @@
               "entities": [
                 {
                   "entity": "sensor.den_air_quality_pm25"
+                },
+                {
+                  "entity": "sensor.nicole_office_air_quality_pm2_5"
                 }
               ]
             },
@@ -1289,6 +1311,13 @@
               "detail": 2,
               "entity": "sensor.den_air_quality_pm25",
               "hours_to_show": 24
+            },
+            {
+              "graph": "line",
+              "type": "sensor",
+              "detail": 2,
+              "hours_to_show": 24,
+              "entity": "sensor.nicole_office_air_quality_pm2_5"
             }
           ]
         },
@@ -1488,9 +1517,6 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "binary_sensor.garage_sensor_home_security_motion_detection"
-                    },
-                    {
                       "entity": "binary_sensor.half_bath_motion_sensor"
                     },
                     {
@@ -1516,6 +1542,9 @@
                     },
                     {
                       "entity": "binary_sensor.basement_motion_group"
+                    },
+                    {
+                      "entity": "binary_sensor.orange_bath_motion_sensor_motion"
                     }
                   ],
                   "title": "Motion",
@@ -1957,12 +1986,12 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "entity",
-                  "entity": "binary_sensor.washing_machine",
-                  "state_color": true,
-                  "grid_options": {
-                    "columns": "full"
-                  }
+                  "type": "tile",
+                  "entity": "sensor.washer_job_state"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.washer_completion_time"
                 },
                 {
                   "type": "vertical-stack",
@@ -2823,6 +2852,9 @@
                     },
                     {
                       "entity": "input_boolean.hvac_override"
+                    },
+                    {
+                      "entity": "automation.climate_workshop_hvac"
                     }
                   ],
                   "title": "System Toggles",

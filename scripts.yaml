@@ -125,12 +125,6 @@ goodnight:
     target:
       entity_id: switch.christmas_tree
     enabled: false
-  - action: climate.turn_off
-    continue_on_error: true
-    metadata: {}
-    data: {}
-    target:
-      entity_id: climate.workshop_hvac
   description: ''
   icon: mdi:weather-night
 good_morning:
@@ -204,12 +198,6 @@ goodbye:
       - lock.front_door_lock
       - lock.kitchen_door_lock
       - lock.workshop
-  - action: climate.turn_off
-    continue_on_error: true
-    metadata: {}
-    data: {}
-    target:
-      entity_id: climate.workshop_hvac
   description: ''
   icon: mdi:run
 watch_tv_downstairs:
@@ -233,7 +221,6 @@ watch_tv_downstairs:
       - light.grill_lights
       - light.den_stair_landing
       - light.family_room_deck_light_back
-      - light.fireplace_dimmer
       - light.garage_lights_north
       - light.garage_lights_south
       - light.downstairs_hallway_light
@@ -274,11 +261,19 @@ watch_tv_downstairs:
       target:
         entity_id: fan.family_room_fan_south
   - action: light.turn_on
+    continue_on_error: true
     metadata: {}
     data:
       brightness_pct: 55
     target:
       entity_id: light.fireplace_dimmer
+  - action: light.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      brightness_pct: 47
+    target:
+      entity_id: light.orange_bathroom_lights
   description: ''
   icon: mdi:remote-tv
 watch_tv_main_floor:
@@ -314,6 +309,7 @@ watch_tv_main_floor:
       - light.kitchen_overhead_lights
       - light.entryway_light
       - light.living_room_lamps
+      - light.upstairs_hallway_light
   - action: light.turn_on
     continue_on_error: true
     metadata: {}
@@ -326,27 +322,27 @@ watch_tv_main_floor:
 dim_bedroom_lights:
   alias: Dim Bedroom Lights
   sequence:
-  - action: light.turn_on
-    continue_on_error: true
-    metadata: {}
-    data:
-      brightness_pct: 50
-    target:
-      entity_id: light.master_bedroom_light
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 1
-      milliseconds: 0
   - action: light.turn_off
     continue_on_error: true
     metadata: {}
     data: {}
     target:
       entity_id:
-      - light.nightstand_lamps
       - light.master_bath_light
       - light.master_bedroom_closet
+      - light.master_bedroom_light
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: light.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      brightness_pct: 66
+    target:
+      entity_id: light.nightstand_lamps
   - if:
     - condition: state
       entity_id: climate.ecobee_thermostat

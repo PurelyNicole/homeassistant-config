@@ -935,29 +935,6 @@
       entity_id: light.eric_office_light
     action: light.turn_off
   mode: single
-- id: notify_washing_machine_complete
-  alias: Notification - Washing machine complete.
-  description: ''
-  triggers:
-  - entity_id:
-    - binary_sensor.washing_machine
-    from: 'on'
-    to: 'off'
-    trigger: state
-  conditions:
-  - condition: not
-    conditions:
-    - condition: time
-      after: 00:00:00
-      before: 08:00:00
-    alias: It is not between Midnight and 8am
-  actions:
-  - data:
-      message: Washing machine cycle complete.
-      data:
-        url: /lovelace/chores
-    action: notify.notify_nicole_and_eric
-  mode: single
 - id: set_ecobee_dte_update
   alias: Climate - Set Ecobee Thermostat
   description: ''
@@ -1114,6 +1091,11 @@
   - trigger: state
     entity_id:
     - light.nightstand_lamps
+    from: 'off'
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - light.orange_bathroom_lights
     from: 'off'
     to: 'on'
   conditions:
@@ -1842,23 +1824,7 @@
     target:
       area_id: kitchen
   mode: single
-- id: '1730211156941'
-  alias: Temp - Turn off washing machine with water detection
-  description: ''
-  triggers:
-  - type: moist
-    device_id: 61a98c1c226600fd7f6dab560abf7f8b
-    entity_id: 68c9965b29ab40584a13268141e23576
-    domain: binary_sensor
-    trigger: device
-  conditions: []
-  actions:
-  - type: turn_off
-    device_id: dfe9c588169a40e1b66a5b66b9574af3
-    entity_id: 0369135c2f620b067b5a5b998944f32b
-    domain: switch
-  mode: single
-- id: '1730387707029'
+- id: lights_turn_off_garage_lights_with_no_motion
   alias: Lights - Turn off garage lights with no motion
   description: ''
   triggers:
@@ -1880,7 +1846,7 @@
       - light.garage_lights_north
       - light.garage_lights_south
   mode: single
-- id: '1730740107152'
+- id: outdoor_lights_turn_off_at_sunrise
   alias: Outdoor Lights - Turn off at Sunrise
   description: ''
   triggers:
@@ -1915,7 +1881,7 @@
       target:
         entity_id: light.pixel_post_light
   mode: single
-- id: '1732052377880'
+- id: notification_notify_on_low_rinse_aid
   alias: Notification - Notify on low rinse aid
   description: ''
   triggers:
@@ -1930,7 +1896,7 @@
     data:
       message: Add rinse aid to dishwasher.
   mode: single
-- id: '1733012848142'
+- id: christmas_tree_on_at_sunset
   alias: Christmas Tree on at Sunset
   description: ''
   triggers:
@@ -1945,7 +1911,7 @@
     target:
       entity_id: switch.christmas_tree
   mode: single
-- id: '1733602142510'
+- id: climate_workshop_hvac
   alias: Climate - Workshop HVAC
   description: ''
   triggers:
@@ -1998,8 +1964,8 @@
           entity_id: climate.workshop_hvac
       alias: Eric Home and temp under 40
   mode: single
-- id: '1738369807257'
-  alias: Turn on Upstairs Nightlight Motion
+- id: turn_on_upstairs_nightlight_motion
+  alias: Turn on Nightlights with Motion
   description: ''
   triggers:
   - trigger: state
@@ -2058,7 +2024,7 @@
           - alias: Luminance is less than 50
             condition: template
             value_template: '{{ float(states(''sensor.upstairs_hallway_nightlight_illuminance''))
-              < 50 }}'
+              < 20 }}'
         then:
         - action: light.turn_on
           metadata: {}
@@ -2092,15 +2058,15 @@
           metadata: {}
           data: {}
           target:
-            entity_id: light.downstairs_hallway_light
+            entity_id: light.downstairs_hallway_nightlight_light
         else:
         - action: light.turn_off
           metadata: {}
           data: {}
           target:
             entity_id: light.downstairs_hallway_nightlight_light
-  mode: single
-- id: '1738630217980'
+  mode: restart
+- id: control_eric_office_closet_lights_with_door
   alias: Control Eric Office Closet Lights with Door
   description: ''
   triggers:
@@ -2157,4 +2123,63 @@
           data: {}
           target:
             entity_id: light.eric_office_closet_left_light
+  mode: restart
+- id: notify_on_washing_machine_finish
+  alias: Notify on washing machine finish
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.washer_washer_machine_state
+    to: stop
+  conditions: []
+  actions:
+  - action: notify.notify_nicole_and_eric
+    metadata: {}
+    data:
+      message: Washing Machine finished.
+  mode: single
+- id: control_orange_bathroom_lights_with_motion
+  alias: Control Orange Bathroom Lights with Motion
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.orange_bath_motion_sensor_motion
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.orange_bath_motion_sensor_motion
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.orange_bath_motion_sensor_motion
+        state: 'on'
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.orange_bathroom_lights
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.orange_bath_motion_sensor_motion
+        state: 'off'
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
+      sequence:
+      - action: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.orange_bathroom_lights
   mode: single
