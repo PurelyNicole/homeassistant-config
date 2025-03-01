@@ -100,8 +100,8 @@
   triggers:
   - trigger: state
     entity_id:
-    - remote.family_room_remote
-    to: 'on'
+    - media_player.downstairs_musiccast
+    to: playing
   conditions:
   - condition: time
     after: '19:00:00'

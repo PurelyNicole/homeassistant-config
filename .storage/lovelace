@@ -1247,9 +1247,6 @@
               "type": "history-graph",
               "entities": [
                 {
-                  "entity": "sensor.basement_sensor_air_temperature"
-                },
-                {
                   "entity": "sensor.bedroom_ecobee_sensor_temperature"
                 },
                 {
@@ -2222,8 +2219,8 @@
                   ],
                   "images": [
                     {
-                      "url": "/api/image/serve/973c72b78d7b7c59e9cf44555c815e65/original",
-                      "title": "BMW-G42_M240I-XDRIVE-COUPE-THUNDERNIGHT-THUMB.PNG"
+                      "url": "/api/image/serve/75fa19cf3278fe78a12b3fede4ced02d/original",
+                      "title": "M240.PNG"
                     }
                   ],
                   "indicators": {
@@ -2632,8 +2629,8 @@
                   ],
                   "images": [
                     {
-                      "url": "/api/image/serve/d99810b2a888af57939c172cb72dbfdf/original",
-                      "title": "VCCCRJU8.PNG"
+                      "url": "/api/image/serve/8ff59364976234fdf98ce0ef19547e89/original",
+                      "title": "MINI_SE.PNG"
                     }
                   ]
                 }
@@ -2855,6 +2852,9 @@
                     },
                     {
                       "entity": "automation.climate_workshop_hvac"
+                    },
+                    {
+                      "entity": "automation.lights_turn_off_garage_lights_with_no_motion"
                     }
                   ],
                   "title": "System Toggles",
