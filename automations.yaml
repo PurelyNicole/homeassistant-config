@@ -2183,3 +2183,49 @@
         target:
           entity_id: light.orange_bathroom_lights
   mode: single
+- id: '1740866658676'
+  alias: Control Green Bath Lights with Motion
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.green_bath_motion_sensor
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.green_bath_motion_sensor
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.green_bath_motion_sensor
+        state: 'on'
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.green_bath_vanity_lights
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.green_bath_motion_sensor
+        state: 'off'
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
+      sequence:
+      - action: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id:
+          - light.green_bath_tub_dimmer
+          - light.green_bath_vanity_lights
+  mode: single

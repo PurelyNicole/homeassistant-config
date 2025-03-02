@@ -28,6 +28,7 @@ upstairs_lights:
     - group.nicole_office_lights
     - group.master_bedroom_lights
     - group.closet_room_lights
+    - group.green_bathroom_lights
     - light.upstairs_hallway_light
     - light.stairway_dimmer
   icon: mdi:lightbulb-group
@@ -128,3 +129,9 @@ orange_bathroom_lights:
   entities:
     - light.orange_bathroom_shower_switch
   icon: mdi:lightbulb-group
+green_bathroom_lights:
+  name: Green Bathroom Lights
+  icon: mdi:lightbulb-groups
+  entities:
+    - light.green_bath_tub_dimmer
+    - light.green_bath_vanity_lights

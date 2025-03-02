@@ -853,19 +853,6 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "light.closet_room_closet_light"
-                    },
-                    {
-                      "entity": "light.closet_room_wall_switch"
-                    }
-                  ],
-                  "title": "Closet Room Lights",
-                  "state_color": true
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
                       "entity": "light.stairway_dimmer"
                     },
                     {
@@ -877,6 +864,35 @@
                   ],
                   "state_color": true,
                   "title": "Upstairs Hallway Lights"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.green_bath_vanity_lights"
+                    },
+                    {
+                      "entity": "light.green_bath_tub_dimmer"
+                    },
+                    {
+                      "entity": "fan.green_bath_exhaust_fan"
+                    }
+                  ],
+                  "state_color": true,
+                  "title": "Green Bath Lights"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.closet_room_closet_light"
+                    },
+                    {
+                      "entity": "light.closet_room_wall_switch"
+                    }
+                  ],
+                  "title": "Closet Room Lights",
+                  "state_color": true
                 },
                 {
                   "type": "entities",
@@ -1164,6 +1180,9 @@
                 },
                 {
                   "entity": "sensor.orange_bathroom_shower_switch_aht2x_temperature"
+                },
+                {
+                  "entity": "sensor.green_bath_climate_temperature"
                 }
               ],
               "title": "Temperature"
@@ -1198,6 +1217,9 @@
                 },
                 {
                   "entity": "sensor.orange_bathroom_shower_switch_aht2x_humidity"
+                },
+                {
+                  "entity": "sensor.green_bath_climate_humidity"
                 },
                 {
                   "entity": "switch.dehumidifier"
@@ -1542,6 +1564,9 @@
                     },
                     {
                       "entity": "binary_sensor.orange_bath_motion_sensor_motion"
+                    },
+                    {
+                      "entity": "binary_sensor.green_bath_motion_sensor"
                     }
                   ],
                   "title": "Motion",
