@@ -337,6 +337,124 @@
         },
         {
           "theme": "Backend-selected",
+          "title": "Den Dashboard",
+          "path": "den-dashboard",
+          "icon": "mdi:fireplace",
+          "visible": [
+            {
+              "user": "a506d526e61b42d4982d4b388a7b4144"
+            },
+            {
+              "user": "b42b185d4255477db7bb66103bbd89d9"
+            }
+          ],
+          "badges": [],
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.kitchenette_led_strip"
+                    },
+                    {
+                      "entity": "light.kitchenette_spot_lights"
+                    },
+                    {
+                      "entity": "light.den_stair_landing"
+                    },
+                    {
+                      "entity": "light.step_lights"
+                    },
+                    {
+                      "entity": "light.cd_shelf_dimmer"
+                    },
+                    {
+                      "entity": "light.fireplace_dimmer"
+                    },
+                    {
+                      "entity": "light.downstairs_hallway_light"
+                    }
+                  ],
+                  "state_color": true,
+                  "title": "Den Lights"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "light.family_room_track_light_front"
+                    },
+                    {
+                      "entity": "light.family_room_track_light_back"
+                    }
+                  ],
+                  "title": "Family Room Lights",
+                  "state_color": true
+                }
+              ]
+            },
+            {
+              "type": "tile",
+              "entity": "script.watch_tv_downstairs",
+              "features_position": "bottom",
+              "vertical": true,
+              "tap_action": {
+                "action": "toggle"
+              },
+              "icon_tap_action": {
+                "action": "toggle"
+              }
+            },
+            {
+              "type": "tile",
+              "entity": "fan.family_room_fan_south",
+              "features_position": "bottom",
+              "vertical": false
+            },
+            {
+              "type": "custom:simple-thermostat",
+              "entity": "climate.family_room_thermostat",
+              "layout": {
+                "mode": {
+                  "headings": false,
+                  "icons": true,
+                  "names": true
+                }
+              },
+              "step_size": 1,
+              "decimals": 0
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "custom:advanced-camera-card",
+                  "cameras": [
+                    {
+                      "camera_entity": "camera.doorbell"
+                    },
+                    {
+                      "camera_entity": "camera.front_yard"
+                    },
+                    {
+                      "camera_entity": "camera.garage"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:clock-weather-card",
+                  "entity": "weather.ecobee_thermostat",
+                  "time_format": 12
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
           "path": "default_view",
           "title": "Home",
           "icon": "mdi:home",
@@ -556,164 +674,6 @@
               "calShowDescription": false,
               "showLastCalendarWeek": false,
               "showDescription": false
-            }
-          ]
-        },
-        {
-          "theme": "Backend-selected",
-          "title": "Den Dashboard",
-          "path": "den-dashboard",
-          "icon": "mdi:fireplace",
-          "visible": [
-            {
-              "user": "a506d526e61b42d4982d4b388a7b4144"
-            },
-            {
-              "user": "b42b185d4255477db7bb66103bbd89d9"
-            }
-          ],
-          "badges": [],
-          "cards": [
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "light.kitchenette_led_strip"
-                    },
-                    {
-                      "entity": "light.kitchenette_spot_lights"
-                    },
-                    {
-                      "entity": "light.den_stair_landing"
-                    },
-                    {
-                      "entity": "light.step_lights"
-                    },
-                    {
-                      "entity": "light.cd_shelf_dimmer"
-                    },
-                    {
-                      "entity": "light.fireplace_dimmer"
-                    },
-                    {
-                      "entity": "light.downstairs_hallway_light"
-                    }
-                  ],
-                  "state_color": true,
-                  "title": "Den Lights"
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "light.family_room_track_light_front"
-                    },
-                    {
-                      "entity": "light.family_room_track_light_back"
-                    }
-                  ],
-                  "title": "Family Room Lights",
-                  "state_color": true
-                },
-                {
-                  "type": "tile",
-                  "entity": "fan.family_room_fan_south"
-                }
-              ]
-            },
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
-                  "type": "tile",
-                  "entity": "script.watch_tv_downstairs",
-                  "show_entity_picture": false,
-                  "vertical": false,
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "toggle"
-                  }
-                },
-                {
-                  "type": "custom:harmony-card",
-                  "entity": "remote.family_room_remote",
-                  "volume_device": "Pioneer AV Receiver",
-                  "activities": [
-                    {
-                      "name": "MusicCast"
-                    },
-                    {
-                      "name": "Watch TV"
-                    },
-                    {
-                      "name": "Watch Roku"
-                    }
-                  ],
-                  "buttons": {
-                    "dpad_up": {
-                      "hide": true
-                    },
-                    "dpad_down": {
-                      "hide": true
-                    },
-                    "dpad_left": {
-                      "hide": true
-                    },
-                    "dpad_right": {
-                      "hide": true
-                    },
-                    "dpad_center": {
-                      "hide": true
-                    },
-                    "xbox": {
-                      "hide": true
-                    },
-                    "back": {
-                      "hide": true
-                    },
-                    "a": {
-                      "hide": true
-                    },
-                    "b": {
-                      "hide": true
-                    },
-                    "x": {
-                      "hide": true
-                    },
-                    "y": {
-                      "hide": true
-                    }
-                  }
-                }
-              ]
-            },
-            {
-              "type": "custom:simple-thermostat",
-              "entity": "climate.family_room_thermostat",
-              "layout": {
-                "mode": {
-                  "headings": false,
-                  "icons": true,
-                  "names": true
-                }
-              },
-              "step_size": 1,
-              "decimals": 0
-            },
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
-                  "type": "custom:clock-weather-card",
-                  "entity": "weather.ecobee_thermostat",
-                  "time_format": 12
-                }
-              ]
             }
           ]
         },
@@ -1315,11 +1275,39 @@
               "hours_to_show": 24
             },
             {
-              "graph": "line",
-              "type": "sensor",
-              "detail": 2,
-              "hours_to_show": 24,
-              "entity": "sensor.nicole_office_air_quality_pm2_5"
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 2,
+                  "hours_to_show": 24,
+                  "entity": "sensor.nicole_office_air_quality_pm2_5"
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 2,
+                  "hours_to_show": 24,
+                  "entity": "sensor.nicole_office_air_quality_voc_index"
+                }
+              ]
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "switch.dining_room_air_purifier"
+                },
+                {
+                  "entity": "switch.bedroom_air_purifier"
+                },
+                {
+                  "entity": "switch.nicole_office_air_purifier"
+                }
+              ],
+              "state_color": true,
+              "title": "Air Purifiers"
             }
           ]
         },
@@ -1576,7 +1564,7 @@
                       "entity": "binary_sensor.basement_motion_group"
                     },
                     {
-                      "entity": "binary_sensor.orange_bath_motion_sensor_motion"
+                      "entity": "binary_sensor.orange_bath_motion_sensor"
                     },
                     {
                       "entity": "binary_sensor.green_bath_motion_sensor"
@@ -1598,10 +1586,6 @@
                       "name": "Hot Water Heater"
                     },
                     {
-                      "entity": "binary_sensor.kitchen_sink_water_sensor",
-                      "name": "Kitchen Sink"
-                    },
-                    {
                       "entity": "binary_sensor.laundry_room_water_sensor_iaszone",
                       "name": "Laundry Room"
                     },
@@ -1614,8 +1598,8 @@
                       "name": "Green Bath"
                     },
                     {
-                      "entity": "binary_sensor.downstairs_bath_water_sensor",
-                      "name": "Downstairs Bath"
+                      "entity": "binary_sensor.orange_bath_water_sensor",
+                      "name": "Orange Bath"
                     },
                     {
                       "entity": "binary_sensor.half_bath_moisture_sensor_moisture",
@@ -1931,137 +1915,6 @@
                   "showDatePerEvent": false,
                   "disableCalLink": false,
                   "hideDuplicates": false
-                }
-              ]
-            }
-          ],
-          "max_columns": 4
-        },
-        {
-          "title": "Chores",
-          "path": "chores",
-          "icon": "mdi:robot-vacuum",
-          "badges": [],
-          "cards": [],
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:grocy-chores-card",
-                  "entity": "sensor.grocy_chores",
-                  "title": "Chorin'",
-                  "show_quantity": 7,
-                  "show_days": 3,
-                  "show_assigned": false,
-                  "show_last_tracked": true,
-                  "show_last_tracked_by": false,
-                  "show_track_button": true
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "tile",
-                  "entity": "vacuum.roborock_main_floor",
-                  "features": [
-                    {
-                      "type": "vacuum-commands",
-                      "commands": [
-                        "start_pause",
-                        "stop",
-                        "clean_spot"
-                      ]
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "type": "tile",
-                  "entity": "vacuum.roomba_mainfloor",
-                  "features": [
-                    {
-                      "type": "vacuum-commands",
-                      "commands": [
-                        "start_pause",
-                        "stop",
-                        "locate"
-                      ]
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "type": "tile",
-                  "entity": "vacuum.roomba",
-                  "features": [
-                    {
-                      "type": "vacuum-commands",
-                      "commands": [
-                        "start_pause",
-                        "stop",
-                        "locate"
-                      ]
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "tile",
-                  "entity": "sensor.washer_job_state"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.washer_completion_time"
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "entity",
-                      "name": "Dishwasher is...",
-                      "entity": "sensor.dishwasher_status"
-                    },
-                    {
-                      "type": "horizontal-stack",
-                      "cards": [
-                        {
-                          "type": "tile",
-                          "entity": "button.set_dishwasher_to_clean",
-                          "tap_action": {
-                            "action": "toggle"
-                          },
-                          "name": "Dishwasher Clean"
-                        },
-                        {
-                          "type": "tile",
-                          "entity": "button.set_dishwasher_to_dirty",
-                          "tap_action": {
-                            "action": "toggle"
-                          },
-                          "name": "Dishwasher Dirty"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "entity",
-                  "entity": "sensor.oven_temperature_measurement"
                 }
               ]
             }
@@ -2709,6 +2562,137 @@
           "max_columns": 4
         },
         {
+          "title": "Chores",
+          "path": "chores",
+          "icon": "mdi:robot-vacuum",
+          "badges": [],
+          "cards": [],
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:grocy-chores-card",
+                  "entity": "sensor.grocy_chores",
+                  "title": "Chorin'",
+                  "show_quantity": 7,
+                  "show_days": 3,
+                  "show_assigned": false,
+                  "show_last_tracked": true,
+                  "show_last_tracked_by": false,
+                  "show_track_button": true
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "tile",
+                  "entity": "vacuum.roborock_main_floor",
+                  "features": [
+                    {
+                      "type": "vacuum-commands",
+                      "commands": [
+                        "start_pause",
+                        "stop",
+                        "clean_spot"
+                      ]
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "vacuum.roomba_mainfloor",
+                  "features": [
+                    {
+                      "type": "vacuum-commands",
+                      "commands": [
+                        "start_pause",
+                        "stop",
+                        "locate"
+                      ]
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "vacuum.roomba",
+                  "features": [
+                    {
+                      "type": "vacuum-commands",
+                      "commands": [
+                        "start_pause",
+                        "stop",
+                        "locate"
+                      ]
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "tile",
+                  "entity": "sensor.washer_job_state"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.washer_completion_time"
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "entity",
+                      "name": "Dishwasher is...",
+                      "entity": "sensor.dishwasher_status"
+                    },
+                    {
+                      "type": "horizontal-stack",
+                      "cards": [
+                        {
+                          "type": "tile",
+                          "entity": "button.set_dishwasher_to_clean",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "name": "Dishwasher Clean"
+                        },
+                        {
+                          "type": "tile",
+                          "entity": "button.set_dishwasher_to_dirty",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "name": "Dishwasher Dirty"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "entity",
+                  "entity": "sensor.oven_temperature_measurement"
+                }
+              ]
+            }
+          ],
+          "max_columns": 4
+        },
+        {
           "theme": "Backend-selected",
           "title": "Outdoors",
           "path": "outdoors",
@@ -2845,6 +2829,257 @@
             }
           ],
           "max_columns": 4
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "3D Printer",
+          "path": "3d-printer",
+          "icon": "mdi:printer-3d-nozzle",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "camera_view": "auto",
+                  "type": "picture-glance",
+                  "image": "https://demo.home-assistant.io/stub_config/kitchen.png",
+                  "entities": [
+                    {
+                      "entity": "button.3d_printer_pause_printing"
+                    },
+                    {
+                      "entity": "button.3d_printer_resume_printing"
+                    },
+                    {
+                      "entity": "button.3d_printer_stop_printing"
+                    },
+                    {
+                      "entity": "light.3d_printer_chamber_light"
+                    }
+                  ],
+                  "title": "3D Printer",
+                  "camera_image": "camera.3d_printer_camera",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.3d_printer_enable_camera",
+                      "state": "on"
+                    }
+                  ],
+                  "entity": "sensor.3d_printer_print_progress"
+                },
+                {
+                  "type": "glance",
+                  "entities": [
+                    {
+                      "entity": "sensor.3d_printer_print_progress"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_end_time"
+                    }
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.3d_printer_print_status",
+                      "state_not": "idle"
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_total_usage",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Total Usage"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_print_progress",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Print Progress"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.bambu_p1s_energy_power",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Current Energy"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.bambu_p1s_energy_today",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Energy Today"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_current_stage",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Current Stage"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_end_time",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Print End Time"
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 2,
+                  "hours_to_show": 24,
+                  "entity": "sensor.nicole_office_air_quality_pm2_5"
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 2,
+                  "hours_to_show": 24,
+                  "entity": "sensor.nicole_office_air_quality_voc_index"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "switch.bambu_p1s"
+                    },
+                    {
+                      "entity": "number.3d_printer_nozzle_target_temperature",
+                      "name": "Nozzle Target Temperature"
+                    },
+                    {
+                      "entity": "number.3d_printer_bed_target_temperature",
+                      "name": "Bed Target Temperature"
+                    },
+                    {
+                      "entity": "fan.3d_printer_aux_fan"
+                    },
+                    {
+                      "entity": "fan.3d_printer_chamber_fan"
+                    },
+                    {
+                      "entity": "light.3d_printer_chamber_light"
+                    },
+                    {
+                      "entity": "fan.3d_printer_cooling_fan"
+                    },
+                    {
+                      "entity": "select.3d_printer_printing_speed"
+                    },
+                    {
+                      "entity": "switch.3d_printer_enable_camera"
+                    },
+                    {
+                      "entity": "switch.3d_printer_use_image_sensor_camera"
+                    },
+                    {
+                      "entity": "button.3d_printer_pause_printing"
+                    },
+                    {
+                      "entity": "button.3d_printer_resume_printing"
+                    },
+                    {
+                      "entity": "button.3d_printer_stop_printing"
+                    },
+                    {
+                      "entity": "switch.3d_printer_load_model_data_from_printer"
+                    },
+                    {
+                      "entity": "switch.3d_printer_save_gcode_file_in_ha"
+                    },
+                    {
+                      "entity": "automation.3d_printer_idle_mode"
+                    }
+                  ],
+                  "title": "Controls",
+                  "state_color": true,
+                  "show_header_toggle": false
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.3d_printer_print_status"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_nozzle_temperature"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_bed_temperature"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_aux_fan_speed"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_chamber_fan_speed"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_cooling_fan_speed"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_heatbreak_fan_speed"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_active_tray"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_current_layer"
+                    },
+                    {
+                      "entity": "binary_sensor.3d_printer_extruder_filament_state"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_nozzle_size"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_print_bed_type"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_print_length"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_print_weight"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_print_type"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_printable_objects"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_skipped_objects"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_task_name"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_total_layer_count"
+                    },
+                    {
+                      "entity": "sensor.3d_printer_start_time"
+                    }
+                  ],
+                  "title": "Sensors"
+                }
+              ]
+            }
+          ]
         },
         {
           "title": "System",

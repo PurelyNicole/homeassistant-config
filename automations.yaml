@@ -377,9 +377,13 @@
         state: 'off'
       sequence:
       - data: {}
-        target:
-          area_id: nicole_office
         action: light.turn_off
+        target:
+          entity_id:
+          - light.nicole_office_closet_light
+          - light.nicole_office_wall_switch
+          - light.nicole_office_floor_lamp
+          - light.raccoon_lamp
     - conditions:
       - condition: state
         entity_id: light.nicole_office_wall_switch
@@ -707,7 +711,7 @@
     to: 'on'
   - trigger: state
     entity_id:
-    - binary_sensor.downstairs_bath_water_sensor
+    - binary_sensor.orange_bath_water_sensor
     to: 'on'
   - trigger: state
     entity_id:
@@ -1137,6 +1141,9 @@
         - sensor.roomba_mainfloor_battery_level
         - sensor.nicole_iphone_battery_level
         - sensor.erics_iphone_14_watch_battery
+        - binary_sensor.front_door_lock_low_battery_level
+        - binary_sensor.front_door_lock_replace_battery_now
+        - binary_sensor.front_door_lock_replace_battery_soon
       time: '11:00:00'
       threshold: 30
 - id: vacation_mode_start_vacuum
@@ -1495,7 +1502,16 @@
         metadata: {}
         data: {}
         target:
-          entity_id: switch.dehumidifier
+          entity_id:
+          - switch.dehumidifier
+          - switch.rock_tumbler
+      - action: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id:
+          - light.raccoon_lamp
+          - light.nicole_office_floor_lamp
     - conditions:
       - condition: state
         entity_id: schedule.dte_peak_hours
@@ -1514,10 +1530,12 @@
         metadata: {}
         data: {}
         target:
-          entity_id: switch.dehumidifier
+          entity_id:
+          - switch.dehumidifier
+          - switch.rock_tumbler
   mode: single
 - id: dehumidifier_turn_off_when_windows_open
-  alias: Dehumidifier - Turn off when windows open
+  alias: Dehumidifier & Air Purifiers - Turn off when windows open
   description: ''
   triggers:
   - entity_id:
@@ -1535,7 +1553,20 @@
         metadata: {}
         data: {}
         target:
-          entity_id: switch.dehumidifier
+          entity_id:
+          - switch.dehumidifier
+          - switch.dining_room_air_purifier
+          - switch.bedroom_air_purifier
+          - switch.nicole_office_air_purifier
+      - alias: Turn off thermostat
+        action: climate.set_hvac_mode
+        metadata: {}
+        data:
+          hvac_mode: 'off'
+        target:
+          entity_id:
+          - climate.ecobee_thermostat
+          - climate.family_room_thermostat
     - conditions:
       - condition: state
         entity_id: binary_sensor.windows
@@ -1545,7 +1576,11 @@
         metadata: {}
         data: {}
         target:
-          entity_id: switch.dehumidifier
+          entity_id:
+          - switch.dehumidifier
+          - switch.dining_room_air_purifier
+          - switch.bedroom_air_purifier
+          - switch.nicole_office_air_purifier
   mode: single
 - id: doorbell_snapshot
   alias: Notify on doorbell ring.
@@ -2001,7 +2036,9 @@
         then:
         - action: light.turn_on
           metadata: {}
-          data: {}
+          data:
+            color_temp_kelvin: 2000
+            brightness_pct: 50
           target:
             entity_id: light.entryway_nightlight_light
         else:
@@ -2028,7 +2065,9 @@
         then:
         - action: light.turn_on
           metadata: {}
-          data: {}
+          data:
+            color_temp_kelvin: 2000
+            brightness_pct: 50
           target:
             entity_id:
             - light.upstairs_hallway_nightlight_light
@@ -2056,7 +2095,9 @@
         then:
         - action: light.turn_on
           metadata: {}
-          data: {}
+          data:
+            color_temp_kelvin: 2000
+            brightness_pct: 50
           target:
             entity_id: light.downstairs_hallway_nightlight_light
         else:
@@ -2145,22 +2186,13 @@
   triggers:
   - trigger: state
     entity_id:
-    - binary_sensor.orange_bath_motion_sensor_motion
-    to: 'on'
-  - trigger: state
-    entity_id:
-    - binary_sensor.orange_bath_motion_sensor_motion
-    to: 'off'
-    for:
-      hours: 0
-      minutes: 10
-      seconds: 0
+    - binary_sensor.orange_bath_motion_sensor
   conditions: []
   actions:
   - choose:
     - conditions:
       - condition: state
-        entity_id: binary_sensor.orange_bath_motion_sensor_motion
+        entity_id: binary_sensor.orange_bath_motion_sensor
         state: 'on'
       sequence:
       - action: light.turn_on
@@ -2170,7 +2202,7 @@
           entity_id: light.orange_bathroom_lights
     - conditions:
       - condition: state
-        entity_id: binary_sensor.orange_bath_motion_sensor_motion
+        entity_id: binary_sensor.orange_bath_motion_sensor
         state: 'off'
         for:
           hours: 0
@@ -2199,7 +2231,10 @@
       hours: 0
       minutes: 10
       seconds: 0
-  conditions: []
+  conditions:
+  - condition: state
+    entity_id: light.green_bath_tub_dimmer
+    state: 'off'
   actions:
   - choose:
     - conditions:
@@ -2228,4 +2263,62 @@
           entity_id:
           - light.green_bath_tub_dimmer
           - light.green_bath_vanity_lights
+  mode: single
+- id: '1744658871343'
+  alias: 3D Printer Idle Mode
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.3d_printer_current_stage
+    to: idle
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  - trigger: state
+    entity_id:
+    - sensor.3d_printer_current_stage
+    from: idle
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: sensor.3d_printer_current_stage
+        state: idle
+      sequence:
+      - action: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.3d_printer_chamber_light
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.3d_printer_enable_camera
+      alias: If Idle, turn off light and camera
+    - conditions:
+      - condition: not
+        conditions:
+        - condition: state
+          entity_id: sensor.3d_printer_current_stage
+          state: idle
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.3d_printer_chamber_light
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.3d_printer_enable_camera
+      alias: If not idle, turn on light and camera
   mode: single
