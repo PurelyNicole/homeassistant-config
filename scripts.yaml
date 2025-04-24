@@ -207,11 +207,15 @@ watch_tv_downstairs:
     continue_on_error: true
     metadata: {}
     data:
-      brightness: 89
+      brightness: 255
     target:
       entity_id:
-      - light.family_room_track_light_back
       - light.family_room_track_light_front
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
   - action: light.turn_off
     continue_on_error: true
     metadata: {}
@@ -246,8 +250,16 @@ watch_tv_downstairs:
       brightness_pct: 10
     target:
       entity_id:
-      - light.cd_shelf_dimmer
       - light.step_lights
+  - action: light.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      brightness: 89
+    target:
+      entity_id:
+      - light.family_room_track_light_back
+      - light.family_room_track_light_front
   - if:
     - condition: state
       entity_id: climate.ecobee_thermostat
@@ -274,6 +286,12 @@ watch_tv_downstairs:
       brightness_pct: 47
     target:
       entity_id: light.orange_bathroom_lights
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 3
+    target:
+      entity_id: light.cd_shelf_dimmer
   description: ''
   icon: mdi:remote-tv
 watch_tv_main_floor:
@@ -294,7 +312,7 @@ watch_tv_main_floor:
     continue_on_error: true
     metadata: {}
     data:
-      brightness: 125
+      brightness: 75
     target:
       entity_id:
       - light.kitchen_under_cabinet_lights

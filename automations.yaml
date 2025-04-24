@@ -2171,8 +2171,8 @@
   triggers:
   - trigger: state
     entity_id:
-    - sensor.washer_washer_machine_state
-    to: stop
+    - sensor.washer_job_state
+    to: finish
   conditions: []
   actions:
   - action: notify.notify_nicole_and_eric
