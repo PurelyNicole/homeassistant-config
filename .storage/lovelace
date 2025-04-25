@@ -336,120 +336,126 @@
           ]
         },
         {
-          "theme": "Backend-selected",
-          "title": "Den Dashboard",
+          "type": "masonry",
           "path": "den-dashboard",
+          "title": "Den Dashboard",
           "icon": "mdi:fireplace",
-          "visible": [
-            {
-              "user": "a506d526e61b42d4982d4b388a7b4144"
-            },
-            {
-              "user": "b42b185d4255477db7bb66103bbd89d9"
-            }
-          ],
-          "badges": [],
           "cards": [
             {
-              "type": "vertical-stack",
-              "cards": [
+              "type": "entities",
+              "entities": [
                 {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "light.kitchenette_led_strip"
-                    },
-                    {
-                      "entity": "light.kitchenette_spot_lights"
-                    },
-                    {
-                      "entity": "light.den_stair_landing"
-                    },
-                    {
-                      "entity": "light.step_lights"
-                    },
-                    {
-                      "entity": "light.cd_shelf_dimmer"
-                    },
-                    {
-                      "entity": "light.fireplace_dimmer"
-                    },
-                    {
-                      "entity": "light.downstairs_hallway_light"
-                    }
-                  ],
-                  "state_color": true,
-                  "title": "Den Lights"
+                  "entity": "light.kitchenette_led_strip"
                 },
                 {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "light.family_room_track_light_front"
-                    },
-                    {
-                      "entity": "light.family_room_track_light_back"
-                    }
-                  ],
-                  "title": "Family Room Lights",
-                  "state_color": true
+                  "entity": "light.kitchenette_spot_lights"
+                },
+                {
+                  "entity": "light.den_stair_landing"
+                },
+                {
+                  "entity": "light.step_lights"
+                },
+                {
+                  "entity": "light.fireplace_dimmer"
+                },
+                {
+                  "entity": "light.cd_shelf_dimmer"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "light.family_room_track_light_front"
+                },
+                {
+                  "entity": "light.family_room_track_light_back"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "light.orange_bathroom_lights"
+                },
+                {
+                  "entity": "light.downstairs_hallway_light"
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "entity": "light.eric_office_light"
+                },
+                {
+                  "entity": "light.lava_lamp"
                 }
-              ]
-            },
-            {
-              "type": "tile",
-              "entity": "script.watch_tv_downstairs",
-              "features_position": "bottom",
-              "vertical": true,
-              "tap_action": {
-                "action": "toggle"
-              },
-              "icon_tap_action": {
-                "action": "toggle"
-              }
-            },
-            {
-              "type": "tile",
-              "entity": "fan.family_room_fan_south",
-              "features_position": "bottom",
-              "vertical": false
-            },
-            {
-              "type": "custom:simple-thermostat",
-              "entity": "climate.family_room_thermostat",
-              "layout": {
-                "mode": {
-                  "headings": false,
-                  "icons": true,
-                  "names": true
-                }
-              },
-              "step_size": 1,
-              "decimals": 0
+              ],
+              "state_color": true
             },
             {
               "type": "vertical-stack",
               "cards": [
                 {
-                  "type": "custom:advanced-camera-card",
-                  "cameras": [
+                  "type": "tile",
+                  "entity": "script.watch_tv_downstairs",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "icon_tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "fan.family_room_fan_south",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "features": [
                     {
-                      "camera_entity": "camera.doorbell"
-                    },
-                    {
-                      "camera_entity": "camera.front_yard"
-                    },
-                    {
-                      "camera_entity": "camera.garage"
+                      "type": "fan-speed"
                     }
                   ]
                 },
                 {
-                  "type": "custom:clock-weather-card",
-                  "entity": "weather.ecobee_thermostat",
-                  "time_format": 12
+                  "type": "tile",
+                  "entity": "climate.family_room_thermostat",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "climate-hvac-modes"
+                    },
+                    {
+                      "type": "target-temperature"
+                    }
+                  ]
+                },
+                {
+                  "show_current": true,
+                  "show_forecast": true,
+                  "type": "weather-forecast",
+                  "entity": "weather.possum_den",
+                  "forecast_type": "daily"
                 }
               ]
+            },
+            {
+              "type": "custom:advanced-camera-card",
+              "cameras": [
+                {
+                  "camera_entity": "camera.doorbell"
+                },
+                {
+                  "camera_entity": "camera.garage"
+                }
+              ]
+            }
+          ],
+          "visible": [
+            {
+              "user": "b42b185d4255477db7bb66103bbd89d9"
             }
           ]
         },
@@ -476,206 +482,228 @@
             }
           ],
           "badges": [],
-          "cards": [
+          "cards": [],
+          "type": "sections",
+          "sections": [
             {
-              "type": "horizontal-stack",
+              "type": "grid",
               "cards": [
                 {
                   "type": "tile",
-                  "entity": "person.eric"
+                  "entity": "person.eric",
+                  "features_position": "bottom",
+                  "vertical": false
                 },
                 {
                   "type": "tile",
-                  "entity": "person.nicole"
+                  "entity": "person.nicole",
+                  "features_position": "bottom",
+                  "vertical": false
+                },
+                {
+                  "show_current": true,
+                  "show_forecast": true,
+                  "type": "weather-forecast",
+                  "entity": "weather.ecobee_thermostat",
+                  "secondary_info_attribute": "humidity",
+                  "forecast_type": "daily"
+                },
+                {
+                  "type": "custom:atomic-calendar-revive",
+                  "entities": [
+                    {
+                      "entity": "calendar.eric_calendar",
+                      "name": "Eric",
+                      "color": "#3F51B5"
+                    },
+                    {
+                      "entity": "calendar.eric_nicole_calendar",
+                      "name": "Eric & Nicole",
+                      "color": "#8E24AA"
+                    },
+                    {
+                      "entity": "calendar.nicole_calendar",
+                      "name": "Nicole",
+                      "color": "#D81B60"
+                    },
+                    {
+                      "entity": "calendar.holidays_in_united_states",
+                      "name": "Holidays",
+                      "color": "#A79B8E"
+                    },
+                    {
+                      "entity": "calendar.lions_schedule",
+                      "name": "Lions Schedule"
+                    },
+                    {
+                      "entity": "calendar.detroit_lions",
+                      "name": "Detroit Lions",
+                      "color": "#0076b6"
+                    },
+                    {
+                      "entity": "calendar.indiana_fever",
+                      "name": "Indiana Fever",
+                      "color": "navy"
+                    },
+                    {
+                      "entity": "calendar.michigan_wolverines_football",
+                      "name": "Michigan Wolverines",
+                      "color": "#FFCB05"
+                    }
+                  ],
+                  "name": "Calendar Card",
+                  "enableModeChange": true,
+                  "firstDayOfWeek": 1,
+                  "maxDaysToShow": 7,
+                  "refreshInterval": 60,
+                  "hideFinishedEvents": true,
+                  "showRelativeTime": false,
+                  "showMultiDay": true,
+                  "showDate": true,
+                  "sortByStartTime": true,
+                  "hideDuplicates": true,
+                  "showCurrentEventLine": false,
+                  "showMonth": false,
+                  "showProgressBar": false,
+                  "showWeekDay": true,
+                  "showNoEventsForToday": false,
+                  "showEventIcon": false,
+                  "showFullDayProgress": false,
+                  "showHiddenText": false,
+                  "showCalendarName": false,
+                  "showWeekNumber": false,
+                  "showEventDate": true,
+                  "showDatePerEvent": false,
+                  "calShowDescription": false,
+                  "showLastCalendarWeek": false,
+                  "showDescription": false
                 }
               ]
             },
             {
-              "show_current": true,
-              "show_forecast": true,
-              "type": "weather-forecast",
-              "entity": "weather.ecobee_thermostat",
-              "secondary_info_attribute": "humidity",
-              "forecast_type": "daily"
-            },
-            {
-              "type": "conditional",
-              "conditions": [
+              "type": "grid",
+              "cards": [
                 {
-                  "entity": "binary_sensor.air_quailty_unhealthy",
-                  "state": "on"
-                }
-              ],
-              "card": {
-                "type": "gauge",
-                "entity": "sensor.airnow_aqi",
-                "name": "Air Quality Index",
-                "max": 500,
-                "segments": [
-                  {
-                    "from": 0,
-                    "color": "#00e400"
-                  },
-                  {
-                    "from": 51,
-                    "color": "#ffff00"
-                  },
-                  {
-                    "from": 101,
-                    "color": "#ff7e00"
-                  },
-                  {
-                    "from": 151,
-                    "color": "#ff0000"
-                  },
-                  {
-                    "from": 201,
-                    "color": "#8f3f97"
-                  },
-                  {
-                    "from": 301,
-                    "color": "#7e0023"
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "entity": "binary_sensor.air_quailty_unhealthy",
+                      "state": "on"
+                    }
+                  ],
+                  "card": {
+                    "type": "gauge",
+                    "entity": "sensor.airnow_aqi",
+                    "name": "Air Quality Index",
+                    "max": 500,
+                    "segments": [
+                      {
+                        "from": 0,
+                        "color": "#00e400"
+                      },
+                      {
+                        "from": 51,
+                        "color": "#ffff00"
+                      },
+                      {
+                        "from": 101,
+                        "color": "#ff7e00"
+                      },
+                      {
+                        "from": 151,
+                        "color": "#ff0000"
+                      },
+                      {
+                        "from": 201,
+                        "color": "#8f3f97"
+                      },
+                      {
+                        "from": 301,
+                        "color": "#7e0023"
+                      }
+                    ],
+                    "needle": true
                   }
-                ],
-                "needle": true
-              }
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "cover.garage_door"
                 },
                 {
-                  "entity": "binary_sensor.front_door",
-                  "secondary_info": "last-changed"
-                },
-                {
-                  "entity": "lock.front_door_lock"
-                },
-                {
-                  "entity": "lock.kitchen_door_lock"
-                },
-                {
-                  "entity": "lock.workshop"
-                }
-              ],
-              "title": "Doors",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "script.watch_tv_main_floor"
-                },
-                {
-                  "entity": "script.watch_tv_downstairs"
-                },
-                {
-                  "entity": "script.goodnight"
-                },
-                {
-                  "entity": "script.dim_bedroom_lights"
-                },
-                {
-                  "entity": "script.open_garage_door_start_bmw"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "cover.garage_door"
+                    },
+                    {
+                      "entity": "binary_sensor.front_door",
+                      "secondary_info": "last-changed"
+                    },
+                    {
+                      "entity": "lock.front_door_lock"
+                    },
+                    {
+                      "entity": "lock.kitchen_door_lock"
+                    },
+                    {
+                      "entity": "lock.workshop"
+                    }
+                  ],
+                  "title": "Doors",
+                  "state_color": true
                 }
               ]
             },
             {
-              "type": "entities",
-              "entities": [
+              "type": "grid",
+              "cards": [
                 {
-                  "entity": "group.outdoor_lights"
-                },
-                {
-                  "entity": "group.upstairs_lights"
-                },
-                {
-                  "entity": "group.main_floor_lights"
-                },
-                {
-                  "entity": "group.downstairs_lights"
-                },
-                {
-                  "entity": "group.basement_lights"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "script.watch_tv_main_floor"
+                    },
+                    {
+                      "entity": "script.watch_tv_downstairs"
+                    },
+                    {
+                      "entity": "script.goodnight"
+                    },
+                    {
+                      "entity": "script.dim_bedroom_lights"
+                    },
+                    {
+                      "entity": "script.open_garage_door_start_bmw"
+                    }
+                  ]
                 }
-              ],
-              "title": "Lights",
-              "state_color": true
+              ]
             },
             {
-              "type": "custom:atomic-calendar-revive",
-              "entities": [
+              "type": "grid",
+              "cards": [
                 {
-                  "entity": "calendar.eric_calendar",
-                  "name": "Eric",
-                  "color": "#3F51B5"
-                },
-                {
-                  "entity": "calendar.eric_nicole_calendar",
-                  "name": "Eric & Nicole",
-                  "color": "#8E24AA"
-                },
-                {
-                  "entity": "calendar.nicole_calendar",
-                  "name": "Nicole",
-                  "color": "#D81B60"
-                },
-                {
-                  "entity": "calendar.holidays_in_united_states",
-                  "name": "Holidays",
-                  "color": "#A79B8E"
-                },
-                {
-                  "entity": "calendar.lions_schedule",
-                  "name": "Lions Schedule"
-                },
-                {
-                  "entity": "calendar.detroit_lions",
-                  "name": "Detroit Lions",
-                  "color": "#0076b6"
-                },
-                {
-                  "entity": "calendar.indiana_fever",
-                  "name": "Indiana Fever",
-                  "color": "navy"
-                },
-                {
-                  "entity": "calendar.michigan_wolverines_football",
-                  "name": "Michigan Wolverines",
-                  "color": "#FFCB05"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "group.outdoor_lights"
+                    },
+                    {
+                      "entity": "group.upstairs_lights"
+                    },
+                    {
+                      "entity": "group.main_floor_lights"
+                    },
+                    {
+                      "entity": "group.downstairs_lights"
+                    },
+                    {
+                      "entity": "group.basement_lights"
+                    }
+                  ],
+                  "title": "Lights",
+                  "state_color": true
                 }
-              ],
-              "name": "Calendar Card",
-              "enableModeChange": true,
-              "firstDayOfWeek": 1,
-              "maxDaysToShow": 7,
-              "refreshInterval": 60,
-              "hideFinishedEvents": true,
-              "showRelativeTime": false,
-              "showMultiDay": true,
-              "showDate": true,
-              "sortByStartTime": true,
-              "hideDuplicates": true,
-              "showCurrentEventLine": false,
-              "showMonth": false,
-              "showProgressBar": false,
-              "showWeekDay": true,
-              "showNoEventsForToday": false,
-              "showEventIcon": false,
-              "showFullDayProgress": false,
-              "showHiddenText": false,
-              "showCalendarName": false,
-              "showWeekNumber": false,
-              "showEventDate": true,
-              "showDatePerEvent": false,
-              "calShowDescription": false,
-              "showLastCalendarWeek": false,
-              "showDescription": false
+              ]
             }
-          ]
+          ],
+          "max_columns": 4
         },
         {
           "title": "Lights",
@@ -1316,117 +1344,135 @@
           "title": "Doors and Windows",
           "path": "doors-and-windows",
           "icon": "mdi:roller-shade",
-          "cards": [
+          "cards": [],
+          "type": "sections",
+          "sections": [
             {
-              "camera_view": "auto",
-              "type": "picture-glance",
-              "entities": [],
-              "camera_image": "camera.doorbell_fluent",
-              "aspect_ratio": "4:3"
+              "type": "grid",
+              "cards": [
+                {
+                  "camera_view": "auto",
+                  "type": "picture-glance",
+                  "entities": [],
+                  "camera_image": "camera.doorbell_fluent",
+                  "aspect_ratio": "4:3"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.doorbell_motion",
+                      "secondary_info": "last-changed"
+                    },
+                    {
+                      "entity": "binary_sensor.doorbell_package",
+                      "secondary_info": "last-changed"
+                    },
+                    {
+                      "entity": "binary_sensor.doorbell_person",
+                      "secondary_info": "last-changed"
+                    },
+                    {
+                      "entity": "binary_sensor.doorbell_visitor",
+                      "secondary_info": "last-changed"
+                    }
+                  ],
+                  "title": "Front Door"
+                }
+              ]
             },
             {
-              "type": "entities",
-              "entities": [
+              "type": "grid",
+              "cards": [
                 {
-                  "entity": "binary_sensor.doorbell_motion",
-                  "secondary_info": "last-changed"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.basement_outside_door"
+                    },
+                    {
+                      "entity": "binary_sensor.garage_kitchen_door"
+                    },
+                    {
+                      "entity": "binary_sensor.front_door",
+                      "secondary_info": "last-changed"
+                    },
+                    {
+                      "entity": "binary_sensor.basement_door"
+                    },
+                    {
+                      "entity": "binary_sensor.utility_room_doors"
+                    },
+                    {
+                      "entity": "cover.garage_door"
+                    },
+                    {
+                      "entity": "lock.front_door_lock"
+                    },
+                    {
+                      "entity": "lock.kitchen_door_lock"
+                    },
+                    {
+                      "entity": "lock.workshop"
+                    }
+                  ],
+                  "title": "Doors",
+                  "state_color": true
                 },
                 {
-                  "entity": "binary_sensor.doorbell_package",
-                  "secondary_info": "last-changed"
-                },
-                {
-                  "entity": "binary_sensor.doorbell_person",
-                  "secondary_info": "last-changed"
-                },
-                {
-                  "entity": "binary_sensor.doorbell_visitor",
-                  "secondary_info": "last-changed"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.bedroom_window"
+                    },
+                    {
+                      "entity": "binary_sensor.nicole_office_window"
+                    },
+                    {
+                      "entity": "binary_sensor.kitchen_window"
+                    },
+                    {
+                      "entity": "binary_sensor.eric_office_window"
+                    }
+                  ],
+                  "title": "Windows",
+                  "state_color": true
                 }
-              ],
-              "title": "Front Door"
+              ]
             },
             {
-              "type": "entities",
-              "entities": [
+              "type": "grid",
+              "cards": [
                 {
-                  "entity": "binary_sensor.basement_outside_door"
-                },
-                {
-                  "entity": "binary_sensor.garage_kitchen_door"
-                },
-                {
-                  "entity": "binary_sensor.front_door",
-                  "secondary_info": "last-changed"
-                },
-                {
-                  "entity": "binary_sensor.basement_door"
-                },
-                {
-                  "entity": "binary_sensor.utility_room_doors"
-                },
-                {
-                  "entity": "cover.garage_door"
-                },
-                {
-                  "entity": "lock.front_door_lock"
-                },
-                {
-                  "entity": "lock.kitchen_door_lock"
-                },
-                {
-                  "entity": "lock.workshop"
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "cover.all_shades"
+                    },
+                    {
+                      "entity": "cover.living_room_shades_left_cover",
+                      "name": "Living Room Left"
+                    },
+                    {
+                      "entity": "cover.living_room_shades_center_cover",
+                      "name": "Living Room Center"
+                    },
+                    {
+                      "entity": "cover.living_room_shades_right_cover",
+                      "name": "Living Room Right"
+                    },
+                    {
+                      "entity": "cover.dining_room_shades_cover",
+                      "name": "Dining Room"
+                    }
+                  ],
+                  "title": "Shades",
+                  "state_color": true
                 }
-              ],
-              "title": "Doors",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "binary_sensor.bedroom_window"
-                },
-                {
-                  "entity": "binary_sensor.nicole_office_window"
-                },
-                {
-                  "entity": "binary_sensor.kitchen_window"
-                },
-                {
-                  "entity": "binary_sensor.eric_office_window"
-                }
-              ],
-              "title": "Windows",
-              "state_color": true
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "cover.all_shades"
-                },
-                {
-                  "entity": "cover.living_room_shades_left_cover",
-                  "name": "Living Room Left"
-                },
-                {
-                  "entity": "cover.living_room_shades_center_cover",
-                  "name": "Living Room Center"
-                },
-                {
-                  "entity": "cover.living_room_shades_right_cover",
-                  "name": "Living Room Right"
-                },
-                {
-                  "entity": "cover.dining_room_shades_cover",
-                  "name": "Dining Room"
-                }
-              ],
-              "title": "Shades",
-              "state_color": true
+              ]
             }
-          ]
+          ],
+          "max_columns": 4
         },
         {
           "theme": "Backend-selected",
@@ -1434,92 +1480,110 @@
           "path": "cameras",
           "icon": "mdi:camera",
           "badges": [],
-          "cards": [
+          "cards": [],
+          "type": "sections",
+          "sections": [
             {
-              "type": "custom:advanced-camera-card",
-              "cameras": [
+              "type": "grid",
+              "cards": [
                 {
-                  "camera_entity": "camera.doorbell"
+                  "type": "custom:advanced-camera-card",
+                  "cameras": [
+                    {
+                      "camera_entity": "camera.doorbell"
+                    }
+                  ],
+                  "status_bar": {
+                    "style": "overlay",
+                    "position": "bottom"
+                  }
+                },
+                {
+                  "type": "custom:advanced-camera-card",
+                  "cameras": [
+                    {
+                      "camera_entity": "camera.garage"
+                    }
+                  ],
+                  "status_bar": {
+                    "style": "overlay",
+                    "position": "bottom"
+                  }
                 }
-              ],
-              "status_bar": {
-                "style": "overlay",
-                "position": "bottom"
-              }
+              ]
             },
             {
-              "type": "custom:advanced-camera-card",
-              "cameras": [
+              "type": "grid",
+              "cards": [
                 {
-                  "camera_entity": "camera.garage"
+                  "type": "custom:advanced-camera-card",
+                  "cameras": [
+                    {
+                      "camera_entity": "camera.workshop"
+                    }
+                  ],
+                  "status_bar": {
+                    "style": "overlay",
+                    "position": "bottom"
+                  }
+                },
+                {
+                  "type": "custom:advanced-camera-card",
+                  "cameras": [
+                    {
+                      "camera_entity": "camera.workshop_duo"
+                    }
+                  ],
+                  "status_bar": {
+                    "style": "overlay",
+                    "position": "bottom"
+                  }
                 }
-              ],
-              "status_bar": {
-                "style": "overlay",
-                "position": "bottom"
-              }
+              ]
             },
             {
-              "type": "custom:advanced-camera-card",
-              "cameras": [
+              "type": "grid",
+              "cards": [
                 {
-                  "camera_entity": "camera.back_west"
-                }
-              ],
-              "status_bar": {
-                "style": "overlay",
-                "position": "bottom"
-              }
-            },
-            {
-              "type": "custom:advanced-camera-card",
-              "cameras": [
+                  "type": "custom:advanced-camera-card",
+                  "cameras": [
+                    {
+                      "camera_entity": "camera.front_yard"
+                    }
+                  ],
+                  "status_bar": {
+                    "style": "overlay",
+                    "position": "bottom"
+                  }
+                },
                 {
-                  "camera_entity": "camera.back_east"
-                }
-              ],
-              "status_bar": {
-                "style": "overlay",
-                "position": "bottom"
-              }
-            },
-            {
-              "type": "custom:advanced-camera-card",
-              "cameras": [
+                  "type": "custom:advanced-camera-card",
+                  "cameras": [
+                    {
+                      "camera_entity": "camera.back_east"
+                    }
+                  ],
+                  "status_bar": {
+                    "style": "overlay",
+                    "position": "bottom"
+                  }
+                },
                 {
-                  "camera_entity": "camera.front_yard"
+                  "type": "custom:advanced-camera-card",
+                  "cameras": [
+                    {
+                      "camera_entity": "camera.back_west"
+                    }
+                  ],
+                  "status_bar": {
+                    "style": "overlay",
+                    "position": "bottom"
+                  }
                 }
-              ],
-              "status_bar": {
-                "style": "overlay",
-                "position": "bottom"
-              }
-            },
-            {
-              "type": "custom:advanced-camera-card",
-              "cameras": [
-                {
-                  "camera_entity": "camera.workshop"
-                }
-              ],
-              "status_bar": {
-                "style": "overlay",
-                "position": "bottom"
-              }
-            },
-            {
-              "type": "custom:advanced-camera-card",
-              "cameras": [
-                {
-                  "camera_entity": "camera.workshop_duo"
-                }
-              ],
-              "status_bar": {
-                "style": "overlay",
-                "position": "bottom"
-              }
+              ]
             }
-          ]
+          ],
+          "max_columns": 4
         },
         {
           "theme": "Backend-selected",
