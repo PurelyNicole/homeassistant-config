@@ -30,3 +30,15 @@ blueprints/automation/homeassistant/motion_light.yaml
 blueprints/automation/homeassistant/notify_leaving_zone.yaml
 blueprints/script/homeassistant/confirmable_notification.yaml
 blueprints/template/homeassistant/inverted_binary_sensor.yaml
+
+# Frigate
+.exports
+.jwt_secret
+.timeline
+.vacuum
+backup_config.yaml
+backup.db
+frigate.db
+frigate.db-shm
+frigate.db-wal
+frigate.yaml
