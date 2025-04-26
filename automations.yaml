@@ -2187,6 +2187,15 @@
   - trigger: state
     entity_id:
     - binary_sensor.orange_bath_motion_sensor
+    to: 'on'
+  - trigger: state
+    entity_id:
+    - binary_sensor.orange_bath_motion_sensor
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
   conditions: []
   actions:
   - choose:
@@ -2204,10 +2213,6 @@
       - condition: state
         entity_id: binary_sensor.orange_bath_motion_sensor
         state: 'off'
-        for:
-          hours: 0
-          minutes: 10
-          seconds: 0
       sequence:
       - action: light.turn_off
         metadata: {}
