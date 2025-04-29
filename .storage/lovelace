@@ -445,10 +445,10 @@
               "type": "custom:advanced-camera-card",
               "cameras": [
                 {
-                  "camera_entity": "camera.doorbell_2"
+                  "camera_entity": "camera.doorbell"
                 },
                 {
-                  "camera_entity": "camera.garage_2"
+                  "camera_entity": "camera.garage"
                 }
               ]
             }
@@ -1476,9 +1476,9 @@
         },
         {
           "theme": "Backend-selected",
-          "title": "Cameras Old",
-          "path": "cameras-old",
-          "icon": "",
+          "title": "Cameras",
+          "path": "cameras",
+          "icon": "mdi:camera",
           "badges": [],
           "cards": [],
           "type": "sections",
@@ -1587,119 +1587,23 @@
           "visible": [
             {
               "user": "a506d526e61b42d4982d4b388a7b4144"
+            },
+            {
+              "user": "b42b185d4255477db7bb66103bbd89d9"
+            },
+            {
+              "user": "66b26aa37c3c4a3da85a6504307b6eda"
+            },
+            {
+              "user": "4df26c21b64743d683213ba2dfd50dd7"
+            },
+            {
+              "user": "99ad95a5fa354694a345abc0443b6b00"
+            },
+            {
+              "user": "9125054b39ad488f9a8c52a13de70d0e"
             }
           ]
-        },
-        {
-          "theme": "Backend-selected",
-          "title": "Cameras",
-          "path": "cameras",
-          "icon": "mdi:camera",
-          "badges": [],
-          "cards": [],
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:advanced-camera-card",
-                  "cameras": [
-                    {
-                      "camera_entity": "camera.doorbell_2"
-                    }
-                  ],
-                  "status_bar": {
-                    "style": "overlay",
-                    "position": "bottom"
-                  }
-                },
-                {
-                  "type": "custom:advanced-camera-card",
-                  "cameras": [
-                    {
-                      "camera_entity": "camera.garage_2"
-                    }
-                  ],
-                  "status_bar": {
-                    "style": "overlay",
-                    "position": "bottom"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:advanced-camera-card",
-                  "cameras": [
-                    {
-                      "camera_entity": "camera.workshop_2"
-                    }
-                  ],
-                  "status_bar": {
-                    "style": "overlay",
-                    "position": "bottom"
-                  }
-                },
-                {
-                  "type": "custom:advanced-camera-card",
-                  "cameras": [
-                    {
-                      "camera_entity": "camera.workshop_duo_2"
-                    }
-                  ],
-                  "status_bar": {
-                    "style": "overlay",
-                    "position": "bottom"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:advanced-camera-card",
-                  "cameras": [
-                    {
-                      "camera_entity": "camera.front_yard_2"
-                    }
-                  ],
-                  "status_bar": {
-                    "style": "overlay",
-                    "position": "bottom"
-                  }
-                },
-                {
-                  "type": "custom:advanced-camera-card",
-                  "cameras": [
-                    {
-                      "camera_entity": "camera.back_east_2"
-                    }
-                  ],
-                  "status_bar": {
-                    "style": "overlay",
-                    "position": "bottom"
-                  }
-                },
-                {
-                  "type": "custom:advanced-camera-card",
-                  "cameras": [
-                    {
-                      "camera_entity": "camera.back_west_2"
-                    }
-                  ],
-                  "status_bar": {
-                    "style": "overlay",
-                    "position": "bottom"
-                  }
-                }
-              ]
-            }
-          ],
-          "max_columns": 4
         },
         {
           "theme": "Backend-selected",
