@@ -3391,6 +3391,49 @@
           ],
           "max_columns": 4,
           "path": "system"
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Links",
+          "path": "links",
+          "icon": "mdi:link-variant",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [Mealie](https://192.168.1.50:9090)\n\nRecipies and Meal Plans.\n"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [Frigate](https://192.168.1.100:8971)\n\nFrigate NVR Software.\n"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [HortusFox](https://192.168.1.100:7568)\n\nHouseplant care."
+                }
+              ]
+            }
+          ],
+          "header": {
+            "card": {
+              "type": "markdown",
+              "text_only": true,
+              "content": "# Other Services\n\nMust be on network to access. Login is the same as your Home Assistant login."
+            }
+          }
         }
       ]
     }
