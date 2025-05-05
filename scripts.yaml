@@ -315,9 +315,16 @@ watch_tv_main_floor:
       brightness: 75
     target:
       entity_id:
-      - light.kitchen_under_cabinet_lights
       - light.kitchen_sink_dimmer
       - light.kitchen_mudroom_dimmer
+  - action: light.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      brightness_pct: 43
+    target:
+      entity_id:
+      - light.kitchen_under_cabinet_lights
   - action: light.turn_off
     continue_on_error: true
     metadata: {}
