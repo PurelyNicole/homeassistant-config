@@ -1515,6 +1515,11 @@
           entity_id:
           - light.raccoon_lamp
           - light.nicole_office_floor_lamp
+      - action: fan.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: fan.family_room_fan_south
     - conditions:
       - condition: state
         entity_id: schedule.dte_peak_hours
@@ -1534,8 +1539,22 @@
         data: {}
         target:
           entity_id:
-          - switch.dehumidifier
           - switch.rock_tumbler
+      - action: fan.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: fan.family_room_fan_south
+      - if:
+        - condition: state
+          entity_id: binary_sensor.windows
+          state: 'off'
+        then:
+        - action: switch.turn_on
+          metadata: {}
+          data: {}
+          target:
+            entity_id: switch.dehumidifier
   mode: single
 - id: dehumidifier_turn_off_when_windows_open
   alias: Dehumidifier & Air Purifiers - Turn off when windows open
@@ -2362,4 +2381,37 @@
           option: Off-Peak
         target:
           entity_id: select.dte_energy_meter
+  mode: single
+- id: '1746546084116'
+  alias: Set meter peak and off-peak times
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - schedule.dte_peak_hours
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: schedule.dte_peak_hours
+        state: 'on'
+      sequence:
+      - action: select.select_option
+        metadata: {}
+        data:
+          option: peak
+        target:
+          entity_id: select.daily_energy
+    - conditions:
+      - condition: state
+        entity_id: schedule.dte_peak_hours
+        state: 'off'
+      sequence:
+      - action: select.select_option
+        metadata: {}
+        data:
+          option: offpeak
+        target:
+          entity_id: select.daily_energy
   mode: single

@@ -47,3 +47,16 @@ logger:
     roombapy.roomba: error
     custom_components.openmediavault.omv_api: error
     homeassistant.components.openevse: error
+
+utility_meter:
+  daily_energy:
+    source: sensor.energy_bridge_kwh
+    cycle: daily
+    name: DTE Energy Meter
+    unique_id: daily_energy
+    offset: 0
+    delta_values: true
+    net_consumption: false
+    tariffs:
+      - peak
+      - offpeak

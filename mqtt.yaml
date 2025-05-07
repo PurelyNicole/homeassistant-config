@@ -117,18 +117,13 @@ light:
     qos: 0
 # Sensors
 sensor:
-  - name: "Energy Bridge - Old"
-    icon: mdi:home-lightning-bolt
-    state_topic: "event/metering/summation/minute"
-    unit_of_measurement: "W"
-    # value_template: "{{ value_json.value }}"
-    state_class: total
-    unique_id: energy_bridge
-  - name: "Energy Bridge Old - Kwh" #Converts the W vaule int Kwh, for energy dashboard
-    icon: mdi:home-lightning-bolt
+  - name: "Energy Bridge"
+    icon: mdi:transmission-tower
     state_topic: "event/metering/summation/minute"
     unit_of_measurement: "kWh"
-    # value_template: "{{ value_json.value | float / 60000 }}"
+    # the Energy Bridge returns "Watt-minutes" every minute in the "value"; convert it to kilowatt-hours
+    value_template: "{{ value_json.value | float / 60000 }}"
+    # the "time" in the message is a Unix-like timestamp (in milliseconds) of the start of the last reading
     last_reset_value_template: "{{ now().fromtimestamp(value_json.time / 1000).replace(tzinfo=now().tzinfo) }}"
     device_class: energy
     state_class: total
@@ -140,14 +135,3 @@ sensor:
     value_template: "{{ value_json.demand | default(0) | round(0) }}"
     device_class: power
     unique_id: dte_instantaneous_demand
-  - name: "DTE Energy Bridge"
-    icon: mdi:transmission-tower
-    unique_id: dteenergybridge
-    state_topic: "event/metering/summation/minute"
-    unit_of_measurement: "kWh"
-    # the Energy Bridge returns "Watt-minutes" every minute in the "value"; convert it to kilowatt-hours
-    value_template: "{{ value_json.value | float / 60000 }}"
-    # the "time" in the message is a Unix-like timestamp (in milliseconds) of the start of the last reading
-    last_reset_value_template: "{{ now().fromtimestamp(value_json.time / 1000).replace(tzinfo=now().tzinfo) }}"
-    device_class: energy
-    state_class: total
