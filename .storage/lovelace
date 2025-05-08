@@ -811,7 +811,7 @@
                       "entity": "light.master_bath_light"
                     },
                     {
-                      "entity": "switch.master_bath_fan"
+                      "entity": "fan.master_bath_fan"
                     },
                     {
                       "entity": "switch.magic_mirror_screen"
@@ -2734,7 +2734,16 @@
                 },
                 {
                   "type": "tile",
-                  "entity": "sensor.washer_completion_time"
+                  "entity": "sensor.washer_completion_time",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.washer_washer_machine_state",
+                      "state_not": "stop"
+                    }
+                  ]
                 },
                 {
                   "type": "vertical-stack",
@@ -2769,7 +2778,14 @@
                 },
                 {
                   "type": "entity",
-                  "entity": "sensor.oven_temperature_measurement"
+                  "entity": "sensor.oven_temperature_measurement",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.oven_oven_machine_state",
+                      "state_not": "ready"
+                    }
+                  ]
                 }
               ]
             },
@@ -3371,12 +3387,11 @@
                   "type": "history-graph",
                   "entities": [
                     {
-                      "entity": "sensor.speedtest_download"
+                      "entity": "sensor.dte_instantaneous_demand"
                     }
                   ],
                   "hours_to_show": 24,
-                  "refresh_interval": 0,
-                  "title": "Download Speed"
+                  "title": "Energy Use Past 24 Hours"
                 },
                 {
                   "type": "entities",
@@ -3395,6 +3410,372 @@
         {
           "type": "sections",
           "max_columns": 4,
+          "title": "Areas",
+          "path": "areas",
+          "icon": "mdi:overscan",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "mdi:home-floor-2",
+                  "heading": "Upstairs",
+                  "heading_style": "title"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "window"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "bedroom",
+                  "navigation_path": "/dashboard-areas/areas-bedroom"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "master_bath",
+                  "navigation_path": "/dashboard-areas/areas-master_bath"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "blue_bathroom",
+                  "navigation_path": "/dashboard-areas/areas-blue_bathroom"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "door",
+                    "window"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "illuminance"
+                  ],
+                  "type": "area",
+                  "area": "nicole_office",
+                  "navigation_path": "/dashboard-areas/areas-nicole_office"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "illuminance"
+                  ],
+                  "type": "area",
+                  "area": "spare_room",
+                  "navigation_path": "/dashboard-areas/areas-spare_room"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "carbon_monoxide",
+                    "smoke"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "illuminance"
+                  ],
+                  "type": "area",
+                  "area": "hallway",
+                  "navigation_path": "/dashboard-areas/areas-hallway"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "mdi:home-floor-1",
+                  "heading": "Main Floor",
+                  "heading_style": "title"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "living_room",
+                  "navigation_path": "/dashboard-areas/areas-living_room"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "dining_room",
+                  "navigation_path": "/dashboard-areas/areas-dining_room"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "door",
+                    "safety"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "illuminance"
+                  ],
+                  "type": "area",
+                  "area": "entryway",
+                  "navigation_path": "/dashboard-areas/areas-entryway"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "carbon_monoxide",
+                    "door",
+                    "window",
+                    "smoke",
+                    "occupancy",
+                    "opening"
+                  ],
+                  "sensor_classes": [
+                    "humidity",
+                    "illuminance"
+                  ],
+                  "type": "area",
+                  "area": "kitchen",
+                  "navigation_path": "/dashboard-areas/areas-kitchen"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "occupancy"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "illuminance"
+                  ],
+                  "type": "area",
+                  "area": "half_bath",
+                  "navigation_path": "/dashboard-areas/areas-half_bath"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "lock",
+                    "opening"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "garage",
+                  "navigation_path": "/dashboard-areas/areas-garage"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "mdi:home-floor-negative-1",
+                  "heading": "Downstairs",
+                  "heading_style": "title"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "illuminance",
+                    "pm25"
+                  ],
+                  "type": "area",
+                  "area": "den",
+                  "navigation_path": "/dashboard-areas/areas-den"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "carbon_monoxide",
+                    "door",
+                    "smoke",
+                    "window"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "eric_office",
+                  "navigation_path": "/dashboard-areas/areas-eric_office"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "carbon_monoxide",
+                    "smoke"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "family_room",
+                  "navigation_path": "/dashboard-areas/areas-family_room"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "illuminance"
+                  ],
+                  "type": "area",
+                  "area": "laundry_room",
+                  "navigation_path": "/dashboard-areas/areas-laundry_room"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Basement",
+                  "heading_style": "title",
+                  "icon": "mdi:home-floor-b"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "carbon_monoxide",
+                    "door",
+                    "smoke"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "illuminance"
+                  ],
+                  "type": "area",
+                  "area": "basement",
+                  "navigation_path": "/dashboard-areas/areas-basement"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "door",
+                    "safety"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "utility_room",
+                  "navigation_path": "/dashboard-areas/areas-utility_room"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Outside",
+                  "heading_style": "title",
+                  "icon": "mdi:pine-tree"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "problem",
+                    "smoke"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "illuminance"
+                  ],
+                  "type": "area",
+                  "area": "workshop",
+                  "navigation_path": "/dashboard-areas/areas-workshop"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "aqi",
+                    "pm25"
+                  ],
+                  "type": "area",
+                  "area": "outdoors",
+                  "navigation_path": "/dashboard-areas/areas-outdoors"
+                }
+              ]
+            }
+          ],
+          "cards": []
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
           "title": "Links",
           "path": "links",
           "icon": "mdi:link-variant",
@@ -3404,7 +3785,7 @@
               "cards": [
                 {
                   "type": "markdown",
-                  "content": "## [Mealie](https://192.168.1.50:9090)\n\nRecipies and Meal Plans.\n"
+                  "content": "## [Mealie](http://192.168.1.50:9090)\n\nRecipies and Meal Plans.\n"
                 }
               ]
             },
@@ -3413,7 +3794,7 @@
               "cards": [
                 {
                   "type": "markdown",
-                  "content": "## [Frigate](https://192.168.1.100:8971)\n\nFrigate NVR Software.\n"
+                  "content": "## [Frigate](http://192.168.1.100:8971)\n\nFrigate NVR Software.\n"
                 }
               ]
             },
@@ -3422,7 +3803,75 @@
               "cards": [
                 {
                   "type": "markdown",
-                  "content": "## [HortusFox](https://192.168.1.100:7568)\n\nHouseplant care."
+                  "content": "## [HortusFox](http://192.168.1.100:7568)\n\nHouseplant care."
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [TasmoAdmin](http://192.168.1.50:9541/devices)\n\nManage Tasmota devices."
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "# Add Ons\n\nThese can be accessed on or off network.",
+                  "text_only": true
+                }
+              ],
+              "column_span": 4
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [Grafana](/hassio/ingress/a0d7b954_grafana)"
+                },
+                {
+                  "type": "markdown",
+                  "content": "## [Mealie](/hassio/ingress/db21ed7f_mealie)"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [InfluxDB](/hassio/ingress/a0d7b954_influxdb)"
+                },
+                {
+                  "type": "markdown",
+                  "content": "## [NodeRED](/hassio/ingress/a0d7b954_nodered)"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [ESPHome Device Builder](/hassio/ingress/5c53de3b_esphome)"
+                },
+                {
+                  "type": "markdown",
+                  "content": "## [VS Code](/hassio/ingress/a0d7b954_vscode)"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [Matter Server](/hassio/ingress/core_matter_server)"
                 }
               ]
             }
@@ -3432,7 +3881,9 @@
               "type": "markdown",
               "text_only": true,
               "content": "# Other Services\n\nMust be on network to access. Login is the same as your Home Assistant login."
-            }
+            },
+            "layout": "start",
+            "badges_position": "bottom"
           }
         }
       ]

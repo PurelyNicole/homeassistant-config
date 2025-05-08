@@ -98,17 +98,9 @@ goodnight:
       - downstairs
       - main_floor
       - upstairs
-      area_id: workshop
-      entity_id:
-      - light.pixel_post_light
-      - light.family_room_deck_light_back
-      - light.family_room_deck_light_side
-      - light.grill_lights
-      - light.garage_flood_lights_west
-      - light.service_door_light
-      - light.outside_workshop_light
-      - light.driveway_post_and_tree_lights
-      - light.holiday_lights
+      area_id:
+      - workshop
+      - outdoors
   - action: lock.lock
     continue_on_error: true
     metadata: {}
@@ -203,6 +195,11 @@ goodbye:
 watch_tv_downstairs:
   alias: Watch TV - Downstairs
   sequence:
+  - action: remote.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: remote.apple_tv
   - action: light.turn_on
     continue_on_error: true
     metadata: {}
