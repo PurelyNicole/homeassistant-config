@@ -1055,9 +1055,12 @@
           "path": "climate",
           "icon": "mdi:thermometer",
           "badges": [],
-          "cards": [
+          "cards": [],
+          "type": "sections",
+          "max_columns": 4,
+          "sections": [
             {
-              "type": "vertical-stack",
+              "type": "grid",
               "cards": [
                 {
                   "type": "thermostat",
@@ -1066,276 +1069,295 @@
                     {
                       "type": "climate-hvac-modes"
                     }
-                  ],
-                  "show_current_as_primary": false
+                  ]
                 },
                 {
                   "type": "tile",
                   "entity": "climate.family_room_thermostat",
+                  "features_position": "bottom",
+                  "vertical": false,
                   "features": [
                     {
                       "type": "target-temperature"
                     },
                     {
-                      "style": "icons",
-                      "type": "climate-hvac-modes",
-                      "hvac_modes": [
-                        "heat",
-                        "off"
-                      ]
+                      "type": "climate-hvac-modes"
                     }
                   ]
                 },
                 {
+                  "features": [
+                    {
+                      "type": "target-temperature"
+                    },
+                    {
+                      "type": "climate-hvac-modes"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "climate.workshop_hvac",
-                  "features": [
+                  "features_position": "bottom",
+                  "vertical": false
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
                     {
-                      "type": "target-temperature"
+                      "entity": "sensor.bedroom_ecobee_sensor_temperature"
                     },
                     {
-                      "style": "icons",
-                      "type": "climate-hvac-modes",
-                      "hvac_modes": [
-                        "auto",
-                        "heat",
-                        "cool",
-                        "fan_only",
-                        "off"
-                      ]
+                      "entity": "sensor.ecobee_thermostat_temperature"
+                    },
+                    {
+                      "entity": "sensor.eric_office_temperature"
+                    },
+                    {
+                      "entity": "sensor.family_room_temperature"
+                    },
+                    {
+                      "entity": "sensor.master_bathroom_sensor_air_temperature"
+                    },
+                    {
+                      "entity": "sensor.den_air_quality_temperature"
+                    }
+                  ],
+                  "hours_to_show": 72,
+                  "title": "House Temperatures"
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 2,
+                  "entity": "sensor.den_air_quality_pm25",
+                  "hours_to_show": 24
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 2,
+                  "entity": "sensor.nicole_office_air_quality_pm2_5",
+                  "hours_to_show": 24,
+                  "name": "Nicole Office PM2.5"
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 2,
+                  "entity": "sensor.nicole_office_air_quality_voc_index",
+                  "hours_to_show": 24,
+                  "name": "Nicole Office VOC"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.ecobee_thermostat_temperature",
+                      "name": "Living Room Temperature"
+                    },
+                    {
+                      "entity": "sensor.garage_sensor_air_temperature"
+                    },
+                    {
+                      "entity": "sensor.nicole_office_air_quality_temperature",
+                      "name": "Nicole Office: Temperature"
+                    },
+                    {
+                      "entity": "sensor.master_bathroom_sensor_air_temperature"
+                    },
+                    {
+                      "entity": "sensor.bedroom_ecobee_sensor_temperature"
+                    },
+                    {
+                      "entity": "sensor.eric_office_temperature"
+                    },
+                    {
+                      "entity": "sensor.family_room_temperature"
+                    },
+                    {
+                      "entity": "sensor.basement_sensor_air_temperature"
+                    },
+                    {
+                      "entity": "sensor.hot_water_heater_flood_sensor_air_temperature"
+                    },
+                    {
+                      "entity": "sensor.workshop_sensor_air_temperature"
+                    },
+                    {
+                      "entity": "sensor.workshop_hvac_indoor_temperature"
+                    },
+                    {
+                      "entity": "sensor.den_air_quality_temperature"
+                    },
+                    {
+                      "entity": "sensor.orange_bathroom_shower_switch_aht2x_temperature"
+                    },
+                    {
+                      "entity": "sensor.green_bath_climate_temperature"
+                    }
+                  ],
+                  "title": "Temperature"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "switch.dining_room_air_purifier"
+                    },
+                    {
+                      "entity": "switch.bedroom_air_purifier"
+                    },
+                    {
+                      "entity": "switch.nicole_office_air_purifier"
+                    }
+                  ],
+                  "state_color": true,
+                  "title": "Air Purifiers"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.ecobee_thermostat_humidity",
+                      "name": "Living Room Humidity"
+                    },
+                    {
+                      "entity": "sensor.garage_sensor_humidity"
+                    },
+                    {
+                      "entity": "sensor.nicole_office_air_quality_humidity"
+                    },
+                    {
+                      "entity": "sensor.master_bathroom_sensor_humidity"
+                    },
+                    {
+                      "entity": "sensor.eric_office_humidity"
+                    },
+                    {
+                      "entity": "sensor.basement_sensor_humidity"
+                    },
+                    {
+                      "entity": "sensor.workshop_sensor_humidity"
+                    },
+                    {
+                      "entity": "sensor.den_air_quality_humidity"
+                    },
+                    {
+                      "entity": "sensor.orange_bathroom_shower_switch_aht2x_humidity"
+                    },
+                    {
+                      "entity": "sensor.green_bath_climate_humidity"
+                    },
+                    {
+                      "entity": "switch.dehumidifier"
+                    }
+                  ],
+                  "title": "Humidity"
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.den_air_quality_pm25"
+                    },
+                    {
+                      "entity": "sensor.nicole_office_air_quality_pm2_5"
                     }
                   ]
                 }
               ]
             },
             {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "sensor.ecobee_thermostat_temperature",
-                  "name": "Living Room Temperature"
-                },
-                {
-                  "entity": "sensor.garage_sensor_air_temperature"
-                },
-                {
-                  "entity": "sensor.nicole_office_air_quality_temperature",
-                  "name": "Nicole Office: Temperature"
-                },
-                {
-                  "entity": "sensor.master_bathroom_sensor_air_temperature"
-                },
-                {
-                  "entity": "sensor.bedroom_ecobee_sensor_temperature"
-                },
-                {
-                  "entity": "sensor.eric_office_temperature"
-                },
-                {
-                  "entity": "sensor.family_room_temperature"
-                },
-                {
-                  "entity": "sensor.basement_sensor_air_temperature"
-                },
-                {
-                  "entity": "sensor.hot_water_heater_flood_sensor_air_temperature"
-                },
-                {
-                  "entity": "sensor.workshop_sensor_air_temperature"
-                },
-                {
-                  "entity": "sensor.workshop_hvac_indoor_temperature"
-                },
-                {
-                  "entity": "sensor.den_air_quality_temperature"
-                },
-                {
-                  "entity": "sensor.orange_bathroom_shower_switch_aht2x_temperature"
-                },
-                {
-                  "entity": "sensor.green_bath_climate_temperature"
-                }
-              ],
-              "title": "Temperature"
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "sensor.ecobee_thermostat_humidity",
-                  "name": "Living Room Humidity"
-                },
-                {
-                  "entity": "sensor.garage_sensor_humidity"
-                },
-                {
-                  "entity": "sensor.nicole_office_air_quality_humidity"
-                },
-                {
-                  "entity": "sensor.master_bathroom_sensor_humidity"
-                },
-                {
-                  "entity": "sensor.eric_office_humidity"
-                },
-                {
-                  "entity": "sensor.basement_sensor_humidity"
-                },
-                {
-                  "entity": "sensor.workshop_sensor_humidity"
-                },
-                {
-                  "entity": "sensor.den_air_quality_humidity"
-                },
-                {
-                  "entity": "sensor.orange_bathroom_shower_switch_aht2x_humidity"
-                },
-                {
-                  "entity": "sensor.green_bath_climate_humidity"
-                },
-                {
-                  "entity": "switch.dehumidifier"
-                }
-              ],
-              "title": "Humidity"
-            },
-            {
-              "type": "vertical-stack",
+              "type": "grid",
               "cards": [
                 {
+                  "features": [
+                    {
+                      "type": "fan-speed"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "fan.family_room_fan_south",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
                   "features": [
                     {
                       "type": "fan-speed"
                     }
-                  ]
-                },
-                {
+                  ],
                   "type": "tile",
                   "entity": "fan.master_bedroom_fan",
-                  "features": [
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "chart_type": "line",
+                  "period": "hour",
+                  "type": "statistics-graph",
+                  "entities": [
+                    "sensor.masterbedroom_hvac_boost_master_bedroom_fan_1_speed",
+                    "sensor.masterbedroom_hvac_boost_master_bedroom_fan_2_speed"
+                  ],
+                  "title": "MB HVAC Fan Speed",
+                  "stat_types": [
+                    "mean"
+                  ],
+                  "hide_legend": false,
+                  "days_to_show": 3
+                },
+                {
+                  "type": "entities",
+                  "entities": [
                     {
-                      "type": "fan-speed"
+                      "entity": "sensor.masterbedroom_hvac_boost_temperature"
+                    },
+                    {
+                      "entity": "switch.nodered_73429d9c97f825a1",
+                      "name": "Master HVAC Speed Override Enable",
+                      "icon": "mdi:fan-alert"
+                    },
+                    {
+                      "entity": "number.masterbedroom_hvac_boost_fan_speed_override_1"
+                    },
+                    {
+                      "entity": "number.masterbedroom_hvac_boost_fan_speed_override_2"
+                    },
+                    {
+                      "entity": "input_number.master_hvac_booster_override_speed"
                     }
-                  ]
+                  ],
+                  "state_color": true
                 }
               ]
-            },
-            {
-              "chart_type": "line",
-              "period": "hour",
-              "type": "statistics-graph",
-              "entities": [
-                "sensor.masterbedroom_hvac_boost_master_bedroom_fan_1_speed",
-                "sensor.masterbedroom_hvac_boost_master_bedroom_fan_2_speed"
-              ],
-              "title": "MB HVAC Fan Speed",
-              "stat_types": [
-                "mean"
-              ],
-              "hide_legend": false,
-              "days_to_show": 3
-            },
-            {
-              "type": "history-graph",
-              "entities": [
-                {
-                  "entity": "sensor.bedroom_ecobee_sensor_temperature"
-                },
-                {
-                  "entity": "sensor.ecobee_thermostat_temperature"
-                },
-                {
-                  "entity": "sensor.eric_office_temperature"
-                },
-                {
-                  "entity": "sensor.family_room_temperature"
-                },
-                {
-                  "entity": "sensor.master_bathroom_sensor_air_temperature"
-                },
-                {
-                  "entity": "sensor.den_air_quality_temperature"
-                }
-              ],
-              "hours_to_show": 72,
-              "title": "House Temperatures"
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "sensor.masterbedroom_hvac_boost_temperature"
-                },
-                {
-                  "entity": "switch.nodered_73429d9c97f825a1",
-                  "name": "Master HVAC Speed Override Enable",
-                  "icon": "mdi:fan-alert"
-                },
-                {
-                  "entity": "number.masterbedroom_hvac_boost_fan_speed_override_1"
-                },
-                {
-                  "entity": "number.masterbedroom_hvac_boost_fan_speed_override_2"
-                },
-                {
-                  "entity": "input_number.master_hvac_booster_override_speed"
-                }
-              ],
-              "state_color": true
-            },
-            {
-              "type": "history-graph",
-              "entities": [
-                {
-                  "entity": "sensor.den_air_quality_pm25"
-                },
-                {
-                  "entity": "sensor.nicole_office_air_quality_pm2_5"
-                }
-              ]
-            },
-            {
-              "graph": "line",
-              "type": "sensor",
-              "detail": 2,
-              "entity": "sensor.den_air_quality_pm25",
-              "hours_to_show": 24
-            },
-            {
-              "type": "vertical-stack",
-              "cards": [
-                {
-                  "graph": "line",
-                  "type": "sensor",
-                  "detail": 2,
-                  "hours_to_show": 24,
-                  "entity": "sensor.nicole_office_air_quality_pm2_5"
-                },
-                {
-                  "graph": "line",
-                  "type": "sensor",
-                  "detail": 2,
-                  "hours_to_show": 24,
-                  "entity": "sensor.nicole_office_air_quality_voc_index"
-                }
-              ]
-            },
-            {
-              "type": "entities",
-              "entities": [
-                {
-                  "entity": "switch.dining_room_air_purifier"
-                },
-                {
-                  "entity": "switch.bedroom_air_purifier"
-                },
-                {
-                  "entity": "switch.nicole_office_air_purifier"
-                }
-              ],
-              "state_color": true,
-              "title": "Air Purifiers"
             }
           ]
         },
@@ -2657,15 +2679,60 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "custom:grocy-chores-card",
-                  "entity": "sensor.grocy_chores",
-                  "title": "Chorin'",
-                  "show_quantity": 7,
-                  "show_days": 3,
-                  "show_assigned": false,
-                  "show_last_tracked": true,
-                  "show_last_tracked_by": false,
-                  "show_track_button": true
+                  "type": "custom:auto-entities",
+                  "card": {
+                    "type": "entities",
+                    "title": "Chorin'"
+                  },
+                  "filter": {
+                    "include": [
+                      {
+                        "integration": "chore_helper",
+                        "state": "= 0",
+                        "options": {
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "chore_helper.complete",
+                            "service_data": {
+                              "entity_id": "this.entity_id"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "integration": "chore_helper",
+                        "state": "< 0",
+                        "options": {
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "chore_helper.complete",
+                            "service_data": {
+                              "entity_id": "this.entity_id"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "integration": "chore_helper",
+                        "state 1": "> 0",
+                        "state 2": "<= 3",
+                        "options": {
+                          "tap_action": {
+                            "action": "call-service",
+                            "service": "chore_helper.complete",
+                            "service_data": {
+                              "entity_id": "this.entity_id"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "sort": {
+                    "method": "state",
+                    "numeric": true
+                  },
+                  "show_empty": false
                 }
               ]
             },
