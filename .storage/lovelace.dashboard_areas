@@ -2083,8 +2083,39 @@
                   "icon": "mdi:multimedia"
                 },
                 {
+                  "type": "tile",
+                  "entity": "switch.den_media_center",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
                   "type": "media-control",
-                  "entity": "media_player.musiccast_preamp"
+                  "entity": "media_player.musiccast_preamp",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.den_media_center",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "heading",
@@ -5358,25 +5389,58 @@
                   }
                 },
                 {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Batteries",
+                  "icon": "mdi:battery-70"
+                },
+                {
                   "type": "tile",
-                  "entity": "switch.behind_tv_plug",
+                  "entity": "sensor.living_room_shades_left_battery",
                   "features_position": "bottom",
                   "vertical": false,
+                  "name": "Left Shades",
                   "state_content": [
                     "state",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
                   "icon_tap_action": {
                     "action": "more-info"
                   },
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.living_room_shades_center_battery",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Center Shades",
+                  "state_content": [
+                    "state",
+                    "last_updated"
                   ],
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.living_room_shades_right_battery",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Right Shades",
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
                   "grid_options": {
                     "columns": "full"
                   }
@@ -5499,55 +5563,22 @@
                   "secondary_info": "state"
                 },
                 {
-                  "type": "heading",
-                  "heading_style": "title",
-                  "heading": "Batteries",
-                  "icon": "mdi:battery-70"
-                },
-                {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
                   "type": "tile",
-                  "entity": "sensor.living_room_shades_left_battery",
+                  "entity": "switch.main_floor_media_center_plug",
                   "features_position": "bottom",
                   "vertical": false,
-                  "name": "Left Shades",
                   "state_content": [
                     "state",
                     "last_updated"
                   ],
-                  "icon_tap_action": {
-                    "action": "more-info"
+                  "tap_action": {
+                    "action": "toggle"
                   },
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.living_room_shades_center_battery",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "name": "Center Shades",
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ],
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.living_room_shades_right_battery",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "name": "Right Shades",
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ],
                   "icon_tap_action": {
                     "action": "more-info"
                   },
@@ -5587,6 +5618,9 @@
                       "entity": "automation.notification_put_down_blinds_when_hvac_is_ac"
                     },
                     {
+                      "entity": "automation.turn_on_main_floor_media_center_at_4_00pm"
+                    },
+                    {
                       "entity": "automation.kitchen_muisccast_speakers_to_kitchen_when_source_is_airplay"
                     },
                     {
@@ -5602,10 +5636,6 @@
                   "state_color": true
                 }
               ]
-            },
-            {
-              "type": "grid",
-              "cards": []
             }
           ],
           "badges": [
@@ -5999,10 +6029,30 @@
                     {
                       "type": "toggle"
                     }
+                  ]
+                },
+                {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
                   ],
-                  "grid_options": {
-                    "columns": "full"
-                  }
+                  "type": "tile",
+                  "entity": "switch.nicole_desk_work",
+                  "name": "Desk - Work",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "icon": "mdi:laptop"
                 },
                 {
                   "type": "tile",
@@ -6036,7 +6086,14 @@
                   "type": "custom:ha-bambulab-print_status-card",
                   "printer": "7649118e2915b0039fb85c874288af0c",
                   "custom_power": "switch.bambu_p1s",
-                  "style": "simple"
+                  "style": "simple",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.bambu_p1s",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "tile",
@@ -6161,6 +6218,9 @@
                   "entities": [
                     {
                       "entity": "automation.3d_printer_idle_mode"
+                    },
+                    {
+                      "entity": "automation.turn_off_nicole_desk_for_work_at_the_end_of_the_day"
                     },
                     {
                       "entity": "automation.dehumidifier_turn_off_when_windows_open"

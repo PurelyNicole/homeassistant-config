@@ -38,6 +38,10 @@
         "name": "Dehumidifier"
       },
       {
+        "stat_consumption": "sensor.den_media_center_electric_consumption_kwh",
+        "name": "Den Media Center"
+      },
+      {
         "stat_consumption": "sensor.dining_room_air_purifier_summation_delivered",
         "name": "Dining Room Air Purifier"
       },
@@ -56,6 +60,10 @@
       {
         "stat_consumption": "sensor.hair_straightener_energy_total",
         "name": "Hair Straightener"
+      },
+      {
+        "stat_consumption": "sensor.main_floor_media_center_electric_consumption_kwh",
+        "name": "Main Floor Media Center"
       },
       {
         "stat_consumption": "sensor.usage_this_session",
@@ -78,10 +86,6 @@
         "name": "Rock Tumbler"
       },
       {
-        "stat_consumption": "sensor.spare_room_z_wave_plug_electric_consumption_kwh",
-        "name": "Spare Room Z-Wave Plug"
-      },
-      {
         "stat_consumption": "sensor.washer_energy"
       },
       {
@@ -89,8 +93,8 @@
         "name": "Workshop HVAC"
       },
       {
-        "stat_consumption": "sensor.christmas_tree_energy_total",
-        "name": "Christmas Tree"
+        "stat_consumption": "sensor.nicole_desk_work_energy_total",
+        "name": "Nicole Desk - Work"
       }
     ]
   }

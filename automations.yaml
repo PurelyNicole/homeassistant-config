@@ -54,7 +54,9 @@
       alias: Set mode to home
     - data: {}
       target:
-        entity_id: switch.magic_mirror_screen
+        entity_id:
+        - switch.magic_mirror_screen
+        - switch.main_floor_media_center_plug
       action: switch.turn_on
   - if:
     - alias: If it's dark outside
@@ -2252,7 +2254,7 @@
         target:
           entity_id: light.orange_bathroom_lights
   mode: single
-- id: '1740866658676'
+- id: control_green_bath_lights_motion
   alias: Control Green Bath Lights with Motion
   description: ''
   triggers:
@@ -2301,7 +2303,7 @@
           - light.green_bath_tub_dimmer
           - light.green_bath_vanity_lights
   mode: single
-- id: '1744658871343'
+- id: 3d_printer_idle_mode
   alias: 3D Printer Idle Mode
   description: ''
   triggers:
@@ -2359,40 +2361,7 @@
           entity_id: switch.3d_printer_enable_camera
       alias: If not idle, turn on light and camera
   mode: single
-- id: '1746476704280'
-  alias: Set Energy Meter to Peak or Off Peak
-  description: ''
-  triggers:
-  - trigger: state
-    entity_id:
-    - schedule.dte_peak_hours
-  conditions: []
-  actions:
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: schedule.dte_peak_hours
-        state: 'on'
-      sequence:
-      - action: select.select_option
-        metadata: {}
-        data:
-          option: Peak
-        target:
-          entity_id: select.dte_energy_meter
-    - conditions:
-      - condition: state
-        entity_id: schedule.dte_peak_hours
-        state: 'off'
-      sequence:
-      - action: select.select_option
-        metadata: {}
-        data:
-          option: Off-Peak
-        target:
-          entity_id: select.dte_energy_meter
-  mode: single
-- id: '1746546084116'
+- id: set_meter_peak_and_off_peak_times
   alias: Set meter peak and off-peak times
   description: ''
   triggers:
@@ -2425,7 +2394,7 @@
         target:
           entity_id: select.daily_energy
   mode: single
-- id: '1746714428992'
+- id: turn_off_appletv_with_musiccast
   alias: Turn off AppleTV with MusicCast
   description: ''
   triggers:
@@ -2440,4 +2409,43 @@
     data: {}
     target:
       entity_id: remote.apple_tv
+  mode: single
+- id: turn_off_nicole_desk_for_work_at_the_end_of_the_day
+  alias: Turn off Nicole Desk for Work at the end of the day
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.nicole_office_sensor_home_security_motion_detection
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  conditions:
+  - condition: time
+    after: '16:00:00'
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.nicole_desk_work
+  mode: single
+- id: turn_on_main_floor_media_center_at_4_00pm
+  alias: Turn on main floor media center at 4:00pm
+  description: ''
+  triggers:
+  - trigger: time
+    at: '16:00:00'
+  conditions:
+  - condition: state
+    entity_id: input_select.home_mode
+    state: Home
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.main_floor_media_center_plug
   mode: single

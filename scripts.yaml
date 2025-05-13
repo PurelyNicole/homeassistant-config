@@ -86,7 +86,11 @@ goodnight:
   - action: switch.turn_off
     continue_on_error: true
     target:
-      entity_id: switch.magic_mirror_screen
+      entity_id:
+      - switch.magic_mirror_screen
+      - switch.main_floor_media_center_plug
+      - switch.nicole_desk_work
+      - switch.den_media_center
     data: {}
   - action: light.turn_off
     continue_on_error: true
@@ -101,6 +105,13 @@ goodnight:
       area_id:
       - workshop
       - outdoors
+  - action: switch.turn_off
+    continue_on_error: true
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.christmas_tree
+    enabled: false
   - action: lock.lock
     continue_on_error: true
     metadata: {}
@@ -110,13 +121,6 @@ goodnight:
       - lock.front_door_lock
       - lock.kitchen_door_lock
       - lock.workshop
-  - action: switch.turn_off
-    continue_on_error: true
-    metadata: {}
-    data: {}
-    target:
-      entity_id: switch.christmas_tree
-    enabled: false
   description: ''
   icon: mdi:weather-night
 good_morning:
@@ -134,7 +138,8 @@ good_morning:
     metadata: {}
     data: {}
     target:
-      entity_id: switch.magic_mirror_screen
+      entity_id:
+      - switch.magic_mirror_screen
   - action: light.turn_on
     continue_on_error: true
     metadata: {}
@@ -143,6 +148,27 @@ good_morning:
       entity_id:
       - light.pixel_post_light
       - light.stairway_dimmer
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.nicole_workday_sensor
+        state: 'on'
+      sequence:
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.nicole_desk_work
+    - conditions:
+      - condition: state
+        entity_id: binary_sensor.nicole_workday_sensor
+        state: 'off'
+      sequence:
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.main_floor_media_center_plug
   description: ''
   icon: mdi:weather-sunny
 goodbye:
@@ -174,13 +200,9 @@ goodbye:
       entity_id:
       - switch.magic_mirror_screen
       - switch.hair_straightener
-  - action: climate.set_preset_mode
-    continue_on_error: true
-    metadata: {}
-    data:
-      preset_mode: sleep
-    target:
-      device_id: 80e2ea7676adeea018b6e96cb57a3af5
+      - switch.main_floor_media_center_plug
+      - switch.nicole_desk_work
+      - switch.den_media_center
   - action: lock.lock
     continue_on_error: true
     metadata: {}
@@ -190,6 +212,18 @@ goodbye:
       - lock.front_door_lock
       - lock.kitchen_door_lock
       - lock.workshop
+  - if:
+    - condition: state
+      entity_id: binary_sensor.windows
+      state: 'off'
+    then:
+    - action: climate.set_preset_mode
+      continue_on_error: true
+      metadata: {}
+      data:
+        preset_mode: away
+      target:
+        device_id: 80e2ea7676adeea018b6e96cb57a3af5
   description: ''
   icon: mdi:run
 watch_tv_downstairs:
