@@ -17,6 +17,10 @@
       {
         "id": "hvac_override",
         "name": "HVAC Override"
+      },
+      {
+        "id": "guest_mode",
+        "name": "Guest Mode"
       }
     ]
   }

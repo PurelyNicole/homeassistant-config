@@ -17,6 +17,7 @@ window_satus = (hass.states.get("binary_sensor.windows")).state
 peak_season = (hass.states.get("input_boolean.dte_peak_season")).state
 peak_hours = (hass.states.get("schedule.dte_peak_hours")).state
 current_month = datetime.datetime.now().month
+guest_mode = (hass.states.get("input_boolean.guest_mode")).state
 
 def normalOperation():
   logger.info("Enter normal operation mode.")
@@ -103,7 +104,7 @@ def windowState(operation_mode):
     logger.info("Mode is already set correctly.")
 
 # Determine peak season
-if peak_season == "on":
+if peak_season == "on" and guest_mode == "off":
   logger.info("Prepare to enter peak season mode.")
   dtePeakSeasonMode()
 else:

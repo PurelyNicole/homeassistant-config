@@ -52,7 +52,8 @@
                   "type": "conditional",
                   "conditions": [
                     {
-                      "entity": "binary_sensor.air_quailty_unhealthy",
+                      "condition": "state",
+                      "entity": "binary_sensor.air_quaility_unhealthy",
                       "state": "on"
                     }
                   ],
@@ -409,6 +410,12 @@
                 },
                 {
                   "type": "tile",
+                  "entity": "switch.den_media_center",
+                  "features_position": "bottom",
+                  "vertical": false
+                },
+                {
+                  "type": "tile",
                   "entity": "fan.family_room_fan_south",
                   "features_position": "bottom",
                   "vertical": false,
@@ -436,7 +443,7 @@
                   "show_current": true,
                   "show_forecast": true,
                   "type": "weather-forecast",
-                  "entity": "weather.possum_den",
+                  "entity": "weather.ecobee_thermostat",
                   "forecast_type": "daily"
                 }
               ]
@@ -670,6 +677,9 @@
                     },
                     {
                       "entity": "script.open_garage_door_start_bmw"
+                    },
+                    {
+                      "entity": "script.goodnight_nicole"
                     }
                   ]
                 }
@@ -1163,20 +1173,42 @@
                       "entity": "sensor.garage_sensor_air_temperature"
                     },
                     {
+                      "type": "divider"
+                    },
+                    {
                       "entity": "sensor.nicole_office_air_quality_temperature",
                       "name": "Nicole Office: Temperature"
+                    },
+                    {
+                      "entity": "sensor.closet_room_temperature"
+                    },
+                    {
+                      "entity": "sensor.bedroom_ecobee_sensor_temperature",
+                      "name": "Master Bedroom "
                     },
                     {
                       "entity": "sensor.master_bathroom_sensor_air_temperature"
                     },
                     {
-                      "entity": "sensor.bedroom_ecobee_sensor_temperature"
+                      "entity": "sensor.green_bath_climate_temperature"
+                    },
+                    {
+                      "type": "divider"
+                    },
+                    {
+                      "entity": "sensor.den_air_quality_temperature"
                     },
                     {
                       "entity": "sensor.eric_office_temperature"
                     },
                     {
-                      "entity": "sensor.family_room_temperature"
+                      "entity": "sensor.family_room_climate_family_room_temperature"
+                    },
+                    {
+                      "entity": "sensor.orange_bathroom_shower_switch_aht2x_temperature"
+                    },
+                    {
+                      "type": "divider"
                     },
                     {
                       "entity": "sensor.basement_sensor_air_temperature"
@@ -1185,19 +1217,7 @@
                       "entity": "sensor.hot_water_heater_flood_sensor_air_temperature"
                     },
                     {
-                      "entity": "sensor.workshop_sensor_air_temperature"
-                    },
-                    {
                       "entity": "sensor.workshop_hvac_indoor_temperature"
-                    },
-                    {
-                      "entity": "sensor.den_air_quality_temperature"
-                    },
-                    {
-                      "entity": "sensor.orange_bathroom_shower_switch_aht2x_temperature"
-                    },
-                    {
-                      "entity": "sensor.green_bath_climate_temperature"
                     }
                   ],
                   "title": "Temperature"
@@ -1217,6 +1237,27 @@
                   ],
                   "state_color": true,
                   "title": "Air Purifiers"
+                },
+                {
+                  "type": "tile",
+                  "entity": "climate.bedjet_12fa",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "target-temperature"
+                    },
+                    {
+                      "type": "climate-fan-modes",
+                      "style": "dropdown"
+                    },
+                    {
+                      "type": "climate-hvac-modes"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 }
               ]
             },
@@ -1234,28 +1275,43 @@
                       "entity": "sensor.garage_sensor_humidity"
                     },
                     {
+                      "type": "divider"
+                    },
+                    {
                       "entity": "sensor.nicole_office_air_quality_humidity"
+                    },
+                    {
+                      "entity": "sensor.closet_room_humidity"
                     },
                     {
                       "entity": "sensor.master_bathroom_sensor_humidity"
                     },
                     {
+                      "entity": "sensor.green_bath_climate_humidity"
+                    },
+                    {
+                      "type": "divider"
+                    },
+                    {
+                      "entity": "sensor.den_air_quality_humidity"
+                    },
+                    {
                       "entity": "sensor.eric_office_humidity"
+                    },
+                    {
+                      "entity": "sensor.family_room_climate_family_room_humidity"
+                    },
+                    {
+                      "entity": "sensor.orange_bathroom_shower_switch_aht2x_humidity"
+                    },
+                    {
+                      "type": "divider"
                     },
                     {
                       "entity": "sensor.basement_sensor_humidity"
                     },
                     {
                       "entity": "sensor.workshop_sensor_humidity"
-                    },
-                    {
-                      "entity": "sensor.den_air_quality_humidity"
-                    },
-                    {
-                      "entity": "sensor.orange_bathroom_shower_switch_aht2x_humidity"
-                    },
-                    {
-                      "entity": "sensor.green_bath_climate_humidity"
                     },
                     {
                       "entity": "switch.dehumidifier"
@@ -1289,12 +1345,6 @@
                   "entity": "fan.family_room_fan_south",
                   "features_position": "bottom",
                   "vertical": false,
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "grid_options": {
                     "columns": "full"
                   }
@@ -1309,12 +1359,6 @@
                   "entity": "fan.master_bedroom_fan",
                   "features_position": "bottom",
                   "vertical": false,
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "grid_options": {
                     "columns": "full"
                   }
@@ -1876,6 +1920,24 @@
               "type": "grid",
               "cards": [
                 {
+                  "type": "tile",
+                  "entity": "switch.main_floor_media_center_plug",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "state_content": [
+                    "state",
+                    "last_changed"
+                  ],
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
                   "type": "entities",
                   "entities": [
                     {
@@ -1891,11 +1953,39 @@
                       "entity": "sensor.main_floor_tv_tv_channel_name"
                     }
                   ],
-                  "title": "Main Floor TV"
+                  "title": "Main Floor TV",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.main_floor_media_center_plug",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "media-control",
-                  "entity": "media_player.main_floor_musiccast"
+                  "entity": "media_player.main_floor_musiccast",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.main_floor_media_center_plug",
+                      "state": "on"
+                    }
+                  ]
+                },
+                {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "switch.den_media_center",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 },
                 {
                   "type": "media-control",
@@ -2386,54 +2476,22 @@
                   "button_card": [
                     {
                       "button": {
-                        "icon": "mdi:car-wireless",
                         "primary": "Remote Start",
-                        "secondary": {
-                          "state_template": ""
-                        }
+                        "secondary": [
+                          {
+                            "entity": "",
+                            "attribute": "",
+                            "state_template": ""
+                          }
+                        ],
+                        "icon": "mdi:car-wireless",
+                        "notify": ""
                       },
                       "button_type": "action",
-                      "card_type": "default",
-                      "custom_card": [],
-                      "default_card": [
-                        {
-                          "collapsed_items": false,
-                          "items": [
-                            {
-                              "entity": "sun.sun"
-                            },
-                            {
-                              "entity": "ensor.sun_next_dawn"
-                            },
-                            {
-                              "entity": "sensor.sun_next_midnight"
-                            },
-                            {
-                              "entity": "sensor.sun_next_noon"
-                            }
-                          ],
-                          "title": "Default Card"
-                        },
-                        {
-                          "collapsed_items": true,
-                          "items": [
-                            {
-                              "entity": "sun.sun"
-                            },
-                            {
-                              "entity": "ensor.sun_next_dawn"
-                            },
-                            {
-                              "entity": "sensor.sun_next_midnight"
-                            },
-                            {
-                              "entity": "sensor.sun_next_noon"
-                            }
-                          ],
-                          "title": "Collapsed Card"
-                        }
-                      ],
                       "hide_button": false,
+                      "card_type": "default",
+                      "default_card": [],
+                      "custom_card": [],
                       "button_action": {
                         "entity": "button.cooper_se_activate_air_conditioning",
                         "tap_action": {
@@ -2456,24 +2514,16 @@
                         "icon": "mdi:lock",
                         "primary": "Lock Car",
                         "secondary": {
+                          "entity": "",
+                          "attribute": "",
                           "state_template": ""
                         }
                       },
                       "button_type": "action",
-                      "card_type": "custom",
-                      "custom_card": [
-                        {
-                          "entities": [
-                            "sensor.sun_next_dawn",
-                            "sensor.sun_next_midnight",
-                            "sensor.sun_next_noon"
-                          ],
-                          "title": "Custom Card",
-                          "type": "entities"
-                        }
-                      ],
-                      "default_card": [],
                       "hide_button": false,
+                      "card_type": "default",
+                      "default_card": [],
+                      "custom_card": [],
                       "button_action": {
                         "entity": "lock.cooper_se_lock",
                         "tap_action": {
@@ -2522,7 +2572,8 @@
                   "mini_map": {
                     "device_tracker": "device_tracker.cooper_se",
                     "enable_popup": true,
-                    "us_format": true
+                    "us_format": true,
+                    "use_zone_name": true
                   },
                   "indicators": {
                     "single": [
@@ -2679,60 +2730,15 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "custom:auto-entities",
-                  "card": {
-                    "type": "entities",
-                    "title": "Chorin'"
-                  },
-                  "filter": {
-                    "include": [
-                      {
-                        "integration": "chore_helper",
-                        "state": "= 0",
-                        "options": {
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "chore_helper.complete",
-                            "service_data": {
-                              "entity_id": "this.entity_id"
-                            }
-                          }
-                        }
-                      },
-                      {
-                        "integration": "chore_helper",
-                        "state": "< 0",
-                        "options": {
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "chore_helper.complete",
-                            "service_data": {
-                              "entity_id": "this.entity_id"
-                            }
-                          }
-                        }
-                      },
-                      {
-                        "integration": "chore_helper",
-                        "state 1": "> 0",
-                        "state 2": "<= 3",
-                        "options": {
-                          "tap_action": {
-                            "action": "call-service",
-                            "service": "chore_helper.complete",
-                            "service_data": {
-                              "entity_id": "this.entity_id"
-                            }
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "sort": {
-                    "method": "state",
-                    "numeric": true
-                  },
-                  "show_empty": false
+                  "type": "custom:grocy-chores-card",
+                  "entity": "sensor.grocy_chores",
+                  "title": "Chorin'",
+                  "show_quantity": 10,
+                  "show_days": 3,
+                  "show_assigned": false,
+                  "show_last_tracked": true,
+                  "show_last_tracked_by": false,
+                  "show_track_button": true
                 }
               ]
             },
@@ -2851,6 +2857,189 @@
                       "condition": "state",
                       "entity": "sensor.oven_oven_machine_state",
                       "state_not": "ready"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.grill_buddy_meat_thermometer_probe_1",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Smoker Probe 1",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "and",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.grill_buddy_meat_thermometer_probe_1",
+                          "state_not": "unknown"
+                        },
+                        {
+                          "condition": "state",
+                          "entity": "sensor.grill_buddy_meat_thermometer_probe_1",
+                          "state_not": "0"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.meat_thermometer_probe_1_time_to_target",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Remaining Time",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.meat_thermometer_probe_1_time_to_target",
+                      "state_not": "unavailable"
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.grill_buddy_meat_thermometer_probe_2",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Smoker Probe 2",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "and",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.grill_buddy_meat_thermometer_probe_2",
+                          "state_not": "unknown"
+                        },
+                        {
+                          "condition": "state",
+                          "entity": "sensor.grill_buddy_meat_thermometer_probe_2",
+                          "state_not": "0"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.meat_thermometer_probe_2_time_to_target",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Remaining Time",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.meat_thermometer_probe_2_time_to_target",
+                      "state_not": "unavailable"
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.grill_buddy_meat_thermometer_probe_3",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Smoker Probe 3",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "and",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.grill_buddy_meat_thermometer_probe_3",
+                          "state_not": "unknown"
+                        },
+                        {
+                          "condition": "state",
+                          "entity": "sensor.meat_thermometer_temperature_probe_3",
+                          "state_not": "0"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.meat_thermometer_probe_3_time_to_target",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Remaining Time",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.meat_thermometer_probe_3_time_to_target",
+                      "state_not": "unavailable"
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.grill_buddy_meat_thermometer_probe_4",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Smoker Probe 4",
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "visibility": [
+                    {
+                      "condition": "and",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity": "sensor.grill_buddy_meat_thermometer_probe_4",
+                          "state_not": "unknown"
+                        },
+                        {
+                          "condition": "state",
+                          "entity": "sensor.grill_buddy_meat_thermometer_probe_4",
+                          "state_not": "0"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.meat_thermometer_probe_4_time_to_target",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Remaining Time",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.meat_thermometer_probe_4_time_to_target",
+                      "state_not": "unavailable"
                     }
                   ]
                 }
@@ -3076,6 +3265,7 @@
               "cards": [
                 {
                   "camera_view": "auto",
+                  "fit_mode": "cover",
                   "type": "picture-glance",
                   "image": "https://demo.home-assistant.io/stub_config/kitchen.png",
                   "entities": [
@@ -3098,6 +3288,11 @@
                     {
                       "condition": "state",
                       "entity": "switch.3d_printer_enable_camera",
+                      "state": "on"
+                    },
+                    {
+                      "condition": "state",
+                      "entity": "switch.bambu_p1s",
                       "state": "on"
                     }
                   ],
@@ -3162,20 +3357,6 @@
                   "features_position": "bottom",
                   "vertical": false,
                   "name": "Print End Time"
-                },
-                {
-                  "graph": "line",
-                  "type": "sensor",
-                  "detail": 2,
-                  "hours_to_show": 24,
-                  "entity": "sensor.nicole_office_air_quality_pm2_5"
-                },
-                {
-                  "graph": "line",
-                  "type": "sensor",
-                  "detail": 2,
-                  "hours_to_show": 24,
-                  "entity": "sensor.nicole_office_air_quality_voc_index"
                 }
               ]
             },
@@ -3362,6 +3543,9 @@
                       "entity": "input_boolean.hvac_override"
                     },
                     {
+                      "entity": "input_boolean.guest_mode"
+                    },
+                    {
                       "entity": "automation.climate_workshop_hvac"
                     },
                     {
@@ -3520,19 +3704,6 @@
                 {
                   "alert_classes": [
                     "motion",
-                    "moisture"
-                  ],
-                  "sensor_classes": [
-                    "temperature",
-                    "humidity"
-                  ],
-                  "type": "area",
-                  "area": "blue_bathroom",
-                  "navigation_path": "/dashboard-areas/areas-blue_bathroom"
-                },
-                {
-                  "alert_classes": [
-                    "motion",
                     "moisture",
                     "door",
                     "window"
@@ -3545,6 +3716,19 @@
                   "type": "area",
                   "area": "nicole_office",
                   "navigation_path": "/dashboard-areas/areas-nicole_office"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "blue_bathroom",
+                  "navigation_path": "/dashboard-areas/areas-blue_bathroom"
                 },
                 {
                   "alert_classes": [
@@ -3852,16 +4036,11 @@
               "cards": [
                 {
                   "type": "markdown",
-                  "content": "## [Mealie](http://192.168.1.50:9090)\n\nRecipies and Meal Plans.\n"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
+                  "content": "## [Frigate](http://192.168.1.100:8971)\n\nFrigate NVR Software.\n"
+                },
                 {
                   "type": "markdown",
-                  "content": "## [Frigate](http://192.168.1.100:8971)\n\nFrigate NVR Software.\n"
+                  "content": "## [TasmoAdmin](http://192.168.1.50:9541/devices)\n\nManage Tasmota devices."
                 }
               ]
             },
@@ -3871,6 +4050,10 @@
                 {
                   "type": "markdown",
                   "content": "## [HortusFox](http://192.168.1.100:7568)\n\nHouseplant care."
+                },
+                {
+                  "type": "markdown",
+                  "content": "## [UniFi](https://192.168.1.1/network/default/dashboard)\n\nDoes not use HA password."
                 }
               ]
             },
@@ -3879,7 +4062,16 @@
               "cards": [
                 {
                   "type": "markdown",
-                  "content": "## [TasmoAdmin](http://192.168.1.50:9541/devices)\n\nManage Tasmota devices."
+                  "content": "## [Mealie](http://192.168.1.50:9090)\n\nRecipies and Meal Plans.\n"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [Portainer](http://192.168.1.50:9000)\n\nManage containers."
                 }
               ]
             },

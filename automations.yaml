@@ -11,7 +11,10 @@
       seconds: 0
     trigger: state
     alias: When everyone is away for more than five minutes
-  conditions: []
+  conditions:
+  - condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
   actions:
   - action: script.goodbye
     metadata: {}
@@ -56,8 +59,8 @@
       target:
         entity_id:
         - switch.magic_mirror_screen
-        - switch.main_floor_media_center_plug
       action: switch.turn_on
+    alias: If not asleep, turn on mirror
   - if:
     - alias: If it's dark outside
       condition: or
@@ -78,6 +81,22 @@
         - light.kitchen_table_light
         - light.kitchen_mudroom_dimmer
         - light.dining_room_table_dimmer
+    alias: If dark, turn on lights
+  - if:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.nicole_workday_sensor
+        state: 'off'
+      - condition: time
+        after: '16:00:00'
+    then:
+    - action: switch.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: switch.main_floor_media_center_plug
+    alias: If not working, turn on media center
   mode: parallel
   max: 10
 - id: goodnight_2am
@@ -95,6 +114,13 @@
   - action: script.goodnight
     metadata: {}
     data: {}
+    enabled: false
+  - action: input_select.select_option
+    metadata: {}
+    data:
+      option: Sleep
+    target:
+      entity_id: input_select.home_mode
   mode: single
 - id: watch_tv_after_sunset
   alias: Scene - Trigger watch TV when Remote goes from PowerOff after sunset
@@ -113,8 +139,12 @@
     data: {}
   - if:
     - condition: state
-      entity_id: binary_sensor.kitchen_motion_sensor_occupancy
+      entity_id: binary_sensor.kitchen_motion_sensor_motion
       state: 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
     then:
     - action: script.watch_tv_main_floor
       metadata: {}
@@ -260,21 +290,21 @@
       vacation_mode_toggle: input_boolean.vacation_mode
       default_brightness: 100
       replay_sensor_1: sensor.replay_basement_lights
-      light_target_1: group.basement_lights
+      light_target_1: light.basement_stairs_switch
       replay_sensor_2: sensor.replay_dining_room_dimmer
       light_target_2: light.dining_room_table_dimmer
       replay_sensor_3: sensor.replay_eric_office_light
       light_target_3: light.eric_office_light
       replay_sensor_4: sensor.replay_family_room_track_light_front
-      light_target_4: group.family_room_lights
+      light_target_4: light.family_room_track_light_back
       replay_sensor_5: sensor.replay_garage_lights
-      light_target_5: group.garage_lights
+      light_target_5: light.garage_lights_north
       replay_sensor_6: sensor.replay_kitchen_overhead_lights
-      light_target_6: group.kitchen_lights
+      light_target_6: light.kitchen_table_light
       replay_sensor_7: sensor.replay_living_room_wall_dimmer
       light_target_7: light.living_room_wall_dimmer
       replay_sensor_8: sensor.replay_kitchenette_spot_lights
-      light_target_8: group.den_lights
+      light_target_8: light.kitchenette_spot_lights
       replay_sensor_9: sensor.replay_master_bath_light
       light_target_9: light.master_bath_light
       replay_sensor_10: sensor.replay_nicole_office_lights
@@ -329,39 +359,15 @@
       minutes: 0
       seconds: 0
     trigger: state
+    from:
+    to:
   conditions: []
   actions:
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: input_boolean.vacation_mode
-        state: 'on'
-      sequence:
-      - action: climate.turn_off
-        metadata: {}
-        data: {}
-        target:
-          entity_id: climate.workshop_hvac
-      - metadata: {}
-        data: {}
-        target:
-          entity_id: cover.all_shades
-        action: cover.close_cover
-      - action: switch.turn_off
-        metadata: {}
-        data: {}
-        target:
-          entity_id: switch.main_floor_tv
-      - action: media_player.turn_off
-        metadata: {}
-        data: {}
-        target:
-          entity_id: media_player.main_floor_musiccast
-      - action: remote.turn_off
-        metadata: {}
-        data: {}
-        target:
-          entity_id: remote.family_room_remote
+  - action: script.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: script.vacation_mode
   mode: single
 - id: nicole_office_lights_off
   alias: Nicole Office - Control lights with wall switch
@@ -493,7 +499,10 @@
     entity_id:
     - light.kitchenette_spot_lights
     to: 'on'
-  conditions: []
+  conditions:
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'off'
   actions:
   - action: light.turn_on
     metadata: {}
@@ -937,7 +946,10 @@
       hours: 0
       minutes: 15
       seconds: 0
-  conditions: []
+  conditions:
+  - condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
   actions:
   - data: {}
     target:
@@ -1149,6 +1161,7 @@
         - binary_sensor.front_door_lock_low_battery_level
         - binary_sensor.front_door_lock_replace_battery_now
         - binary_sensor.front_door_lock_replace_battery_soon
+        - sensor.iphone_watch_battery_level
       time: '11:00:00'
       threshold: 30
 - id: vacation_mode_start_vacuum
@@ -1169,44 +1182,6 @@
       - vacuum.roomba
       - vacuum.roomba_mainfloor
     action: vacuum.start
-  mode: single
-- id: notify_lower_blinds_hvac
-  alias: Cover - Put down blinds when HVAC is AC
-  description: ''
-  triggers:
-  - at: '15:00:00'
-    trigger: time
-  conditions:
-  - condition: and
-    conditions:
-    - condition: not
-      conditions:
-      - condition: time
-        weekday:
-        - sat
-        - sun
-  - condition: state
-    entity_id: climate.ecobee_thermostat
-    state: cool
-  actions:
-  - if:
-    - condition: state
-      entity_id: binary_sensor.kitchen_window
-      state: 'on'
-    then:
-    - metadata: {}
-      data: {}
-      target:
-        entity_id:
-        - cover.living_room_shades_center_cover
-        - cover.dining_room_shades_cover
-      action: cover.close_cover
-    else:
-    - metadata: {}
-      data: {}
-      target:
-        entity_id: cover.all_shades
-      action: cover.close_cover
   mode: single
 - id: utility_lights_door
   alias: Lighting - Control utility room lights with door.
@@ -1263,7 +1238,9 @@
     - condition: state
       entity_id: input_select.home_mode
       state: Sleep
-    alias: Mode is not Sleep
+    - condition: state
+      entity_id: input_select.home_mode
+      state: Wind Down
   actions:
   - choose:
     - conditions:
@@ -1490,83 +1467,27 @@
     action: cover.open_cover
   mode: single
 - id: turn_off_dehumidifiers_during_peak_hours
-  alias: Turn Off Dehumidifiers and turn up fan during peak hours
+  alias: Optimize energy usage during peak hours
   description: ''
   triggers:
   - entity_id:
     - schedule.dte_peak_hours
     trigger: state
   conditions:
-  - condition: state
-    entity_id: input_boolean.dte_peak_season
-    state: 'on'
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.dte_peak_season
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
   actions:
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: schedule.dte_peak_hours
-        state: 'on'
-      sequence:
-      - metadata: {}
-        data:
-          percentage: 100
-        target:
-          entity_id: fan.master_bedroom_fan
-        action: fan.set_percentage
-      - action: switch.turn_off
-        metadata: {}
-        data: {}
-        target:
-          entity_id:
-          - switch.dehumidifier
-          - switch.rock_tumbler
-      - action: light.turn_off
-        metadata: {}
-        data: {}
-        target:
-          entity_id:
-          - light.raccoon_lamp
-          - light.nicole_office_floor_lamp
-      - action: fan.turn_off
-        metadata: {}
-        data: {}
-        target:
-          entity_id: fan.family_room_fan_south
-    - conditions:
-      - condition: state
-        entity_id: schedule.dte_peak_hours
-        state: 'off'
-      - condition: state
-        entity_id: binary_sensor.windows
-        state: 'off'
-      sequence:
-      - metadata: {}
-        data:
-          percentage: 25
-        target:
-          entity_id: fan.master_bedroom_fan
-        action: fan.set_percentage
-      - action: switch.turn_on
-        metadata: {}
-        data: {}
-        target:
-          entity_id:
-          - switch.rock_tumbler
-      - action: fan.turn_on
-        metadata: {}
-        data: {}
-        target:
-          entity_id: fan.family_room_fan_south
-      - if:
-        - condition: state
-          entity_id: binary_sensor.windows
-          state: 'off'
-        then:
-        - action: switch.turn_on
-          metadata: {}
-          data: {}
-          target:
-            entity_id: switch.dehumidifier
+  - action: script.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: script.energy_saving_mode
   mode: single
 - id: dehumidifier_turn_off_when_windows_open
   alias: Dehumidifier & Air Purifiers - Turn off when windows open
@@ -1950,21 +1871,6 @@
       target:
         entity_id: light.pixel_post_light
   mode: single
-- id: notification_notify_on_low_rinse_aid
-  alias: Notification - Notify on low rinse aid
-  description: ''
-  triggers:
-  - trigger: state
-    entity_id:
-    - sensor.dishwasher_rinse_aid_nearly_empty
-    from: 'off'
-  conditions: []
-  actions:
-  - action: notify.notify_nicole_and_eric
-    metadata: {}
-    data:
-      message: Add rinse aid to dishwasher.
-  mode: single
 - id: christmas_tree_on_at_sunset
   alias: Christmas Tree on at Sunset
   description: ''
@@ -2277,9 +2183,14 @@
   actions:
   - choose:
     - conditions:
-      - condition: state
-        entity_id: binary_sensor.green_bath_motion_sensor
-        state: 'on'
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: binary_sensor.green_bath_motion_sensor
+          state: 'on'
+        - condition: state
+          entity_id: input_select.home_mode
+          state: Home
       sequence:
       - action: light.turn_on
         metadata: {}

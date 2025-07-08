@@ -39,43 +39,38 @@ wind_down_nicole:
       brightness_pct: 34
     target:
       entity_id: light.nightstand_lamps
-  - if:
-    - condition: state
-      entity_id: climate.ecobee_thermostat
-      state: cool
-    then:
-    - action: fan.turn_on
-      continue_on_error: true
-      metadata: {}
-      data:
-        percentage: 25
-      target:
-        entity_id: fan.master_bedroom_fan
+  - action: fan.turn_on
+    continue_on_error: true
+    metadata: {}
+    data: {}
+    target:
+      entity_id: fan.master_bedroom_fan
+  - action: fan.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      percentage: 100
+    target:
+      entity_id: fan.bedjet_12fa
   description: ''
   icon: mdi:alarm-snooze
 goodnight:
   alias: Goodnight
   sequence:
-  - action: input_select.select_option
-    continue_on_error: true
-    metadata: {}
-    data:
-      option: Sleep
-    target:
-      entity_id: input_select.home_mode
-  - action: cover.close_cover
-    continue_on_error: true
-    metadata: {}
-    data: {}
-    target:
-      entity_id: cover.garage_door
   - action: fan.turn_on
     continue_on_error: true
     metadata: {}
     data:
-      percentage: 75
+      percentage: 40
     target:
-      entity_id: fan.family_room_fan_south
+      entity_id: fan.bedjet_12fa
+  - action: fan.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      percentage: 15
+    target:
+      entity_id: fan.snooz_c0_49_ef_27_a8_62
   - action: fan.turn_on
     continue_on_error: true
     metadata: {}
@@ -83,15 +78,6 @@ goodnight:
       percentage: 25
     target:
       entity_id: fan.master_bedroom_fan
-  - action: switch.turn_off
-    continue_on_error: true
-    target:
-      entity_id:
-      - switch.magic_mirror_screen
-      - switch.main_floor_media_center_plug
-      - switch.nicole_desk_work
-      - switch.den_media_center
-    data: {}
   - action: light.turn_off
     continue_on_error: true
     metadata: {}
@@ -105,13 +91,40 @@ goodnight:
       area_id:
       - workshop
       - outdoors
-  - action: switch.turn_off
+      entity_id:
+      - light.pixel_post_light
+      - light.driveway_post_and_tree_lights
+  - action: cover.close_cover
     continue_on_error: true
     metadata: {}
     data: {}
     target:
-      entity_id: switch.christmas_tree
-    enabled: false
+      entity_id: cover.garage_door
+  - action: input_select.select_option
+    continue_on_error: true
+    metadata: {}
+    data:
+      option: Sleep
+    target:
+      entity_id: input_select.home_mode
+    enabled: true
+  - action: fan.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      percentage: 75
+    target:
+      entity_id:
+      - fan.family_room_fan_south
+  - action: switch.turn_off
+    continue_on_error: true
+    target:
+      entity_id:
+      - switch.magic_mirror_screen
+      - switch.main_floor_media_center_plug
+      - switch.nicole_desk_work
+      - switch.den_media_center
+    data: {}
   - action: lock.lock
     continue_on_error: true
     metadata: {}
@@ -121,6 +134,13 @@ goodnight:
       - lock.front_door_lock
       - lock.kitchen_door_lock
       - lock.workshop
+  - action: switch.turn_off
+    continue_on_error: true
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.christmas_tree
+    enabled: false
   description: ''
   icon: mdi:weather-night
 good_morning:
@@ -155,6 +175,7 @@ good_morning:
         state: 'on'
       sequence:
       - action: switch.turn_on
+        continue_on_error: true
         metadata: {}
         data: {}
         target:
@@ -165,10 +186,19 @@ good_morning:
         state: 'off'
       sequence:
       - action: switch.turn_on
+        continue_on_error: true
         metadata: {}
         data: {}
         target:
           entity_id: switch.main_floor_media_center_plug
+  - action: fan.turn_off
+    continue_on_error: true
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - fan.snooz_c0_49_ef_27_a8_62
+      - fan.bedjet_12fa
   description: ''
   icon: mdi:weather-sunny
 goodbye:
@@ -212,24 +242,18 @@ goodbye:
       - lock.front_door_lock
       - lock.kitchen_door_lock
       - lock.workshop
-  - if:
-    - condition: state
-      entity_id: binary_sensor.windows
-      state: 'off'
-    then:
-    - action: climate.set_preset_mode
-      continue_on_error: true
-      metadata: {}
-      data:
-        preset_mode: away
-      target:
-        device_id: 80e2ea7676adeea018b6e96cb57a3af5
+  - action: cover.close_cover
+    metadata: {}
+    data: {}
+    target:
+      entity_id: cover.garage_door
   description: ''
   icon: mdi:run
 watch_tv_downstairs:
   alias: Watch TV - Downstairs
   sequence:
   - action: remote.turn_on
+    continue_on_error: true
     metadata: {}
     data: {}
     target:
@@ -318,6 +342,7 @@ watch_tv_downstairs:
     target:
       entity_id: light.orange_bathroom_lights
   - action: light.turn_on
+    continue_on_error: true
     metadata: {}
     data:
       brightness_pct: 3
@@ -370,7 +395,7 @@ watch_tv_main_floor:
     continue_on_error: true
     metadata: {}
     data:
-      brightness_pct: 32
+      brightness_pct: 38
     target:
       entity_id: light.stairway_dimmer
   description: ''
@@ -387,16 +412,11 @@ dim_bedroom_lights:
       - light.master_bath_light
       - light.master_bedroom_closet
       - light.master_bedroom_light
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 1
-      milliseconds: 0
   - action: light.turn_on
     continue_on_error: true
     metadata: {}
     data:
-      brightness_pct: 66
+      brightness_pct: 100
     target:
       entity_id: light.nightstand_lamps
   - if:
@@ -503,14 +523,289 @@ open_garage_door_start_bmw:
       state: home
     then:
     - action: cover.open_cover
+      continue_on_error: true
       metadata: {}
       data: {}
       target:
         entity_id: cover.garage_door
     - action: button.press
+      continue_on_error: true
       metadata: {}
       data: {}
       target:
         entity_id: button.m240i_xdrive_activate_remote_start
   alias: Open Garage Door & Start BMW
   description: ''
+energy_saving_mode:
+  sequence:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: schedule.dte_peak_hours
+        state: 'on'
+      sequence:
+      - if:
+        - condition: state
+          entity_id: binary_sensor.kitchen_window
+          state: 'on'
+        then:
+        - action: cover.close_cover
+          continue_on_error: true
+          metadata: {}
+          data: {}
+          target:
+            entity_id:
+            - cover.dining_room_shades_cover
+            - cover.living_room_shades_center_cover
+        else:
+        - action: cover.close_cover
+          continue_on_error: true
+          metadata: {}
+          data: {}
+          target:
+            entity_id: cover.all_shades
+        alias: Close Shades
+      - action: switch.turn_off
+        continue_on_error: true
+        metadata: {}
+        data: {}
+        target:
+          entity_id:
+          - switch.dehumidifier
+          - switch.bedroom_air_purifier
+          - switch.dining_room_air_purifier
+          - switch.nicole_office_air_purifier
+      - action: light.turn_off
+        continue_on_error: true
+        metadata: {}
+        data: {}
+        target:
+          entity_id:
+          - light.raccoon_lamp
+          - light.nicole_office_floor_lamp
+          - light.stairway_dimmer
+          - light.kitchenette_led_strip
+          - light.step_lights
+          - light.lava_lamp
+      - action: fan.turn_off
+        continue_on_error: true
+        metadata: {}
+        data: {}
+        target:
+          entity_id: fan.family_room_fan_south
+      - if:
+        - condition: state
+          entity_id: input_boolean.vacation_mode
+          state: 'off'
+        then:
+        - action: fan.set_percentage
+          continue_on_error: true
+          metadata: {}
+          data:
+            percentage: 100
+          target:
+            entity_id: fan.master_bedroom_fan
+          alias: Turn up Bedroom Fan
+        alias: If not on vacation...
+      - action: climate.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: climate.workshop_hvac
+    - conditions:
+      - condition: state
+        entity_id: schedule.dte_peak_hours
+        state: 'off'
+      sequence:
+      - action: switch.turn_on
+        continue_on_error: true
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.dehumidifier
+      - alias: If not on vacation...
+        if:
+        - condition: state
+          entity_id: input_boolean.vacation_mode
+          state: 'off'
+        then:
+        - action: fan.set_percentage
+          continue_on_error: true
+          metadata: {}
+          data:
+            percentage: 75
+          target:
+            entity_id: fan.master_bedroom_fan
+        - action: cover.open_cover
+          continue_on_error: true
+          metadata: {}
+          data: {}
+          target:
+            entity_id: cover.all_shades
+        - action: switch.turn_on
+          continue_on_error: true
+          metadata: {}
+          data: {}
+          target:
+            entity_id:
+            - switch.rock_tumbler
+            - switch.bedroom_air_purifier
+            - switch.dining_room_air_purifier
+            - switch.nicole_office_air_purifier
+      - action: climate.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: climate.workshop_hvac
+  alias: Energy Saving Mode
+  description: ''
+vacation_mode:
+  sequence:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'on'
+      sequence:
+      - action: input_select.select_option
+        continue_on_error: true
+        metadata: {}
+        data:
+          option: Away
+        target:
+          entity_id: input_select.home_mode
+      - action: climate.turn_off
+        continue_on_error: true
+        metadata: {}
+        data: {}
+        target:
+          entity_id: climate.workshop_hvac
+      - action: cover.close_cover
+        continue_on_error: true
+        metadata: {}
+        data: {}
+        target:
+          entity_id: cover.all_shades
+      - action: switch.turn_off
+        continue_on_error: true
+        metadata: {}
+        data: {}
+        target:
+          entity_id:
+          - switch.bambu_p1s
+          - switch.bedroom_air_purifier
+          - switch.dining_room_air_purifier
+          - switch.nicole_office_air_purifier
+          - switch.den_media_center
+          - switch.hair_straightener
+          - switch.main_floor_media_center_plug
+          - switch.nicole_desk_work
+          - switch.rock_tumbler
+      - action: remote.turn_off
+        continue_on_error: true
+        metadata: {}
+        data: {}
+        target:
+          entity_id: remote.family_room_remote
+      - action: fan.turn_off
+        continue_on_error: true
+        metadata: {}
+        data: {}
+        target:
+          entity_id:
+          - fan.family_room_fan_south
+          - fan.green_bath_exhaust_fan
+          - fan.master_bath_fan
+          - fan.bedjet_12fa
+          - fan.master_bedroom_fan
+          - fan.snooz_c0_49_ef_27_a8_62
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
+      sequence:
+      - alias: If not in peak billing...
+        if:
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: schedule.dte_peak_hours
+            state: 'off'
+          - condition: state
+            entity_id: input_boolean.dte_peak_season
+            state: 'off'
+          alias: If not in DTE Peak Billing
+        then:
+        - action: cover.open_cover
+          continue_on_error: true
+          metadata: {}
+          data: {}
+          target:
+            entity_id: cover.all_shades
+        - action: switch.turn_on
+          continue_on_error: true
+          metadata: {}
+          data: {}
+          target:
+            entity_id:
+            - switch.bedroom_air_purifier
+            - switch.nicole_office_air_purifier
+            - switch.dining_room_air_purifier
+            - switch.rock_tumbler
+        - action: fan.turn_on
+          continue_on_error: true
+          metadata: {}
+          data: {}
+          target:
+            entity_id:
+            - fan.family_room_fan_south
+      - action: fan.turn_on
+        continue_on_error: true
+        metadata: {}
+        data: {}
+        target:
+          entity_id: fan.master_bedroom_fan
+  alias: Vacation Mode
+  description: ''
+goodnight_nicole:
+  sequence:
+  - action: light.turn_off
+    continue_on_error: true
+    metadata: {}
+    data: {}
+    target:
+      area_id:
+      - outdoors
+      - bedroom
+      - master_bath
+  - action: fan.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      percentage: 25
+    target:
+      entity_id: fan.bedjet_12fa
+  - action: fan.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      percentage: 15
+    target:
+      entity_id: fan.snooz_c0_49_ef_27_a8_62
+  - action: fan.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      percentage: 25
+    target:
+      entity_id: fan.master_bedroom_fan
+  - action: switch.turn_off
+    continue_on_error: true
+    target:
+      entity_id:
+      - switch.magic_mirror_screen
+      - switch.nicole_desk_work
+    data: {}
+  alias: Goodnight Nicole
+  description: ''
+  icon: mdi:weather-night
