@@ -1109,13 +1109,7 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "features": [
@@ -1131,13 +1125,7 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "features": [
@@ -1153,13 +1141,7 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "features": [
@@ -1175,13 +1157,7 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 }
               ]
             },
@@ -1421,17 +1397,11 @@
                   "entity": "light.nicole_nightstand_lamp",
                   "features_position": "bottom",
                   "vertical": false,
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "state_content": [
                     "state",
                     "last_updated"
                   ],
-                  "icon": "mdi:lamp",
-                  "tap_action": {
-                    "action": "toggle"
-                  }
+                  "icon": "mdi:lamp"
                 },
                 {
                   "features": [
@@ -1443,17 +1413,11 @@
                   "entity": "light.eric_nightstand_lamp",
                   "features_position": "bottom",
                   "vertical": false,
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "state_content": [
                     "state",
                     "last_updated"
                   ],
-                  "icon": "mdi:lamp",
-                  "tap_action": {
-                    "action": "toggle"
-                  }
+                  "icon": "mdi:lamp"
                 },
                 {
                   "features": [
@@ -1470,13 +1434,7 @@
                     "state",
                     "last_updated"
                   ],
-                  "icon": "mdi:ceiling-fan-light",
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  "icon": "mdi:ceiling-fan-light"
                 },
                 {
                   "features": [
@@ -1488,17 +1446,11 @@
                   "entity": "light.master_bedroom_closet",
                   "features_position": "bottom",
                   "vertical": false,
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "name": "Closet",
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  }
+                  ]
                 }
               ]
             },
@@ -1509,6 +1461,24 @@
                   "type": "heading",
                   "heading": "Climate",
                   "icon": "mdi:home-thermometer"
+                },
+                {
+                  "type": "tile",
+                  "entity": "climate.bedjet_12fa",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "target-temperature"
+                    },
+                    {
+                      "type": "climate-fan-modes",
+                      "style": "dropdown"
+                    },
+                    {
+                      "type": "climate-hvac-modes"
+                    }
+                  ]
                 },
                 {
                   "features": [
@@ -1524,13 +1494,7 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "features": [
@@ -1547,13 +1511,7 @@
                     "last_updated"
                   ],
                   "name": "Ceiling Fan",
-                  "icon": "mdi:ceiling-fan",
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  "icon": "mdi:ceiling-fan"
                 },
                 {
                   "type": "tile",
@@ -1579,6 +1537,27 @@
                 {
                   "type": "media-control",
                   "entity": "media_player.bedroom_homepod_2"
+                },
+                {
+                  "type": "tile",
+                  "entity": "fan.snooz_c0_49_ef_27_a8_62",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "state_content": [
+                    "state",
+                    "last_changed"
+                  ],
+                  "features": [
+                    {
+                      "type": "toggle"
+                    },
+                    {
+                      "type": "fan-speed"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 }
               ]
             },
@@ -1732,17 +1711,16 @@
                     "state",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "grid_options": {
                     "columns": "full"
                   }
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "light.closet_room_wall_switch",
                   "name": "Wall Switch",
@@ -1751,17 +1729,6 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
                   ],
                   "grid_options": {
                     "columns": "full"
@@ -1772,35 +1739,6 @@
             {
               "type": "grid",
               "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Others",
-                  "icon": "mdi:shape"
-                },
-                {
-                  "type": "tile",
-                  "entity": "switch.spare_room_z_wave_plug",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
                 {
                   "type": "heading",
                   "heading": "Batteries",
@@ -1852,6 +1790,22 @@
             }
           ],
           "badges": [
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.closet_room_temperature",
+              "color": "red"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.closet_room_humidity",
+              "color": "indigo"
+            },
             {
               "type": "entity",
               "show_name": false,
@@ -1909,12 +1863,6 @@
                     "brightness",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "icon": "mdi:wall-sconce-flat"
                 },
                 {
@@ -1949,12 +1897,6 @@
                     "brightness",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "more-info"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "icon": "mdi:track-light"
                 },
                 {
@@ -1972,13 +1914,7 @@
                     "state",
                     "brightness",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "features": [
@@ -1995,15 +1931,14 @@
                     "state",
                     "brightness",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "light.downstairs_hallway_light",
                   "features_position": "bottom",
@@ -2012,17 +1947,6 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
                   ]
                 },
                 {
@@ -2040,13 +1964,7 @@
                     "state",
                     "brightness",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "features": [
@@ -2064,13 +1982,7 @@
                     "state",
                     "brightness",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 }
               ]
             },
@@ -2083,6 +1995,11 @@
                   "icon": "mdi:multimedia"
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "switch.den_media_center",
                   "features_position": "bottom",
@@ -2090,17 +2007,6 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
                   ],
                   "grid_options": {
                     "columns": "full"
@@ -2276,13 +2182,7 @@
                     "state",
                     "brightness",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "features": [
@@ -2369,22 +2269,16 @@
                   "icon": "mdi:shape"
                 },
                 {
-                  "type": "tile",
-                  "entity": "switch.dining_room_air_purifier",
-                  "name": "Air Purifier",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "features": [
                     {
                       "type": "toggle"
                     }
                   ],
+                  "type": "tile",
+                  "entity": "switch.dining_room_air_purifier",
+                  "name": "Air Purifier",
+                  "features_position": "bottom",
+                  "vertical": false,
                   "grid_options": {
                     "columns": "full"
                   }
@@ -2650,15 +2544,10 @@
                     "brightness",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "grid_options": {
                     "columns": "full"
-                  }
+                  },
+                  "icon": "mdi:lightbulb-night"
                 }
               ]
             },
@@ -2754,6 +2643,11 @@
                   "icon": "mdi:lamps"
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "light.lava_lamp",
                   "features_position": "bottom",
@@ -2761,17 +2655,6 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
                   ]
                 },
                 {
@@ -2790,13 +2673,7 @@
                     "state",
                     "brightness",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "features": [
@@ -2813,13 +2690,7 @@
                     "state",
                     "brightness",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "features": [
@@ -3099,13 +2970,7 @@
                     "state",
                     "brightness",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "features": [
@@ -3123,13 +2988,7 @@
                     "state",
                     "brightness",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "type": "tile",
@@ -3240,6 +3099,11 @@
                   }
                 },
                 {
+                  "features": [
+                    {
+                      "type": "fan-speed"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "fan.family_room_fan_south",
                   "name": "Fan - South",
@@ -3252,17 +3116,6 @@
                     "state",
                     "percentage",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
-                    {
-                      "type": "fan-speed"
-                    }
                   ]
                 }
               ]
@@ -3339,6 +3192,15 @@
                   "fill_container": true,
                   "show_volume_level": true,
                   "use_media_info": true
+                },
+                {
+                  "type": "tile",
+                  "entity": "media_player.vizio_tv",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 }
               ]
             },
@@ -3463,6 +3325,14 @@
               "show_name": false,
               "show_state": true,
               "show_icon": true,
+              "entity": "sensor.family_room_climate_family_room_humidity",
+              "color": "indigo"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
               "entity": "binary_sensor.downstairs_smoke_detector_smoke_alarm_smoke_detected"
             },
             {
@@ -3502,12 +3372,26 @@
                 {
                   "type": "tile",
                   "entity": "light.garage_lights_north",
-                  "name": "Lights - North"
+                  "name": "Lights - North",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ]
                 },
                 {
                   "type": "tile",
                   "entity": "light.garage_lights_south",
-                  "name": "Lights - South"
+                  "name": "Lights - South",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ]
                 },
                 {
                   "type": "heading",
@@ -3587,18 +3471,20 @@
                   "name": "Door",
                   "features_position": "bottom",
                   "vertical": false,
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "tap_action": {
-                    "action": "toggle"
-                  },
                   "state_content": [
                     "state",
                     "last_updated"
-                  ]
+                  ],
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  }
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "switch.rock_tumbler",
                   "features_position": "bottom",
@@ -3606,17 +3492,6 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
                   ]
                 }
               ]
@@ -4337,13 +4212,7 @@
                     "last_updated"
                   ],
                   "name": "Vanity Lights",
-                  "icon": "mdi:vanity-light",
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  "icon": "mdi:vanity-light"
                 },
                 {
                   "features": [
@@ -4360,12 +4229,6 @@
                     "last_updated"
                   ],
                   "name": "Tub Dimmer",
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "icon": "mdi:shower"
                 },
                 {
@@ -4382,13 +4245,7 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "features": [
@@ -4404,13 +4261,7 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 }
               ]
             },
@@ -4558,6 +4409,11 @@
                   "icon": "mdi:lamps"
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "light.half_bath_light",
                   "name": "Light",
@@ -4566,17 +4422,6 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
                   ],
                   "grid_options": {
                     "columns": "full"
@@ -4710,12 +4555,6 @@
                     "state",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "icon": "mdi:light-recessed"
                 },
                 {
@@ -4733,12 +4572,6 @@
                     "state",
                     "last_updated"
                   ],
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "tap_action": {
-                    "action": "toggle"
-                  },
                   "icon": "mdi:light-recessed"
                 },
                 {
@@ -4752,12 +4585,6 @@
                   "name": "Under Cabinet",
                   "features_position": "bottom",
                   "vertical": false,
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "tap_action": {
-                    "action": "toggle"
-                  },
                   "state_content": [
                     "state",
                     "brightness",
@@ -4781,12 +4608,6 @@
                     "brightness",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "icon": "mdi:light-recessed"
                 },
                 {
@@ -4805,12 +4626,6 @@
                     "brightness",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "icon": "mdi:globe-light-outline"
                 },
                 {
@@ -4969,16 +4784,6 @@
                   "name": "Set to Dirty",
                   "features_position": "bottom",
                   "vertical": false
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.dishwasher_rinse_aid_nearly_empty",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "name": "Rinse Aid Needed",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
                 },
                 {
                   "type": "tile",
@@ -5315,23 +5120,17 @@
                   "icon": "mdi:lamps"
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "light.living_room_lamps",
                   "name": "Lamp",
                   "features_position": "bottom",
                   "vertical": false,
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "icon": "mdi:floor-lamp",
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
-                  ]
+                  "icon": "mdi:floor-lamp"
                 },
                 {
                   "features": [
@@ -5349,13 +5148,7 @@
                     "state",
                     "brightness",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "type": "heading",
@@ -5544,6 +5337,24 @@
                   "icon": "mdi:multimedia"
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "switch.main_floor_media_center_plug",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
                   "type": "media-control",
                   "entity": "media_player.main_floor_musiccast"
                 },
@@ -5561,30 +5372,6 @@
                     "columns": "full"
                   },
                   "secondary_info": "state"
-                },
-                {
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
-                  ],
-                  "type": "tile",
-                  "entity": "switch.main_floor_media_center_plug",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  }
                 }
               ]
             },
@@ -5614,9 +5401,6 @@
                 {
                   "type": "entities",
                   "entities": [
-                    {
-                      "entity": "automation.notification_put_down_blinds_when_hvac_is_ac"
-                    },
                     {
                       "entity": "automation.turn_on_main_floor_media_center_at_4_00pm"
                     },
@@ -5692,13 +5476,7 @@
                   "entity": "light.master_bath_light",
                   "name": "Light",
                   "features_position": "bottom",
-                  "vertical": false,
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  "vertical": false
                 },
                 {
                   "features": [
@@ -5714,13 +5492,7 @@
                   "state_content": [
                     "state",
                     "last_changed"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "features": [
@@ -5731,13 +5503,7 @@
                   "type": "tile",
                   "entity": "switch.magic_mirror_screen",
                   "features_position": "bottom",
-                  "vertical": false,
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  "vertical": false
                 }
               ]
             },
@@ -5903,12 +5669,6 @@
                     "state",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "icon": "mdi:ceiling-fan-light"
                 },
                 {
@@ -5926,12 +5686,6 @@
                     "state",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "icon": "mdi:floor-lamp"
                 },
                 {
@@ -5944,12 +5698,6 @@
                   "entity": "light.raccoon_lamp",
                   "features_position": "bottom",
                   "vertical": false,
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "icon": "mdi:lamp"
                 },
                 {
@@ -5963,12 +5711,6 @@
                   "name": "Closet Light",
                   "features_position": "bottom",
                   "vertical": false,
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "state_content": [
                     "state",
                     "last_updated"
@@ -6010,6 +5752,11 @@
                   "icon": "mdi:shape"
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "switch.nicole_office_air_purifier",
                   "name": "Air Purifier",
@@ -6018,17 +5765,6 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
                   ]
                 },
                 {
@@ -6046,12 +5782,6 @@
                     "state",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "icon": "mdi:laptop"
                 },
                 {
@@ -6083,19 +5813,11 @@
                   "icon": "mdi:printer-3d-nozzle"
                 },
                 {
-                  "type": "custom:ha-bambulab-print_status-card",
-                  "printer": "7649118e2915b0039fb85c874288af0c",
-                  "custom_power": "switch.bambu_p1s",
-                  "style": "simple",
-                  "visibility": [
+                  "features": [
                     {
-                      "condition": "state",
-                      "entity": "switch.bambu_p1s",
-                      "state": "on"
+                      "type": "toggle"
                     }
-                  ]
-                },
-                {
+                  ],
                   "type": "tile",
                   "entity": "switch.bambu_p1s",
                   "features_position": "bottom",
@@ -6107,16 +5829,18 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
+                  ]
+                },
+                {
+                  "type": "custom:ha-bambulab-print_status-card",
+                  "printer": "7649118e2915b0039fb85c874288af0c",
+                  "custom_power": "switch.bambu_p1s",
+                  "style": "simple",
+                  "visibility": [
                     {
-                      "type": "toggle"
+                      "condition": "state",
+                      "entity": "switch.bambu_p1s",
+                      "state": "on"
                     }
                   ]
                 },
@@ -6317,6 +6041,11 @@
                   "icon": "mdi:lamps"
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "light.orange_bathroom_shower_switch",
                   "features_position": "bottom",
@@ -6326,17 +6055,6 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
                   ]
                 },
                 {
@@ -6355,13 +6073,7 @@
                     "state",
                     "brightness",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  }
+                  ]
                 },
                 {
                   "type": "heading",
@@ -6664,15 +6376,14 @@
                     "state",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "name": "Porch"
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "light.outdoor_garage_lights",
                   "features_position": "bottom",
@@ -6681,20 +6392,14 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
+                  ]
+                },
+                {
                   "features": [
                     {
                       "type": "toggle"
                     }
-                  ]
-                },
-                {
+                  ],
                   "type": "tile",
                   "entity": "light.pixel_post_light",
                   "features_position": "bottom",
@@ -6703,20 +6408,14 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
+                  ]
+                },
+                {
                   "features": [
                     {
                       "type": "toggle"
                     }
-                  ]
-                },
-                {
+                  ],
                   "type": "tile",
                   "entity": "light.driveway_post_and_tree_lights",
                   "features_position": "bottom",
@@ -6725,20 +6424,14 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
+                  ]
+                },
+                {
                   "features": [
                     {
                       "type": "toggle"
                     }
-                  ]
-                },
-                {
+                  ],
                   "type": "tile",
                   "entity": "light.family_room_deck_light_side",
                   "features_position": "bottom",
@@ -6747,20 +6440,14 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
+                  ]
+                },
+                {
                   "features": [
                     {
                       "type": "toggle"
                     }
-                  ]
-                },
-                {
+                  ],
                   "type": "tile",
                   "entity": "light.family_room_deck_light_back",
                   "features_position": "bottom",
@@ -6769,20 +6456,14 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
+                  ]
+                },
+                {
                   "features": [
                     {
                       "type": "toggle"
                     }
-                  ]
-                },
-                {
+                  ],
                   "type": "tile",
                   "entity": "light.grill_lights",
                   "features_position": "bottom",
@@ -6791,20 +6472,14 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
+                  ]
+                },
+                {
                   "features": [
                     {
                       "type": "toggle"
                     }
-                  ]
-                },
-                {
+                  ],
                   "type": "tile",
                   "entity": "light.service_door_light",
                   "features_position": "bottom",
@@ -6813,20 +6488,14 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
+                  ]
+                },
+                {
                   "features": [
                     {
                       "type": "toggle"
                     }
-                  ]
-                },
-                {
+                  ],
                   "type": "tile",
                   "entity": "light.garage_flood_lights_west",
                   "features_position": "bottom",
@@ -6835,20 +6504,14 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
+                  ]
+                },
+                {
                   "features": [
                     {
                       "type": "toggle"
                     }
-                  ]
-                },
-                {
+                  ],
                   "type": "tile",
                   "entity": "light.outside_workshop_light",
                   "features_position": "bottom",
@@ -6858,17 +6521,6 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
                   ]
                 },
                 {
@@ -7246,17 +6898,16 @@
                     "state",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "grid_options": {
                     "columns": "full"
                   }
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "light.upstairs_hallway_light",
                   "name": "Landing Light",
@@ -7265,17 +6916,6 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
                   ],
                   "grid_options": {
                     "columns": "full"
@@ -7299,15 +6939,10 @@
                     "state",
                     "last_updated"
                   ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
                   "grid_options": {
                     "columns": "full"
-                  }
+                  },
+                  "icon": "mdi:lightbulb-night"
                 },
                 {
                   "type": "heading",
@@ -7451,12 +7086,6 @@
                   ],
                   "grid_options": {
                     "columns": "full"
-                  },
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
                   }
                 }
               ]
@@ -7524,12 +7153,6 @@
                   ],
                   "grid_options": {
                     "columns": "full"
-                  },
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
                   }
                 }
               ]
@@ -7669,6 +7292,11 @@
                   "icon": "mdi:lamps"
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
                   "type": "tile",
                   "entity": "light.workshop_lights",
                   "name": "Lights",
@@ -7677,17 +7305,6 @@
                   "state_content": [
                     "state",
                     "last_updated"
-                  ],
-                  "tap_action": {
-                    "action": "toggle"
-                  },
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
                   ],
                   "grid_options": {
                     "columns": "full"
