@@ -3651,6 +3651,70 @@
                       "entity": "sensor.samsung_m332x_382x_402x_series_toner_black"
                     }
                   ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.enphase_combiner_current_power_production",
+                      "name": "Current Production"
+                    },
+                    {
+                      "entity": "sensor.inverter_a1"
+                    },
+                    {
+                      "entity": "sensor.inverter_a2"
+                    },
+                    {
+                      "entity": "sensor.inverter_a3"
+                    },
+                    {
+                      "entity": "sensor.inverter_a4"
+                    },
+                    {
+                      "entity": "sensor.inverter_a5"
+                    },
+                    {
+                      "entity": "sensor.inverter_a6"
+                    },
+                    {
+                      "entity": "sensor.inverter_a7"
+                    },
+                    {
+                      "entity": "sensor.inverter_a8"
+                    },
+                    {
+                      "entity": "sensor.inverter_a9"
+                    },
+                    {
+                      "entity": "sensor.inverter_b1"
+                    },
+                    {
+                      "entity": "sensor.inverter_b2"
+                    },
+                    {
+                      "entity": "sensor.inverter_b3"
+                    },
+                    {
+                      "entity": "sensor.inverter_b4"
+                    },
+                    {
+                      "entity": "sensor.inverter_b5"
+                    },
+                    {
+                      "entity": "sensor.inverter_b6"
+                    },
+                    {
+                      "entity": "sensor.inverter_b7"
+                    },
+                    {
+                      "entity": "sensor.inverter_b8"
+                    },
+                    {
+                      "entity": "sensor.inverter_b9"
+                    }
+                  ],
+                  "title": "Solar Generation"
                 }
               ]
             }
