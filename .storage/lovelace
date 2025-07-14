@@ -1211,9 +1211,6 @@
                       "type": "divider"
                     },
                     {
-                      "entity": "sensor.basement_sensor_air_temperature"
-                    },
-                    {
                       "entity": "sensor.hot_water_heater_flood_sensor_air_temperature"
                     },
                     {
@@ -1306,9 +1303,6 @@
                     },
                     {
                       "type": "divider"
-                    },
-                    {
-                      "entity": "sensor.basement_sensor_humidity"
                     },
                     {
                       "entity": "sensor.workshop_sensor_humidity"
@@ -1690,7 +1684,8 @@
                       "entity": "binary_sensor.half_bath_motion_sensor"
                     },
                     {
-                      "entity": "binary_sensor.kitchen_motion_sensor_motion"
+                      "entity": "binary_sensor.kitchen_motion_sensor_group",
+                      "name": "Kitchen Motion Sensor"
                     },
                     {
                       "entity": "binary_sensor.nicole_office_sensor_home_security_motion_detection"
@@ -1754,6 +1749,9 @@
                     {
                       "entity": "binary_sensor.half_bath_moisture_sensor_moisture",
                       "name": "Half Bath"
+                    },
+                    {
+                      "entity": "binary_sensor.kitchen_sink_water_sensor"
                     }
                   ],
                   "title": "Water Sensors",
@@ -3717,6 +3715,179 @@
                   "title": "Solar Generation"
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "square": true,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_b8",
+                      "name": "B8",
+                      "attribute": "unit_of_measurement",
+                      "state_color": false
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_b5",
+                      "name": "B5",
+                      "attribute": "unit_of_measurement"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_b6",
+                      "attribute": "unit_of_measurement",
+                      "name": "B6"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_b3"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_a9",
+                      "attribute": "unit_of_measurement",
+                      "name": "A9"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_a8",
+                      "name": "A8",
+                      "attribute": "unit_of_measurement"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_a7",
+                      "name": "A7",
+                      "attribute": "unit_of_measurement"
+                    }
+                  ],
+                  "columns": 7,
+                  "title": "Solar Array",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 3
+                  }
+                },
+                {
+                  "square": true,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_b9",
+                      "attribute": "unit_of_measurement"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_b4",
+                      "name": "B4",
+                      "attribute": "unit_of_measurement"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_b7",
+                      "name": "B7",
+                      "attribute": "unit_of_measurement"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_b2",
+                      "name": "B2",
+                      "attribute": "unit_of_measurement"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_a4",
+                      "attribute": "unit_of_measurement",
+                      "name": "A4"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_a5",
+                      "name": "A5",
+                      "attribute": "unit_of_measurement"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_a6",
+                      "name": "A6",
+                      "attribute": "unit_of_measurement"
+                    }
+                  ],
+                  "columns": 7
+                },
+                {
+                  "type": "custom:gap-card",
+                  "grid_options": {
+                    "columns": 5,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "square": true,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_b1",
+                      "name": "B1",
+                      "attribute": "unit_of_measurement"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_a3",
+                      "name": "A3",
+                      "attribute": "unit_of_measurement"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_a2",
+                      "name": "A2",
+                      "attribute": "unit_of_measurement"
+                    },
+                    {
+                      "type": "entity",
+                      "entity": "sensor.inverter_a1",
+                      "name": "A1",
+                      "attribute": "unit_of_measurement"
+                    }
+                  ],
+                  "columns": 4,
+                  "grid_options": {
+                    "columns": 7,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.enphase_combiner_current_power_production"
+                    }
+                  ],
+                  "hours_to_show": 24,
+                  "title": "Total PV Output"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.enphase_combiner_current_power_production"
+                    },
+                    {
+                      "entity": "sensor.envoy_202446023403_voltage_production_ct"
+                    },
+                    {
+                      "entity": "sensor.envoy_202446023403_power_factor_production_ct"
+                    }
+                  ]
+                }
+              ],
+              "column_span": 1
             }
           ],
           "max_columns": 4,
@@ -3729,6 +3900,112 @@
           "path": "areas",
           "icon": "mdi:overscan",
           "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "mdi:home-floor-1",
+                  "heading": "Main Floor",
+                  "heading_style": "title"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "illuminance"
+                  ],
+                  "features_position": "bottom",
+                  "display_type": "picture",
+                  "type": "area",
+                  "area": "living_room",
+                  "navigation_path": "/dashboard-areas/areas-living_room",
+                  "color": ""
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "dining_room",
+                  "navigation_path": "/dashboard-areas/areas-dining_room"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "door",
+                    "safety"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "illuminance"
+                  ],
+                  "type": "area",
+                  "area": "entryway",
+                  "navigation_path": "/dashboard-areas/areas-entryway"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "carbon_monoxide",
+                    "door",
+                    "window",
+                    "smoke",
+                    "occupancy",
+                    "opening"
+                  ],
+                  "sensor_classes": [
+                    "humidity",
+                    "illuminance"
+                  ],
+                  "type": "area",
+                  "area": "kitchen",
+                  "navigation_path": "/dashboard-areas/areas-kitchen"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "occupancy"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity",
+                    "illuminance"
+                  ],
+                  "type": "area",
+                  "area": "half_bath",
+                  "navigation_path": "/dashboard-areas/areas-half_bath"
+                },
+                {
+                  "alert_classes": [
+                    "motion",
+                    "moisture",
+                    "lock",
+                    "opening"
+                  ],
+                  "sensor_classes": [
+                    "temperature",
+                    "humidity"
+                  ],
+                  "type": "area",
+                  "area": "garage",
+                  "navigation_path": "/dashboard-areas/areas-garage"
+                }
+              ]
+            },
             {
               "type": "grid",
               "cards": [
@@ -3823,108 +4100,6 @@
                   "type": "area",
                   "area": "hallway",
                   "navigation_path": "/dashboard-areas/areas-hallway"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "icon": "mdi:home-floor-1",
-                  "heading": "Main Floor",
-                  "heading_style": "title"
-                },
-                {
-                  "alert_classes": [
-                    "motion",
-                    "moisture"
-                  ],
-                  "sensor_classes": [
-                    "temperature",
-                    "humidity"
-                  ],
-                  "type": "area",
-                  "area": "living_room",
-                  "navigation_path": "/dashboard-areas/areas-living_room"
-                },
-                {
-                  "alert_classes": [
-                    "motion",
-                    "moisture"
-                  ],
-                  "sensor_classes": [
-                    "temperature",
-                    "humidity"
-                  ],
-                  "type": "area",
-                  "area": "dining_room",
-                  "navigation_path": "/dashboard-areas/areas-dining_room"
-                },
-                {
-                  "alert_classes": [
-                    "motion",
-                    "moisture",
-                    "door",
-                    "safety"
-                  ],
-                  "sensor_classes": [
-                    "temperature",
-                    "humidity",
-                    "illuminance"
-                  ],
-                  "type": "area",
-                  "area": "entryway",
-                  "navigation_path": "/dashboard-areas/areas-entryway"
-                },
-                {
-                  "alert_classes": [
-                    "motion",
-                    "moisture",
-                    "carbon_monoxide",
-                    "door",
-                    "window",
-                    "smoke",
-                    "occupancy",
-                    "opening"
-                  ],
-                  "sensor_classes": [
-                    "humidity",
-                    "illuminance"
-                  ],
-                  "type": "area",
-                  "area": "kitchen",
-                  "navigation_path": "/dashboard-areas/areas-kitchen"
-                },
-                {
-                  "alert_classes": [
-                    "motion",
-                    "moisture",
-                    "occupancy"
-                  ],
-                  "sensor_classes": [
-                    "temperature",
-                    "humidity",
-                    "illuminance"
-                  ],
-                  "type": "area",
-                  "area": "half_bath",
-                  "navigation_path": "/dashboard-areas/areas-half_bath"
-                },
-                {
-                  "alert_classes": [
-                    "motion",
-                    "moisture",
-                    "lock",
-                    "opening"
-                  ],
-                  "sensor_classes": [
-                    "temperature",
-                    "humidity"
-                  ],
-                  "type": "area",
-                  "area": "garage",
-                  "navigation_path": "/dashboard-areas/areas-garage"
                 }
               ]
             },

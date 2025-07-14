@@ -1205,7 +1205,7 @@
                 },
                 {
                   "type": "tile",
-                  "entity": "binary_sensor.basement_sensor_home_security_motion_detection",
+                  "entity": "binary_sensor.basement_presence_sensor",
                   "features_position": "bottom",
                   "vertical": false,
                   "icon_tap_action": {
@@ -1215,7 +1215,7 @@
                     "state",
                     "last_updated"
                   ],
-                  "name": "Multi-Sensor Motion"
+                  "name": "Presence Sensor"
                 }
               ]
             },
@@ -1312,7 +1312,7 @@
                       "entity": "automation.notification_smoke_detector_activated"
                     },
                     {
-                      "entity": "automation.vacation_vacuum_at_8am"
+                      "entity": "automation.roomba_schedule"
                     }
                   ],
                   "state_color": true
@@ -1336,7 +1336,7 @@
               "show_name": false,
               "show_state": true,
               "show_icon": true,
-              "entity": "sensor.basement_sensor_illuminance",
+              "entity": "sensor.basement_presence_sensor_illuminance",
               "color": "amber"
             },
             {
@@ -3297,13 +3297,13 @@
                       "entity": "automation.turn_off_dehumidifiers_and_turn_up_fan_during_peak_hours"
                     },
                     {
-                      "entity": "automation.vacation_vacuum_at_8am"
-                    },
-                    {
                       "entity": "automation.vacation_mode"
                     },
                     {
                       "entity": "automation.turn_off_appletv_with_musiccast"
+                    },
+                    {
+                      "entity": "automation.roomba_schedule"
                     }
                   ],
                   "state_color": true
@@ -4946,6 +4946,24 @@
                 },
                 {
                   "type": "tile",
+                  "entity": "sensor.mudroom_motion_sensor_battery",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Mudroom Sensor",
+                  "state_content": [
+                    "state",
+                    "battery_size",
+                    "last_updated"
+                  ],
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "tile",
                   "entity": "sensor.kitchen_door_lock_battery_level",
                   "features_position": "bottom",
                   "vertical": false,
@@ -5090,7 +5108,7 @@
               "show_name": false,
               "show_state": true,
               "show_icon": true,
-              "entity": "binary_sensor.kitchen_motion_sensor_motion"
+              "entity": "binary_sensor.kitchen_motion_sensor_group"
             }
           ],
           "subview": true,
@@ -5371,7 +5389,14 @@
                   "grid_options": {
                     "columns": "full"
                   },
-                  "secondary_info": "state"
+                  "secondary_info": "state",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.main_floor_media_center_plug",
+                      "state": "on"
+                    }
+                  ]
                 }
               ]
             },
@@ -5411,10 +5436,10 @@
                       "entity": "automation.lighting_set_dimmers_to_max_brightness_when_turned_on_during_day"
                     },
                     {
-                      "entity": "automation.vacation_vacuum_at_8am"
+                      "entity": "automation.vacation_mode"
                     },
                     {
-                      "entity": "automation.vacation_mode"
+                      "entity": "automation.roborock_schedule"
                     }
                   ],
                   "state_color": true
@@ -5428,7 +5453,7 @@
               "show_name": false,
               "show_state": true,
               "show_icon": true,
-              "entity": "sensor.ecobee_thermostat_temperature",
+              "entity": "sensor.living_room_multi_sensor_air_temperature",
               "color": "red"
             },
             {
@@ -5436,8 +5461,23 @@
               "show_name": false,
               "show_state": true,
               "show_icon": true,
-              "entity": "sensor.ecobee_thermostat_humidity",
+              "entity": "sensor.living_room_multi_sensor_humidity",
               "color": "indigo"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.living_room_multi_sensor_illuminance",
+              "color": "amber"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.living_room_multi_sensor_motion"
             }
           ],
           "cards": [],
