@@ -40,7 +40,6 @@ utility_meter:
 
 # Includes for integrations
 automation: !include automations.yaml
-compensation: !include compensations.yaml
 binary_sensor: !include binary_sensors.yaml
 group: !include groups.yaml
 logbook: !include logbook.yaml
@@ -61,3 +60,4 @@ logger:
     roombapy.roomba: error
     custom_components.openmediavault.omv_api: error
     homeassistant.components.openevse: error
+    homeassistant.components.python_script: debug

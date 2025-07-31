@@ -1166,11 +1166,16 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "sensor.ecobee_thermostat_temperature",
+                      "entity": "sensor.living_room_multi_sensor_air_temperature",
                       "name": "Living Room Temperature"
                     },
                     {
-                      "entity": "sensor.garage_sensor_air_temperature"
+                      "entity": "sensor.ecobee_thermostat_temperature",
+                      "name": "Dining Room Temperature"
+                    },
+                    {
+                      "entity": "sensor.garage_sensor_air_temperature",
+                      "name": "Garage Temperature"
                     },
                     {
                       "type": "divider"
@@ -1202,7 +1207,8 @@
                       "entity": "sensor.eric_office_temperature"
                     },
                     {
-                      "entity": "sensor.family_room_climate_family_room_temperature"
+                      "entity": "sensor.family_room_climate_family_room_temperature",
+                      "name": "Family Room Temperature"
                     },
                     {
                       "entity": "sensor.orange_bathroom_shower_switch_aht2x_temperature"
@@ -1265,8 +1271,12 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "sensor.ecobee_thermostat_humidity",
+                      "entity": "sensor.living_room_multi_sensor_humidity",
                       "name": "Living Room Humidity"
+                    },
+                    {
+                      "entity": "sensor.ecobee_thermostat_humidity",
+                      "name": "Dining Room Humidity"
                     },
                     {
                       "entity": "sensor.garage_sensor_humidity"
@@ -1275,7 +1285,8 @@
                       "type": "divider"
                     },
                     {
-                      "entity": "sensor.nicole_office_air_quality_humidity"
+                      "entity": "sensor.nicole_office_air_quality_humidity",
+                      "name": "Nicole Office Humidity"
                     },
                     {
                       "entity": "sensor.closet_room_humidity"
@@ -1296,7 +1307,8 @@
                       "entity": "sensor.eric_office_humidity"
                     },
                     {
-                      "entity": "sensor.family_room_climate_family_room_humidity"
+                      "entity": "sensor.family_room_climate_family_room_humidity",
+                      "name": "Family Room"
                     },
                     {
                       "entity": "sensor.orange_bathroom_shower_switch_aht2x_humidity"
@@ -1713,6 +1725,9 @@
                     },
                     {
                       "entity": "binary_sensor.green_bath_motion_sensor"
+                    },
+                    {
+                      "entity": "binary_sensor.dining_room_motion_sensor"
                     }
                   ],
                   "title": "Motion",
@@ -2753,23 +2768,6 @@
                         "start_pause",
                         "stop",
                         "clean_spot"
-                      ]
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "type": "tile",
-                  "entity": "vacuum.roomba_mainfloor",
-                  "features": [
-                    {
-                      "type": "vacuum-commands",
-                      "commands": [
-                        "start_pause",
-                        "stop",
-                        "locate"
                       ]
                     }
                   ],
