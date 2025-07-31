@@ -22,24 +22,35 @@
         ],
         "flow_to": [],
         "cost_adjustment_day": 0.0
+      },
+      {
+        "type": "solar",
+        "stat_energy_from": "sensor.enphase_combiner_lifetime_energy_production",
+        "config_entry_solar_forecast": [
+          "01JZP5T8C23HNKAPBE3M2BR0RP"
+        ]
       }
     ],
     "device_consumption": [
       {
-        "stat_consumption": "sensor.bambu_p1s_energy_total",
+        "stat_consumption": "sensor.bambu_p1s_energy_today",
         "name": "3D Printer"
       },
       {
-        "stat_consumption": "sensor.bedroom_air_purifier_energy_total",
+        "stat_consumption": "sensor.bedroom_air_purifier_energy_today",
         "name": "Bedroom Air Purifier"
       },
       {
-        "stat_consumption": "sensor.dehumidifier_energy_total",
+        "stat_consumption": "sensor.dehumidifier_energy_today",
         "name": "Dehumidifier"
       },
       {
         "stat_consumption": "sensor.den_media_center_electric_consumption_kwh",
         "name": "Den Media Center"
+      },
+      {
+        "stat_consumption": "sensor.dishwasher_energy_estimated",
+        "name": "Dishwasher"
       },
       {
         "stat_consumption": "sensor.dining_room_air_purifier_summation_delivered",
@@ -51,14 +62,14 @@
       },
       {
         "stat_consumption": "sensor.eric_office_closet_left_summation_delivered",
-        "name": "Eric Office Closet Left"
+        "name": "Eric Office Closet - Left"
       },
       {
         "stat_consumption": "sensor.eric_office_closet_right_summation_delivered",
-        "name": "Eric Office Closet Right"
+        "name": "Eric Office Closet - Right"
       },
       {
-        "stat_consumption": "sensor.hair_straightener_energy_total",
+        "stat_consumption": "sensor.hair_straightener_energy_today",
         "name": "Hair Straightener"
       },
       {
@@ -70,11 +81,15 @@
         "name": "MINI Charger"
       },
       {
-        "stat_consumption": "sensor.nicole_office_air_purifier_energy_total",
+        "stat_consumption": "sensor.nicole_desk_work_energy_today",
+        "name": "Nicole Desk - Work"
+      },
+      {
+        "stat_consumption": "sensor.nicole_office_air_purifier_energy_today",
         "name": "Nicole Office Air Purifier"
       },
       {
-        "stat_consumption": "sensor.nicole_office_floor_lamp_energy_total",
+        "stat_consumption": "sensor.nicole_office_floor_lamp_energy_today",
         "name": "Nicole Office Floor Lamp"
       },
       {
@@ -82,19 +97,16 @@
         "name": "Pixel Post Light"
       },
       {
-        "stat_consumption": "sensor.rock_tumbler_energy_total",
+        "stat_consumption": "sensor.rock_tumbler_energy_today",
         "name": "Rock Tumbler"
       },
       {
-        "stat_consumption": "sensor.washer_energy"
+        "stat_consumption": "sensor.washer_energy",
+        "name": "Washing Machine"
       },
       {
         "stat_consumption": "sensor.workshop_hvac_total_energy",
         "name": "Workshop HVAC"
-      },
-      {
-        "stat_consumption": "sensor.nicole_desk_work_energy_total",
-        "name": "Nicole Desk - Work"
       }
     ]
   }
