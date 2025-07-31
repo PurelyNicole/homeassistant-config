@@ -1,6 +1,17 @@
+set_ecobee_dte:
+  name: Set Ecobee Thermostat with DTE settings.
+  description: Sets the Ecobee Operation Mode with Peak Billing
+  fields:
+    thermostat:
+      description: The thermostat to set.
+      example: climate.ecobee_thermostat
+    weather:
+      description: The ecobee weather entitiy to use for getting the high temperature
+      example: weather.ecobee_thermostat
+
 set_ecobee:
   name: Set Ecobee Thermostat
-  description: Sets the Ecobee Operation Mode with Peak Billing
+  description: Sets the Ecobee Operation Mode.
   fields:
     thermostat:
       description: The thermostat to set.

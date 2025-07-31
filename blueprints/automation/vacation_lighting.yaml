@@ -8,7 +8,8 @@ blueprint:
       name: Vacation Mode - Input Boolean
       selector:
         entity:
-          domain: input_boolean
+          filter:
+            domain: input_boolean
     default_brightness:
       name: Default Brightness
       default: 50
@@ -22,7 +23,8 @@ blueprint:
       name: Replay Sensor (1)
       selector:
         entity:
-          domain: sensor
+          filter:
+            domain: sensor
     light_target_1:
       name: Light Target (1)
       selector:
@@ -31,7 +33,8 @@ blueprint:
       name: Replay Sensor (2)
       selector:
         entity:
-          domain: sensor
+          filter:
+            domain: sensor
     light_target_2:
       name: Light Target (2)
       selector:
@@ -40,7 +43,8 @@ blueprint:
       name: Replay Sensor (3)
       selector:
         entity:
-          domain: sensor
+          filter:
+            domain: sensor
     light_target_3:
       name: Light Target (3)
       selector:
@@ -49,7 +53,8 @@ blueprint:
       name: Replay Sensor (4)
       selector:
         entity:
-          domain: sensor
+          filter:
+            domain: sensor
     light_target_4:
       name: Light Target (4)
       selector:
@@ -58,7 +63,8 @@ blueprint:
       name: Replay Sensor (5)
       selector:
         entity:
-          domain: sensor
+          filter:
+            domain: sensor
     light_target_5:
       name: Light Target (5)
       selector:
@@ -67,7 +73,8 @@ blueprint:
       name: Replay Sensor (6)
       selector:
         entity:
-          domain: sensor
+          filter:
+            domain: sensor
     light_target_6:
       name: Light Target (6)
       selector:
@@ -76,7 +83,8 @@ blueprint:
       name: Replay Sensor (7)
       selector:
         entity:
-          domain: sensor
+          filter:
+            domain: sensor
     light_target_7:
       name: Light Target (7)
       selector:
@@ -85,7 +93,8 @@ blueprint:
       name: Replay Sensor (8)
       selector:
         entity:
-          domain: sensor
+          filter:
+            domain: sensor
     light_target_8:
       name: Light Target (8)
       selector:
@@ -94,7 +103,8 @@ blueprint:
       name: Replay Sensor (9)
       selector:
         entity:
-          domain: sensor
+          filter:
+            domain: sensor
     light_target_9:
       name: Light Target (9)
       selector:
@@ -103,7 +113,8 @@ blueprint:
       name: Replay Sensor (10)
       selector:
         entity:
-          domain: sensor
+          filter:
+            domain: sensor
     light_target_10:
       name: Light Target (10)
       selector:
@@ -132,26 +143,26 @@ variables:
   light_target_10: !input light_target_10
   
 # Trigger when replay sensor changes state
-trigger:
-  - platform: state
+triggers:
+  - trigger: state
     entity_id: !input replay_sensor_1
-  - platform: state
+  - trigger: state
     entity_id: !input replay_sensor_2
-  - platform: state
+  - trigger: state
     entity_id: !input replay_sensor_3
-  - platform: state
+  - trigger: state
     entity_id: !input replay_sensor_4
-  - platform: state
+  - trigger: state
     entity_id: !input replay_sensor_5
-  - platform: state
+  - trigger: state
     entity_id: !input replay_sensor_6
-  - platform: state
+  - trigger: state
     entity_id: !input replay_sensor_7
-  - platform: state
+  - trigger: state
     entity_id: !input replay_sensor_8
-  - platform: state
+  - trigger: state
     entity_id: !input replay_sensor_9
-  - platform: state
+  - trigger: state
     entity_id: !input replay_sensor_10
 
 # As long as Vacation Mode is on
@@ -195,11 +206,11 @@ action:
             - condition: template
               value_template: '{{ corresponding_light.split(".")[0] == "light" }}'
         sequence:
-          - service: light.turn_on
+          - action: light.turn_on
             data:
               entity_id: '{{ corresponding_light }}'
               brightness_pct: !input default_brightness
-          - service: system_log.write
+          - action: system_log.write
             data:
               message: 'Vacation - Replay Lighting (Blueprint): {{trigger.to_state.entity_id}}: turning on: {{ corresponding_light }}'
               level: info
@@ -213,10 +224,10 @@ action:
             - condition: template
               value_template: '{{ corresponding_light.split(".")[0] == "switch" }}'
         sequence:
-          - service: switch.turn_on
+          - action: switch.turn_on
             data:
               entity_id: '{{ corresponding_light }}'
-          - service: system_log.write
+          - action: system_log.write
             data:
               message: 'Vacation - Replay Lighting (Blueprint): {{trigger.to_state.entity_id}}: turning on:{{ corresponding_light }}'
               level: info
@@ -228,10 +239,10 @@ action:
             - condition: template
               value_template: '{{ trigger.to_state.state == "0" }}'
         sequence:
-          - service: homeassistant.turn_off
+          - action: homeassistant.turn_off
             data:
               entity_id: '{{ corresponding_light }}'
-          - service: system_log.write
+          - action: system_log.write
             data:
               message: 'Vacation - Replay Lighting (Blueprint): {{trigger.to_state.entity_id}}: turning off:{{ corresponding_light }}'
               level: info
