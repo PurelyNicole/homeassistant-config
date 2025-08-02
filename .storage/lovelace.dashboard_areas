@@ -1216,40 +1216,6 @@
                     "last_updated"
                   ],
                   "name": "Presence Sensor"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Others",
-                  "icon": "mdi:shape"
-                },
-                {
-                  "type": "tile",
-                  "entity": "vacuum.roomba",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "state_content": [
-                    "state",
-                    "status",
-                    "last_updated"
-                  ],
-                  "features": [
-                    {
-                      "type": "vacuum-commands",
-                      "commands": [
-                        "start_pause",
-                        "stop",
-                        "locate"
-                      ]
-                    }
-                  ]
                 },
                 {
                   "type": "heading",
@@ -1266,10 +1232,7 @@
                     "state",
                     "battery_size",
                     "last_updated"
-                  ],
-                  "grid_options": {
-                    "columns": "full"
-                  }
+                  ]
                 },
                 {
                   "type": "tile",
@@ -1280,9 +1243,6 @@
                     "state",
                     "last_updated"
                   ],
-                  "grid_options": {
-                    "columns": "full"
-                  },
                   "name": "Smoke Detector Battery"
                 }
               ]
@@ -1310,9 +1270,6 @@
                     },
                     {
                       "entity": "automation.notification_smoke_detector_activated"
-                    },
-                    {
-                      "entity": "automation.roomba_schedule"
                     }
                   ],
                   "state_color": true
@@ -1321,16 +1278,6 @@
             }
           ],
           "badges": [
-            {
-              "entity": "sensor.basement_sensor_air_temperature",
-              "type": "entity",
-              "color": "red"
-            },
-            {
-              "entity": "sensor.basement_sensor_humidity",
-              "type": "entity",
-              "color": "indigo"
-            },
             {
               "type": "entity",
               "show_name": false,
@@ -2301,9 +2248,22 @@
                   "icon_tap_action": {
                     "action": "more-info"
                   },
-                  "grid_options": {
-                    "columns": "full"
-                  }
+                  "name": "Shades"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.dining_room_motion_sensor_battery",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "state_content": [
+                    "state",
+                    "battery_size",
+                    "last_updated"
+                  ],
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "name": "Motion Sensor"
                 }
               ]
             },
@@ -2324,6 +2284,9 @@
                     },
                     {
                       "entity": "script.goodbye"
+                    },
+                    {
+                      "entity": "script.energy_saving_mode"
                     }
                   ]
                 },
@@ -2340,9 +2303,6 @@
                       "entity": "automation.set_ecobee_dte_update"
                     },
                     {
-                      "entity": "automation.notification_put_down_blinds_when_hvac_is_ac"
-                    },
-                    {
                       "entity": "automation.dehumidifier_turn_off_when_windows_open"
                     },
                     {
@@ -2353,6 +2313,9 @@
                     },
                     {
                       "entity": "automation.welcome_home"
+                    },
+                    {
+                      "entity": "automation.turn_off_dehumidifiers_and_turn_up_fan_during_peak_hours"
                     }
                   ],
                   "state_color": true
@@ -2376,6 +2339,21 @@
               "show_icon": true,
               "entity": "sensor.ecobee_thermostat_humidity",
               "color": "indigo"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.dining_room_motion_sensor"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.dining_room_motion_sensor_illuminance",
+              "color": "amber"
             }
           ],
           "subview": true,
@@ -3034,8 +3012,18 @@
                   "icon": "mdi:shape"
                 },
                 {
+                  "features": [
+                    {
+                      "type": "vacuum-commands",
+                      "commands": [
+                        "start_pause",
+                        "stop",
+                        "locate"
+                      ]
+                    }
+                  ],
                   "type": "tile",
-                  "entity": "vacuum.roomba_mainfloor",
+                  "entity": "vacuum.roomba",
                   "features_position": "bottom",
                   "vertical": false,
                   "grid_options": {
@@ -3047,17 +3035,7 @@
                   ],
                   "icon_tap_action": {
                     "action": "toggle"
-                  },
-                  "features": [
-                    {
-                      "type": "vacuum-commands",
-                      "commands": [
-                        "start_pause",
-                        "stop",
-                        "locate"
-                      ]
-                    }
-                  ]
+                  }
                 }
               ]
             },
@@ -3170,7 +3148,8 @@
                   "use_media_info": true,
                   "collapsible_controls": false,
                   "layout": "horizontal",
-                  "fill_container": false
+                  "fill_container": false,
+                  "name": "Home Pod"
                 },
                 {
                   "type": "custom:mushroom-media-player-card",
@@ -3192,15 +3171,6 @@
                   "fill_container": true,
                   "show_volume_level": true,
                   "use_media_info": true
-                },
-                {
-                  "type": "tile",
-                  "entity": "media_player.vizio_tv",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "grid_options": {
-                    "columns": "full"
-                  }
                 }
               ]
             },
@@ -3317,7 +3287,7 @@
               "show_name": false,
               "show_state": true,
               "show_icon": true,
-              "entity": "sensor.family_room_temperature",
+              "entity": "sensor.family_room_climate_family_room_temperature",
               "color": "red"
             },
             {
@@ -7287,6 +7257,20 @@
                     }
                   ],
                   "state_color": true
+                },
+                {
+                  "type": "heading",
+                  "icon": "mdi:script-text",
+                  "heading": "Scripts",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "script.energy_saving_mode"
+                    }
+                  ]
                 }
               ]
             }

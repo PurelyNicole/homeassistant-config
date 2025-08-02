@@ -1110,52 +1110,32 @@
                   "vertical": false
                 },
                 {
-                  "type": "history-graph",
-                  "entities": [
+                  "features": [
                     {
-                      "entity": "sensor.bedroom_ecobee_sensor_temperature"
-                    },
-                    {
-                      "entity": "sensor.ecobee_thermostat_temperature"
-                    },
-                    {
-                      "entity": "sensor.eric_office_temperature"
-                    },
-                    {
-                      "entity": "sensor.family_room_temperature"
-                    },
-                    {
-                      "entity": "sensor.master_bathroom_sensor_air_temperature"
-                    },
-                    {
-                      "entity": "sensor.den_air_quality_temperature"
+                      "type": "fan-speed"
                     }
                   ],
-                  "hours_to_show": 72,
-                  "title": "House Temperatures"
+                  "type": "tile",
+                  "entity": "fan.family_room_fan_south",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 },
                 {
-                  "graph": "line",
-                  "type": "sensor",
-                  "detail": 2,
-                  "entity": "sensor.den_air_quality_pm25",
-                  "hours_to_show": 24
-                },
-                {
-                  "graph": "line",
-                  "type": "sensor",
-                  "detail": 2,
-                  "entity": "sensor.nicole_office_air_quality_pm2_5",
-                  "hours_to_show": 24,
-                  "name": "Nicole Office PM2.5"
-                },
-                {
-                  "graph": "line",
-                  "type": "sensor",
-                  "detail": 2,
-                  "entity": "sensor.nicole_office_air_quality_voc_index",
-                  "hours_to_show": 24,
-                  "name": "Nicole Office VOC"
+                  "features": [
+                    {
+                      "type": "fan-speed"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "fan.master_bedroom_fan",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 }
               ]
             },
@@ -1167,29 +1147,89 @@
                   "entities": [
                     {
                       "entity": "sensor.living_room_multi_sensor_air_temperature",
-                      "name": "Living Room Temperature"
+                      "name": "Living Room"
                     },
                     {
                       "entity": "sensor.ecobee_thermostat_temperature",
-                      "name": "Dining Room Temperature"
-                    },
-                    {
-                      "entity": "sensor.garage_sensor_air_temperature",
-                      "name": "Garage Temperature"
+                      "name": "Dining Room"
                     },
                     {
                       "type": "divider"
                     },
                     {
                       "entity": "sensor.nicole_office_air_quality_temperature",
-                      "name": "Nicole Office: Temperature"
+                      "name": "Nicole Office"
+                    },
+                    {
+                      "entity": "sensor.closet_room_temperature",
+                      "name": "Closet Room"
+                    },
+                    {
+                      "entity": "sensor.bedroom_ecobee_sensor_temperature",
+                      "name": "Master Bedroom "
+                    },
+                    {
+                      "entity": "sensor.master_bathroom_sensor_air_temperature",
+                      "name": "Master Bathroom"
+                    },
+                    {
+                      "entity": "sensor.green_bath_climate_temperature",
+                      "name": "Green Bathrrom"
+                    },
+                    {
+                      "type": "divider"
+                    },
+                    {
+                      "entity": "sensor.den_air_quality_temperature",
+                      "name": "Den"
+                    },
+                    {
+                      "entity": "sensor.eric_office_temperature",
+                      "name": "Eric Office"
+                    },
+                    {
+                      "entity": "sensor.family_room_climate_family_room_temperature",
+                      "name": "Family Room"
+                    },
+                    {
+                      "entity": "sensor.orange_bathroom_shower_switch_aht2x_temperature",
+                      "name": "Orange Bathroom"
+                    },
+                    {
+                      "type": "divider"
+                    },
+                    {
+                      "entity": "sensor.garage_sensor_air_temperature",
+                      "name": "Garage"
+                    },
+                    {
+                      "entity": "sensor.hot_water_heater_flood_sensor_air_temperature",
+                      "name": "Utility Room"
+                    },
+                    {
+                      "entity": "sensor.workshop_hvac_indoor_temperature",
+                      "name": "Workshop"
+                    }
+                  ],
+                  "title": "Temperature"
+                },
+                {
+                  "type": "history-graph",
+                  "entities": [
+                    {
+                      "entity": "sensor.living_room_multi_sensor_air_temperature"
+                    },
+                    {
+                      "entity": "sensor.ecobee_thermostat_temperature"
+                    },
+                    {
+                      "entity": "sensor.nicole_office_air_quality_temperature"
                     },
                     {
                       "entity": "sensor.closet_room_temperature"
                     },
                     {
-                      "entity": "sensor.bedroom_ecobee_sensor_temperature",
-                      "name": "Master Bedroom "
+                      "entity": "sensor.bedroom_ecobee_sensor_temperature"
                     },
                     {
                       "entity": "sensor.master_bathroom_sensor_air_temperature"
@@ -1198,32 +1238,20 @@
                       "entity": "sensor.green_bath_climate_temperature"
                     },
                     {
-                      "type": "divider"
-                    },
-                    {
                       "entity": "sensor.den_air_quality_temperature"
                     },
                     {
                       "entity": "sensor.eric_office_temperature"
                     },
                     {
-                      "entity": "sensor.family_room_climate_family_room_temperature",
-                      "name": "Family Room Temperature"
+                      "entity": "sensor.family_room_climate_family_room_temperature"
                     },
                     {
                       "entity": "sensor.orange_bathroom_shower_switch_aht2x_temperature"
-                    },
-                    {
-                      "type": "divider"
-                    },
-                    {
-                      "entity": "sensor.hot_water_heater_flood_sensor_air_temperature"
-                    },
-                    {
-                      "entity": "sensor.workshop_hvac_indoor_temperature"
                     }
                   ],
-                  "title": "Temperature"
+                  "hours_to_show": 72,
+                  "title": "House Temperatures"
                 },
                 {
                   "type": "entities",
@@ -1272,58 +1300,86 @@
                   "entities": [
                     {
                       "entity": "sensor.living_room_multi_sensor_humidity",
-                      "name": "Living Room Humidity"
+                      "name": "Living Room"
                     },
                     {
                       "entity": "sensor.ecobee_thermostat_humidity",
-                      "name": "Dining Room Humidity"
-                    },
-                    {
-                      "entity": "sensor.garage_sensor_humidity"
+                      "name": "Dining Room"
                     },
                     {
                       "type": "divider"
                     },
                     {
                       "entity": "sensor.nicole_office_air_quality_humidity",
-                      "name": "Nicole Office Humidity"
+                      "name": "Nicole Office"
                     },
                     {
-                      "entity": "sensor.closet_room_humidity"
+                      "entity": "sensor.closet_room_humidity",
+                      "name": "Closet Room"
                     },
                     {
-                      "entity": "sensor.master_bathroom_sensor_humidity"
+                      "entity": "sensor.master_bathroom_sensor_humidity",
+                      "name": "Master Bathroom"
                     },
                     {
-                      "entity": "sensor.green_bath_climate_humidity"
+                      "entity": "sensor.green_bath_climate_humidity",
+                      "name": "Green Bathroom"
                     },
                     {
                       "type": "divider"
                     },
                     {
-                      "entity": "sensor.den_air_quality_humidity"
+                      "entity": "sensor.den_air_quality_humidity",
+                      "name": "Den"
                     },
                     {
-                      "entity": "sensor.eric_office_humidity"
+                      "entity": "sensor.eric_office_humidity",
+                      "name": "Eric Office"
                     },
                     {
                       "entity": "sensor.family_room_climate_family_room_humidity",
                       "name": "Family Room"
                     },
                     {
-                      "entity": "sensor.orange_bathroom_shower_switch_aht2x_humidity"
+                      "entity": "sensor.orange_bathroom_shower_switch_aht2x_humidity",
+                      "name": "Orange Bathrrom"
                     },
                     {
                       "type": "divider"
                     },
                     {
-                      "entity": "sensor.workshop_sensor_humidity"
+                      "entity": "sensor.garage_sensor_humidity",
+                      "name": "Garage"
+                    },
+                    {
+                      "entity": "sensor.workshop_sensor_humidity",
+                      "name": "Workshop"
                     },
                     {
                       "entity": "switch.dehumidifier"
                     }
                   ],
                   "title": "Humidity"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 2,
+                  "entity": "sensor.den_air_quality_pm25",
+                  "hours_to_show": 24
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 2,
+                  "entity": "sensor.nicole_office_air_quality_pm2_5",
+                  "hours_to_show": 24,
+                  "name": "Nicole Office PM2.5"
                 },
                 {
                   "type": "history-graph",
@@ -1335,77 +1391,17 @@
                       "entity": "sensor.nicole_office_air_quality_pm2_5"
                     }
                   ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
+                },
                 {
-                  "features": [
-                    {
-                      "type": "fan-speed"
-                    }
-                  ],
-                  "type": "tile",
-                  "entity": "fan.family_room_fan_south",
-                  "features_position": "bottom",
-                  "vertical": false,
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 2,
+                  "entity": "sensor.nicole_office_air_quality_voc_index",
+                  "hours_to_show": 24,
+                  "name": "Nicole Office VOC",
                   "grid_options": {
                     "columns": "full"
                   }
-                },
-                {
-                  "features": [
-                    {
-                      "type": "fan-speed"
-                    }
-                  ],
-                  "type": "tile",
-                  "entity": "fan.master_bedroom_fan",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "chart_type": "line",
-                  "period": "hour",
-                  "type": "statistics-graph",
-                  "entities": [
-                    "sensor.masterbedroom_hvac_boost_master_bedroom_fan_1_speed",
-                    "sensor.masterbedroom_hvac_boost_master_bedroom_fan_2_speed"
-                  ],
-                  "title": "MB HVAC Fan Speed",
-                  "stat_types": [
-                    "mean"
-                  ],
-                  "hide_legend": false,
-                  "days_to_show": 3
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "sensor.masterbedroom_hvac_boost_temperature"
-                    },
-                    {
-                      "entity": "switch.nodered_73429d9c97f825a1",
-                      "name": "Master HVAC Speed Override Enable",
-                      "icon": "mdi:fan-alert"
-                    },
-                    {
-                      "entity": "number.masterbedroom_hvac_boost_fan_speed_override_1"
-                    },
-                    {
-                      "entity": "number.masterbedroom_hvac_boost_fan_speed_override_2"
-                    },
-                    {
-                      "entity": "input_number.master_hvac_booster_override_speed"
-                    }
-                  ],
-                  "state_color": true
                 }
               ]
             }
@@ -1693,41 +1689,77 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "binary_sensor.half_bath_motion_sensor"
+                      "entity": "binary_sensor.half_bath_motion_sensor",
+                      "name": "Half Bath"
                     },
                     {
                       "entity": "binary_sensor.kitchen_motion_sensor_group",
-                      "name": "Kitchen Motion Sensor"
+                      "name": "Kitchen"
                     },
                     {
-                      "entity": "binary_sensor.nicole_office_sensor_home_security_motion_detection"
+                      "entity": "binary_sensor.dining_room_motion_sensor",
+                      "name": "Dining Room"
                     },
                     {
-                      "entity": "binary_sensor.closet_room_motion_sensor_motion"
+                      "entity": "binary_sensor.living_room_multi_sensor_motion",
+                      "name": "Living Room"
                     },
                     {
-                      "entity": "binary_sensor.bedroom_ecobee_sensor_occupancy"
+                      "type": "divider"
                     },
                     {
-                      "entity": "binary_sensor.master_bathroom_sensor_home_security_motion_detection"
+                      "entity": "binary_sensor.upstairs_hallway_nightlight_motion",
+                      "name": "Upstairs Hallway"
                     },
                     {
-                      "entity": "binary_sensor.eric_office_motion_sensor_motion"
+                      "entity": "binary_sensor.nicole_office_sensor_home_security_motion_detection",
+                      "name": "Nicole Office"
                     },
                     {
-                      "entity": "binary_sensor.den"
+                      "entity": "binary_sensor.closet_room_motion_sensor_motion",
+                      "name": "Closet Room"
                     },
                     {
-                      "entity": "binary_sensor.basement_motion_group"
+                      "entity": "binary_sensor.bedroom_ecobee_sensor_occupancy",
+                      "name": "Master Bedroom"
                     },
                     {
-                      "entity": "binary_sensor.orange_bath_motion_sensor"
+                      "entity": "binary_sensor.master_bathroom_sensor_home_security_motion_detection",
+                      "name": "Master Bathroom"
                     },
                     {
-                      "entity": "binary_sensor.green_bath_motion_sensor"
+                      "entity": "binary_sensor.green_bath_motion_sensor",
+                      "name": "Green Bathroom"
                     },
                     {
-                      "entity": "binary_sensor.dining_room_motion_sensor"
+                      "type": "divider"
+                    },
+                    {
+                      "entity": "binary_sensor.eric_office_motion_sensor_motion",
+                      "name": "Eric Office"
+                    },
+                    {
+                      "entity": "binary_sensor.den",
+                      "name": "Den"
+                    },
+                    {
+                      "entity": "binary_sensor.orange_bath_motion_sensor",
+                      "name": "Orange Bathroom"
+                    },
+                    {
+                      "type": "divider"
+                    },
+                    {
+                      "entity": "binary_sensor.basement_motion_group",
+                      "name": "Basement"
+                    },
+                    {
+                      "entity": "binary_sensor.garage_sensor_home_security_motion_detection",
+                      "name": "Garage"
+                    },
+                    {
+                      "entity": "binary_sensor.multisensor_6_home_security_motion_detection",
+                      "name": "Workshop"
                     }
                   ],
                   "title": "Motion",
@@ -1742,12 +1774,11 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "binary_sensor.hot_water_heater_flood_sensor_water_leak_state",
-                      "name": "Hot Water Heater"
+                      "entity": "binary_sensor.half_bath_moisture_sensor_moisture",
+                      "name": "Half Bath"
                     },
                     {
-                      "entity": "binary_sensor.laundry_room_water_sensor_iaszone",
-                      "name": "Laundry Room"
+                      "entity": "binary_sensor.kitchen_sink_water_sensor"
                     },
                     {
                       "entity": "binary_sensor.master_bath_water_sensor_moisture",
@@ -1762,11 +1793,12 @@
                       "name": "Orange Bath"
                     },
                     {
-                      "entity": "binary_sensor.half_bath_moisture_sensor_moisture",
-                      "name": "Half Bath"
+                      "entity": "binary_sensor.laundry_room_water_sensor_iaszone",
+                      "name": "Laundry Room"
                     },
                     {
-                      "entity": "binary_sensor.kitchen_sink_water_sensor"
+                      "entity": "binary_sensor.hot_water_heater_flood_sensor_water_leak_state",
+                      "name": "Hot Water Heater"
                     }
                   ],
                   "title": "Water Sensors",
@@ -1915,215 +1947,6 @@
                   ],
                   "title": "Downstairs Smoke Detector",
                   "state_color": true
-                }
-              ]
-            }
-          ],
-          "max_columns": 4
-        },
-        {
-          "title": "Media",
-          "path": "media",
-          "icon": "mdi:music",
-          "badges": [],
-          "cards": [],
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "tile",
-                  "entity": "switch.main_floor_media_center_plug",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "state_content": [
-                    "state",
-                    "last_changed"
-                  ],
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "media_player.main_floor_musiccast"
-                    },
-                    {
-                      "entity": "switch.main_floor_tv"
-                    },
-                    {
-                      "entity": "sensor.main_floor_tv_media_input_source"
-                    },
-                    {
-                      "entity": "sensor.main_floor_tv_tv_channel_name"
-                    }
-                  ],
-                  "title": "Main Floor TV",
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "switch.main_floor_media_center_plug",
-                      "state": "on"
-                    }
-                  ]
-                },
-                {
-                  "type": "media-control",
-                  "entity": "media_player.main_floor_musiccast",
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "switch.main_floor_media_center_plug",
-                      "state": "on"
-                    }
-                  ]
-                },
-                {
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
-                  ],
-                  "type": "tile",
-                  "entity": "switch.den_media_center",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "type": "media-control",
-                  "entity": "media_player.downstairs_musiccast"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:atomic-calendar-revive",
-                  "entities": [
-                    "calendar.music_announcements"
-                  ],
-                  "name": "Upcoming Releases",
-                  "enableModeChange": true,
-                  "firstDayOfWeek": 1,
-                  "maxDaysToShow": 30,
-                  "refreshInterval": 60,
-                  "hideFinishedEvents": false,
-                  "showLocation": false,
-                  "showDate": false,
-                  "hideDuplicates": true,
-                  "showDescription": false,
-                  "showProgressBar": false,
-                  "showCurrentEventLine": false,
-                  "showWeekDay": true,
-                  "disableEventLink": false,
-                  "showEventIcon": false,
-                  "showCalendarName": false,
-                  "showEventDate": true,
-                  "calShowDescription": false,
-                  "showRelativeTime": false,
-                  "showLastCalendarWeek": false,
-                  "showMonth": false,
-                  "hoursOnSameLine": false,
-                  "showAllDayHours": false
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "show_name": true,
-                      "show_icon": true,
-                      "show_state": false,
-                      "type": "glance",
-                      "entities": [
-                        {
-                          "entity": "button.get_random_cd",
-                          "tap_action": {
-                            "action": "toggle"
-                          }
-                        },
-                        {
-                          "entity": "button.get_random_record",
-                          "tap_action": {
-                            "action": "toggle"
-                          }
-                        }
-                      ],
-                      "state_color": false
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.random_release",
-                      "show_entity_picture": true,
-                      "name": "You Should Listen To...",
-                      "vertical": false
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:atomic-calendar-revive",
-                  "name": "Upcoming Games",
-                  "enableModeChange": true,
-                  "entities": [
-                    {
-                      "entity": "calendar.detroit_lions",
-                      "name": "Detroit Lions",
-                      "color": "#0076b6"
-                    },
-                    {
-                      "entity": "calendar.indiana_fever",
-                      "name": "Indiana Fever",
-                      "color": "navy"
-                    },
-                    {
-                      "entity": "calendar.detroit_red_wings",
-                      "name": "Detroit Red Wings",
-                      "color": "#ce1126"
-                    },
-                    {
-                      "entity": "calendar.michigan_wolverines_football",
-                      "name": "Michigan Wolverines",
-                      "color": "#FFCB05"
-                    }
-                  ],
-                  "firstDayOfWeek": 0,
-                  "calShowDescription": false,
-                  "disableCalEventLink": false,
-                  "showLastCalendarWeek": false,
-                  "showEventIcon": true,
-                  "showCalendarName": false,
-                  "showEventDate": true,
-                  "hoursOnSameLine": false,
-                  "showRelativeTime": false,
-                  "linkTarget": "_self",
-                  "showMonth": false,
-                  "showCurrentEventLine": false,
-                  "defaultMode": "Event",
-                  "sortBy": "start",
-                  "showDeclined": false,
-                  "hideFinishedEvents": true,
-                  "showDate": false,
-                  "showLocation": false,
-                  "offsetHeaderDate": false,
-                  "showDatePerEvent": false,
-                  "disableCalLink": false,
-                  "hideDuplicates": false
                 }
               ]
             }
@@ -3491,6 +3314,215 @@
               ]
             }
           ]
+        },
+        {
+          "title": "Media",
+          "path": "media",
+          "icon": "mdi:music",
+          "badges": [],
+          "cards": [],
+          "type": "sections",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "tile",
+                  "entity": "switch.main_floor_media_center_plug",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "state_content": [
+                    "state",
+                    "last_changed"
+                  ],
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "media_player.main_floor_musiccast"
+                    },
+                    {
+                      "entity": "switch.main_floor_tv"
+                    },
+                    {
+                      "entity": "sensor.main_floor_tv_media_input_source"
+                    },
+                    {
+                      "entity": "sensor.main_floor_tv_tv_channel_name"
+                    }
+                  ],
+                  "title": "Main Floor TV",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.main_floor_media_center_plug",
+                      "state": "on"
+                    }
+                  ]
+                },
+                {
+                  "type": "media-control",
+                  "entity": "media_player.main_floor_musiccast",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.main_floor_media_center_plug",
+                      "state": "on"
+                    }
+                  ]
+                },
+                {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "switch.den_media_center",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "media-control",
+                  "entity": "media_player.downstairs_musiccast"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:atomic-calendar-revive",
+                  "entities": [
+                    "calendar.music_announcements"
+                  ],
+                  "name": "Upcoming Releases",
+                  "enableModeChange": true,
+                  "firstDayOfWeek": 1,
+                  "maxDaysToShow": 30,
+                  "refreshInterval": 60,
+                  "hideFinishedEvents": false,
+                  "showLocation": false,
+                  "showDate": false,
+                  "hideDuplicates": true,
+                  "showDescription": false,
+                  "showProgressBar": false,
+                  "showCurrentEventLine": false,
+                  "showWeekDay": true,
+                  "disableEventLink": false,
+                  "showEventIcon": false,
+                  "showCalendarName": false,
+                  "showEventDate": true,
+                  "calShowDescription": false,
+                  "showRelativeTime": false,
+                  "showLastCalendarWeek": false,
+                  "showMonth": false,
+                  "hoursOnSameLine": false,
+                  "showAllDayHours": false
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "show_name": true,
+                      "show_icon": true,
+                      "show_state": false,
+                      "type": "glance",
+                      "entities": [
+                        {
+                          "entity": "button.get_random_cd",
+                          "tap_action": {
+                            "action": "toggle"
+                          }
+                        },
+                        {
+                          "entity": "button.get_random_record",
+                          "tap_action": {
+                            "action": "toggle"
+                          }
+                        }
+                      ],
+                      "state_color": false
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.random_release",
+                      "show_entity_picture": true,
+                      "name": "You Should Listen To...",
+                      "vertical": false
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:atomic-calendar-revive",
+                  "name": "Upcoming Games",
+                  "enableModeChange": true,
+                  "entities": [
+                    {
+                      "entity": "calendar.detroit_lions",
+                      "name": "Detroit Lions",
+                      "color": "#0076b6"
+                    },
+                    {
+                      "entity": "calendar.indiana_fever",
+                      "name": "Indiana Fever",
+                      "color": "navy"
+                    },
+                    {
+                      "entity": "calendar.detroit_red_wings",
+                      "name": "Detroit Red Wings",
+                      "color": "#ce1126"
+                    },
+                    {
+                      "entity": "calendar.michigan_wolverines_football",
+                      "name": "Michigan Wolverines",
+                      "color": "#FFCB05"
+                    }
+                  ],
+                  "firstDayOfWeek": 0,
+                  "calShowDescription": false,
+                  "disableCalEventLink": false,
+                  "showLastCalendarWeek": false,
+                  "showEventIcon": true,
+                  "showCalendarName": false,
+                  "showEventDate": true,
+                  "hoursOnSameLine": false,
+                  "showRelativeTime": false,
+                  "linkTarget": "_self",
+                  "showMonth": false,
+                  "showCurrentEventLine": false,
+                  "defaultMode": "Event",
+                  "sortBy": "start",
+                  "showDeclined": false,
+                  "hideFinishedEvents": true,
+                  "showDate": false,
+                  "showLocation": false,
+                  "offsetHeaderDate": false,
+                  "showDatePerEvent": false,
+                  "disableCalLink": false,
+                  "hideDuplicates": false
+                }
+              ]
+            }
+          ],
+          "max_columns": 4
         },
         {
           "title": "System",
