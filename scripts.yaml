@@ -49,7 +49,7 @@ wind_down_nicole:
     continue_on_error: true
     metadata: {}
     data:
-      percentage: 100
+      percentage: 40
     target:
       entity_id: fan.bedjet_12fa
   description: ''
@@ -593,20 +593,20 @@ energy_saving_mode:
         data: {}
         target:
           entity_id: fan.family_room_fan_south
-      - if:
+      - alias: If not on vacation...
+        if:
         - condition: state
           entity_id: input_boolean.vacation_mode
           state: 'off'
         then:
-        - action: fan.set_percentage
+        - alias: Turn up Bedroom Fan
+          action: fan.set_percentage
           continue_on_error: true
           metadata: {}
           data:
-            percentage: 100
+            percentage: 75
           target:
             entity_id: fan.master_bedroom_fan
-          alias: Turn up Bedroom Fan
-        alias: If not on vacation...
       - action: climate.turn_off
         metadata: {}
         data: {}
@@ -633,7 +633,7 @@ energy_saving_mode:
           continue_on_error: true
           metadata: {}
           data:
-            percentage: 75
+            percentage: 25
           target:
             entity_id: fan.master_bedroom_fan
         - action: cover.open_cover
@@ -775,7 +775,6 @@ goodnight_nicole:
     data: {}
     target:
       area_id:
-      - outdoors
       - bedroom
       - master_bath
   - action: fan.turn_on
