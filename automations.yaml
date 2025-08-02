@@ -1882,7 +1882,13 @@
     entity_id:
     - person.eric
     to: home
-  conditions: []
+  - trigger: state
+    entity_id:
+    - sensor.workshop_sensor_humidity
+  conditions:
+  - condition: state
+    entity_id: schedule.dte_peak_hours
+    state: 'off'
   actions:
   - choose:
     - conditions:
@@ -1904,14 +1910,6 @@
           condition: template
           value_template: '{{states(''sensor.workshop_hvac_indoor_temperature'')|int
             < 41 }}'
-        - condition: state
-          entity_id: person.eric
-          state: home
-          enabled: false
-        - condition: state
-          entity_id: input_select.home_mode
-          state: Home
-          enabled: false
       sequence:
       - action: climate.turn_on
         metadata: {}
@@ -1919,6 +1917,27 @@
         target:
           entity_id: climate.workshop_hvac
       alias: Eric Home and temp under 40
+    - conditions:
+      - alias: Workshop Humidity is greater than 60
+        condition: template
+        value_template: '{{states(''sensor.workshop_sensor_humidity'')|int > 60 }}'
+      sequence:
+      - action: climate.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: climate.workshop_hvac
+    - conditions:
+      - alias: Workshop Humidity is less than 50 and temperature is greater than 50
+        condition: template
+        value_template: '{{(states(''sensor.workshop_sensor_humidity'')|int < 50)
+          and (states(''sensor.workshop_hvac_indoor_temperature'')|int > 50)}}'
+      sequence:
+      - action: climate.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: climate.workshop_hvac
   mode: single
 - id: turn_on_upstairs_nightlight_motion
   alias: Turn on Nightlights with Motion
@@ -1958,7 +1977,6 @@
         - action: light.turn_on
           metadata: {}
           data:
-            color_temp_kelvin: 2000
             brightness_pct: 50
           target:
             entity_id: light.entryway_nightlight_light
@@ -1987,8 +2005,8 @@
         - action: light.turn_on
           metadata: {}
           data:
+            brightness_pct: 33
             color_temp_kelvin: 2000
-            brightness_pct: 50
           target:
             entity_id:
             - light.upstairs_hallway_nightlight_light
@@ -2516,7 +2534,6 @@
         target:
           entity_id:
           - vacuum.roomba
-          - vacuum.roomba_mainfloor
       alias: If Moday, Wednesday, Friday and Vacation Mode is Off
     - conditions:
       - condition: state
@@ -2529,5 +2546,4 @@
         target:
           entity_id:
           - vacuum.roomba
-          - vacuum.roomba_mainfloor
   mode: single
