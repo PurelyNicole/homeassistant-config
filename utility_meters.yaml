@@ -1,0 +1,41 @@
+daily_energy: # DTE Insight Bridge
+  source: sensor.energy_bridge_kwh
+  cycle: daily
+  name: DTE Energy Meter
+  unique_id: daily_energy
+  offset: 0
+  delta_values: true
+  net_consumption: false
+  tariffs:
+    - peak
+    - offpeak
+
+net_energy_consumption:
+  source: sensor.enphase_combiner_lifetime_net_energy_consumption
+  cycle: daily
+  name: Net Energy Consumption
+  unique_id: net_nergy_consumption
+  offset: 0
+  delta_values: false
+  net_consumption: true
+  tariffs:
+    - Off-Peak
+    - On-Peak
+
+net_energy_production:
+  source: sensor.enphase_combiner_lifetime_net_energy_production
+  cycle: daily
+  name: Net Energy Production
+  unique_id: net_energy_production
+  offset: 0
+  delta_values: false
+  net_consumption: false
+
+solar_production:
+  source: sensor.enphase_combiner_lifetime_energy_production
+  cycle: daily
+  name: Solar Production
+  unique_id: solar_production
+  offset: 0
+  delta_values: false
+  net_consumption: false

@@ -8,6 +8,18 @@
         "type": "grid",
         "flow_from": [
           {
+            "stat_energy_from": "sensor.net_energy_consumption_off_peak",
+            "stat_cost": null,
+            "entity_energy_price": "sensor.dte_tariff",
+            "number_energy_price": null
+          },
+          {
+            "stat_energy_from": "sensor.net_energy_consumption_on_peak",
+            "stat_cost": null,
+            "entity_energy_price": "sensor.dte_tariff",
+            "number_energy_price": null
+          },
+          {
             "stat_energy_from": "sensor.daily_energy_offpeak",
             "stat_cost": null,
             "entity_energy_price": null,
@@ -20,15 +32,20 @@
             "number_energy_price": null
           }
         ],
-        "flow_to": [],
+        "flow_to": [
+          {
+            "stat_energy_to": "sensor.net_energy_production",
+            "stat_compensation": null,
+            "entity_energy_price": "sensor.dte_sell_back_rate",
+            "number_energy_price": null
+          }
+        ],
         "cost_adjustment_day": 0.0
       },
       {
         "type": "solar",
-        "stat_energy_from": "sensor.enphase_combiner_lifetime_energy_production",
-        "config_entry_solar_forecast": [
-          "01JZP5T8C23HNKAPBE3M2BR0RP"
-        ]
+        "stat_energy_from": "sensor.solar_production",
+        "config_entry_solar_forecast": null
       }
     ],
     "device_consumption": [

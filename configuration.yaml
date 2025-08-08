@@ -24,20 +24,6 @@ influxdb:
   max_retries: 3
   default_measurement: state
 
-# Create Utility Meter
-utility_meter:
-  daily_energy:
-    source: sensor.energy_bridge_kwh
-    cycle: daily
-    name: DTE Energy Meter
-    unique_id: daily_energy
-    offset: 0
-    delta_values: true
-    net_consumption: false
-    tariffs:
-      - peak
-      - offpeak
-
 # Includes for integrations
 automation: !include automations.yaml
 binary_sensor: !include binary_sensors.yaml
@@ -52,6 +38,7 @@ sensor: !include sensors.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 switch: !include switches.yaml
+utility_meter: !include utility_meters.yaml
 
 # Custom Log Levels
 logger:
@@ -60,4 +47,4 @@ logger:
     roombapy.roomba: error
     custom_components.openmediavault.omv_api: error
     homeassistant.components.openevse: error
-    homeassistant.components.python_script: debug
+    homeassistant.components.python_script: warning

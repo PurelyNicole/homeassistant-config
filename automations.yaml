@@ -2291,7 +2291,14 @@
         data:
           option: peak
         target:
-          entity_id: select.daily_energy
+          entity_id:
+          - select.daily_energy
+      - action: select.select_option
+        metadata: {}
+        data:
+          option: On-Peak
+        target:
+          entity_id: select.net_energy_consumption
     - conditions:
       - condition: state
         entity_id: schedule.dte_peak_hours
@@ -2302,7 +2309,14 @@
         data:
           option: offpeak
         target:
-          entity_id: select.daily_energy
+          entity_id:
+          - select.daily_energy
+      - action: select.select_option
+        metadata: {}
+        data:
+          option: Off-Peak
+        target:
+          entity_id: select.net_energy_consumption
   mode: single
 - id: turn_off_appletv_with_musiccast
   alias: Turn off AppleTV with MusicCast
@@ -2546,4 +2560,29 @@
         target:
           entity_id:
           - vacuum.roomba
+  mode: single
+- id: '1754157399244'
+  alias: Turn off Living/Dining Room Lights with Motion
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.living_dining_room_motion
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  conditions:
+  - condition: state
+    entity_id: input_select.home_mode
+    state: Home
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id:
+      - living_room
+      - dining_room
   mode: single
