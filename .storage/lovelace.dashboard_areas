@@ -1606,14 +1606,6 @@
               "show_name": false,
               "show_state": true,
               "show_icon": true,
-              "entity": "sensor.masterbedroom_hvac_boost_humidity",
-              "color": "indigo"
-            },
-            {
-              "type": "entity",
-              "show_name": false,
-              "show_state": true,
-              "show_icon": true,
               "entity": "binary_sensor.bedroom_ecobee_sensor_occupancy"
             }
           ],
@@ -2316,6 +2308,9 @@
                     },
                     {
                       "entity": "automation.turn_off_dehumidifiers_and_turn_up_fan_during_peak_hours"
+                    },
+                    {
+                      "entity": "automation.turn_off_living_dining_room_lights_with_motion"
                     }
                   ],
                   "state_color": true
@@ -5410,6 +5405,9 @@
                     },
                     {
                       "entity": "automation.roborock_schedule"
+                    },
+                    {
+                      "entity": "automation.turn_off_living_dining_room_lights_with_motion"
                     }
                   ],
                   "state_color": true
