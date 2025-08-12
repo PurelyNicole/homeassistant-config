@@ -2858,26 +2858,31 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "sensor.charging_status"
-                    },
-                    {
-                      "entity": "sensor.charge_time_elapsed"
-                    },
-                    {
-                      "entity": "sensor.ambient_temperature"
-                    },
-                    {
-                      "entity": "sensor.total_usage"
-                    },
-                    {
-                      "entity": "sensor.usage_this_session"
-                    }
-                  ],
-                  "title": "OpenEVSE",
-                  "state_color": true
+                  "type": "custom:openevse-card",
+                  "header": true,
+                  "name": "OpenEVSE",
+                  "feat_soc": false,
+                  "feat_range": false,
+                  "feat_max_range": 600,
+                  "feat_max_energy": 100,
+                  "device_id": "259222c83d28bf1f8c4841f8ebfbad03",
+                  "override_entity": "select.openevse_override_state",
+                  "status_entity": "sensor.openevse_station_status",
+                  "power_entity": "sensor.openevse_current_power_usage",
+                  "current_entity": "sensor.openevse_charging_current",
+                  "charge_rate_entity": "number.openevse_charge_rate",
+                  "vehicle_connected_entity": "binary_sensor.openevse_vehicle_connected",
+                  "charging_status_entity": "sensor.openevse_charging_status",
+                  "session_energy_entity": "sensor.openevse_usage_this_session",
+                  "time_elapsed_entity": "sensor.openevse_charge_time_elapsed",
+                  "wifi_signal_strength_entity": "sensor.openevse_wifi_signal_strength",
+                  "limit_active_entity": "binary_sensor.limit_active",
+                  "divert_active_entity": "binary_sensor.openevse_divert_active",
+                  "divert_mode_entity": "sensor.openevse_divert_mode",
+                  "pv_charge_rate_entity": "sensor.openevse_pv_charge_rate",
+                  "vehicle_battery_level_entity": "",
+                  "vehicle_range_entity": "",
+                  "optional_entities": []
                 }
               ]
             }
@@ -4644,19 +4649,6 @@
                 },
                 {
                   "type": "markdown",
-                  "content": "## [TasmoAdmin](http://192.168.1.50:9541/devices)\n\nManage Tasmota devices."
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "markdown",
-                  "content": "## [HortusFox](http://192.168.1.100:7568)\n\nHouseplant care."
-                },
-                {
-                  "type": "markdown",
                   "content": "## [UniFi](https://192.168.1.1/network/default/dashboard)\n\nDoes not use HA password."
                 }
               ]
@@ -4666,7 +4658,7 @@
               "cards": [
                 {
                   "type": "markdown",
-                  "content": "## [Mealie](http://192.168.1.50:9090)\n\nRecipies and Meal Plans.\n"
+                  "content": "## [HortusFox](http://192.168.1.100:7568)\n\nHouseplant care."
                 }
               ]
             },
@@ -4676,6 +4668,15 @@
                 {
                   "type": "markdown",
                   "content": "## [Portainer](http://192.168.1.50:9000)\n\nManage containers."
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [TasmoAdmin](http://192.168.1.50:9541/devices)\n\nManage Tasmota devices."
                 }
               ]
             },
@@ -4695,20 +4696,7 @@
               "cards": [
                 {
                   "type": "markdown",
-                  "content": "## [Grafana](/hassio/ingress/a0d7b954_grafana)"
-                },
-                {
-                  "type": "markdown",
-                  "content": "## [Mealie](/hassio/ingress/db21ed7f_mealie)"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "markdown",
-                  "content": "## [InfluxDB](/hassio/ingress/a0d7b954_influxdb)"
+                  "content": "## [ESPHome Device Builder](/hassio/ingress/5c53de3b_esphome)"
                 },
                 {
                   "type": "markdown",
@@ -4721,7 +4709,20 @@
               "cards": [
                 {
                   "type": "markdown",
-                  "content": "## [ESPHome Device Builder](/hassio/ingress/5c53de3b_esphome)"
+                  "content": "## [Grafana](/hassio/ingress/a0d7b954_grafana)"
+                },
+                {
+                  "type": "markdown",
+                  "content": "## [SQLite Web](/hassio/ingress/a0d7b954_sqlite-web)"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [InfluxDB](/hassio/ingress/a0d7b954_influxdb)"
                 },
                 {
                   "type": "markdown",
@@ -4735,6 +4736,10 @@
                 {
                   "type": "markdown",
                   "content": "## [Matter Server](/hassio/ingress/core_matter_server)"
+                },
+                {
+                  "type": "markdown",
+                  "content": "## [Terminal](/hassio/ingress/core_ssh)"
                 }
               ]
             }

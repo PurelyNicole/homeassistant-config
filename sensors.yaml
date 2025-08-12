@@ -95,13 +95,3 @@
     {{ as_timestamp(now()) - (7*86400) }}
   duration: 00:00:30
   unique_id: sensor.replay_living_room_wall_dimmer
-
-# Open EVSE
-- platform: openevse
-  host: 192.168.50.133
-  monitored_variables:
-    - status
-    - charge_time
-    - ambient_temp
-    - usage_session
-    - usage_total
