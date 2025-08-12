@@ -18,18 +18,6 @@
             "stat_cost": null,
             "entity_energy_price": "sensor.dte_tariff",
             "number_energy_price": null
-          },
-          {
-            "stat_energy_from": "sensor.daily_energy_offpeak",
-            "stat_cost": null,
-            "entity_energy_price": null,
-            "number_energy_price": null
-          },
-          {
-            "stat_energy_from": "sensor.daily_energy_peak",
-            "stat_cost": null,
-            "entity_energy_price": null,
-            "number_energy_price": null
           }
         ],
         "flow_to": [
@@ -45,7 +33,9 @@
       {
         "type": "solar",
         "stat_energy_from": "sensor.solar_production",
-        "config_entry_solar_forecast": null
+        "config_entry_solar_forecast": [
+          "01JZP5T8C23HNKAPBE3M2BR0RP"
+        ]
       }
     ],
     "device_consumption": [
@@ -56,6 +46,10 @@
       {
         "stat_consumption": "sensor.bedroom_air_purifier_energy_today",
         "name": "Bedroom Air Purifier"
+      },
+      {
+        "stat_consumption": "sensor.blue_air_fan_summation_delivered",
+        "name": "Blue Air Fan"
       },
       {
         "stat_consumption": "sensor.dehumidifier_energy_today",
@@ -116,6 +110,10 @@
       {
         "stat_consumption": "sensor.rock_tumbler_energy_today",
         "name": "Rock Tumbler"
+      },
+      {
+        "stat_consumption": "sensor.step_lights_energy",
+        "name": "Step Lights"
       },
       {
         "stat_consumption": "sensor.washer_energy",

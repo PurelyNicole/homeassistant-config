@@ -1922,6 +1922,17 @@
                     "brightness",
                     "last_updated"
                   ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "fan.blue_air_fan",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ]
                 }
               ]
             },
@@ -1953,7 +1964,7 @@
                 },
                 {
                   "type": "media-control",
-                  "entity": "media_player.musiccast_preamp",
+                  "entity": "media_player.den_musiccast_preamp",
                   "visibility": [
                     {
                       "condition": "state",
@@ -3443,21 +3454,6 @@
                   "icon_tap_action": {
                     "action": "more-info"
                   }
-                },
-                {
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
-                  ],
-                  "type": "tile",
-                  "entity": "switch.rock_tumbler",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ]
                 }
               ]
             },
@@ -3478,6 +3474,9 @@
                     },
                     {
                       "entity": "automation.lights_turn_off_garage_lights_with_no_motion"
+                    },
+                    {
+                      "entity": "automation.turn_off_rock_tumblers_if_one_drops_to_zero_rpm"
                     }
                   ]
                 },
@@ -3497,6 +3496,46 @@
                       "entity": "script.goodnight"
                     }
                   ]
+                },
+                {
+                  "type": "heading",
+                  "icon": "mdi:cylinder",
+                  "heading": "Rock Tumblers",
+                  "heading_style": "title"
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.rock_tumbler_a_rpm",
+                  "detail": 2,
+                  "name": "Rock Tumbler A",
+                  "unit": "RPM"
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.rock_tumbler_b_rpm",
+                  "detail": 2,
+                  "name": "Rock Tumbler B",
+                  "unit": "RPM"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "switch.rock_tumbler",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 }
               ]
             },
@@ -5794,7 +5833,7 @@
                 },
                 {
                   "type": "tile",
-                  "entity": "sensor.samsung_m332x_382x_402x_series_toner_black",
+                  "entity": "sensor.samsung_printer_toner_level",
                   "features_position": "bottom",
                   "vertical": false,
                   "name": "Printer Toner",
@@ -5804,10 +5843,18 @@
                   ],
                   "icon_tap_action": {
                     "action": "more-info"
-                  },
-                  "grid_options": {
-                    "columns": "full"
                   }
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.samsung_printer_problem",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Printer Problem",
+                  "state_content": [
+                    "state",
+                    "last_changed"
+                  ]
                 }
               ]
             },

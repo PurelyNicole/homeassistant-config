@@ -1648,6 +1648,9 @@
                     },
                     {
                       "entity": "switch.nicole_office_air_purifier"
+                    },
+                    {
+                      "entity": "fan.blue_air_fan"
                     }
                   ],
                   "state_color": true,
@@ -4003,7 +4006,7 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "sensor.samsung_m332x_382x_402x_series_toner_black"
+                      "entity": "sensor.samsung_printer_toner_level"
                     }
                   ]
                 },

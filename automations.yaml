@@ -1494,6 +1494,7 @@
           - switch.dining_room_air_purifier
           - switch.bedroom_air_purifier
           - switch.nicole_office_air_purifier
+          - switch.blue_air_fan
       - alias: Turn off thermostat
         action: climate.set_hvac_mode
         metadata: {}
@@ -1517,6 +1518,9 @@
           - switch.dining_room_air_purifier
           - switch.bedroom_air_purifier
           - switch.nicole_office_air_purifier
+      - action: script.blue_air_fan_control
+        metadata: {}
+        data: {}
   mode: single
 - id: doorbell_snapshot
   alias: Notify on doorbell ring.
@@ -2585,4 +2589,64 @@
       area_id:
       - living_room
       - dining_room
+  mode: single
+- id: '1754873682625'
+  alias: 'Turn off Blue Air fan when HVAC not running '
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - climate.ecobee_thermostat
+    attribute: hvac_action
+    to: cooling
+  - trigger: state
+    entity_id:
+    - climate.ecobee_thermostat
+    attribute: hvac_action
+    to: heating
+  - trigger: state
+    entity_id:
+    - climate.ecobee_thermostat
+    attribute: hvac_action
+    to: idle
+  conditions: []
+  actions:
+  - action: script.blue_air_fan_control
+    metadata: {}
+    data: {}
+  mode: single
+- id: '1754935732887'
+  alias: Turn off rock tumblers if one drops to zero rpm
+  description: ''
+  triggers:
+  - alias: Rock Tumbler A goes to 0.0
+    trigger: template
+    value_template: '{{is_state(''sensor.rock_tumbler_a_rpm'', "0.0")}}'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  - trigger: template
+    value_template: '{{is_state(''sensor.rock_tumbler_b_rpm'', "0.0")}}'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    alias: Rock Tumbler B goes to 0.0
+  conditions:
+  - condition: state
+    entity_id: switch.rock_tumbler
+    state: 'on'
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.rock_tumbler
+  - action: notify.mobile_app_nicole_iphone
+    metadata: {}
+    data:
+      message: Rock tumbler dropped to 0 RPM. Turning off Tumblers.
+      data:
+        url: /dashboard-areas/areas-garage
   mode: single

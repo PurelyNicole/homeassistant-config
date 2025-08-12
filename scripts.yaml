@@ -45,13 +45,6 @@ wind_down_nicole:
     data: {}
     target:
       entity_id: fan.master_bedroom_fan
-  - action: fan.turn_on
-    continue_on_error: true
-    metadata: {}
-    data:
-      percentage: 40
-    target:
-      entity_id: fan.bedjet_12fa
   description: ''
   icon: mdi:alarm-snooze
 goodnight:
@@ -134,6 +127,11 @@ goodnight:
       - lock.front_door_lock
       - lock.kitchen_door_lock
       - lock.workshop
+  - action: fan.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: fan.blue_air_fan
   - action: switch.turn_off
     continue_on_error: true
     metadata: {}
@@ -247,6 +245,11 @@ goodbye:
     data: {}
     target:
       entity_id: cover.garage_door
+  - action: fan.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: fan.blue_air_fan
   description: ''
   icon: mdi:run
 watch_tv_downstairs:
@@ -592,21 +595,10 @@ energy_saving_mode:
         metadata: {}
         data: {}
         target:
-          entity_id: fan.family_room_fan_south
-      - alias: If not on vacation...
-        if:
-        - condition: state
-          entity_id: input_boolean.vacation_mode
-          state: 'off'
-        then:
-        - alias: Turn up Bedroom Fan
-          action: fan.set_percentage
-          continue_on_error: true
-          metadata: {}
-          data:
-            percentage: 75
-          target:
-            entity_id: fan.master_bedroom_fan
+          entity_id:
+          - fan.family_room_fan_south
+          - fan.master_bedroom_fan
+          - fan.blue_air_fan
       - action: climate.turn_off
         metadata: {}
         data: {}
@@ -808,3 +800,49 @@ goodnight_nicole:
   alias: Goodnight Nicole
   description: ''
   icon: mdi:weather-night
+blue_air_fan_control:
+  sequence:
+  - choose:
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: or
+          conditions:
+          - condition: state
+            entity_id: climate.ecobee_thermostat
+            attribute: hvac_action
+            state: cooling
+          - condition: state
+            entity_id: climate.ecobee_thermostat
+            attribute: hvac_action
+            state: heating
+          alias: If Ecobee is Heating or Cooling
+        - condition: not
+          conditions:
+          - condition: state
+            entity_id: input_select.home_mode
+            state: Sleep
+          - condition: state
+            entity_id: input_select.home_mode
+            state: Away
+          alias: If Home Mode is not Sleep or Away
+        alias: If Ecobee is heating/cooling while we're home
+      sequence:
+      - action: fan.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: fan.blue_air_fan
+    - conditions:
+      - condition: state
+        entity_id: climate.ecobee_thermostat
+        attribute: hvac_action
+        state: idle
+      sequence:
+      - action: fan.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: fan.blue_air_fan
+  alias: Blue Air Fan Control
+  description: ''
