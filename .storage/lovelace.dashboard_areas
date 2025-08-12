@@ -3478,7 +3478,8 @@
                     {
                       "entity": "automation.turn_off_rock_tumblers_if_one_drops_to_zero_rpm"
                     }
-                  ]
+                  ],
+                  "state_color": true
                 },
                 {
                   "type": "heading",

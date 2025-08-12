@@ -59,14 +59,12 @@ def normalOperation():
 def dtePeakSeasonMode():
   logger.info("Enter DTE Peak Season mode.")
   operation_mode = "cool"
-  peak_hours_temp = 80
+  peak_hours_temp = 74
   current_hour = datetime.datetime.now().hour
   
   # Set pre-chill temperatures
-  if today_high >= 75 and today_high <= 84:
+  if today_high >= 75:
     pre_chill_temp = 70
-  elif today_high > 84:
-    pre_chill_temp = 68
   else:
     pre_chill_temp = 72
 

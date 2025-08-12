@@ -78,3 +78,6 @@ operation_mode = setOperationMode()
 callThermostatSetHvacMode(operation_mode)
 preset_mode = setPresetMode()
 callThermostatSetPresetMode(preset_mode)
+
+# TODO: Add logic for kicking on AC with solar. If Current mode is Cool and Current Net Power Consumption < -?? set HVAC to current setpoint minus 1 degree
+# If Current Net Power Consumption > 1 and temperature < 72, set to 72

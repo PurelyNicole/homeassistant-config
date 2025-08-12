@@ -457,26 +457,24 @@
     - condition: state
       state: 'off'
       entity_id: input_boolean.hvac_override
+    - condition: device
+      device_id: 80e2ea7676adeea018b6e96cb57a3af5
+      domain: climate
+      entity_id: 54b1fea52a0a813e5b05b1655dfba00b
+      type: is_hvac_mode
+      hvac_mode: heat
+      alias: Ecobee is heating
   actions:
   - if:
-    - condition: and
+    - condition: or
       conditions:
-      - condition: device
-        device_id: 80e2ea7676adeea018b6e96cb57a3af5
-        domain: climate
-        entity_id: 54b1fea52a0a813e5b05b1655dfba00b
-        type: is_hvac_mode
-        hvac_mode: heat
-        alias: Ecobee is heating
-      - condition: or
-        conditions:
-        - condition: state
-          entity_id: input_select.home_mode
-          state: Sleep
-        - condition: state
-          entity_id: input_select.home_mode
-          state: Wind Down
-        alias: If Home Mode is Sleep or Wind Down
+      - condition: state
+        entity_id: input_select.home_mode
+        state: Sleep
+      - condition: state
+        entity_id: input_select.home_mode
+        state: Wind Down
+      alias: If Home Mode is Sleep or Wind Down
     then:
     - action: climate.set_temperature
       metadata: {}
@@ -988,6 +986,10 @@
     - climate.ecobee_thermostat
     from: unavailable
     trigger: state
+  - trigger: state
+    entity_id:
+    - input_boolean.hvac_override
+    to: 'off'
   conditions:
   - condition: state
     entity_id: input_boolean.vacation_mode
@@ -996,10 +998,10 @@
     entity_id: input_boolean.hvac_override
     state: 'off'
   actions:
-  - data:
+  - action: python_script.set_ecobee_dte
+    data:
       weather: weather.ecobee_thermostat
       thermostat: climate.ecobee_thermostat
-    action: python_script.set_ecobee
   mode: restart
 - id: notify_oven_preheated
   alias: Notification - Notify when oven is done preheating
@@ -2643,10 +2645,11 @@
     data: {}
     target:
       entity_id: switch.rock_tumbler
+    enabled: false
   - action: notify.mobile_app_nicole_iphone
     metadata: {}
     data:
-      message: Rock tumbler dropped to 0 RPM. Turning off Tumblers.
+      message: Rock tumbler dropped to 0 RPM.
       data:
         url: /dashboard-areas/areas-garage
   mode: single
