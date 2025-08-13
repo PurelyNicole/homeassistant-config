@@ -1,54 +1,148 @@
 exclude:
   domains:
     - button
+    - calendar
     - camera
+    - image
     - number
+    - siren
     - update
   entity_globs:
-    - binary_sensor.*_firmware_update
-    - binary_sensor.*_running # if addons are running
+    # 3D Printer Entities
+    - binary_sensor.3d_printer_*
+    - fan.3d_printer_*
+    - select.3d_printer_*
+    - sensor.3d_printer_*
+    - switch.3d_printer_*
+    # Doorbell Entities
+    - select.doorbell_*
+    - switch.doorbell_*
+    - select.reolink_chime_*
+    - switch.reolink_chime_*
+    # MusicCast Entities
+    - select.*_musiccast_display_brightness
+    - select.*_musiccast_equalizer_mode
+    - select.*_musiccast_link_audio_delay
+    - select.*_musiccast_link_audio_quality
+    - select.*_musiccast_link_control
+    - select.*_musiccast_sleep_timer
+    - select.*_musiccast_surround_decoder_device
+    - select.*_musiccast_tone_control_mode
+    - switch.*_musiccast_bass_extension
+    - switch.*_musiccast_enhancer
+    - switch.*_musiccast_adaptive_drc
+    - switch.*_musiccast_extra_bass
+    - switch.*_musiccast_party_mode
+    - switch.*_musiccast_pure_direct
+    - switch.*_musiccast_speaker_a
+    - switch.*_musiccast_speaker_b
+    # OpenEVSE
+    - binary_sensor.openevse_*
+    - sensor.openevse*firmware*
+    # Roborock Entities
+    - binary_sensor.roborock_*
+    - select.roborock_*
+    - select.roborock_*_dock_empty_mode
+    - sensor.roborock_*_cleaning_*
+    - sensor.roborock_*_current_room
+    - sensor.roborock_*_last_clean_*
+    - sensor.roborock_*_total_cleaning_*
+    - switch.roborock_*_child_lock
+    - switch.roborock_*_do_not_disturb
+    - time.roborock_*_do_not_disturb_*
+    # Roomba Entities
     - binary_sensor.roomba*bin_full
-    - sensor.erics_iphone_14_* # Eric iPhone sensors
-    - sensor.eric_ipad* # Eric iPad sensors
-    - sensor.nicole_iphone_* # Nicole iPhone sensors
-    - sensor.*_energy_yesterday # Can get this by looking at "today" value for previous day
+    - sensor.roomba*average_mission_time
+    - sensor.roomba*canceled_missions
+    - sensor.roomba*failed_missions
+    - sensor.roomba*successful_missions
+    - sensor.roomba*total_missions
+    # Samsung Printer
+    - binary_sensor.samsung_printer_*
+    - sensor.samsung_printer*
+    # SmartThings
+    - binary_sensor.oven_*
+    - binary_sensor.washer_*
+    - select.washer*
+    # Misc Entities
+    - sensor.backup_* # Backup
+    - binary_sensor.*_running # HA Supervisor - if addons are running
+    - select.*_power_on_behavior_on_startup # Matter
+    - sensor.mealie*recipe* # Mealie
+    - sensor.forecast_solar_* # Solar Forecast
+    - binary_sensor.omv_* # OMV
+    - sensor.*_safe_exposure_time # Open UV
+    - sensor.sun_next_* # Sun
+    - binary_sensor.*_workday_sensor # Workday
   entities:
-    # Automations
-    - automation.shellies_announce
-    - automation.shellies_discovery
-    # Binary Sensors
+    # BedJet
+    - sensor.bedjet_12fa_runtime_remaining
+    - switch.bedjet_12fa_enable_led
+    - switch.bedjet_12fa_mute_beeps
+    # Change device type of a switch - only track new device type
+    - switch.blue_air_fan
+    - switch.driveway_post_and_tree_lights
+    - switch.entryway_light
+    - switch.family_room_south_fan
+    - switch.green_bath_exhaust_fan
+    - switch.green_bath_vanity_lights
+    - switch.kitchen_overhead_lights
+    - switch.master_bath_fan
+    - switch.lava_lamp
+    - switch.living_room_lamps
+    - switch.nicole_office_floor_lamp
+    - switch.orange_bathroom_shower_switch
+    - switch.pixel_post_light
+    - switch.porch_light
+    # Dishwasher
+    - binary_sensor.dishwasher_connectivity
     - binary_sensor.dishwasher_remote_control
     - binary_sensor.dishwasher_remote_start
-    - binary_sensor.erics_iphone_14_focus
-    - binary_sensor.nicole_iphone_focus
+    - sensor.dishwasher_duration
+    - sensor.dishwasher_program_finished
+    - sensor.dishwasher_program_progress
+    - sensor.dishwasher_remaining_program_time
+    # MINI
+    - binary_sensor.cooper_se_pre_entry_climatization
+    - sensor.cooper_se_charging_end_time
+    - sensor.cooper_se_charging_target
+    # OpenEVSE
+    - light.openevse_led_brightness
+    - sensor.openevse_divert_mode
+    - sensor.openevse_override_state
+    - sensor.openevse_service_level
+    - sensor.openevse_station_status
+    - sensor.openevse_wifi_signal_strength
+    # OMV
     - binary_sensor.omv_config_dirty
     - binary_sensor.omv_reboot_pending
     - binary_sensor.omv_update_available
-    # Selects
-    - select.display_brightness
-    - select.equalizer_mode
-    - select.link_audio_delay
-    - select.link_audio_delay_2
-    - select.link_audio_quality
-    - select.link_audio_quality_2
-    - select.link_control
-    - select.link_control_2
-    - select.sleep_timer
-    - select.sleep_timer_2
-    - select.tone_control_mode
-    # Sensors
-    - sensor.allergy_index_tomorrow
-    - sensor.cooper_se_charging_end_time
-    - sensor.fish_feeder_counter_c1
-    - sensor.fish_feeder_status
-    - sensor.grocy_chores
-    - sensor.hacs
+    - sensor.omv_disk
+    - sensor.omv_disk_primary
     - sensor.omv_sdb
     - sensor.omv_uptime
+    # OpenUV
+    - sensor.current_uv_level
+    - sensor.max_uv_index
+    # Schlage
+    - binary_sensor.workshop_keypad_disabled
+    - select.workshop_auto_lock_time
+    - switch.workshop_1_touch_locking
+    - switch.workshop_keypress_beep
+    # SmartThings
+    - select.oven_lamp
+    - sensor.main_floor_tv_media_playback_status
+    - sensor.main_floor_tv_tv_channel
     - sensor.oven_oven_completion_time
-    - sensor.zigbeebridge_ssid
-    # Change device type switches
-    - switch.family_room_south_fan
-    - switch.globe_lamp
-    - switch.kitchen_overhead_lights
-    - switch.nicole_office_floor_lamp
+    - sensor.oven_oven_mode
+    - sensor.washer_completion_time
+    - switch.main_floor_tv
+    - switch.washer
+    - switch.washer_bubble_soak
+    - switch.washer_wrinkle_prevent
+    # Misc Entities
+    - sensor.allergy_index_tomorrow # IQVIA
+    - sensor.garage_door_dist # OpenGarage
+    - sensor.grocy_chores # Grocy
+    - sensor.last_boot # System Monitor
+    - sensor.oven_oven_completion_time # SmartThings
