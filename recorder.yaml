@@ -64,6 +64,20 @@ exclude:
     - binary_sensor.oven_*
     - binary_sensor.washer_*
     - select.washer*
+    # Z-Wave
+    - binary_sensor.*_default
+    - select.*_state_after_power_failure
+    - sensor.*_last_seen
+    # Zigbeee
+    - select.*_start_up_behavior
+    - select.*_motion_sensitivity
+    - select.*_fading_time
+    - select.*_presence_sensitivity
+    - select.*_keypad_lockout
+    - sensor.*_timestamp
+    - sensor.*_window_covering_type
+    - switch.*_led_trigger_indicator
+    - switch.*_on_only_when_dark
     # Misc Entities
     - sensor.backup_* # Backup
     - binary_sensor.*_running # HA Supervisor - if addons are running
@@ -120,6 +134,7 @@ exclude:
     - sensor.omv_disk
     - sensor.omv_disk_primary
     - sensor.omv_sdb
+    - sensor.omv_system_uptime
     - sensor.omv_uptime
     # OpenUV
     - sensor.current_uv_level
