@@ -84,12 +84,16 @@
         "name": "Hair Straightener"
       },
       {
+        "stat_consumption": "sensor.klipsch_fives_summation_delivered",
+        "name": "Klipsch Fives"
+      },
+      {
         "stat_consumption": "sensor.main_floor_media_center_electric_consumption_kwh",
         "name": "Main Floor Media Center"
       },
       {
-        "stat_consumption": "sensor.usage_this_session",
-        "name": "MINI Charger"
+        "stat_consumption": "sensor.network_rack_summation_delivered",
+        "name": "Network Rack"
       },
       {
         "stat_consumption": "sensor.nicole_desk_work_energy_today",
@@ -102,6 +106,10 @@
       {
         "stat_consumption": "sensor.nicole_office_floor_lamp_energy_today",
         "name": "Nicole Office Floor Lamp"
+      },
+      {
+        "stat_consumption": "sensor.openevse_usage_this_session",
+        "name": "OpenEVSE"
       },
       {
         "stat_consumption": "sensor.pixel_post_light_energy",

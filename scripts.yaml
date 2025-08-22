@@ -117,6 +117,7 @@ goodnight:
       - switch.main_floor_media_center_plug
       - switch.nicole_desk_work
       - switch.den_media_center
+      - switch.klipsch_fives
     data: {}
   - action: lock.lock
     continue_on_error: true
@@ -188,7 +189,9 @@ good_morning:
         metadata: {}
         data: {}
         target:
-          entity_id: switch.main_floor_media_center_plug
+          entity_id:
+          - switch.main_floor_media_center_plug
+          - switch.klipsch_fives
   - action: fan.turn_off
     continue_on_error: true
     metadata: {}
@@ -231,6 +234,7 @@ goodbye:
       - switch.main_floor_media_center_plug
       - switch.nicole_desk_work
       - switch.den_media_center
+      - switch.klipsch_fives
   - action: lock.lock
     continue_on_error: true
     metadata: {}
@@ -640,7 +644,6 @@ energy_saving_mode:
           data: {}
           target:
             entity_id:
-            - switch.rock_tumbler
             - switch.bedroom_air_purifier
             - switch.dining_room_air_purifier
             - switch.nicole_office_air_purifier
@@ -692,7 +695,7 @@ vacation_mode:
           - switch.hair_straightener
           - switch.main_floor_media_center_plug
           - switch.nicole_desk_work
-          - switch.rock_tumbler
+          - switch.klipsch_fives
       - action: remote.turn_off
         continue_on_error: true
         metadata: {}
@@ -743,7 +746,7 @@ vacation_mode:
             - switch.bedroom_air_purifier
             - switch.nicole_office_air_purifier
             - switch.dining_room_air_purifier
-            - switch.rock_tumbler
+            - switch.klipsch_fives
         - action: fan.turn_on
           continue_on_error: true
           metadata: {}
