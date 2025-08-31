@@ -41,7 +41,8 @@
     data: {}
     target:
       entity_id: lock.kitchen_door_lock
-  - if:
+  - alias: If not asleep, turn on mirror
+    if:
     - condition: not
       conditions:
       - condition: state
@@ -59,8 +60,9 @@
       target:
         entity_id:
         - switch.magic_mirror_screen
+        - switch.nicole_desk_personal
+        - switch.klipsch_speakers
       action: switch.turn_on
-    alias: If not asleep, turn on mirror
   - if:
     - alias: If it's dark outside
       condition: or
@@ -82,21 +84,23 @@
         - light.kitchen_mudroom_dimmer
         - light.dining_room_table_dimmer
     alias: If dark, turn on lights
-  - if:
+  - alias: If not working, turn on media center
+    if:
     - condition: or
       conditions:
       - condition: state
         entity_id: binary_sensor.nicole_workday_sensor
         state: 'off'
       - condition: time
-        after: '16:00:00'
+        after: '15:00:00'
     then:
     - action: switch.turn_on
       metadata: {}
       data: {}
       target:
-        entity_id: switch.main_floor_media_center_plug
-    alias: If not working, turn on media center
+        entity_id:
+        - switch.main_floor_media_center_plug
+        - switch.family_room_media_center
   mode: parallel
   max: 10
 - id: goodnight_2am
@@ -563,7 +567,7 @@
   triggers:
   - trigger: state
     entity_id:
-    - binary_sensor.upstairs_refrigerator_door
+    - binary_sensor.upstairs_refrigerator_door_open
     for:
       hours: 0
       minutes: 2
@@ -1390,6 +1394,7 @@
     entity_id:
     - lock.workshop
     to: jammed
+    from: unlocked
   conditions: []
   actions:
   - data:
@@ -2377,7 +2382,9 @@
     metadata: {}
     data: {}
     target:
-      entity_id: switch.main_floor_media_center_plug
+      entity_id:
+      - switch.main_floor_media_center_plug
+      - switch.family_room_media_center
   mode: single
 - id: '1748350438976'
   alias: Turn off printer power if idle for 12 hours
@@ -2652,4 +2659,101 @@
       message: Rock tumbler dropped to 0 RPM.
       data:
         url: /dashboard-areas/areas-garage
+  mode: single
+- id: '1756231359200'
+  alias: Set Bedjet
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - fan.bedjet_12fa
+    to: 'on'
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - alias: Ambient Temperature is 70 or greater
+        condition: template
+        value_template: '{{states(''sensor.bedjet_12fa_ambient_temperature'') | int
+          >= 70}}'
+      sequence:
+      - action: climate.set_hvac_mode
+        metadata: {}
+        data:
+          hvac_mode: cool
+        target:
+          entity_id: climate.bedjet_12fa
+        alias: Turn on BedJet cool
+    - conditions:
+      - alias: Ambient Temperature is less than 70 and greater than 65
+        condition: template
+        value_template: '{{states(''sensor.bedjet_12fa_ambient_temperature'') | int
+          < 70 and states(''sensor.bedjet_12fa_ambient_temperature'') | int > 65}}'
+      sequence:
+      - action: climate.set_hvac_mode
+        metadata: {}
+        data:
+          hvac_mode: cool
+        target:
+          entity_id: climate.bedjet_12fa
+        alias: Turn on BedJet cool
+      - action: number.set_value
+        metadata: {}
+        data:
+          value: '120'
+        target:
+          entity_id: number.bedjet_12fa_runtime_remaining
+        alias: Set BedJet to run for 2 hours
+    - conditions:
+      - alias: Ambient Temperature is less than or equal to 65
+        condition: template
+        value_template: '{{states(''sensor.bedjet_12fa_ambient_temperature'') | int
+          <= 65}}'
+      sequence:
+      - alias: Turn on BedJet Heat
+        action: climate.set_hvac_mode
+        metadata: {}
+        data:
+          hvac_mode: heat
+        target:
+          entity_id: climate.bedjet_12fa
+      - alias: Set BedJet to run for 1 hours
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '60'
+        target:
+          entity_id: number.bedjet_12fa_runtime_remaining
+  mode: single
+- id: '1756480308642'
+  alias: Turn on Family Room Sub with Remote
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - remote.family_room_remote
+    from:
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: remote.family_room_remote
+        state: 'off'
+      sequence:
+      - action: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.family_room_sub
+    - conditions:
+      - condition: state
+        entity_id: remote.family_room_remote
+        state: 'on'
+      sequence:
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.family_room_sub
   mode: single

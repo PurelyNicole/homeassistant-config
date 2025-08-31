@@ -72,6 +72,10 @@
         "name": "Driveway Post and Tree Lights"
       },
       {
+        "stat_consumption": "sensor.eric_desk_summation_delivered",
+        "name": "Eric Desk"
+      },
+      {
         "stat_consumption": "sensor.eric_office_closet_left_summation_delivered",
         "name": "Eric Office Closet - Left"
       },
@@ -80,12 +84,16 @@
         "name": "Eric Office Closet - Right"
       },
       {
-        "stat_consumption": "sensor.hair_straightener_energy_today",
-        "name": "Hair Straightener"
+        "stat_consumption": "sensor.family_room_media_center_bottom_summation_delivered",
+        "name": "Family Room Media Center - Bottom"
       },
       {
-        "stat_consumption": "sensor.klipsch_fives_summation_delivered",
-        "name": "Klipsch Fives"
+        "stat_consumption": "sensor.family_room_media_center_top_summation_delivered",
+        "name": "Family Room Media Center - Top"
+      },
+      {
+        "stat_consumption": "sensor.hvac_blower_summation_delivered",
+        "name": "HVAC Blower"
       },
       {
         "stat_consumption": "sensor.main_floor_media_center_electric_consumption_kwh",
@@ -94,6 +102,10 @@
       {
         "stat_consumption": "sensor.network_rack_summation_delivered",
         "name": "Network Rack"
+      },
+      {
+        "stat_consumption": "sensor.nicole_desk_personal_summation_delivered",
+        "name": "Nicole Desk - Personal"
       },
       {
         "stat_consumption": "sensor.nicole_desk_work_energy_today",
@@ -120,16 +132,30 @@
         "name": "Rock Tumbler"
       },
       {
-        "stat_consumption": "sensor.step_lights_energy",
-        "name": "Step Lights"
+        "stat_consumption": "sensor.smart_stuff_estimated_energy",
+        "name": "Smart Stuff"
       },
       {
         "stat_consumption": "sensor.washer_energy",
         "name": "Washing Machine"
       },
       {
+        "stat_consumption": "sensor.estimated_water_heater_cathcode",
+        "name": "Water Heater Cathcode"
+      },
+      {
+        "stat_consumption": "sensor.workshop_battery_wall_energy_today",
+        "name": "Workshop Battery Wall"
+      },
+      {
         "stat_consumption": "sensor.workshop_hvac_total_energy",
         "name": "Workshop HVAC"
+      },
+      {
+        "stat_consumption": "sensor.well_pump_power_energy"
+      },
+      {
+        "stat_consumption": "sensor.step_lights_energy"
       }
     ]
   }

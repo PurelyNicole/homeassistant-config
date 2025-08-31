@@ -2876,7 +2876,7 @@
                   "session_energy_entity": "sensor.openevse_usage_this_session",
                   "time_elapsed_entity": "sensor.openevse_charge_time_elapsed",
                   "wifi_signal_strength_entity": "sensor.openevse_wifi_signal_strength",
-                  "limit_active_entity": "binary_sensor.limit_active",
+                  "limit_active_entity": "binary_sensor.openevse_limit_active",
                   "divert_active_entity": "binary_sensor.openevse_divert_active",
                   "divert_mode_entity": "sensor.openevse_divert_mode",
                   "pv_charge_rate_entity": "sensor.openevse_pv_charge_rate",
@@ -3662,18 +3662,18 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "tile",
-                  "entity": "switch.main_floor_media_center_plug",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "state_content": [
-                    "state",
-                    "last_changed"
-                  ],
                   "features": [
                     {
                       "type": "toggle"
                     }
+                  ],
+                  "type": "tile",
+                  "entity": "switch.main_floor_media_center_plug",
+                  "features_position": "inline",
+                  "vertical": false,
+                  "state_content": [
+                    "state",
+                    "last_changed"
                   ],
                   "grid_options": {
                     "columns": "full"
@@ -3723,15 +3723,33 @@
                   ],
                   "type": "tile",
                   "entity": "switch.den_media_center",
-                  "features_position": "bottom",
+                  "features_position": "inline",
                   "vertical": false,
                   "grid_options": {
                     "columns": "full"
                   }
                 },
                 {
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "switch.family_room_media_center",
+                  "features_position": "inline",
+                  "vertical": false
+                },
+                {
                   "type": "media-control",
-                  "entity": "media_player.downstairs_musiccast"
+                  "entity": "media_player.downstairs_musiccast",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.family_room_media_center",
+                      "state": "on"
+                    }
+                  ]
                 }
               ]
             },
@@ -4091,19 +4109,16 @@
                       "type": "entity",
                       "entity": "sensor.inverter_b8",
                       "name": "B8",
-                      "attribute": "unit_of_measurement",
                       "state_color": false
                     },
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_b5",
-                      "name": "B5",
-                      "attribute": "unit_of_measurement"
+                      "name": "B5"
                     },
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_b6",
-                      "attribute": "unit_of_measurement",
                       "name": "B6"
                     },
                     {
@@ -4113,20 +4128,17 @@
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_a9",
-                      "attribute": "unit_of_measurement",
                       "name": "A9"
                     },
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_a8",
-                      "name": "A8",
-                      "attribute": "unit_of_measurement"
+                      "name": "A8"
                     },
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_a7",
-                      "name": "A7",
-                      "attribute": "unit_of_measurement"
+                      "name": "A7"
                     }
                   ],
                   "columns": 7,
@@ -4142,44 +4154,37 @@
                   "cards": [
                     {
                       "type": "entity",
-                      "entity": "sensor.inverter_b9",
-                      "attribute": "unit_of_measurement"
+                      "entity": "sensor.inverter_b9"
                     },
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_b4",
-                      "name": "B4",
-                      "attribute": "unit_of_measurement"
+                      "name": "B4"
                     },
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_b7",
-                      "name": "B7",
-                      "attribute": "unit_of_measurement"
+                      "name": "B7"
                     },
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_b2",
-                      "name": "B2",
-                      "attribute": "unit_of_measurement"
+                      "name": "B2"
                     },
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_a4",
-                      "attribute": "unit_of_measurement",
                       "name": "A4"
                     },
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_a5",
-                      "name": "A5",
-                      "attribute": "unit_of_measurement"
+                      "name": "A5"
                     },
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_a6",
-                      "name": "A6",
-                      "attribute": "unit_of_measurement"
+                      "name": "A6"
                     }
                   ],
                   "columns": 7
@@ -4198,26 +4203,22 @@
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_b1",
-                      "name": "B1",
-                      "attribute": "unit_of_measurement"
+                      "name": "B1"
                     },
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_a3",
-                      "name": "A3",
-                      "attribute": "unit_of_measurement"
+                      "name": "A3"
                     },
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_a2",
-                      "name": "A2",
-                      "attribute": "unit_of_measurement"
+                      "name": "A2"
                     },
                     {
                       "type": "entity",
                       "entity": "sensor.inverter_a1",
-                      "name": "A1",
-                      "attribute": "unit_of_measurement"
+                      "name": "A1"
                     }
                   ],
                   "columns": 4,
@@ -4395,9 +4396,12 @@
                     "temperature",
                     "humidity"
                   ],
+                  "features_position": "bottom",
+                  "display_type": "picture",
                   "type": "area",
                   "area": "bedroom",
-                  "navigation_path": "/dashboard-areas/areas-bedroom"
+                  "navigation_path": "/dashboard-areas/areas-bedroom",
+                  "color": ""
                 },
                 {
                   "alert_classes": [
@@ -4421,12 +4425,14 @@
                   ],
                   "sensor_classes": [
                     "temperature",
-                    "humidity",
-                    "illuminance"
+                    "humidity"
                   ],
+                  "features_position": "bottom",
+                  "display_type": "picture",
                   "type": "area",
                   "area": "nicole_office",
-                  "navigation_path": "/dashboard-areas/areas-nicole_office"
+                  "navigation_path": "/dashboard-areas/areas-nicole_office",
+                  "color": ""
                 },
                 {
                   "alert_classes": [
@@ -4700,20 +4706,11 @@
                 },
                 {
                   "type": "markdown",
-                  "content": "## [NodeRED](/hassio/ingress/a0d7b954_nodered)"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "markdown",
-                  "content": "## [Grafana](/hassio/ingress/a0d7b954_grafana)"
+                  "content": "## [EmonCMS](/hassio/ingress/60ed1c84_emoncms)"
                 },
                 {
                   "type": "markdown",
-                  "content": "## [SQLite Web](/hassio/ingress/a0d7b954_sqlite-web)"
+                  "content": "## [Grafana](/hassio/ingress/a0d7b954_grafana)"
                 }
               ]
             },
@@ -4726,7 +4723,11 @@
                 },
                 {
                   "type": "markdown",
-                  "content": "## [VS Code](/hassio/ingress/a0d7b954_vscode)"
+                  "content": "## [Matter Server](/hassio/ingress/core_matter_server)"
+                },
+                {
+                  "type": "markdown",
+                  "content": "## [NodeRED](/hassio/ingress/a0d7b954_nodered)"
                 }
               ]
             },
@@ -4735,13 +4736,21 @@
               "cards": [
                 {
                   "type": "markdown",
-                  "content": "## [Matter Server](/hassio/ingress/core_matter_server)"
+                  "content": "## [SQLite Web](/hassio/ingress/a0d7b954_sqlite-web)"
                 },
                 {
                   "type": "markdown",
                   "content": "## [Terminal](/hassio/ingress/core_ssh)"
+                },
+                {
+                  "type": "markdown",
+                  "content": "## [VS Code](/hassio/ingress/a0d7b954_vscode)"
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": []
             }
           ],
           "header": {

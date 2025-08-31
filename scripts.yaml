@@ -117,8 +117,16 @@ goodnight:
       - switch.main_floor_media_center_plug
       - switch.nicole_desk_work
       - switch.den_media_center
-      - switch.klipsch_fives
+      - switch.workshop_battery_wall
+      - switch.nicole_desk_personal
+      - switch.family_room_media_center
+      - switch.klipsch_speakers
     data: {}
+  - action: fan.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: fan.blue_air_fan
   - action: lock.lock
     continue_on_error: true
     metadata: {}
@@ -128,11 +136,6 @@ goodnight:
       - lock.front_door_lock
       - lock.kitchen_door_lock
       - lock.workshop
-  - action: fan.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: fan.blue_air_fan
   - action: switch.turn_off
     continue_on_error: true
     metadata: {}
@@ -152,46 +155,6 @@ good_morning:
       option: Home
     target:
       entity_id: input_select.home_mode
-  - action: switch.turn_on
-    continue_on_error: true
-    metadata: {}
-    data: {}
-    target:
-      entity_id:
-      - switch.magic_mirror_screen
-  - action: light.turn_on
-    continue_on_error: true
-    metadata: {}
-    data: {}
-    target:
-      entity_id:
-      - light.pixel_post_light
-      - light.stairway_dimmer
-  - choose:
-    - conditions:
-      - condition: state
-        entity_id: binary_sensor.nicole_workday_sensor
-        state: 'on'
-      sequence:
-      - action: switch.turn_on
-        continue_on_error: true
-        metadata: {}
-        data: {}
-        target:
-          entity_id: switch.nicole_desk_work
-    - conditions:
-      - condition: state
-        entity_id: binary_sensor.nicole_workday_sensor
-        state: 'off'
-      sequence:
-      - action: switch.turn_on
-        continue_on_error: true
-        metadata: {}
-        data: {}
-        target:
-          entity_id:
-          - switch.main_floor_media_center_plug
-          - switch.klipsch_fives
   - action: fan.turn_off
     continue_on_error: true
     metadata: {}
@@ -200,6 +163,71 @@ good_morning:
       entity_id:
       - fan.snooz_c0_49_ef_27_a8_62
       - fan.bedjet_12fa
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.pixel_post_light
+  - if:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    then:
+    - action: switch.turn_on
+      continue_on_error: true
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+        - switch.magic_mirror_screen
+        - switch.workshop_battery_wall
+        - switch.nicole_desk_personal
+        - switch.klipsch_speakers
+    - action: light.turn_on
+      continue_on_error: true
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+        - light.stairway_dimmer
+      enabled: false
+    - choose:
+      - conditions:
+        - condition: state
+          entity_id: binary_sensor.nicole_workday_sensor
+          state: 'on'
+        sequence:
+        - action: switch.turn_on
+          continue_on_error: true
+          metadata: {}
+          data: {}
+          target:
+            entity_id: switch.nicole_desk_work
+      - conditions:
+        - condition: state
+          entity_id: binary_sensor.nicole_workday_sensor
+          state: 'off'
+        sequence:
+        - action: switch.turn_on
+          continue_on_error: true
+          metadata: {}
+          data: {}
+          target:
+            entity_id:
+            - switch.main_floor_media_center_plug
+            - switch.family_room_media_center
+    - if:
+      - condition: state
+        entity_id: binary_sensor.eric_in_office_workday_sensor
+        state: 'off'
+      then:
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id:
+          - switch.eric_desk
+          - switch.family_room_media_center
   description: ''
   icon: mdi:weather-sunny
 goodbye:
@@ -234,7 +262,11 @@ goodbye:
       - switch.main_floor_media_center_plug
       - switch.nicole_desk_work
       - switch.den_media_center
-      - switch.klipsch_fives
+      - switch.workshop_battery_wall
+      - switch.nicole_desk_personal
+      - switch.family_room_media_center_bottom
+      - switch.family_room_media_center_top
+      - switch.klipsch_speakers
   - action: lock.lock
     continue_on_error: true
     metadata: {}
@@ -582,6 +614,7 @@ energy_saving_mode:
           - switch.bedroom_air_purifier
           - switch.dining_room_air_purifier
           - switch.nicole_office_air_purifier
+          - switch.workshop_battery_wall
       - action: light.turn_off
         continue_on_error: true
         metadata: {}
@@ -613,40 +646,46 @@ energy_saving_mode:
         entity_id: schedule.dte_peak_hours
         state: 'off'
       sequence:
-      - action: switch.turn_on
-        continue_on_error: true
-        metadata: {}
-        data: {}
-        target:
-          entity_id: switch.dehumidifier
-      - alias: If not on vacation...
-        if:
+      - if:
         - condition: state
-          entity_id: input_boolean.vacation_mode
+          entity_id: binary_sensor.windows
           state: 'off'
         then:
-        - action: fan.set_percentage
-          continue_on_error: true
-          metadata: {}
-          data:
-            percentage: 25
-          target:
-            entity_id: fan.master_bedroom_fan
-        - action: cover.open_cover
-          continue_on_error: true
-          metadata: {}
-          data: {}
-          target:
-            entity_id: cover.all_shades
         - action: switch.turn_on
           continue_on_error: true
           metadata: {}
           data: {}
           target:
-            entity_id:
-            - switch.bedroom_air_purifier
-            - switch.dining_room_air_purifier
-            - switch.nicole_office_air_purifier
+            entity_id: switch.dehumidifier
+        - alias: If not on vacation...
+          if:
+          - condition: state
+            entity_id: input_boolean.vacation_mode
+            state: 'off'
+          then:
+          - action: fan.set_percentage
+            continue_on_error: true
+            metadata: {}
+            data:
+              percentage: 25
+            target:
+              entity_id: fan.master_bedroom_fan
+          - action: cover.open_cover
+            continue_on_error: true
+            metadata: {}
+            data: {}
+            target:
+              entity_id: cover.all_shades
+          - action: switch.turn_on
+            continue_on_error: true
+            metadata: {}
+            data: {}
+            target:
+              entity_id:
+              - switch.bedroom_air_purifier
+              - switch.dining_room_air_purifier
+              - switch.nicole_office_air_purifier
+              - switch.workshop_battery_wall
       - action: climate.turn_on
         metadata: {}
         data: {}
@@ -695,7 +734,9 @@ vacation_mode:
           - switch.hair_straightener
           - switch.main_floor_media_center_plug
           - switch.nicole_desk_work
-          - switch.klipsch_fives
+          - switch.workshop_battery_wall
+          - switch.nicole_desk_personal
+          - switch.family_room_media_center
       - action: remote.turn_off
         continue_on_error: true
         metadata: {}
@@ -746,7 +787,7 @@ vacation_mode:
             - switch.bedroom_air_purifier
             - switch.nicole_office_air_purifier
             - switch.dining_room_air_purifier
-            - switch.klipsch_fives
+            - switch.workshop_battery_wall
         - action: fan.turn_on
           continue_on_error: true
           metadata: {}
