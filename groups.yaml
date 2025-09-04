@@ -50,15 +50,6 @@ downstairs_lights:
     - light.eric_office_light
     - light.lava_lamp
   icon: mdi:lightbulb-group
-basement_lights:
-  name: Basement Lights
-  entities:
-    - light.basement_landing_lights
-    - light.basement_lights_north
-    - light.basement_lights_south
-    - light.basement_stairs_switch
-    - light.utility_room_light
-  icon: mdi:lightbulb-group
 # Room Lights
 family_room_lights:
   name: Family Room Lights

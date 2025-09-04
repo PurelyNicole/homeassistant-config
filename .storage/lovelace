@@ -245,7 +245,7 @@
                       "entity": "group.downstairs_lights"
                     },
                     {
-                      "entity": "group.basement_lights"
+                      "entity": "light.basement_lights"
                     },
                     {
                       "entity": "group.outdoor_lights"
@@ -671,7 +671,7 @@
                       "entity": "group.downstairs_lights"
                     },
                     {
-                      "entity": "group.basement_lights"
+                      "entity": "light.basement_lights"
                     }
                   ],
                   "title": "Lights",
@@ -1155,9 +1155,6 @@
                     },
                     {
                       "entity": "fan.master_bath_fan"
-                    },
-                    {
-                      "entity": "switch.magic_mirror_screen"
                     }
                   ],
                   "title": "Master Bedroom",

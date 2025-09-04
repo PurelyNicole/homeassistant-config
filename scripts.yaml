@@ -54,20 +54,6 @@ goodnight:
     continue_on_error: true
     metadata: {}
     data:
-      percentage: 40
-    target:
-      entity_id: fan.bedjet_12fa
-  - action: fan.turn_on
-    continue_on_error: true
-    metadata: {}
-    data:
-      percentage: 15
-    target:
-      entity_id: fan.snooz_c0_49_ef_27_a8_62
-  - action: fan.turn_on
-    continue_on_error: true
-    metadata: {}
-    data:
       percentage: 25
     target:
       entity_id: fan.master_bedroom_fan
@@ -113,7 +99,6 @@ goodnight:
     continue_on_error: true
     target:
       entity_id:
-      - switch.magic_mirror_screen
       - switch.main_floor_media_center_plug
       - switch.nicole_desk_work
       - switch.den_media_center
@@ -143,6 +128,20 @@ goodnight:
     target:
       entity_id: switch.christmas_tree
     enabled: false
+  - action: fan.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      percentage: 40
+    target:
+      entity_id: fan.bedjet_12fa
+  - action: fan.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      percentage: 15
+    target:
+      entity_id: fan.snooz_c0_49_ef_27_a8_62
   description: ''
   icon: mdi:weather-night
 good_morning:
@@ -155,14 +154,6 @@ good_morning:
       option: Home
     target:
       entity_id: input_select.home_mode
-  - action: fan.turn_off
-    continue_on_error: true
-    metadata: {}
-    data: {}
-    target:
-      entity_id:
-      - fan.snooz_c0_49_ef_27_a8_62
-      - fan.bedjet_12fa
   - action: light.turn_on
     metadata: {}
     data: {}
@@ -179,7 +170,6 @@ good_morning:
       data: {}
       target:
         entity_id:
-        - switch.magic_mirror_screen
         - switch.workshop_battery_wall
         - switch.nicole_desk_personal
         - switch.klipsch_speakers
@@ -228,6 +218,14 @@ good_morning:
           entity_id:
           - switch.eric_desk
           - switch.family_room_media_center
+  - action: fan.turn_off
+    continue_on_error: true
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - fan.snooz_c0_49_ef_27_a8_62
+      - fan.bedjet_12fa
   description: ''
   icon: mdi:weather-sunny
 goodbye:
@@ -257,7 +255,6 @@ goodbye:
     data: {}
     target:
       entity_id:
-      - switch.magic_mirror_screen
       - switch.hair_straightener
       - switch.main_floor_media_center_plug
       - switch.nicole_desk_work
@@ -838,7 +835,6 @@ goodnight_nicole:
     continue_on_error: true
     target:
       entity_id:
-      - switch.magic_mirror_screen
       - switch.nicole_desk_work
     data: {}
   alias: Goodnight Nicole

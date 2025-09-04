@@ -1158,6 +1158,17 @@
                     "state",
                     "last_updated"
                   ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "switch.diy_rock_tumbler",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ]
                 }
               ]
             },
@@ -5579,17 +5590,6 @@
                     "state",
                     "last_changed"
                   ]
-                },
-                {
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
-                  ],
-                  "type": "tile",
-                  "entity": "switch.magic_mirror_screen",
-                  "features_position": "bottom",
-                  "vertical": false
                 }
               ]
             },

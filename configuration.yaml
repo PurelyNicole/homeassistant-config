@@ -33,11 +33,9 @@ mqtt: !include mqtt.yaml
 notify: !include notify.yaml
 recorder: !include recorder.yaml
 rest: !include rest.yaml
-rest_command: !include rest_commands.yaml
 sensor: !include sensors.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
-switch: !include switches.yaml
 utility_meter: !include utility_meters.yaml
 
 # Custom Log Levels

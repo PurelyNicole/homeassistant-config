@@ -44,12 +44,23 @@
         "name": "3D Printer"
       },
       {
+        "stat_consumption": "sensor.ac_power_meter_energy"
+      },
+      {
         "stat_consumption": "sensor.bedroom_air_purifier_energy_today",
         "name": "Bedroom Air Purifier"
       },
       {
         "stat_consumption": "sensor.blue_air_fan_summation_delivered",
         "name": "Blue Air Fan"
+      },
+      {
+        "stat_consumption": "sensor.cameras_estimated_energy_use",
+        "name": "Cameras Estimated"
+      },
+      {
+        "stat_consumption": "sensor.camper_estimated_power_use",
+        "name": "Camper Estimated"
       },
       {
         "stat_consumption": "sensor.dehumidifier_energy_today",
@@ -66,6 +77,10 @@
       {
         "stat_consumption": "sensor.dining_room_air_purifier_summation_delivered",
         "name": "Dining Room Air Purifier"
+      },
+      {
+        "stat_consumption": "sensor.diy_rock_tumbler_summation_delivered",
+        "name": "DIY Rock Tumbler "
       },
       {
         "stat_consumption": "sensor.driveway_post_and_tree_lights_energy",
@@ -90,6 +105,10 @@
       {
         "stat_consumption": "sensor.family_room_media_center_top_summation_delivered",
         "name": "Family Room Media Center - Top"
+      },
+      {
+        "stat_consumption": "sensor.garage_network_switch_power_estimated",
+        "name": "Garage Network Switch Estimated"
       },
       {
         "stat_consumption": "sensor.hvac_blower_summation_delivered",
@@ -132,6 +151,10 @@
         "name": "Rock Tumbler"
       },
       {
+        "stat_consumption": "sensor.step_lights_energy",
+        "name": "Step Lights"
+      },
+      {
         "stat_consumption": "sensor.smart_stuff_estimated_energy",
         "name": "Smart Stuff"
       },
@@ -152,10 +175,12 @@
         "name": "Workshop HVAC"
       },
       {
-        "stat_consumption": "sensor.well_pump_power_energy"
+        "stat_consumption": "sensor.well_pump_power_energy",
+        "name": "Well Pump"
       },
       {
-        "stat_consumption": "sensor.step_lights_energy"
+        "stat_consumption": "sensor.well_water_treatment_power_estimate",
+        "name": "Well Water Treatment Estimate"
       }
     ]
   }
