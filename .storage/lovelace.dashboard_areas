@@ -4426,14 +4426,14 @@
               "show_name": false,
               "show_state": true,
               "show_icon": true,
-              "entity": "binary_sensor.green_bath_motion_sensor"
+              "entity": "binary_sensor.green_bath_water_sensor_moisture"
             },
             {
               "type": "entity",
               "show_name": false,
               "show_state": true,
               "show_icon": true,
-              "entity": "binary_sensor.green_bath_water_sensor_moisture"
+              "entity": "binary_sensor.green_bathroom_nightlight_motion"
             }
           ],
           "subview": true,
@@ -5405,6 +5405,26 @@
               "cards": [
                 {
                   "type": "heading",
+                  "icon": "mdi:motion-sensor",
+                  "heading": "Motion",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.living_room_multi_sensor_motion",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Above Couch"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.living_room_media_center_motion_sensor",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Media Center"
+                },
+                {
+                  "type": "heading",
                   "heading": "Entertainment",
                   "icon": "mdi:multimedia"
                 },
@@ -5428,7 +5448,14 @@
                 },
                 {
                   "type": "media-control",
-                  "entity": "media_player.main_floor_musiccast"
+                  "entity": "media_player.main_floor_musiccast",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "switch.main_floor_media_center_plug",
+                      "state": "on"
+                    }
+                  ]
                 },
                 {
                   "type": "custom:mushroom-media-player-card",
@@ -5534,7 +5561,7 @@
               "show_name": false,
               "show_state": true,
               "show_icon": true,
-              "entity": "binary_sensor.living_room_multi_sensor_motion"
+              "entity": "binary_sensor.living_room_motion_sensors"
             }
           ],
           "cards": [],
@@ -7016,29 +7043,6 @@
                   }
                 },
                 {
-                  "features": [
-                    {
-                      "type": "light-brightness"
-                    },
-                    {
-                      "type": "light-color-temp"
-                    }
-                  ],
-                  "type": "tile",
-                  "entity": "light.upstairs_hallway_nightlight_light",
-                  "name": "Nightlight",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ],
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "icon": "mdi:lightbulb-night"
-                },
-                {
                   "type": "heading",
                   "icon": "mdi:battery-70",
                   "heading": "Batteries",
@@ -7096,9 +7100,6 @@
                   "entities": [
                     {
                       "entity": "automation.notification_smoke_detector_activated"
-                    },
-                    {
-                      "entity": "automation.turn_on_nightlights_with_motion"
                     }
                   ],
                   "state_color": true
@@ -7112,14 +7113,6 @@
               "show_name": false,
               "show_state": true,
               "show_icon": true,
-              "entity": "sensor.upstairs_hallway_nightlight_illuminance",
-              "color": "amber"
-            },
-            {
-              "type": "entity",
-              "show_name": false,
-              "show_state": true,
-              "show_icon": true,
               "entity": "binary_sensor.upstairs_smoke_detector_co_alarm_carbon_monoxide_detected"
             },
             {
@@ -7128,13 +7121,6 @@
               "show_state": true,
               "show_icon": true,
               "entity": "binary_sensor.upstairs_smoke_detector_smoke_alarm_smoke_detected"
-            },
-            {
-              "type": "entity",
-              "show_name": false,
-              "show_state": true,
-              "show_icon": true,
-              "entity": "binary_sensor.upstairs_hallway_nightlight_motion"
             }
           ],
           "subview": true,

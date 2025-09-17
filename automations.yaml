@@ -1959,8 +1959,8 @@
     id: entryway-nightlight-motion
   - trigger: state
     entity_id:
-    - binary_sensor.upstairs_hallway_nightlight_motion
-    id: upstairs-nightlight-motion
+    - binary_sensor.green_bathroom_nightlight_motion
+    id: green-bath-nightlight-motion
   - trigger: state
     entity_id:
     - binary_sensor.downstairs_hallway_nightlight_motion
@@ -1999,17 +1999,17 @@
     - conditions:
       - condition: trigger
         id:
-        - upstairs-nightlight-motion
+        - green-bath-nightlight-motion
       sequence:
       - if:
         - condition: and
           conditions:
           - condition: state
-            entity_id: binary_sensor.upstairs_hallway_nightlight_motion
+            entity_id: binary_sensor.green_bathroom_nightlight_motion
             state: 'on'
           - alias: Luminance is less than 50
             condition: template
-            value_template: '{{ float(states(''sensor.upstairs_hallway_nightlight_illuminance''))
+            value_template: '{{ float(states(''sensor.green_bathroom_nightlight_illuminance''))
               < 20 }}'
         then:
         - action: light.turn_on
@@ -2019,13 +2019,13 @@
             color_temp_kelvin: 2000
           target:
             entity_id:
-            - light.upstairs_hallway_nightlight_light
+            - light.green_bathroom_nightlight
         else:
         - action: light.turn_off
           metadata: {}
           data: {}
           target:
-            entity_id: light.upstairs_hallway_nightlight_light
+            entity_id: light.green_bathroom_nightlight
     - conditions:
       - condition: trigger
         id:
@@ -2175,11 +2175,11 @@
   triggers:
   - trigger: state
     entity_id:
-    - binary_sensor.green_bath_motion_sensor
+    - binary_sensor.green_bathroom_nightlight_motion
     to: 'on'
   - trigger: state
     entity_id:
-    - binary_sensor.green_bath_motion_sensor
+    - binary_sensor.green_bathroom_nightlight_motion
     to: 'off'
     for:
       hours: 0
@@ -2195,7 +2195,7 @@
       - condition: and
         conditions:
         - condition: state
-          entity_id: binary_sensor.green_bath_motion_sensor
+          entity_id: binary_sensor.green_bathroom_nightlight_motion
           state: 'on'
         - condition: state
           entity_id: input_select.home_mode
@@ -2208,7 +2208,7 @@
           entity_id: light.green_bath_vanity_lights
     - conditions:
       - condition: state
-        entity_id: binary_sensor.green_bath_motion_sensor
+        entity_id: binary_sensor.green_bathroom_nightlight_motion
         state: 'off'
         for:
           hours: 0
@@ -2688,6 +2688,13 @@
         target:
           entity_id: climate.bedjet_12fa
         alias: Turn on BedJet cool
+      - alias: Set BedJet to run for 6 hours
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '360'
+        target:
+          entity_id: number.bedjet_12fa_runtime_remaining
     - conditions:
       - alias: Ambient Temperature is less than 70 and greater than 65
         condition: template

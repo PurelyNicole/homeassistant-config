@@ -50,6 +50,14 @@ wind_down_nicole:
 goodnight:
   alias: Goodnight
   sequence:
+  - action: input_select.select_option
+    continue_on_error: true
+    metadata: {}
+    data:
+      option: Sleep
+    target:
+      entity_id: input_select.home_mode
+    enabled: true
   - action: fan.turn_on
     continue_on_error: true
     metadata: {}
@@ -79,14 +87,6 @@ goodnight:
     data: {}
     target:
       entity_id: cover.garage_door
-  - action: input_select.select_option
-    continue_on_error: true
-    metadata: {}
-    data:
-      option: Sleep
-    target:
-      entity_id: input_select.home_mode
-    enabled: true
   - action: fan.turn_on
     continue_on_error: true
     metadata: {}
@@ -95,18 +95,6 @@ goodnight:
     target:
       entity_id:
       - fan.family_room_fan_south
-  - action: switch.turn_off
-    continue_on_error: true
-    target:
-      entity_id:
-      - switch.main_floor_media_center_plug
-      - switch.nicole_desk_work
-      - switch.den_media_center
-      - switch.workshop_battery_wall
-      - switch.nicole_desk_personal
-      - switch.family_room_media_center
-      - switch.klipsch_speakers
-    data: {}
   - action: fan.turn_off
     metadata: {}
     data: {}
@@ -121,6 +109,13 @@ goodnight:
       - lock.front_door_lock
       - lock.kitchen_door_lock
       - lock.workshop
+  - action: fan.turn_on
+    continue_on_error: true
+    metadata: {}
+    data:
+      percentage: 40
+    target:
+      entity_id: fan.bedjet_12fa
   - action: switch.turn_off
     continue_on_error: true
     metadata: {}
@@ -132,16 +127,21 @@ goodnight:
     continue_on_error: true
     metadata: {}
     data:
-      percentage: 40
-    target:
-      entity_id: fan.bedjet_12fa
-  - action: fan.turn_on
-    continue_on_error: true
-    metadata: {}
-    data:
       percentage: 15
     target:
       entity_id: fan.snooz_c0_49_ef_27_a8_62
+  - action: switch.turn_off
+    continue_on_error: true
+    target:
+      entity_id:
+      - switch.main_floor_media_center_plug
+      - switch.nicole_desk_work
+      - switch.den_media_center
+      - switch.workshop_battery_wall
+      - switch.nicole_desk_personal
+      - switch.family_room_media_center
+      - switch.klipsch_speakers
+    data: {}
   description: ''
   icon: mdi:weather-night
 good_morning:

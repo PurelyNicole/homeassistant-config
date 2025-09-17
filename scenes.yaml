@@ -1,1 +1,33 @@
-[]
+- id: '1757095379122'
+  name: Goodnight
+  entities:
+    fan.bedjet_12fa:
+      percentage: 40
+      state: 'on'
+    fan.family_room_fan_south:
+      state: 'on'
+      percentage: 25
+    fan.snooz_c0_49_ef_27_a8_62:
+      percentage: 15
+      state: 'on'
+    fan.blue_air_fan:
+      state: 'off'
+    fan.master_bedroom_fan:
+      percentage: 25
+      state: 'on'
+    light.master_bedroom_light:
+      state: 'off'
+  icon: mdi:weather-night
+  metadata:
+    fan.bedjet_12fa:
+      entity_only: true
+    fan.family_room_fan_south:
+      entity_only: true
+    fan.snooz_c0_49_ef_27_a8_62:
+      entity_only: true
+    fan.blue_air_fan:
+      entity_only: true
+    fan.master_bedroom_fan:
+      entity_only: true
+    light.master_bedroom_light:
+      entity_only: true

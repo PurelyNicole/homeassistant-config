@@ -1168,9 +1168,6 @@
                     },
                     {
                       "entity": "light.upstairs_hallway_light"
-                    },
-                    {
-                      "entity": "light.upstairs_hallway_nightlight_light"
                     }
                   ],
                   "state_color": true,
@@ -1187,6 +1184,9 @@
                     },
                     {
                       "entity": "fan.green_bath_exhaust_fan"
+                    },
+                    {
+                      "entity": "light.green_bathroom_nightlight"
                     }
                   ],
                   "state_color": true,
@@ -2016,7 +2016,7 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "binary_sensor.living_room_multi_sensor_motion",
+                      "entity": "binary_sensor.living_room_motion_sensors",
                       "name": "Living Room"
                     },
                     {
@@ -2047,16 +2047,8 @@
                       "name": "Nicole Office"
                     },
                     {
-                      "entity": "binary_sensor.green_bath_motion_sensor",
-                      "name": "Green Bathroom"
-                    },
-                    {
                       "entity": "binary_sensor.closet_room_motion_sensor_motion",
                       "name": "Closet Room"
-                    },
-                    {
-                      "entity": "binary_sensor.upstairs_hallway_nightlight_motion",
-                      "name": "Upstairs Hallway"
                     },
                     {
                       "type": "divider"
