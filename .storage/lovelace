@@ -331,6 +331,26 @@
                   "show_last_tracked": true,
                   "show_last_tracked_by": false,
                   "show_track_button": true
+                },
+                {
+                  "type": "custom:auto-entities",
+                  "card": {
+                    "type": "entities"
+                  },
+                  "filter": {
+                    "include": [
+                      {
+                        "options": {},
+                        "entity_id": "binary_sensor.simple_plant_todo_*",
+                        "state": "on"
+                      }
+                    ],
+                    "exclude": []
+                  },
+                  "sort": {
+                    "method": "last_changed"
+                  },
+                  "show_empty": false
                 }
               ]
             }
@@ -2905,6 +2925,26 @@
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "custom:auto-entities",
+                  "card": {
+                    "type": "entities"
+                  },
+                  "filter": {
+                    "include": [
+                      {
+                        "options": {},
+                        "entity_id": "binary_sensor.simple_plant_todo_*",
+                        "state": "on"
+                      }
+                    ],
+                    "exclude": []
+                  },
+                  "sort": {
+                    "method": "last_changed"
+                  },
+                  "show_empty": false
+                },
                 {
                   "type": "tile",
                   "entity": "vacuum.roborock_main_floor",
