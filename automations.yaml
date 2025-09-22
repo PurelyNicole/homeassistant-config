@@ -2866,7 +2866,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '34'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -2882,7 +2882,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
@@ -2900,7 +2900,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '7'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -2909,14 +2909,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '5'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '30'
+          value: '32'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -2925,7 +2925,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -3004,7 +3004,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '10'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Monstera
@@ -3018,7 +3018,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '32'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -3034,7 +3034,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
@@ -3052,7 +3052,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '7'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -3061,7 +3061,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '5'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
@@ -3077,7 +3077,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -3156,21 +3156,21 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '8'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Monstera
         action: number.set_value
         metadata: {}
         data:
-          value: '5'
+          value: '3'
         target:
           entity_id: number.simple_plant_days_between_waterings_monstera
       - alias: Set Moonstones
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '30'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -3179,32 +3179,32 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '11'
         target:
           entity_id: number.simple_plant_days_between_waterings_parlor_palm
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '12'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
           - number.simple_plant_days_between_waterings_eric_office_pothos
-      - action: number.set_value
+      - alias: Set Prayer Plants
+        action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '11'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_prayer_plant_1
           - number.simple_plant_days_between_waterings_prayer_plant_2
-        alias: Set Prayer Plants
       - alias: Set Purple Spider Worts
         action: number.set_value
         metadata: {}
         data:
-          value: '7'
+          value: '12'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -3213,14 +3213,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '3'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '30'
+          value: '24'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -3229,7 +3229,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '12'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -3308,21 +3308,21 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '7'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Monstera
         action: number.set_value
         metadata: {}
         data:
-          value: '5'
+          value: '2'
         target:
           entity_id: number.simple_plant_days_between_waterings_monstera
       - alias: Set Moonstones
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '25'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -3331,14 +3331,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '9'
         target:
           entity_id: number.simple_plant_days_between_waterings_parlor_palm
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '10'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
@@ -3356,7 +3356,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '7'
+          value: '10'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -3365,14 +3365,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '3'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '30'
+          value: '21'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -3381,7 +3381,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '10'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -3460,21 +3460,21 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '6'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Monstera
         action: number.set_value
         metadata: {}
         data:
-          value: '5'
+          value: '1'
         target:
           entity_id: number.simple_plant_days_between_waterings_monstera
       - alias: Set Moonstones
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '21'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -3483,32 +3483,32 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '8'
         target:
           entity_id: number.simple_plant_days_between_waterings_parlor_palm
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '8'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
           - number.simple_plant_days_between_waterings_eric_office_pothos
-      - action: number.set_value
+      - alias: Set Prayer Plants
+        action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '8'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_prayer_plant_1
           - number.simple_plant_days_between_waterings_prayer_plant_2
-        alias: Set Prayer Plants
       - alias: Set Purple Spider Worts
         action: number.set_value
         metadata: {}
         data:
-          value: '7'
+          value: '8'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -3517,14 +3517,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '2'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '30'
+          value: '17'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -3533,7 +3533,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '8'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -3612,21 +3612,21 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '5'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Monstera
         action: number.set_value
         metadata: {}
         data:
-          value: '5'
+          value: '1'
         target:
           entity_id: number.simple_plant_days_between_waterings_monstera
       - alias: Set Moonstones
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -3635,32 +3635,32 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '7'
         target:
           entity_id: number.simple_plant_days_between_waterings_parlor_palm
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '8'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
           - number.simple_plant_days_between_waterings_eric_office_pothos
-      - action: number.set_value
-        metadata: {}
-        data:
-          value: '14'
-        target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_prayer_plant_1
-          - number.simple_plant_days_between_waterings_prayer_plant_2
-        alias: Set Prayer Plants
-      - alias: Set Purple Spider Worts
+      - alias: Set Prayer Plants
         action: number.set_value
         metadata: {}
         data:
           value: '7'
+        target:
+          entity_id:
+          - number.simple_plant_days_between_waterings_prayer_plant_1
+          - number.simple_plant_days_between_waterings_prayer_plant_2
+      - alias: Set Purple Spider Worts
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '8'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -3669,14 +3669,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '2'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '30'
+          value: '15'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -3685,7 +3685,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '8'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -3764,14 +3764,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '6'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Monstera
         action: number.set_value
         metadata: {}
         data:
-          value: '5'
+          value: '1'
         target:
           entity_id: number.simple_plant_days_between_waterings_monstera
       - alias: Set Moonstones
@@ -3787,32 +3787,32 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '7'
         target:
           entity_id: number.simple_plant_days_between_waterings_parlor_palm
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '8'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
           - number.simple_plant_days_between_waterings_eric_office_pothos
-      - action: number.set_value
-        metadata: {}
-        data:
-          value: '14'
-        target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_prayer_plant_1
-          - number.simple_plant_days_between_waterings_prayer_plant_2
-        alias: Set Prayer Plants
-      - alias: Set Purple Spider Worts
+      - alias: Set Prayer Plants
         action: number.set_value
         metadata: {}
         data:
           value: '7'
+        target:
+          entity_id:
+          - number.simple_plant_days_between_waterings_prayer_plant_1
+          - number.simple_plant_days_between_waterings_prayer_plant_2
+      - alias: Set Purple Spider Worts
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '9'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -3821,14 +3821,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '2'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '30'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -3837,7 +3837,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '8'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -3916,21 +3916,21 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '6'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Monstera
         action: number.set_value
         metadata: {}
         data:
-          value: '5'
+          value: '2'
         target:
           entity_id: number.simple_plant_days_between_waterings_monstera
       - alias: Set Moonstones
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '21'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -3939,27 +3939,27 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '9'
         target:
           entity_id: number.simple_plant_days_between_waterings_parlor_palm
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
         data:
-          value: '17'
+          value: '9'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
           - number.simple_plant_days_between_waterings_eric_office_pothos
-      - action: number.set_value
+      - alias: Set Prayer Plants
+        action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '2'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_prayer_plant_1
           - number.simple_plant_days_between_waterings_prayer_plant_2
-        alias: Set Prayer Plants
       - alias: Set Purple Spider Worts
         action: number.set_value
         metadata: {}
@@ -3973,14 +3973,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '3'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '30'
+          value: '17'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -3989,7 +3989,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '9'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -4082,7 +4082,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '24'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -4220,21 +4220,21 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '8'
+          value: '10'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Monstera
         action: number.set_value
         metadata: {}
         data:
-          value: '2'
+          value: '3'
         target:
           entity_id: number.simple_plant_days_between_waterings_monstera
       - alias: Set Moonstones
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '26'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -4243,14 +4243,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '12'
         target:
           entity_id: number.simple_plant_days_between_waterings_parlor_palm
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '12'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
@@ -4259,7 +4259,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '12'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_prayer_plant_1
@@ -4268,7 +4268,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '12'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -4277,14 +4277,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '3'
+          value: '4'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '22'
+          value: '28'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -4293,7 +4293,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '12'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -4372,21 +4372,21 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '8'
+          value: '12'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Monstera
         action: number.set_value
         metadata: {}
         data:
-          value: '2'
+          value: '5'
         target:
           entity_id: number.simple_plant_days_between_waterings_monstera
       - alias: Set Moonstones
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '32'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -4395,14 +4395,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '14'
         target:
           entity_id: number.simple_plant_days_between_waterings_parlor_palm
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
@@ -4411,7 +4411,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '14'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_prayer_plant_1
@@ -4420,7 +4420,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -4429,14 +4429,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '3'
+          value: '5'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '22'
+          value: '32'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -4445,7 +4445,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -4524,21 +4524,21 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '8'
+          value: '12'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Monstera
         action: number.set_value
         metadata: {}
         data:
-          value: '2'
+          value: '5'
         target:
           entity_id: number.simple_plant_days_between_waterings_monstera
       - alias: Set Moonstones
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '34'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -4547,14 +4547,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '14'
         target:
           entity_id: number.simple_plant_days_between_waterings_parlor_palm
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
@@ -4563,7 +4563,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '14'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_prayer_plant_1
@@ -4572,7 +4572,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -4581,14 +4581,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '3'
+          value: '5'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '22'
+          value: '32'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -4597,7 +4597,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1

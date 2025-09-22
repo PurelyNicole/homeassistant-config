@@ -322,20 +322,10 @@
                   "state_color": true
                 },
                 {
-                  "type": "custom:grocy-chores-card",
-                  "entity": "sensor.grocy_chores",
-                  "title": "Chorin'",
-                  "show_quantity": 5,
-                  "show_days": 3,
-                  "show_assigned": false,
-                  "show_last_tracked": true,
-                  "show_last_tracked_by": false,
-                  "show_track_button": true
-                },
-                {
                   "type": "custom:auto-entities",
                   "card": {
-                    "type": "entities"
+                    "type": "entities",
+                    "title": "Plant Care"
                   },
                   "filter": {
                     "include": [
@@ -351,6 +341,17 @@
                     "method": "last_changed"
                   },
                   "show_empty": false
+                },
+                {
+                  "type": "custom:grocy-chores-card",
+                  "entity": "sensor.grocy_chores",
+                  "title": "Chorin'",
+                  "show_quantity": 5,
+                  "show_days": 3,
+                  "show_assigned": false,
+                  "show_last_tracked": true,
+                  "show_last_tracked_by": false,
+                  "show_track_button": true
                 }
               ]
             }
@@ -2928,7 +2929,8 @@
                 {
                   "type": "custom:auto-entities",
                   "card": {
-                    "type": "entities"
+                    "type": "entities",
+                    "title": "Plant Care"
                   },
                   "filter": {
                     "include": [
