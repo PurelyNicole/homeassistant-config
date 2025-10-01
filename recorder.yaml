@@ -60,6 +60,11 @@ exclude:
     # Samsung Printer
     - binary_sensor.samsung_printer_*
     - sensor.samsung_printer*
+    # Simple Plant Sensors
+    - binary_sensor.simple_plant_*
+    - date.simple_plant_*
+    - select.simple_plant_*
+    - sensor.simple_plant_*
     # SmartThings
     - binary_sensor.oven_*
     - binary_sensor.washer_*
