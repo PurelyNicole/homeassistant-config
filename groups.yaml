@@ -40,6 +40,7 @@ main_floor_lights:
     - group.living_dining_room_lights
     - light.entryway_light
     - light.half_bath_light
+    - light.main_floor_hallway
   icon: mdi:lightbulb-group
 downstairs_lights:
   name: Downstairs Lights
@@ -48,7 +49,6 @@ downstairs_lights:
     - group.den_lights
     - group.orange_bathroom_lights
     - light.eric_office_light
-    - light.lava_lamp
   icon: mdi:lightbulb-group
 # Room Lights
 family_room_lights:
@@ -119,6 +119,7 @@ orange_bathroom_lights:
   name: Orange Bathroom Lights
   entities:
     - light.orange_bathroom_shower_switch
+    - light.orange_bathroom_lights
   icon: mdi:lightbulb-group
 green_bathroom_lights:
   name: Green Bathroom Lights

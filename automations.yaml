@@ -656,7 +656,7 @@
       sequence:
       - data: {}
         target:
-          entity_id: light.kitchen_window_seat_light
+          area_id: kitchen
         action: light.turn_off
   mode: queued
   max: 5
@@ -993,6 +993,7 @@
     entity_id:
     - input_boolean.hvac_override
     to: 'off'
+    enabled: true
   conditions:
   - condition: state
     entity_id: input_boolean.vacation_mode
@@ -1167,6 +1168,8 @@
         - binary_sensor.front_door_lock_replace_battery_now
         - binary_sensor.front_door_lock_replace_battery_soon
         - sensor.iphone_watch_battery_level
+        - sensor.dining_room_shades_battery
+        - sensor.living_room_shades_left_battery
       time: '11:00:00'
       threshold: 30
 - id: utility_lights_door
@@ -1401,37 +1404,6 @@
       data:
         url: /lovelace/doors-and-windows
     action: notify.notify_nicole_and_eric
-  mode: single
-- id: lighting_turn_on_lava_lamp_on_eric_wfh_days
-  alias: Turn on Lava Lamp on Eric WFH Days
-  description: ''
-  triggers:
-  - at: 04:00:00
-    trigger: time
-  conditions:
-  - condition: state
-    state: 'on'
-    entity_id: binary_sensor.eric_at_home_workday_sensor
-  actions:
-  - action: light.turn_on
-    metadata: {}
-    data: {}
-    target:
-      entity_id: light.lava_lamp
-  mode: single
-- id: turn_off_lava_lamp_at_4_00pm
-  alias: Turn Off Lava Lamp at 4:00PM
-  description: ''
-  triggers:
-  - at: '16:00:00'
-    trigger: time
-  conditions: []
-  actions:
-  - action: light.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: light.lava_lamp
   mode: single
 - id: cover_open_shades_when_sun_sets
   alias: Cover - Open shades when sun sets
@@ -1731,15 +1703,18 @@
     entity_id:
     - binary_sensor.bedroom_ecobee_sensor_occupancy
     to: 'off'
-  conditions: []
+  conditions:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.home_mode
+      state: Wind Down
   actions:
   - action: light.turn_off
     metadata: {}
     data: {}
     target:
-      entity_id:
-      - light.master_bedroom_light
-      - light.master_bedroom_closet
+      area_id: bedroom
   mode: single
 - id: basement_control_basement_lights_with_motion
   alias: Basement - Control basement lights with motion
@@ -1844,6 +1819,11 @@
     data: {}
     target:
       area_id: outdoors
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.wled_lights
   - delay:
       hours: 0
       minutes: 0
@@ -2373,9 +2353,13 @@
   - trigger: time
     at: '16:00:00'
   conditions:
-  - condition: state
-    entity_id: input_select.home_mode
-    state: Home
+  - condition: not
+    conditions:
+    - condition: device
+      device_id: fd7ae8ebda3faafe21c87fe16cd3070c
+      domain: media_player
+      entity_id: ba2ee0936469db5b23a0def4b2183286
+      type: is_on
   actions:
   - action: switch.turn_on
     metadata: {}
@@ -2591,9 +2575,16 @@
       minutes: 10
       seconds: 0
   conditions:
-  - condition: state
-    entity_id: input_select.home_mode
-    state: Home
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.home_mode
+      state: Home
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.main_floor_musiccast
+        state: playing
   actions:
   - action: light.turn_off
     metadata: {}
@@ -2627,42 +2618,6 @@
   - action: script.blue_air_fan_control
     metadata: {}
     data: {}
-  mode: single
-- id: '1754935732887'
-  alias: Turn off rock tumblers if one drops to zero rpm
-  description: ''
-  triggers:
-  - alias: Rock Tumbler A goes to 0.0
-    trigger: template
-    value_template: '{{is_state(''sensor.rock_tumbler_a_rpm'', "0.0")}}'
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
-  - trigger: template
-    value_template: '{{is_state(''sensor.rock_tumbler_b_rpm'', "0.0")}}'
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
-    alias: Rock Tumbler B goes to 0.0
-  conditions:
-  - condition: state
-    entity_id: switch.rock_tumbler
-    state: 'on'
-  actions:
-  - action: switch.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: switch.rock_tumbler
-    enabled: false
-  - action: notify.mobile_app_nicole_iphone
-    metadata: {}
-    data:
-      message: Rock tumbler dropped to 0 RPM.
-      data:
-        url: /dashboard-areas/areas-garage
   mode: single
 - id: '1756231359200'
   alias: Set Bedjet
@@ -4155,7 +4110,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '33'
+          value: '28'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_short_leaved_aloe
@@ -4178,21 +4133,21 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '12'
+          value: '13'
         target:
           entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
         data:
-          value: '27'
+          value: '24'
         target:
           entity_id: number.simple_plant_days_between_waterings_cactus
       - alias: Set Crotons
         action: number.set_value
         metadata: {}
         data:
-          value: '5'
+          value: '7'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_corkscrew_croton
@@ -4201,7 +4156,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '13'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
@@ -4211,7 +4166,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '8'
+          value: '5'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_colorama_dragon_tree
@@ -4220,21 +4175,21 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '9'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Monstera
         action: number.set_value
         metadata: {}
         data:
-          value: '3'
+          value: '4'
         target:
           entity_id: number.simple_plant_days_between_waterings_monstera
       - alias: Set Moonstones
         action: number.set_value
         metadata: {}
         data:
-          value: '26'
+          value: '28'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -4250,7 +4205,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '12'
+          value: '13'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
@@ -4268,7 +4223,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '12'
+          value: '13'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -4284,7 +4239,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '28'
+          value: '26'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -4293,7 +4248,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '12'
+          value: '13'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -4602,4 +4557,33 @@
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
           - number.simple_plant_days_between_waterings_spider_plant_2
+  mode: single
+- id: '1758915679413'
+  alias: Restart OpenEVSE every night at 2:00am
+  description: ''
+  triggers:
+  - trigger: time
+    at: 02:00:00
+  conditions: []
+  actions:
+  - action: button.press
+    metadata: {}
+    data: {}
+    target:
+      entity_id: button.openevse_restart_evse
+  mode: single
+- id: '1759346538817'
+  alias: Reload LG integration every 15 minutes
+  description: This is to force the update of energy sensors.
+  triggers:
+  - trigger: time_pattern
+    minutes: /15
+  conditions: []
+  actions:
+  - action: homeassistant.reload_config_entry
+    metadata: {}
+    data:
+      entry_id: 01K6GFCYH9X2EEE95BT27A3A27
+    target:
+      device_id: b9b2fcff576453df69fb5cb70e0043b7
   mode: single

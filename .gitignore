@@ -13,6 +13,7 @@ tts
 www
 
 # Files
+.ha_run.lock
 .HA_VERSION
 .omv_cookies.json
 aircast.xml

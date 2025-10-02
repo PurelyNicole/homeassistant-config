@@ -427,6 +427,7 @@ watch_tv_main_floor:
       - light.entryway_light
       - light.living_room_lamps
       - light.upstairs_hallway_light
+      - light.main_floor_hallway
   - action: light.turn_on
     continue_on_error: true
     metadata: {}
@@ -485,6 +486,16 @@ holiday_lighting:
         value_template: '{{(now().month == 10)}}'
         alias: If it's October...
       sequence:
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.wled_lights
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 10
+          milliseconds: 0
       - device_id: 8298a2b1b686ae77cf250c42d9b41b4d
         domain: select
         entity_id: 4f5ddc3926c19e27cee8f875c09a16b5
@@ -502,6 +513,16 @@ holiday_lighting:
           state: Thanksgiving Day
         alias: If it's Thanksgiving day...
       sequence:
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.wled_lights
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 5
+          milliseconds: 0
       - device_id: 8298a2b1b686ae77cf250c42d9b41b4d
         domain: select
         entity_id: 4f5ddc3926c19e27cee8f875c09a16b5
@@ -513,6 +534,16 @@ holiday_lighting:
         value_template: '{{((now().month == 12))}}'
         alias: If it's December...
       sequence:
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.wled_lights
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 5
+          milliseconds: 0
       - device_id: 8298a2b1b686ae77cf250c42d9b41b4d
         domain: select
         entity_id: 79bed0071f2c3d4794e56f408e876e1c
@@ -623,7 +654,6 @@ energy_saving_mode:
           - light.stairway_dimmer
           - light.kitchenette_led_strip
           - light.step_lights
-          - light.lava_lamp
       - action: fan.turn_off
         continue_on_error: true
         metadata: {}

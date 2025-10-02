@@ -407,9 +407,6 @@
                 },
                 {
                   "entity": "light.eric_office_light"
-                },
-                {
-                  "entity": "light.lava_lamp"
                 }
               ],
               "state_color": true
@@ -1114,6 +1111,9 @@
                     },
                     {
                       "entity": "light.entryway_nightlight_light"
+                    },
+                    {
+                      "entity": "light.main_floor_hallway"
                     }
                   ],
                   "title": "Kitchen Lights"
@@ -1317,9 +1317,6 @@
                   "entities": [
                     {
                       "entity": "light.eric_office_light"
-                    },
-                    {
-                      "entity": "light.lava_lamp"
                     },
                     {
                       "entity": "light.eric_office_closet_left_light"
@@ -2873,8 +2870,8 @@
                   "name": "OpenEVSE",
                   "feat_soc": false,
                   "feat_range": false,
-                  "feat_max_range": 600,
-                  "feat_max_energy": 100,
+                  "feat_max_range": 125,
+                  "feat_max_energy": 50,
                   "device_id": "259222c83d28bf1f8c4841f8ebfbad03",
                   "override_entity": "select.openevse_override_state",
                   "status_entity": "sensor.openevse_station_status",
@@ -3709,31 +3706,6 @@
                   "grid_options": {
                     "columns": "full"
                   }
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "media_player.main_floor_musiccast"
-                    },
-                    {
-                      "entity": "switch.main_floor_tv"
-                    },
-                    {
-                      "entity": "sensor.main_floor_tv_media_input_source"
-                    },
-                    {
-                      "entity": "sensor.main_floor_tv_tv_channel_name"
-                    }
-                  ],
-                  "title": "Main Floor TV",
-                  "visibility": [
-                    {
-                      "condition": "state",
-                      "entity": "switch.main_floor_media_center_plug",
-                      "state": "on"
-                    }
-                  ]
                 },
                 {
                   "type": "media-control",
