@@ -176,6 +176,14 @@
               "cards": [
                 {
                   "type": "custom:simple-plant-card",
+                  "device": "34459538c48c5d1376517a9419e47d0a",
+                  "grid_options": {
+                    "columns": 9,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "type": "custom:simple-plant-card",
                   "device": "018867025505cb63af679a57ab198933",
                   "grid_options": {
                     "columns": 9,
@@ -184,7 +192,7 @@
                 },
                 {
                   "type": "custom:simple-plant-card",
-                  "device": "34459538c48c5d1376517a9419e47d0a",
+                  "device": "2f37a72aa4ee48e8909536b2a49096a8",
                   "grid_options": {
                     "columns": 9,
                     "rows": "auto"
@@ -272,7 +280,7 @@
                 },
                 {
                   "type": "custom:simple-plant-card",
-                  "device": "092d905bcfb9a4ab46899a9a3ea6ac93",
+                  "device": "66e1c82e3304579295ce69d6ecd19f18",
                   "grid_options": {
                     "columns": 9,
                     "rows": "auto"
@@ -297,6 +305,22 @@
                 {
                   "type": "custom:simple-plant-card",
                   "device": "16e91893f606adb2a6842370202ea5b9",
+                  "grid_options": {
+                    "columns": 9,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "type": "custom:simple-plant-card",
+                  "device": "64c15014d16609f0b48924f397a4c886",
+                  "grid_options": {
+                    "columns": 9,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "type": "custom:simple-plant-card",
+                  "device": "807be6ea5c7ba2e7be1f778f46814b95",
                   "grid_options": {
                     "columns": 9,
                     "rows": "auto"
