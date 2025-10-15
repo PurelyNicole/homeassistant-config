@@ -6,5 +6,11 @@ exclude:
     - sensor.*_last_seen
     - sensor.*_node_status # Zwave
     - sensor.replay_* # Replay Sensors
+    - binary_sensor.*motion*
+    - binary_sensor.*_occupancy
+    # Shelly
+    - binary_sensor.*overheating
+    - binary_sensor.*_overpowering
   entities:
     - sensor.zigbeebridge_last_restart_time
+

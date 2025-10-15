@@ -312,45 +312,6 @@
       light_target_9: light.master_bath_light
       replay_sensor_10: sensor.replay_nicole_office_lights
       light_target_10: light.nicole_office_wall_switch
-- id: mini_cool_after_ride
-  alias: Mini - Cool car after ride
-  description: ''
-  triggers:
-  - entity_id:
-    - device_tracker.cooper_se
-    to: Hickory Glen
-    for:
-      hours: 0
-      minutes: 40
-      seconds: 0
-    trigger: state
-  - entity_id:
-    - device_tracker.cooper_se
-    to: Milford Trail
-    for:
-      hours: 0
-      minutes: 45
-      seconds: 0
-    trigger: state
-  - entity_id:
-    - device_tracker.cooper_se
-    to: Tree Farm
-    for:
-      hours: 0
-      minutes: 45
-      seconds: 0
-    trigger: state
-  conditions:
-  - condition: template
-    value_template: '{{state_attr("weather.ecobee_thermostat", "temperature") >= 70}}'
-    alias: Temperature is above 70
-  actions:
-  - action: button.press
-    metadata: {}
-    data: {}
-    target:
-      entity_id: button.cooper_se_activate_air_conditioning
-  mode: single
 - id: vacation_mode_auto
   alias: Vacation Mode
   description: ''
@@ -577,34 +538,6 @@
   - data:
       message: Upstairs refrigerator is open.
     action: notify.notify_nicole_and_eric
-  mode: single
-- id: mini_preconditon_after_work
-  alias: Mini - Precondition after work.
-  description: ''
-  triggers:
-  - at: '15:00:00'
-    trigger: time
-  conditions:
-  - condition: or
-    conditions:
-    - condition: zone
-      entity_id: device_tracker.cooper_se
-      zone: zone.itc
-    - condition: zone
-      entity_id: device_tracker.cooper_se
-      zone: zone.itc_ann_arbor
-    alias: MINI is at work
-  actions:
-  - action: button.press
-    metadata: {}
-    data: {}
-    target:
-      entity_id: button.cooper_se_activate_air_conditioning
-  - action: lock.unlock
-    metadata: {}
-    data: {}
-    target:
-      entity_id: lock.cooper_se_lock
   mode: single
 - id: kitchen_window_seat_light
   alias: Kitchen - Control lights with overhead switch
@@ -884,31 +817,6 @@
           - light.garage_lights_north
           - light.garage_lights_south
         data: {}
-  mode: single
-- id: mini_quota_workaround
-  alias: MINI - Workaround for Quota
-  description: ''
-  triggers:
-  - minutes: /15
-    trigger: time_pattern
-  - entity_id: person.nicole
-    zone: zone.hickory_glen
-    event: enter
-    trigger: zone
-  - entity_id: person.nicole
-    zone: zone.milford_trail
-    event: enter
-    trigger: zone
-  - entity_id: person.nicole
-    zone: zone.tree_farm
-    event: enter
-    trigger: zone
-  conditions: []
-  actions:
-  - data: {}
-    target:
-      entity_id: device_tracker.cooper_se
-    action: homeassistant.update_entity
   mode: single
 - id: hair_straightener_off_30_minutes
   alias: Hair Straightener - Turn off after 30 minutes
@@ -2661,20 +2569,13 @@
         value_template: '{{states(''sensor.bedjet_12fa_ambient_temperature'') | int
           < 70 and states(''sensor.bedjet_12fa_ambient_temperature'') | int > 65}}'
       sequence:
-      - action: climate.set_hvac_mode
+      - alias: Turn on BedJet cool
+        action: climate.set_hvac_mode
         metadata: {}
         data:
-          hvac_mode: cool
+          hvac_mode: 'off'
         target:
           entity_id: climate.bedjet_12fa
-        alias: Turn on BedJet cool
-      - action: number.set_value
-        metadata: {}
-        data:
-          value: '120'
-        target:
-          entity_id: number.bedjet_12fa_runtime_remaining
-        alias: Set BedJet to run for 2 hours
     - conditions:
       - alias: Ambient Temperature is less than or equal to 65
         condition: template
@@ -2688,11 +2589,10 @@
           hvac_mode: heat
         target:
           entity_id: climate.bedjet_12fa
-      - alias: Set BedJet to run for 1 hours
-        action: number.set_value
+      - action: number.set_value
         metadata: {}
         data:
-          value: '60'
+          value: '10'
         target:
           entity_id: number.bedjet_12fa_runtime_remaining
   mode: single
@@ -4783,4 +4683,68 @@
       entry_id: 01K6GFCYH9X2EEE95BT27A3A27
     target:
       device_id: b9b2fcff576453df69fb5cb70e0043b7
+  mode: single
+- id: '1759772741153'
+  alias: Notify - Rock tumbler off for 1 hour
+  description: ''
+  triggers:
+  - type: turned_off
+    device_id: 3cc0375d149030dfe5a853473704e36f
+    entity_id: 5d064ce86705a2e0680a4d850fe8de45
+    domain: switch
+    trigger: device
+    for:
+      hours: 2
+      minutes: 0
+      seconds: 0
+  - type: turned_off
+    device_id: 3cc0375d149030dfe5a853473704e36f
+    entity_id: 5d064ce86705a2e0680a4d850fe8de45
+    domain: switch
+    trigger: device
+    for:
+      hours: 1
+      minutes: 0
+      seconds: 0
+  conditions: []
+  actions:
+  - action: notify.notify_nicole_and_eric
+    metadata: {}
+    data:
+      message: Turn on Rock Tumbler.
+  mode: single
+- id: '1760379968890'
+  alias: Plant Lights
+  description: ''
+  triggers:
+  - trigger: sun
+    event: sunrise
+    id: sunrise
+  - trigger: sun
+    event: sunset
+    offset: 0
+    id: sunset
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - sunrise
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.den_plant_lights
+    - conditions:
+      - condition: trigger
+        id:
+        - sunset
+      sequence:
+      - action: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.den_plant_lights
   mode: single

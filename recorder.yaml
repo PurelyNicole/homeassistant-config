@@ -107,7 +107,6 @@ exclude:
     - switch.green_bath_vanity_lights
     - switch.kitchen_overhead_lights
     - switch.master_bath_fan
-    - switch.lava_lamp
     - switch.living_room_lamps
     - switch.nicole_office_floor_lamp
     - switch.orange_bathroom_shower_switch

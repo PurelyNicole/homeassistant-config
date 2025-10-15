@@ -1873,6 +1873,17 @@
                 },
                 {
                   "type": "tile",
+                  "entity": "switch.den_plant_lights",
+                  "vertical": false,
+                  "features_position": "bottom",
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
                   "entity": "fan.blue_air_fan",
                   "features_position": "bottom",
                   "vertical": false,
@@ -1994,6 +2005,9 @@
                     },
                     {
                       "entity": "automation.turn_on_nightlights_with_motion"
+                    },
+                    {
+                      "entity": "automation.plant_lights"
                     }
                   ],
                   "state_color": true

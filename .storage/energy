@@ -48,10 +48,6 @@
         "name": "Air Purifiers (Combined)"
       },
       {
-        "stat_consumption": "sensor.basement_lights_energy",
-        "name": "Basement Lights"
-      },
-      {
         "stat_consumption": "sensor.cameras_estimated_energy_use",
         "name": "Cameras (Estimated)"
       },
@@ -60,27 +56,15 @@
         "name": "Camper (Estimated)"
       },
       {
-        "stat_consumption": "sensor.closet_room_lights_energy",
-        "name": "Closet Room Lights"
-      },
-      {
         "stat_consumption": "sensor.dehumidifier_energy_today",
         "name": "Dehumidifier"
-      },
-      {
-        "stat_consumption": "sensor.den_lights_energy",
-        "name": "Den Lights"
       },
       {
         "stat_consumption": "sensor.den_media_center_electric_consumption_kwh",
         "name": "Den Media Center"
       },
       {
-        "stat_consumption": "sensor.dining_room_lights_energy",
-        "name": "Dining Room Lights"
-      },
-      {
-        "stat_consumption": "sensor.dishwasher_energy",
+        "stat_consumption": "sensor.dishwasher_energy_estimated",
         "name": "Dishwasher"
       },
       {
@@ -92,59 +76,24 @@
         "name": "Eric Desk"
       },
       {
-        "stat_consumption": "sensor.eric_office_energy",
-        "name": "Eric Office Lights"
-      },
-      {
-        "stat_consumption": "sensor.family_room_lights_energy",
-        "name": "Family Room Lights"
-      },
-      {
         "stat_consumption": "sensor.family_room_media_center_energy",
         "name": "Family Room Media Center"
-      },
-      {
-        "stat_consumption": "sensor.garage_lights_energy",
-        "name": "Garage Lights"
       },
       {
         "stat_consumption": "sensor.garage_network_switch_power_estimated",
         "name": "Garage Network Switch (Estimated)"
       },
       {
-        "stat_consumption": "sensor.green_bath_lights_energy",
-        "name": "Green Bath Lights"
-      },
-      {
-        "stat_consumption": "sensor.hallway_lights_energy",
-        "name": "Hallway Lights"
-      },
-      {
         "stat_consumption": "sensor.hvac_system_energy",
         "name": "HVAC System"
       },
       {
-        "stat_consumption": "sensor.kitchen_lights_energy",
-        "name": "Kitchen Lights"
-      },
-      {
-        "stat_consumption": "sensor.living_room_lights_energy",
-        "name": "Living Room Lights"
+        "stat_consumption": "sensor.lights_energy",
+        "name": "Lights"
       },
       {
         "stat_consumption": "sensor.main_floor_media_center_electric_consumption_kwh",
         "name": "Main Floor Media Center"
-      },
-      {
-        "stat_consumption": "sensor.master_bathroom_lights_energy",
-        "name": "Master Bathroom Lights"
-      },
-      {
-        "stat_consumption": "sensor.master_bedroom_lights_energy",
-        "name": "Master Bedroom Lights"
-      },
-      {
-        "stat_consumption": "sensor.misc_smart_devices_energy"
       },
       {
         "stat_consumption": "sensor.network_rack_summation_delivered",
@@ -155,20 +104,12 @@
         "name": "Nicole Desk"
       },
       {
-        "stat_consumption": "sensor.nicole_office_lights_energy",
-        "name": "Nicole Office Lights"
-      },
-      {
         "stat_consumption": "sensor.openevse_usage_this_session",
         "name": "OpenEVSE"
       },
       {
-        "stat_consumption": "sensor.orange_bath_lights_energy",
-        "name": "Orange Bath Lights"
-      },
-      {
-        "stat_consumption": "sensor.outdoor_lights_energy",
-        "name": "Outdoor Lights"
+        "stat_consumption": "sensor.misc_smart_devices_energy",
+        "name": "Smart Devices"
       },
       {
         "stat_consumption": "sensor.upstairs_refrigerator_energy_this_month",
@@ -183,14 +124,6 @@
         "name": "Water Heater Cathcode"
       },
       {
-        "stat_consumption": "sensor.workshop_battery_wall_energy_today",
-        "name": "Workshop Battery Wall"
-      },
-      {
-        "stat_consumption": "sensor.workshop_hvac_total_energy",
-        "name": "Workshop HVAC"
-      },
-      {
         "stat_consumption": "sensor.well_pump_power_energy",
         "name": "Well Pump"
       },
@@ -201,6 +134,14 @@
       {
         "stat_consumption": "sensor.wled_lights_energy_today",
         "name": "WLED Lights"
+      },
+      {
+        "stat_consumption": "sensor.workshop_battery_wall_energy_today",
+        "name": "Workshop Battery Wall"
+      },
+      {
+        "stat_consumption": "sensor.workshop_hvac_total_energy",
+        "name": "Workshop HVAC"
       }
     ]
   }

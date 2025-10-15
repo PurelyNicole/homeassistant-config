@@ -92,47 +92,26 @@
                   }
                 },
                 {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "tile",
-                      "entity": "person.eric"
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "person.nicole"
-                    }
-                  ]
-                },
-                {
-                  "type": "horizontal-stack",
-                  "cards": [
-                    {
-                      "type": "tile",
-                      "entity": "script.open_garage_door_start_bmw",
-                      "color": "deep-purple",
-                      "name": "Start BMW Open Garage",
-                      "tap_action": {
-                        "action": "perform-action",
-                        "perform_action": "script.open_garage_door_start_bmw",
-                        "target": {}
-                      }
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "button.cooper_se_activate_air_conditioning",
-                      "name": "Start Mini",
-                      "icon": "mdi:car-electric",
-                      "color": "green",
-                      "tap_action": {
-                        "action": "perform-action",
-                        "perform_action": "button.press",
-                        "target": {
-                          "entity_id": "button.cooper_se_activate_air_conditioning"
-                        }
-                      }
-                    }
-                  ]
+                  "type": "custom:solar-bar-card",
+                  "show_header": false,
+                  "show_stats": false,
+                  "show_legend": true,
+                  "header_title": "Current Power Usage",
+                  "use_solcast": false,
+                  "production_entity": "sensor.enphase_combiner_current_power_production",
+                  "forecast_entity": "sensor.forecast_solar_energy_production_today",
+                  "show_weather": false,
+                  "weather_entity": "weather.ecobee_thermostat",
+                  "grid_options": {
+                    "columns": "full"
+                  },
+                  "inverter_size": 5.2,
+                  "self_consumption_entity": "sensor.enphase_combiner_current_power_consumption",
+                  "ev_charger_sensor": "sensor.openevse_current_power_usage",
+                  "grid_power_entity": "sensor.enphase_combiner_current_net_power_consumption",
+                  "invert_grid_power": true,
+                  "show_legend_values": true,
+                  "show_bar_values": false
                 },
                 {
                   "type": "custom:atomic-calendar-revive",
@@ -171,6 +150,11 @@
                       "entity": "calendar.michigan_wolverines_football",
                       "name": "Michigan Wolverines",
                       "color": "#FFCB05"
+                    },
+                    {
+                      "entity": "calendar.detroit_pistons",
+                      "name": "Detroit Pistons",
+                      "color": "#1d42ba"
                     }
                   ],
                   "enableModeChange": true,
@@ -383,6 +367,9 @@
                 },
                 {
                   "entity": "light.cd_shelf_dimmer"
+                },
+                {
+                  "entity": "light.den_plant_lights"
                 },
                 {
                   "type": "divider"
@@ -616,6 +603,11 @@
                       "entity": "calendar.michigan_wolverines_football",
                       "name": "Michigan Wolverines",
                       "color": "#FFCB05"
+                    },
+                    {
+                      "entity": "calendar.detroit_pistons",
+                      "name": "Detroit Pistons",
+                      "color": "#1d42ba"
                     }
                   ],
                   "name": "Calendar Card",
@@ -664,9 +656,6 @@
                     },
                     {
                       "entity": "script.dim_bedroom_lights"
-                    },
-                    {
-                      "entity": "script.open_garage_door_start_bmw"
                     },
                     {
                       "entity": "script.goodnight_nicole"
@@ -1281,6 +1270,9 @@
                     },
                     {
                       "entity": "light.downstairs_hallway_nightlight_light"
+                    },
+                    {
+                      "entity": "light.den_plant_lights"
                     }
                   ],
                   "title": "Den Lights",
@@ -1562,12 +1554,12 @@
                       "type": "divider"
                     },
                     {
-                      "entity": "sensor.garage_sensor_air_temperature",
-                      "name": "Garage"
+                      "entity": "sensor.basement_climate_basement_temperature",
+                      "name": "Basement"
                     },
                     {
-                      "entity": "sensor.hot_water_heater_flood_sensor_air_temperature",
-                      "name": "Utility Room"
+                      "entity": "sensor.garage_sensor_air_temperature",
+                      "name": "Garage"
                     },
                     {
                       "entity": "sensor.workshop_hvac_indoor_temperature",
@@ -1634,15 +1626,16 @@
                       "type": "divider"
                     },
                     {
+                      "entity": "sensor.basement_climate_basement_humidity",
+                      "name": "Basement"
+                    },
+                    {
                       "entity": "sensor.garage_sensor_humidity",
                       "name": "Garage"
                     },
                     {
                       "entity": "sensor.workshop_sensor_humidity",
                       "name": "Workshop"
-                    },
-                    {
-                      "entity": "switch.dehumidifier"
                     }
                   ],
                   "title": "Humidity"
@@ -2284,612 +2277,6 @@
                   ],
                   "title": "Downstairs Smoke Detector",
                   "state_color": true
-                }
-              ]
-            }
-          ],
-          "max_columns": 4
-        },
-        {
-          "title": "Vehicles",
-          "path": "vehicles",
-          "icon": "mdi:car",
-          "badges": [],
-          "cards": [],
-          "type": "sections",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:vehicle-status-card",
-                  "button_card": [
-                    {
-                      "button": {
-                        "primary": "Remote Start",
-                        "secondary": [
-                          {
-                            "entity": "",
-                            "attribute": "",
-                            "state_template": ""
-                          }
-                        ],
-                        "icon": "mdi:car-wireless",
-                        "notify": ""
-                      },
-                      "button_type": "action",
-                      "hide_button": false,
-                      "card_type": "default",
-                      "default_card": [],
-                      "custom_card": [],
-                      "button_action": {
-                        "entity": "button.m240i_xdrive_activate_remote_start",
-                        "tap_action": {
-                          "action": "perform-action",
-                          "perform_action": "button.press",
-                          "target": {
-                            "entity_id": "button.m240i_xdrive_activate_remote_start"
-                          }
-                        },
-                        "hold_action": {
-                          "action": "none"
-                        },
-                        "double_tap_action": {
-                          "action": "none"
-                        }
-                      }
-                    },
-                    {
-                      "button": {
-                        "primary": "Open Garage &  Start",
-                        "secondary": [
-                          {
-                            "entity": "",
-                            "attribute": "",
-                            "state_template": ""
-                          }
-                        ],
-                        "icon": "mdi:garage",
-                        "notify": ""
-                      },
-                      "button_type": "action",
-                      "hide_button": false,
-                      "card_type": "default",
-                      "default_card": [],
-                      "custom_card": [],
-                      "button_action": {
-                        "entity": "script.open_garage_door_start_bmw",
-                        "tap_action": {
-                          "action": "perform-action",
-                          "perform_action": "script.open_garage_door_start_bmw",
-                          "target": {}
-                        },
-                        "hold_action": {
-                          "action": "none"
-                        },
-                        "double_tap_action": {
-                          "action": "none"
-                        }
-                      }
-                    },
-                    {
-                      "button": {
-                        "primary": "Remote Stop",
-                        "secondary": [
-                          {
-                            "entity": "",
-                            "attribute": "",
-                            "state_template": ""
-                          }
-                        ],
-                        "icon": "mdi:stop-circle",
-                        "notify": ""
-                      },
-                      "button_type": "action",
-                      "hide_button": false,
-                      "card_type": "default",
-                      "default_card": [],
-                      "custom_card": [],
-                      "button_action": {
-                        "entity": "button.m240i_xdrive_deactivate_air_conditioning",
-                        "tap_action": {
-                          "action": "perform-action",
-                          "perform_action": "button.press",
-                          "target": {
-                            "entity_id": "button.m240i_xdrive_deactivate_air_conditioning"
-                          }
-                        },
-                        "hold_action": {
-                          "action": "none"
-                        },
-                        "double_tap_action": {
-                          "action": "none"
-                        }
-                      }
-                    },
-                    {
-                      "button": {
-                        "primary": "Tire Pressure",
-                        "secondary": {
-                          "entity": "",
-                          "attribute": "",
-                          "state_template": ""
-                        },
-                        "notify": "",
-                        "icon": "mdi:tire"
-                      },
-                      "button_type": "default",
-                      "hide_button": false,
-                      "card_type": "tire",
-                      "default_card": [],
-                      "custom_card": [],
-                      "button_action": {
-                        "entity": "",
-                        "tap_action": {
-                          "action": "more-info"
-                        },
-                        "hold_action": {
-                          "action": "none"
-                        },
-                        "double_tap_action": {
-                          "action": "none"
-                        }
-                      },
-                      "tire_card": {
-                        "front_left": {
-                          "entity": "sensor.m240i_xdrive_front_left_tire_pressure"
-                        },
-                        "front_right": {
-                          "entity": "sensor.m240i_xdrive_front_right_tire_pressure"
-                        },
-                        "rear_left": {
-                          "entity": "sensor.m240i_xdrive_rear_left_tire_pressure"
-                        },
-                        "rear_right": {
-                          "entity": "sensor.m240i_xdrive_rear_right_tire_pressure"
-                        },
-                        "title": "Tires"
-                      }
-                    },
-                    {
-                      "button": {
-                        "primary": "Lock Car",
-                        "secondary": {
-                          "entity": "",
-                          "attribute": "",
-                          "state_template": ""
-                        },
-                        "icon": "mdi:lock",
-                        "notify": ""
-                      },
-                      "button_type": "action",
-                      "hide_button": false,
-                      "card_type": "default",
-                      "default_card": [],
-                      "custom_card": [],
-                      "button_action": {
-                        "entity": "lock.m240i_xdrive_lock",
-                        "tap_action": {
-                          "action": "more-info"
-                        },
-                        "hold_action": {
-                          "action": "none"
-                        },
-                        "double_tap_action": {
-                          "action": "none"
-                        }
-                      }
-                    }
-                  ],
-                  "images": [
-                    {
-                      "url": "/api/image/serve/75fa19cf3278fe78a12b3fede4ced02d/original",
-                      "title": "M240.PNG"
-                    }
-                  ],
-                  "indicators": {
-                    "group": [
-                      {
-                        "name": "TPM",
-                        "icon": "mdi:tire",
-                        "visibility": "",
-                        "items": [
-                          {
-                            "entity": "sensor.m240i_xdrive_front_left_tire_pressure",
-                            "name": "",
-                            "icon": "",
-                            "attribute": ""
-                          },
-                          {
-                            "entity": "sensor.m240i_xdrive_front_right_tire_pressure",
-                            "name": "",
-                            "icon": "",
-                            "attribute": ""
-                          },
-                          {
-                            "entity": "sensor.m240i_xdrive_rear_left_tire_pressure",
-                            "name": "",
-                            "icon": "",
-                            "attribute": ""
-                          },
-                          {
-                            "entity": "sensor.m240i_xdrive_rear_right_tire_pressure",
-                            "name": "",
-                            "icon": "",
-                            "attribute": ""
-                          }
-                        ]
-                      }
-                    ],
-                    "single": [
-                      {
-                        "entity": "binary_sensor.m240i_xdrive_check_control_messages",
-                        "icon": "",
-                        "attribute": "",
-                        "action_config": {
-                          "entity": "binary_sensor.m240i_xdrive_check_control_messages",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "hold_action": {
-                            "action": "more-info"
-                          },
-                          "double_tap_action": {
-                            "action": "more-info"
-                          }
-                        }
-                      },
-                      {
-                        "entity": "lock.m240i_xdrive_lock",
-                        "icon": "",
-                        "attribute": "",
-                        "action_config": {
-                          "entity": "lock.m240i_xdrive_lock",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        }
-                      },
-                      {
-                        "entity": "binary_sensor.m240i_xdrive_windows",
-                        "icon": "",
-                        "attribute": "",
-                        "action_config": {
-                          "entity": "binary_sensor.m240i_xdrive_windows",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "hold_action": {
-                            "action": "more-info"
-                          },
-                          "double_tap_action": {
-                            "action": "more-info"
-                          }
-                        }
-                      },
-                      {
-                        "entity": "sensor.m240i_xdrive_mileage",
-                        "icon": "",
-                        "attribute": "",
-                        "action_config": {
-                          "entity": "sensor.m240i_xdrive_mileage",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "layout_config": {
-                    "button_grid": {
-                      "rows": 2,
-                      "columns": 2,
-                      "swipe": true
-                    },
-                    "hide": {
-                      "button_notify": false,
-                      "buttons": false,
-                      "images": false,
-                      "indicators": false,
-                      "mini_map": false,
-                      "range_info": false,
-                      "map_address": false
-                    },
-                    "theme_config": {
-                      "mode": "auto",
-                      "theme": "default"
-                    },
-                    "section_order": [
-                      "header_info",
-                      "images",
-                      "mini_map",
-                      "buttons"
-                    ]
-                  },
-                  "mini_map": {
-                    "device_tracker": "device_tracker.m240i_xdrive",
-                    "enable_popup": true,
-                    "us_format": true
-                  },
-                  "name": "BMW M240i",
-                  "range_info": [
-                    {
-                      "energy_level": {
-                        "entity": "sensor.m240i_xdrive_remaining_fuel_percent",
-                        "attribute": ""
-                      },
-                      "range_level": {
-                        "entity": "sensor.m240i_xdrive_remaining_range_total",
-                        "attribute": ""
-                      },
-                      "progress_color": "#520E7D"
-                    }
-                  ],
-                  "card_id": "vsc-gyk9m2m"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:vehicle-status-card",
-                  "button_card": [
-                    {
-                      "button": {
-                        "primary": "Remote Start",
-                        "secondary": [
-                          {
-                            "entity": "",
-                            "attribute": "",
-                            "state_template": ""
-                          }
-                        ],
-                        "icon": "mdi:car-wireless",
-                        "notify": ""
-                      },
-                      "button_type": "action",
-                      "hide_button": false,
-                      "card_type": "default",
-                      "default_card": [],
-                      "custom_card": [],
-                      "button_action": {
-                        "entity": "button.cooper_se_activate_air_conditioning",
-                        "tap_action": {
-                          "action": "perform-action",
-                          "perform_action": "button.press",
-                          "target": {
-                            "entity_id": "button.cooper_se_activate_air_conditioning"
-                          }
-                        },
-                        "hold_action": {
-                          "action": "none"
-                        },
-                        "double_tap_action": {
-                          "action": "none"
-                        }
-                      }
-                    },
-                    {
-                      "button": {
-                        "icon": "mdi:lock",
-                        "primary": "Lock Car",
-                        "secondary": {
-                          "entity": "",
-                          "attribute": "",
-                          "state_template": ""
-                        }
-                      },
-                      "button_type": "action",
-                      "hide_button": false,
-                      "card_type": "default",
-                      "default_card": [],
-                      "custom_card": [],
-                      "button_action": {
-                        "entity": "lock.cooper_se_lock",
-                        "tap_action": {
-                          "action": "perform-action",
-                          "perform_action": "button.press",
-                          "target": {
-                            "entity_id": "button.cooper_se_activate_air_conditioning"
-                          }
-                        },
-                        "hold_action": {
-                          "action": "none"
-                        },
-                        "double_tap_action": {
-                          "action": "none"
-                        }
-                      }
-                    }
-                  ],
-                  "layout_config": {
-                    "button_grid": {
-                      "rows": 2,
-                      "columns": 2,
-                      "swipe": true
-                    },
-                    "hide": {
-                      "button_notify": false,
-                      "buttons": false,
-                      "images": false,
-                      "indicators": false,
-                      "mini_map": false,
-                      "range_info": false,
-                      "map_address": false
-                    },
-                    "theme_config": {
-                      "mode": "auto",
-                      "theme": "default"
-                    },
-                    "section_order": [
-                      "header_info",
-                      "images",
-                      "mini_map",
-                      "buttons"
-                    ]
-                  },
-                  "name": "Mini SE",
-                  "mini_map": {
-                    "device_tracker": "device_tracker.cooper_se",
-                    "enable_popup": true,
-                    "us_format": true,
-                    "use_zone_name": true
-                  },
-                  "indicators": {
-                    "single": [
-                      {
-                        "entity": "binary_sensor.cooper_se_check_control_messages",
-                        "icon": "",
-                        "attribute": "",
-                        "action_config": {
-                          "entity": "binary_sensor.cooper_se_check_control_messages",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        }
-                      },
-                      {
-                        "entity": "binary_sensor.cooper_se_connection_status",
-                        "icon": "",
-                        "attribute": "",
-                        "action_config": {
-                          "entity": "binary_sensor.cooper_se_connection_status",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        }
-                      },
-                      {
-                        "entity": "lock.cooper_se_lock",
-                        "icon": "",
-                        "attribute": "",
-                        "action_config": {
-                          "entity": "lock.cooper_se_lock",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        }
-                      },
-                      {
-                        "entity": "binary_sensor.cooper_se_windows",
-                        "icon": "",
-                        "attribute": "",
-                        "action_config": {
-                          "entity": "binary_sensor.cooper_se_windows",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        }
-                      },
-                      {
-                        "entity": "sensor.cooper_se_mileage",
-                        "icon": "",
-                        "attribute": "",
-                        "action_config": {
-                          "entity": "sensor.cooper_se_mileage",
-                          "tap_action": {
-                            "action": "more-info"
-                          },
-                          "hold_action": {
-                            "action": "none"
-                          },
-                          "double_tap_action": {
-                            "action": "none"
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "range_info": [
-                    {
-                      "energy_level": {
-                        "entity": "sensor.cooper_se_charging_level_hv",
-                        "attribute": "",
-                        "icon": ""
-                      },
-                      "range_level": {
-                        "entity": "sensor.cooper_se_remaining_range_electric",
-                        "attribute": ""
-                      },
-                      "progress_color": "#004225",
-                      "charging_entity": "sensor.cooper_se_charging_status"
-                    }
-                  ],
-                  "images": [
-                    {
-                      "url": "/api/image/serve/8ff59364976234fdf98ce0ef19547e89/original",
-                      "title": "MINI_SE.PNG"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:openevse-card",
-                  "header": true,
-                  "name": "OpenEVSE",
-                  "feat_soc": false,
-                  "feat_range": false,
-                  "feat_max_range": 125,
-                  "feat_max_energy": 50,
-                  "device_id": "259222c83d28bf1f8c4841f8ebfbad03",
-                  "override_entity": "select.openevse_override_state",
-                  "status_entity": "sensor.openevse_station_status",
-                  "power_entity": "sensor.openevse_current_power_usage",
-                  "current_entity": "sensor.openevse_charging_current",
-                  "charge_rate_entity": "number.openevse_charge_rate",
-                  "vehicle_connected_entity": "binary_sensor.openevse_vehicle_connected",
-                  "charging_status_entity": "sensor.openevse_charging_status",
-                  "session_energy_entity": "sensor.openevse_usage_this_session",
-                  "time_elapsed_entity": "sensor.openevse_charge_time_elapsed",
-                  "wifi_signal_strength_entity": "sensor.openevse_wifi_signal_strength",
-                  "limit_active_entity": "binary_sensor.openevse_limit_active",
-                  "divert_active_entity": "binary_sensor.openevse_divert_active",
-                  "divert_mode_entity": "sensor.openevse_divert_mode",
-                  "pv_charge_rate_entity": "sensor.openevse_pv_charge_rate",
-                  "vehicle_battery_level_entity": "",
-                  "vehicle_range_entity": "",
-                  "optional_entities": []
                 }
               ]
             }
@@ -3850,6 +3237,11 @@
                       "entity": "calendar.michigan_wolverines_football",
                       "name": "Michigan Wolverines",
                       "color": "#FFCB05"
+                    },
+                    {
+                      "entity": "calendar.detroit_pistons",
+                      "name": "Detroit Pistons",
+                      "color": "#1d42ba"
                     }
                   ],
                   "firstDayOfWeek": 0,
@@ -3879,6 +3271,447 @@
             }
           ],
           "max_columns": 4
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Solar",
+          "path": "solar",
+          "icon": "mdi:solar-power",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:solar-bar-card",
+                  "show_header": true,
+                  "show_stats": true,
+                  "show_legend": true,
+                  "header_title": "Current Power Usage",
+                  "use_solcast": false,
+                  "production_entity": "sensor.enphase_combiner_current_power_production",
+                  "forecast_entity": "sensor.forecast_solar_energy_production_today",
+                  "show_weather": true,
+                  "weather_entity": "weather.ecobee_thermostat",
+                  "grid_options": {
+                    "columns": "full"
+                  },
+                  "inverter_size": 5.2,
+                  "self_consumption_entity": "sensor.enphase_combiner_current_power_consumption",
+                  "ev_charger_sensor": "sensor.openevse_current_power_usage",
+                  "grid_power_entity": "sensor.enphase_combiner_current_net_power_consumption",
+                  "invert_grid_power": true
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.enphase_combiner_current_power_production"
+                    },
+                    {
+                      "entity": "sensor.enphase_combiner_current_power_consumption"
+                    },
+                    {
+                      "entity": "sensor.enphase_combiner_current_net_power_consumption"
+                    },
+                    {
+                      "entity": "sensor.envoy_202446023403_power_factor_production_ct"
+                    },
+                    {
+                      "entity": "sensor.envoy_202446023403_voltage_production_ct"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.enphase_combiner_current_power_production"
+                    },
+                    {
+                      "entity": "sensor.inverter_a1"
+                    },
+                    {
+                      "entity": "sensor.inverter_a2"
+                    },
+                    {
+                      "entity": "sensor.inverter_a3"
+                    },
+                    {
+                      "entity": "sensor.inverter_a4"
+                    },
+                    {
+                      "entity": "sensor.inverter_a5"
+                    },
+                    {
+                      "entity": "sensor.inverter_a6"
+                    },
+                    {
+                      "entity": "sensor.inverter_a7"
+                    },
+                    {
+                      "entity": "sensor.inverter_a8"
+                    },
+                    {
+                      "entity": "sensor.inverter_a9"
+                    },
+                    {
+                      "entity": "sensor.inverter_b1"
+                    },
+                    {
+                      "entity": "sensor.inverter_b2"
+                    },
+                    {
+                      "entity": "sensor.inverter_b3"
+                    },
+                    {
+                      "entity": "sensor.inverter_b4"
+                    },
+                    {
+                      "entity": "sensor.inverter_b5"
+                    },
+                    {
+                      "entity": "sensor.inverter_b6"
+                    },
+                    {
+                      "entity": "sensor.inverter_b7"
+                    },
+                    {
+                      "entity": "sensor.inverter_b8"
+                    },
+                    {
+                      "entity": "sensor.inverter_b9"
+                    }
+                  ],
+                  "title": "Solar Generation"
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:openevse-card",
+                      "header": true,
+                      "name": "OpenEVSE",
+                      "feat_soc": false,
+                      "feat_range": false,
+                      "feat_max_range": 125,
+                      "feat_max_energy": 50,
+                      "device_id": "259222c83d28bf1f8c4841f8ebfbad03",
+                      "override_entity": "select.openevse_override_state",
+                      "status_entity": "sensor.openevse_station_status",
+                      "power_entity": "sensor.openevse_current_power_usage",
+                      "current_entity": "sensor.openevse_charging_current",
+                      "charge_rate_entity": "number.openevse_charge_rate",
+                      "vehicle_connected_entity": "binary_sensor.openevse_vehicle_connected",
+                      "charging_status_entity": "sensor.openevse_charging_status",
+                      "session_energy_entity": "sensor.openevse_usage_this_session",
+                      "time_elapsed_entity": "sensor.openevse_charge_time_elapsed",
+                      "wifi_signal_strength_entity": "sensor.openevse_wifi_signal_strength",
+                      "limit_active_entity": "binary_sensor.openevse_limit_active",
+                      "divert_active_entity": "binary_sensor.openevse_divert_active",
+                      "divert_mode_entity": "sensor.openevse_divert_mode",
+                      "pv_charge_rate_entity": "sensor.openevse_pv_charge_rate",
+                      "vehicle_battery_level_entity": "",
+                      "vehicle_range_entity": "",
+                      "optional_entities": []
+                    },
+                    {
+                      "type": "history-graph",
+                      "entities": [
+                        {
+                          "entity": "sensor.enphase_combiner_current_power_consumption"
+                        }
+                      ],
+                      "hours_to_show": 24,
+                      "title": "Energy Use Past 24 Hours"
+                    },
+                    {
+                      "type": "history-graph",
+                      "entities": [
+                        {
+                          "entity": "sensor.enphase_combiner_current_power_production"
+                        }
+                      ],
+                      "hours_to_show": 24,
+                      "title": "Total PV Output"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:gap-card",
+                  "grid_options": {
+                    "columns": 10,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b8",
+                      "name": "B8",
+                      "icon": "",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b5",
+                      "name": "B5",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b6",
+                      "name": "B6",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b3",
+                      "name": "B3",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a9",
+                      "name": "A9",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a8",
+                      "name": "A8",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a7",
+                      "name": "A7",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    }
+                  ],
+                  "columns": 7,
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 4
+                  },
+                  "title": "Solar Array"
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b9",
+                      "name": "B9",
+                      "icon": "",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b4",
+                      "name": "B4",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b7",
+                      "name": "B7",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b2",
+                      "name": "B2",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a4",
+                      "name": "A4",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a5",
+                      "name": "A5",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a6",
+                      "name": "A6",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    }
+                  ],
+                  "columns": 7,
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 3
+                  }
+                },
+                {
+                  "type": "custom:gap-card",
+                  "grid_options": {
+                    "columns": 10,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "square": true,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b1",
+                      "name": "B1",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a3",
+                      "name": "A3",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a2",
+                      "name": "A2",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a1",
+                      "name": "A1",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    }
+                  ],
+                  "columns": 4,
+                  "grid_options": {
+                    "rows": "auto",
+                    "columns": 14
+                  }
+                }
+              ],
+              "column_span": 2
+            }
+          ]
         },
         {
           "title": "System",
@@ -4019,249 +3852,14 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "history-graph",
-                  "entities": [
-                    {
-                      "entity": "sensor.enphase_combiner_current_power_consumption"
-                    }
-                  ],
-                  "hours_to_show": 24,
-                  "title": "Energy Use Past 24 Hours"
-                },
-                {
                   "type": "entities",
                   "entities": [
                     {
                       "entity": "sensor.samsung_printer_toner_level"
                     }
                   ]
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "sensor.enphase_combiner_current_power_production"
-                    },
-                    {
-                      "entity": "sensor.inverter_a1"
-                    },
-                    {
-                      "entity": "sensor.inverter_a2"
-                    },
-                    {
-                      "entity": "sensor.inverter_a3"
-                    },
-                    {
-                      "entity": "sensor.inverter_a4"
-                    },
-                    {
-                      "entity": "sensor.inverter_a5"
-                    },
-                    {
-                      "entity": "sensor.inverter_a6"
-                    },
-                    {
-                      "entity": "sensor.inverter_a7"
-                    },
-                    {
-                      "entity": "sensor.inverter_a8"
-                    },
-                    {
-                      "entity": "sensor.inverter_a9"
-                    },
-                    {
-                      "entity": "sensor.inverter_b1"
-                    },
-                    {
-                      "entity": "sensor.inverter_b2"
-                    },
-                    {
-                      "entity": "sensor.inverter_b3"
-                    },
-                    {
-                      "entity": "sensor.inverter_b4"
-                    },
-                    {
-                      "entity": "sensor.inverter_b5"
-                    },
-                    {
-                      "entity": "sensor.inverter_b6"
-                    },
-                    {
-                      "entity": "sensor.inverter_b7"
-                    },
-                    {
-                      "entity": "sensor.inverter_b8"
-                    },
-                    {
-                      "entity": "sensor.inverter_b9"
-                    }
-                  ],
-                  "title": "Solar Generation"
                 }
               ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "square": true,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_b8",
-                      "name": "B8",
-                      "state_color": false
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_b5",
-                      "name": "B5"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_b6",
-                      "name": "B6"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_b3"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_a9",
-                      "name": "A9"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_a8",
-                      "name": "A8"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_a7",
-                      "name": "A7"
-                    }
-                  ],
-                  "columns": 7,
-                  "title": "Solar Array",
-                  "grid_options": {
-                    "columns": 12,
-                    "rows": 3
-                  }
-                },
-                {
-                  "square": true,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_b9"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_b4",
-                      "name": "B4"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_b7",
-                      "name": "B7"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_b2",
-                      "name": "B2"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_a4",
-                      "name": "A4"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_a5",
-                      "name": "A5"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_a6",
-                      "name": "A6"
-                    }
-                  ],
-                  "columns": 7
-                },
-                {
-                  "type": "custom:gap-card",
-                  "grid_options": {
-                    "columns": 5,
-                    "rows": "auto"
-                  }
-                },
-                {
-                  "square": true,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_b1",
-                      "name": "B1"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_a3",
-                      "name": "A3"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_a2",
-                      "name": "A2"
-                    },
-                    {
-                      "type": "entity",
-                      "entity": "sensor.inverter_a1",
-                      "name": "A1"
-                    }
-                  ],
-                  "columns": 4,
-                  "grid_options": {
-                    "columns": 7,
-                    "rows": "auto"
-                  }
-                },
-                {
-                  "type": "history-graph",
-                  "entities": [
-                    {
-                      "entity": "sensor.enphase_combiner_current_power_production"
-                    }
-                  ],
-                  "hours_to_show": 24,
-                  "title": "Total PV Output"
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "sensor.enphase_combiner_current_power_production"
-                    },
-                    {
-                      "entity": "sensor.enphase_combiner_current_power_consumption"
-                    },
-                    {
-                      "entity": "sensor.enphase_combiner_current_net_power_consumption"
-                    },
-                    {
-                      "entity": "sensor.envoy_202446023403_power_factor_production_ct"
-                    },
-                    {
-                      "entity": "sensor.envoy_202446023403_voltage_production_ct"
-                    }
-                  ]
-                }
-              ],
-              "column_span": 1
             }
           ],
           "max_columns": 4,
