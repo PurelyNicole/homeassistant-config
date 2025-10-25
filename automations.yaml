@@ -61,6 +61,7 @@
         entity_id:
         - switch.nicole_desk_personal
         - switch.klipsch_speakers
+        - switch.eric_desk
       action: switch.turn_on
   - if:
     - alias: If it's dark outside
@@ -461,16 +462,36 @@
     entity_id:
     - light.kitchenette_spot_lights
     to: 'on'
+  - trigger: state
+    entity_id:
+    - light.kitchenette_spot_lights
+    to: 'off'
   conditions:
   - condition: state
     entity_id: input_boolean.vacation_mode
     state: 'off'
   actions:
-  - action: light.turn_on
-    metadata: {}
-    data: {}
-    target:
-      entity_id: light.kitchenette_led_strip
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.kitchenette_spot_lights
+        state: 'on'
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.kitchenette_led_strip
+    - conditions:
+      - condition: state
+        entity_id: light.kitchenette_spot_lights
+        state: 'off'
+      sequence:
+      - action: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: light.kitchenette_led_strip
   mode: single
 - id: notify_oven_on
   alias: Notification - Everyone left or is sleeping but oven is on.
@@ -1584,7 +1605,10 @@
     entity_id:
     - binary_sensor.closet_room_motion_sensor_occupancy
     to: 'off'
-  conditions: []
+  conditions:
+  - condition: state
+    entity_id: input_select.home_mode
+    state: Home
   actions:
   - choose:
     - conditions:
@@ -1627,7 +1651,10 @@
     metadata: {}
     data: {}
     target:
-      area_id: bedroom
+      entity_id:
+      - light.master_bedroom_light
+      - light.nightstand_lamps
+      - light.master_bedroom_closet
   mode: single
 - id: basement_control_basement_lights_with_motion
   alias: Basement - Control basement lights with motion
@@ -2567,7 +2594,7 @@
       - alias: Ambient Temperature is less than 70 and greater than 65
         condition: template
         value_template: '{{states(''sensor.bedjet_12fa_ambient_temperature'') | int
-          < 70 and states(''sensor.bedjet_12fa_ambient_temperature'') | int > 65}}'
+          < 70 and states(''sensor.bedjet_12fa_ambient_temperature'') | int > 66 }}'
       sequence:
       - alias: Turn on BedJet cool
         action: climate.set_hvac_mode
@@ -2580,7 +2607,7 @@
       - alias: Ambient Temperature is less than or equal to 65
         condition: template
         value_template: '{{states(''sensor.bedjet_12fa_ambient_temperature'') | int
-          <= 65}}'
+          <= 66}}'
       sequence:
       - alias: Turn on BedJet Heat
         action: climate.set_hvac_mode
@@ -4724,7 +4751,12 @@
     event: sunset
     offset: 0
     id: sunset
-  conditions: []
+  conditions:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.home_mode
+      state: Sleep
   actions:
   - choose:
     - conditions:
@@ -4736,7 +4768,9 @@
         metadata: {}
         data: {}
         target:
-          entity_id: light.den_plant_lights
+          entity_id:
+          - light.den_plant_lights
+          - light.bedroom_plant_light
     - conditions:
       - condition: trigger
         id:
@@ -4746,5 +4780,7 @@
         metadata: {}
         data: {}
         target:
-          entity_id: light.den_plant_lights
+          entity_id:
+          - light.den_plant_lights
+          - light.bedroom_plant_light
   mode: single

@@ -107,7 +107,6 @@
                   },
                   "inverter_size": 5.2,
                   "self_consumption_entity": "sensor.enphase_combiner_current_power_consumption",
-                  "ev_charger_sensor": "sensor.openevse_current_power_usage",
                   "grid_power_entity": "sensor.enphase_combiner_current_net_power_consumption",
                   "invert_grid_power": true,
                   "show_legend_values": true,
@@ -1165,6 +1164,9 @@
                     },
                     {
                       "entity": "fan.master_bath_fan"
+                    },
+                    {
+                      "entity": "light.bedroom_plant_light"
                     }
                   ],
                   "title": "Master Bedroom",
@@ -3298,9 +3300,36 @@
                   },
                   "inverter_size": 5.2,
                   "self_consumption_entity": "sensor.enphase_combiner_current_power_consumption",
-                  "ev_charger_sensor": "sensor.openevse_current_power_usage",
                   "grid_power_entity": "sensor.enphase_combiner_current_net_power_consumption",
-                  "invert_grid_power": true
+                  "invert_grid_power": true,
+                  "color_palette": "classic-solar"
+                },
+                {
+                  "type": "custom:openevse-card",
+                  "header": true,
+                  "name": "OpenEVSE",
+                  "feat_soc": false,
+                  "feat_range": false,
+                  "feat_max_range": 125,
+                  "feat_max_energy": 50,
+                  "device_id": "259222c83d28bf1f8c4841f8ebfbad03",
+                  "override_entity": "select.openevse_override_state",
+                  "status_entity": "sensor.openevse_station_status",
+                  "power_entity": "sensor.openevse_current_power_usage",
+                  "current_entity": "sensor.openevse_charging_current",
+                  "charge_rate_entity": "number.openevse_charge_rate",
+                  "vehicle_connected_entity": "binary_sensor.openevse_vehicle_connected",
+                  "charging_status_entity": "sensor.openevse_charging_status",
+                  "session_energy_entity": "sensor.openevse_usage_this_session",
+                  "time_elapsed_entity": "sensor.openevse_charge_time_elapsed",
+                  "wifi_signal_strength_entity": "sensor.openevse_wifi_signal_strength",
+                  "limit_active_entity": "binary_sensor.openevse_limit_active",
+                  "divert_active_entity": "binary_sensor.openevse_divert_active",
+                  "divert_mode_entity": "sensor.openevse_divert_mode",
+                  "pv_charge_rate_entity": "sensor.openevse_pv_charge_rate",
+                  "vehicle_battery_level_entity": "",
+                  "vehicle_range_entity": "",
+                  "optional_entities": []
                 },
                 {
                   "type": "entities",
@@ -3393,33 +3422,6 @@
                 {
                   "type": "vertical-stack",
                   "cards": [
-                    {
-                      "type": "custom:openevse-card",
-                      "header": true,
-                      "name": "OpenEVSE",
-                      "feat_soc": false,
-                      "feat_range": false,
-                      "feat_max_range": 125,
-                      "feat_max_energy": 50,
-                      "device_id": "259222c83d28bf1f8c4841f8ebfbad03",
-                      "override_entity": "select.openevse_override_state",
-                      "status_entity": "sensor.openevse_station_status",
-                      "power_entity": "sensor.openevse_current_power_usage",
-                      "current_entity": "sensor.openevse_charging_current",
-                      "charge_rate_entity": "number.openevse_charge_rate",
-                      "vehicle_connected_entity": "binary_sensor.openevse_vehicle_connected",
-                      "charging_status_entity": "sensor.openevse_charging_status",
-                      "session_energy_entity": "sensor.openevse_usage_this_session",
-                      "time_elapsed_entity": "sensor.openevse_charge_time_elapsed",
-                      "wifi_signal_strength_entity": "sensor.openevse_wifi_signal_strength",
-                      "limit_active_entity": "binary_sensor.openevse_limit_active",
-                      "divert_active_entity": "binary_sensor.openevse_divert_active",
-                      "divert_mode_entity": "sensor.openevse_divert_mode",
-                      "pv_charge_rate_entity": "sensor.openevse_pv_charge_rate",
-                      "vehicle_battery_level_entity": "",
-                      "vehicle_range_entity": "",
-                      "optional_entities": []
-                    },
                     {
                       "type": "history-graph",
                       "entities": [
