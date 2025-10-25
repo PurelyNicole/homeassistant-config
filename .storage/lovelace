@@ -219,19 +219,19 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "group.upstairs_lights"
+                      "entity": "light.upstairs_lights"
                     },
                     {
-                      "entity": "group.main_floor_lights"
+                      "entity": "light.main_floor_lights"
                     },
                     {
-                      "entity": "group.downstairs_lights"
+                      "entity": "light.downstairs_lights"
                     },
                     {
                       "entity": "light.basement_lights"
                     },
                     {
-                      "entity": "group.outdoor_lights"
+                      "entity": "light.outdoor_lights"
                     }
                   ],
                   "title": "Lights",
@@ -665,16 +665,16 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "group.outdoor_lights"
+                      "entity": "light.outdoor_lights"
                     },
                     {
-                      "entity": "group.upstairs_lights"
+                      "entity": "light.upstairs_lights"
                     },
                     {
-                      "entity": "group.main_floor_lights"
+                      "entity": "light.main_floor_lights"
                     },
                     {
-                      "entity": "group.downstairs_lights"
+                      "entity": "light.downstairs_lights"
                     },
                     {
                       "entity": "light.basement_lights"
