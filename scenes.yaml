@@ -1,33 +1,102 @@
 - id: '1757095379122'
   name: Goodnight
   entities:
-    fan.bedjet_12fa:
-      percentage: 40
-      state: 'on'
-    fan.family_room_fan_south:
-      state: 'on'
+    fan.master_bedroom_fan:
       percentage: 25
+      state: 'on'
+    light.pixel_post_light:
+      state: 'off'
+    light.basement_lights:
+      state: 'off'
+    light.downstairs_lights:
+      state: 'off'
+    light.upstairs_lights:
+      state: 'off'
+    light.main_floor_lights:
+      state: 'off'
+    light.workshop_lights:
+      state: 'off'
+    cover.garage_door:
+      state: closed
+    fan.blue_air_fan:
+      state: 'off'
     fan.snooz_c0_49_ef_27_a8_62:
       percentage: 15
       state: 'on'
-    fan.blue_air_fan:
+    lock.front_door_lock:
+      state: locked
+    lock.workshop:
+      state: locked
+    switch.main_floor_media_center_plug:
       state: 'off'
-    fan.master_bedroom_fan:
+    switch.nicole_desk_personal:
+      state: 'off'
+    switch.nicole_desk_work:
+      state: 'off'
+    switch.den_media_center:
+      state: 'off'
+    switch.workshop_battery_wall:
+      state: 'off'
+    switch.family_room_media_center:
+      state: 'off'
+    switch.klipsch_speakers:
+      state: 'off'
+    switch.wled_lights:
+      state: 'off'
+    switch.eric_desk:
+      state: 'off'
+    fan.family_room_fan_south:
       percentage: 25
       state: 'on'
-    light.master_bedroom_light:
-      state: 'off'
+    input_select.home_mode:
+      state: Sleep
   icon: mdi:weather-night
   metadata:
-    fan.bedjet_12fa:
+    fan.master_bedroom_fan:
       entity_only: true
-    fan.family_room_fan_south:
+    light.pixel_post_light:
+      entity_only: true
+    light.basement_lights:
+      entity_only: true
+    light.downstairs_lights:
+      entity_only: true
+    light.upstairs_lights:
+      entity_only: true
+    light.main_floor_lights:
+      entity_only: true
+    light.workshop_lights:
+      entity_only: true
+    cover.garage_door:
+      entity_only: true
+    fan.blue_air_fan:
+      entity_only: true
+    fan.bedjet_12fa:
       entity_only: true
     fan.snooz_c0_49_ef_27_a8_62:
       entity_only: true
-    fan.blue_air_fan:
+    lock.front_door_lock:
       entity_only: true
-    fan.master_bedroom_fan:
+    lock.workshop:
       entity_only: true
-    light.master_bedroom_light:
+    switch.main_floor_media_center_plug:
+      entity_only: true
+    switch.nicole_desk_personal:
+      entity_only: true
+    switch.nicole_desk_work:
+      entity_only: true
+    switch.den_media_center:
+      entity_only: true
+    switch.workshop_battery_wall:
+      entity_only: true
+    switch.family_room_media_center:
+      entity_only: true
+    switch.klipsch_speakers:
+      entity_only: true
+    switch.wled_lights:
+      entity_only: true
+    switch.eric_desk:
+      entity_only: true
+    fan.family_room_fan_south:
+      entity_only: true
+    input_select.home_mode:
       entity_only: true

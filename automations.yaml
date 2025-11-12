@@ -2293,13 +2293,9 @@
   - trigger: time
     at: '16:00:00'
   conditions:
-  - condition: not
-    conditions:
-    - condition: device
-      device_id: fd7ae8ebda3faafe21c87fe16cd3070c
-      domain: media_player
-      entity_id: ba2ee0936469db5b23a0def4b2183286
-      type: is_on
+  - condition: state
+    entity_id: input_select.home_mode
+    state: Home
   actions:
   - action: switch.turn_on
     metadata: {}
@@ -2339,9 +2335,11 @@
     to: Sleep
   conditions: []
   actions:
-  - action: script.goodnight
+  - action: scene.turn_on
     metadata: {}
     data: {}
+    target:
+      entity_id: scene.goodnight
   mode: single
 - id: '1751493960970'
   alias: Meat thermometer reached goal temperature
@@ -2565,8 +2563,9 @@
   triggers:
   - trigger: state
     entity_id:
-    - fan.bedjet_12fa
-    to: 'on'
+    - input_select.home_mode
+    to:
+    - Sleep
   conditions: []
   actions:
   - choose:
@@ -2616,12 +2615,14 @@
           hvac_mode: heat
         target:
           entity_id: climate.bedjet_12fa
+        enabled: false
       - action: number.set_value
         metadata: {}
         data:
           value: '10'
         target:
           entity_id: number.bedjet_12fa_runtime_remaining
+        enabled: false
   mode: single
 - id: '1756480308642'
   alias: Turn on Family Room Sub with Remote
@@ -4354,14 +4355,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '13'
         target:
           entity_id: number.simple_plant_days_between_waterings_african_mask_plant
       - alias: Set Aloes
         action: number.set_value
         metadata: {}
         data:
-          value: '36'
+          value: '32'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_short_leaved_aloe
@@ -4370,21 +4371,21 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '13'
         target:
           entity_id: number.simple_plant_days_between_waterings_arrowhead_plant
       - alias: Set Begonia
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '13'
         target:
           entity_id: number.simple_plant_days_between_waterings_rex_begonia_red_kiss
       - alias: Set Bromiliads
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '15'
         target:
           entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
@@ -4398,7 +4399,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '9'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_corkscrew_croton
@@ -4407,7 +4408,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '15'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
@@ -4416,7 +4417,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '12'
+          value: '10'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_colorama_dragon_tree
@@ -4426,21 +4427,21 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '12'
+          value: '10'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Monstera
         action: number.set_value
         metadata: {}
         data:
-          value: '5'
+          value: '4'
         target:
           entity_id: number.simple_plant_days_between_waterings_monstera
       - alias: Set Moonstones
         action: number.set_value
         metadata: {}
         data:
-          value: '32'
+          value: '30'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -4449,7 +4450,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '13'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_parlor_palm
@@ -4458,7 +4459,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '15'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
@@ -4467,7 +4468,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '13'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_prayer_plant_1
@@ -4476,7 +4477,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '15'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -4492,7 +4493,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '32'
+          value: '29'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -4501,7 +4502,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '14'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -4510,7 +4511,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '10'
         target:
           entity_id: number.simple_plant_days_between_waterings_umbrella_tree
     - conditions:
