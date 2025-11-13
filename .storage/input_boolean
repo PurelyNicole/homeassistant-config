@@ -21,6 +21,14 @@
       {
         "id": "guest_mode",
         "name": "Guest Mode"
+      },
+      {
+        "id": "nicole_asleep",
+        "name": "Nicole Asleep"
+      },
+      {
+        "id": "eric_asleep",
+        "name": "Eric Asleep"
       }
     ]
   }

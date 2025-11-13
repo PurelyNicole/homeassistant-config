@@ -29,7 +29,7 @@ wind_down_nicole:
     continue_on_error: true
     metadata: {}
     data:
-      brightness_pct: 34
+      brightness_pct: 38
     target:
       entity_id: light.nightstand_lamps
   - action: fan.turn_on
@@ -50,6 +50,23 @@ wind_down_nicole:
         preset_mode: sleep
       target:
         entity_id: climate.ecobee_thermostat
+  - if:
+    - condition: template
+      value_template: '{{states(''sensor.bedjet_12fa_ambient_temperature'') | int
+        <= 66}}'
+      alias: BedJet Ambient Temperature is less than or equal to 65
+    then:
+    - delay:
+        hours: 0
+        minutes: 30
+        seconds: 0
+        milliseconds: 0
+    - action: climate.set_hvac_mode
+      metadata: {}
+      data:
+        hvac_mode: heat
+      target:
+        entity_id: climate.bedjet_12fa
   description: ''
   icon: mdi:alarm-snooze
 goodnight:
@@ -148,25 +165,20 @@ good_morning:
           entity_id:
           - switch.eric_desk
           - switch.family_room_media_center
-  - action: fan.turn_off
-    continue_on_error: true
-    metadata: {}
-    data: {}
-    target:
-      entity_id:
-      - fan.snooz_c0_49_ef_27_a8_62
-      - fan.bedjet_12fa
   - if:
-    - condition: time
-      after: 09:00:00
+    - condition: state
+      entity_id: group.anyone_asleep
+      state:
+      - 'off'
     then:
-    - action: light.turn_on
+    - action: fan.turn_off
+      continue_on_error: true
       metadata: {}
       data: {}
       target:
         entity_id:
-        - light.bedroom_plant_light
-        - light.den_plant_lights
+        - fan.snooz_c0_49_ef_27_a8_62
+        - fan.bedjet_12fa
   description: ''
   icon: mdi:weather-sunny
 goodbye:

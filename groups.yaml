@@ -4,3 +4,9 @@ people:
     - person.eric
     - person.nicole
   icon: mdi:account-group
+
+anyone_asleep:
+  name: Anyone Asleep
+  entities:
+    - input_boolean.nicole_asleep
+    - input_boolean.eric_asleep

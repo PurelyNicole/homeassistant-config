@@ -748,6 +748,11 @@
   - action: script.good_morning
     metadata: {}
     data: {}
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.nicole_asleep
   mode: single
 - id: nicole_wind_down
   alias: Nicole - Wind Down
@@ -783,6 +788,11 @@
   - action: script.good_morning
     metadata: {}
     data: {}
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.eric_asleep
   mode: single
 - id: garage_door_lights_with_door
   alias: Garage - Turn on Garage Lights when Garage Door opens
@@ -2120,6 +2130,10 @@
         - condition: state
           entity_id: input_select.home_mode
           state: Home
+        - condition: state
+          entity_id: group.anyone_asleep
+          state:
+          - 'off'
       sequence:
       - action: light.turn_on
         metadata: {}
@@ -2340,6 +2354,28 @@
     data: {}
     target:
       entity_id: scene.goodnight
+  - if:
+    - condition: state
+      entity_id: person.nicole
+      state:
+      - home
+    then:
+    - action: input_boolean.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: input_boolean.nicole_asleep
+  - if:
+    - condition: state
+      entity_id: person.eric
+      state:
+      - home
+    then:
+    - action: input_boolean.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: input_boolean.eric_asleep
   mode: single
 - id: '1751493960970'
   alias: Meat thermometer reached goal temperature
@@ -2608,21 +2644,14 @@
         value_template: '{{states(''sensor.bedjet_12fa_ambient_temperature'') | int
           <= 66}}'
       sequence:
-      - alias: Turn on BedJet Heat
+      - alias: Turn BedJet off
         action: climate.set_hvac_mode
         metadata: {}
         data:
-          hvac_mode: heat
+          hvac_mode: 'off'
         target:
           entity_id: climate.bedjet_12fa
-        enabled: false
-      - action: number.set_value
-        metadata: {}
-        data:
-          value: '10'
-        target:
-          entity_id: number.bedjet_12fa_runtime_remaining
-        enabled: false
+        enabled: true
   mode: single
 - id: '1756480308642'
   alias: Turn on Family Room Sub with Remote
@@ -4752,18 +4781,28 @@
     event: sunset
     offset: 0
     id: sunset
+  - trigger: state
+    entity_id:
+    - group.anyone_asleep
+    to:
+    - 'off'
   conditions:
-  - condition: not
-    conditions:
-    - condition: state
-      entity_id: input_select.home_mode
-      state: Sleep
+  - condition: state
+    entity_id: group.anyone_asleep
+    state:
+    - 'off'
   actions:
   - choose:
     - conditions:
-      - condition: trigger
-        id:
-        - sunrise
+      - condition: or
+        conditions:
+        - condition: trigger
+          id:
+          - sunrise
+        - condition: state
+          entity_id: group.anyone_asleep
+          state:
+          - 'off'
       sequence:
       - action: light.turn_on
         metadata: {}
