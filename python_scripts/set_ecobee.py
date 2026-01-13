@@ -53,6 +53,9 @@ def setPresetMode():
   elif home_mode == "Sleep" or home_mode == "Wind Down":
     logger.info("Sleep mode.")
     preset_mode = "sleep"
+  elif home_mode == "Wind Up":
+    logger.info("Wind Up mode")
+    preset_mode = "home"
   else:
     logger.error(f"No setting for {home_mode} home mode.")
 

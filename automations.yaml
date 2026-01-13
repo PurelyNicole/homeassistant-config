@@ -444,7 +444,7 @@
     - action: climate.set_temperature
       metadata: {}
       data:
-        temperature: 60
+        temperature: 62
       target:
         entity_id: climate.family_room_thermostat
     else:
@@ -587,6 +587,10 @@
     - condition: state
       entity_id: input_select.home_mode
       state: Away
+    - condition: state
+      entity_id: input_select.home_mode
+      state:
+      - Wind Up
   actions:
   - choose:
     - conditions:
@@ -745,14 +749,14 @@
     entity_id: person.nicole
     state: home
   actions:
-  - action: script.good_morning
-    metadata: {}
-    data: {}
   - action: input_boolean.turn_off
     metadata: {}
     data: {}
     target:
       entity_id: input_boolean.nicole_asleep
+  - action: script.good_morning
+    metadata: {}
+    data: {}
   mode: single
 - id: nicole_wind_down
   alias: Nicole - Wind Down
@@ -763,9 +767,15 @@
     alias: When Wind Down Nicole Button is pressed
     trigger: state
   conditions:
-  - condition: state
-    entity_id: person.nicole
-    state: home
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: person.nicole
+      state: home
+    - condition: state
+      entity_id: group.anyone_asleep
+      state:
+      - 'off'
   actions:
   - action: script.turn_on
     metadata: {}
@@ -785,14 +795,14 @@
     entity_id: person.eric
     state: home
   actions:
-  - action: script.good_morning
-    metadata: {}
-    data: {}
   - action: input_boolean.turn_off
     metadata: {}
     data: {}
     target:
       entity_id: input_boolean.eric_asleep
+  - action: script.good_morning
+    metadata: {}
+    data: {}
   mode: single
 - id: garage_door_lights_with_door
   alias: Garage - Turn on Garage Lights when Garage Door opens
@@ -1673,10 +1683,11 @@
   - trigger: state
     entity_id:
     - binary_sensor.basement_motion_group
-    to: 'off'
+    to:
+    - 'off'
     for:
       hours: 0
-      minutes: 30
+      minutes: 45
       seconds: 0
   - trigger: state
     entity_id:
@@ -1825,6 +1836,10 @@
   - trigger: state
     entity_id:
     - sensor.workshop_sensor_humidity
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
   conditions:
   - condition: state
     entity_id: schedule.dte_peak_hours
@@ -1856,7 +1871,15 @@
         data: {}
         target:
           entity_id: climate.workshop_hvac
-      alias: Eric Home and temp under 40
+      - action: climate.set_temperature
+        metadata: {}
+        target:
+          entity_id: climate.workshop_hvac
+        data:
+          temperature: 60
+          hvac_mode: heat
+        alias: Heat workshop to 60
+      alias: Turn on heat if workshop temperature under 40
     - conditions:
       - alias: Workshop Humidity is greater than 60
         condition: template
@@ -1867,6 +1890,29 @@
         data: {}
         target:
           entity_id: climate.workshop_hvac
+      - if:
+        - condition: template
+          value_template: '{{states(''sensor.workshop_hvac_outdoor_temperature'')|int
+            < 50 }}'
+          alias: Outdoor Temperature is less than 60
+        then:
+        - action: climate.set_temperature
+          metadata: {}
+          target:
+            entity_id: climate.workshop_hvac
+          data:
+            temperature: 60
+            hvac_mode: heat
+          alias: Set thermostat to heat to 60
+        else:
+        - action: climate.set_temperature
+          metadata: {}
+          target:
+            entity_id: climate.workshop_hvac
+          data:
+            temperature: 70
+            hvac_mode: cool
+          alias: Set thermostat to cool to 70
     - conditions:
       - alias: Workshop Humidity is less than 50 and temperature is greater than 50
         condition: template
@@ -2278,28 +2324,6 @@
     target:
       entity_id: remote.apple_tv
   mode: single
-- id: turn_off_nicole_desk_for_work_at_the_end_of_the_day
-  alias: Turn off Nicole Desk for Work at the end of the day
-  description: ''
-  triggers:
-  - trigger: state
-    entity_id:
-    - binary_sensor.nicole_office_sensor_home_security_motion_detection
-    to: 'off'
-    for:
-      hours: 0
-      minutes: 15
-      seconds: 0
-  conditions:
-  - condition: time
-    after: '16:00:00'
-  actions:
-  - action: switch.turn_off
-    metadata: {}
-    data: {}
-    target:
-      entity_id: switch.nicole_desk_work
-  mode: single
 - id: turn_on_main_floor_media_center_at_4_00pm
   alias: Turn on main floor media center at 4:00pm
   description: ''
@@ -2349,11 +2373,6 @@
     to: Sleep
   conditions: []
   actions:
-  - action: scene.turn_on
-    metadata: {}
-    data: {}
-    target:
-      entity_id: scene.goodnight
   - if:
     - condition: state
       entity_id: person.nicole
@@ -2376,6 +2395,11 @@
       data: {}
       target:
         entity_id: input_boolean.eric_asleep
+  - action: scene.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: scene.goodnight
   mode: single
 - id: '1751493960970'
   alias: Meat thermometer reached goal temperature
@@ -4559,7 +4583,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '36'
+          value: '34'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_short_leaved_aloe
@@ -4582,21 +4606,21 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '15'
         target:
           entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
         data:
-          value: '27'
+          value: '288'
         target:
           entity_id: number.simple_plant_days_between_waterings_cactus
       - alias: Set Crotons
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '9'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_corkscrew_croton
@@ -4605,7 +4629,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '15'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
@@ -4614,7 +4638,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '12'
+          value: '11'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_colorama_dragon_tree
@@ -4624,7 +4648,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '12'
+          value: '10'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Monstera
@@ -4638,7 +4662,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '34'
+          value: '32'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -4647,7 +4671,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '12'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_parlor_palm
@@ -4656,7 +4680,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '15'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
@@ -4674,7 +4698,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '15'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -4683,14 +4707,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '5'
+          value: '6'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '32'
+          value: '31'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -4699,7 +4723,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '15'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -4786,6 +4810,7 @@
     - group.anyone_asleep
     to:
     - 'off'
+    id: anyone_asleep_off
   conditions:
   - condition: state
     entity_id: group.anyone_asleep
@@ -4796,13 +4821,26 @@
     - conditions:
       - condition: or
         conditions:
-        - condition: trigger
-          id:
-          - sunrise
-        - condition: state
-          entity_id: group.anyone_asleep
-          state:
-          - 'off'
+        - condition: and
+          conditions:
+          - condition: trigger
+            id:
+            - sunrise
+          - condition: state
+            entity_id: group.anyone_asleep
+            state:
+            - 'off'
+          alias: The sun rises and no one is asleep
+        - condition: and
+          conditions:
+          - condition: trigger
+            id:
+            - anyone_asleep_off
+          - condition: state
+            entity_id: sun.sun
+            state:
+            - above_horizon
+          alias: Last person wakes up and it's past sunrise
       sequence:
       - action: light.turn_on
         metadata: {}
@@ -4823,4 +4861,38 @@
           entity_id:
           - light.den_plant_lights
           - light.bedroom_plant_light
+  mode: single
+- id: '1766170046379'
+  alias: Climate - Set thermostat one hour before waking up
+  description: ''
+  triggers:
+  - trigger: time
+    at:
+      entity_id: input_datetime.nicole_next_alarm
+      offset: '-1:00'
+  conditions:
+  - condition: state
+    entity_id: person.nicole
+    state:
+    - home
+  actions:
+  - action: input_select.select_option
+    metadata: {}
+    target:
+      entity_id: input_select.home_mode
+    data:
+      option: Wind Up
+  mode: single
+- id: '1766421853905'
+  alias: Temp - Reload ecobee every 2 hours
+  description: ''
+  triggers:
+  - trigger: time_pattern
+    hours: /2
+  conditions: []
+  actions:
+  - action: homeassistant.reload_config_entry
+    metadata: {}
+    data:
+      entry_id: ff0f1ddf072f54ca776a985661601475
   mode: single

@@ -4,7 +4,7 @@ fr_thermostat = data.get("fr_thermostat")
 
 # Get the mode of main thermostat.
 current_mode = (hass.states.get(main_thermostat)).state
-workday = (hass.states.get("binary_sensor.eric_workday_sensor")).state
+workday = (hass.states.get("binary_sensor.eric_in_office_workday_sensor")).state
 dt = datetime.datetime.now()
 day_of_week = dt.weekday()
 current_hour = dt.hour
@@ -22,7 +22,7 @@ if ((current_mode != "cool") and (current_mode != "off")):
       logger.warn("Something went wrong, you shouldn't be here.")
   else:
     logger.info("Its a weekday morning. Set to 60.")
-    set_temp = 60
+    set_temp = 62
   logger.info(f"Set operation to heat and temperature to {set_temp}.")
   hass.services.call("climate", "set_temperature", {"entity_id": fr_thermostat, "hvac_mode": "heat", "temperature": set_temp}, False)
 elif (current_mode == "unavailable"):
