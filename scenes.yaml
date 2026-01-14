@@ -29,9 +29,7 @@
       state: locked
     switch.main_floor_media_center_plug:
       state: 'off'
-    switch.nicole_desk_personal:
-      state: 'off'
-    switch.nicole_desk_work:
+    switch.nicole_desk:
       state: 'off'
     switch.den_media_center:
       state: 'off'
@@ -50,6 +48,16 @@
       state: 'on'
     input_select.home_mode:
       state: Sleep
+    light.family_room_deck_light_back:
+      state: 'off'
+    light.family_room_deck_light_side:
+      state: 'off'
+    light.grill_lights:
+      state: 'off'
+    light.garage_flood_lights_west:
+      state: 'off'
+    light.driveway_post_and_tree_lights:
+      state: 'off'
   icon: mdi:weather-night
   metadata:
     fan.master_bedroom_fan:
@@ -80,9 +88,7 @@
       entity_only: true
     switch.main_floor_media_center_plug:
       entity_only: true
-    switch.nicole_desk_personal:
-      entity_only: true
-    switch.nicole_desk_work:
+    switch.nicole_desk:
       entity_only: true
     switch.den_media_center:
       entity_only: true

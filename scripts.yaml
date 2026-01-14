@@ -117,9 +117,10 @@ good_morning:
       target:
         entity_id:
         - switch.workshop_battery_wall
-        - switch.nicole_desk_personal
         - switch.klipsch_speakers
         - switch.eric_desk
+        - switch.nicole_desk
+      enabled: true
     - action: light.turn_on
       continue_on_error: true
       metadata: {}
@@ -129,17 +130,6 @@ good_morning:
         - light.stairway_dimmer
       enabled: false
     - choose:
-      - conditions:
-        - condition: state
-          entity_id: binary_sensor.nicole_workday_sensor
-          state: 'on'
-        sequence:
-        - action: switch.turn_on
-          continue_on_error: true
-          metadata: {}
-          data: {}
-          target:
-            entity_id: switch.nicole_desk_work
       - conditions:
         - condition: state
           entity_id: binary_sensor.nicole_workday_sensor
@@ -210,13 +200,12 @@ goodbye:
       entity_id:
       - switch.hair_straightener
       - switch.main_floor_media_center_plug
-      - switch.nicole_desk_work
       - switch.den_media_center
       - switch.workshop_battery_wall
-      - switch.nicole_desk_personal
       - switch.klipsch_speakers
       - switch.family_room_media_center
       - switch.eric_desk
+      - switch.nicole_desk
     enabled: true
   - action: lock.lock
     continue_on_error: true
@@ -225,7 +214,6 @@ goodbye:
     target:
       entity_id:
       - lock.front_door_lock
-      - lock.kitchen_door_lock
       - lock.workshop
   - action: cover.close_cover
     metadata: {}
@@ -366,7 +354,7 @@ watch_tv_main_floor:
     continue_on_error: true
     metadata: {}
     data:
-      brightness_pct: 43
+      brightness_pct: 47
     target:
       entity_id:
       - light.kitchen_under_cabinet_lights
@@ -693,10 +681,9 @@ vacation_mode:
           - switch.den_media_center
           - switch.hair_straightener
           - switch.main_floor_media_center_plug
-          - switch.nicole_desk_work
           - switch.workshop_battery_wall
-          - switch.nicole_desk_personal
           - switch.family_room_media_center
+          - switch.nicole_desk
       - action: remote.turn_off
         continue_on_error: true
         metadata: {}
@@ -798,7 +785,7 @@ goodnight_nicole:
     continue_on_error: true
     target:
       entity_id:
-      - switch.nicole_desk_work
+      - switch.nicole_desk
     data: {}
   alias: Goodnight Nicole
   description: ''

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "minor_version": 1,
+  "minor_version": 2,
   "key": "energy",
   "data": {
     "energy_sources": [
@@ -100,7 +100,7 @@
         "name": "Network Rack"
       },
       {
-        "stat_consumption": "sensor.nicole_desk_combined_energy",
+        "stat_consumption": "sensor.nicole_desk_summation_delivered",
         "name": "Nicole Desk"
       },
       {
@@ -110,10 +110,6 @@
       {
         "stat_consumption": "sensor.misc_smart_devices_energy",
         "name": "Smart Devices"
-      },
-      {
-        "stat_consumption": "sensor.upstairs_refrigerator_energy_this_month",
-        "name": "Upstairs Refrigerator"
       },
       {
         "stat_consumption": "sensor.washer_energy",
@@ -143,6 +139,7 @@
         "stat_consumption": "sensor.workshop_hvac_total_energy",
         "name": "Workshop HVAC"
       }
-    ]
+    ],
+    "device_consumption_water": []
   }
 }

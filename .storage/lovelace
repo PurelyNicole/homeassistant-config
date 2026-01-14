@@ -326,15 +326,12 @@
                   "show_empty": false
                 },
                 {
-                  "type": "custom:grocy-chores-card",
-                  "entity": "sensor.grocy_chores",
-                  "title": "Chorin'",
-                  "show_quantity": 5,
-                  "show_days": 3,
-                  "show_assigned": false,
-                  "show_last_tracked": true,
-                  "show_last_tracked_by": false,
-                  "show_track_button": true
+                  "display_order": "duedate_asc",
+                  "type": "todo-list",
+                  "entity": "todo.chores",
+                  "hide_completed": true,
+                  "hide_create": true,
+                  "hide_section_headers": true
                 }
               ]
             }
@@ -992,12 +989,13 @@
                     "motion"
                   ],
                   "sensor_classes": [],
-                  "features_position": "bottom",
                   "display_type": "compact",
+                  "features_position": "bottom",
                   "type": "area",
                   "area": "basement",
                   "color": "",
-                  "navigation_path": "/dashboard-areas/areas-basement"
+                  "navigation_path": "/dashboard-areas/areas-basement",
+                  "vertical": false
                 },
                 {
                   "alert_classes": [
@@ -1005,14 +1003,16 @@
                     "door"
                   ],
                   "sensor_classes": [
-                    "temperature"
+                    "temperature",
+                    "humidity"
                   ],
-                  "features_position": "bottom",
                   "display_type": "compact",
+                  "features_position": "bottom",
                   "type": "area",
                   "area": "utility_room",
                   "color": "",
-                  "navigation_path": "/dashboard-areas/areas-utility_room"
+                  "navigation_path": "/dashboard-areas/areas-utility_room",
+                  "vertical": false
                 },
                 {
                   "type": "heading",
@@ -1040,14 +1040,16 @@
                   "alert_classes": [],
                   "sensor_classes": [
                     "temperature",
+                    "humidity",
                     "pm25"
                   ],
-                  "features_position": "bottom",
                   "display_type": "compact",
+                  "features_position": "bottom",
                   "type": "area",
                   "area": "outdoors",
                   "color": "",
-                  "navigation_path": "/dashboard-areas/areas-outdoors"
+                  "navigation_path": "/dashboard-areas/areas-outdoors",
+                  "vertical": false
                 }
               ]
             }
@@ -1556,8 +1558,8 @@
                       "type": "divider"
                     },
                     {
-                      "entity": "sensor.basement_climate_basement_temperature",
-                      "name": "Basement"
+                      "entity": "sensor.utility_room_climate_temperature",
+                      "name": "Utility Room"
                     },
                     {
                       "entity": "sensor.garage_sensor_air_temperature",
@@ -1628,8 +1630,8 @@
                       "type": "divider"
                     },
                     {
-                      "entity": "sensor.basement_climate_basement_humidity",
-                      "name": "Basement"
+                      "entity": "sensor.utility_room_climate_humidity",
+                      "name": "Utility Room"
                     },
                     {
                       "entity": "sensor.garage_sensor_humidity",
@@ -2045,6 +2047,10 @@
                       "name": "Kitchen"
                     },
                     {
+                      "entity": "binary_sensor.entryway_nightlight_motion",
+                      "name": "Entryway"
+                    },
+                    {
                       "type": "divider"
                     },
                     {
@@ -2297,15 +2303,11 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "custom:grocy-chores-card",
-                  "entity": "sensor.grocy_chores",
-                  "title": "Chorin'",
-                  "show_quantity": 10,
-                  "show_days": 3,
-                  "show_assigned": false,
-                  "show_last_tracked": true,
-                  "show_last_tracked_by": false,
-                  "show_track_button": true
+                  "display_order": "duedate_asc",
+                  "type": "todo-list",
+                  "entity": "todo.chores",
+                  "hide_create": true,
+                  "hide_section_headers": true
                 }
               ]
             },
@@ -2820,6 +2822,222 @@
                   "needle": true
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Ecowitt Weather Station"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_outdoor_temperature",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_humidity",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_dewpoint",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_feels_like_temperature",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_windchill",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_wind_speed",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_wind_gust",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_max_daily_wind_gust",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_wind_direction",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.ecowitt_weather_station_rain_state_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_rain_rate_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_event_rain_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_hourly_rain_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_daily_rain_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_weekly_rain_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_monthly_rain_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_yearly_rain_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_absolute_pressure",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_relative_pressure",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_vapour_pressure_deficit",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_solar_lux",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_solar_radiation",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_uv_index",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                }
+              ]
             }
           ],
           "max_columns": 4
@@ -3292,7 +3510,6 @@
                   "header_title": "Current Power Usage",
                   "use_solcast": false,
                   "production_entity": "sensor.enphase_combiner_current_power_production",
-                  "forecast_entity": "sensor.forecast_solar_energy_production_today",
                   "show_weather": true,
                   "weather_entity": "weather.ecobee_thermostat",
                   "grid_options": {
@@ -3302,7 +3519,10 @@
                   "self_consumption_entity": "sensor.enphase_combiner_current_power_consumption",
                   "grid_power_entity": "sensor.enphase_combiner_current_net_power_consumption",
                   "invert_grid_power": true,
-                  "color_palette": "classic-solar"
+                  "color_palette": "classic-solar",
+                  "show_battery_indicator": false,
+                  "show_battery_flow": false,
+                  "decimal_places": 2
                 },
                 {
                   "type": "custom:openevse-card",
@@ -3348,6 +3568,20 @@
                     },
                     {
                       "entity": "sensor.envoy_202446023403_voltage_production_ct"
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.ecowitt_weather_station_solar_lux"
+                    },
+                    {
+                      "entity": "sensor.ecowitt_weather_station_uv_index"
+                    },
+                    {
+                      "entity": "sensor.ecowitt_weather_station_solar_radiation"
                     }
                   ]
                 }
@@ -3751,7 +3985,12 @@
                     }
                   ],
                   "title": "Time Of Day"
-                },
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
                 {
                   "type": "entities",
                   "entities": [
@@ -3780,6 +4019,14 @@
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.samsung_printer_toner_level"
+                    }
+                  ]
+                },
                 {
                   "title": "Battery Status",
                   "type": "custom:battery-state-card",
@@ -3847,19 +4094,6 @@
                       }
                     ]
                   }
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "sensor.samsung_printer_toner_level"
-                    }
-                  ]
                 }
               ]
             }
@@ -4254,6 +4488,19 @@
               "cards": [
                 {
                   "type": "markdown",
+                  "content": "## [EcoWitt](http://192.168.40.79/liveData.html)\n\nEcoWitt weather station. There is no password to login."
+                },
+                {
+                  "type": "markdown",
+                  "content": "## [TasmoAdmin](http://192.168.1.50:9541/devices)\n\nManage Tasmota devices."
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
                   "content": "## [Frigate](http://192.168.1.100:8971)\n\nFrigate NVR Software.\n"
                 },
                 {
@@ -4277,15 +4524,6 @@
                 {
                   "type": "markdown",
                   "content": "## [Portainer](http://192.168.1.50:9000)\n\nManage containers."
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "markdown",
-                  "content": "## [TasmoAdmin](http://192.168.1.50:9541/devices)\n\nManage Tasmota devices."
                 }
               ]
             },

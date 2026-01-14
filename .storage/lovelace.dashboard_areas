@@ -1203,16 +1203,22 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "automation.basement_control_basement_lights_with_motion"
+                      "entity": "automation.basement_control_basement_lights_with_motion",
+                      "name": "Motion Lights"
                     },
                     {
-                      "entity": "automation.basement_control_lights_with_single_switch"
+                      "entity": "automation.basement_control_lights_with_single_switch",
+                      "name": "Control Lights with Landing Switch"
                     },
                     {
-                      "entity": "automation.lighting_turn_on_basement_lights_when_door_opened"
+                      "entity": "automation.lighting_turn_on_basement_lights_when_door_opened",
+                      "name": "Turn on lights with door"
                     },
                     {
                       "entity": "automation.notification_smoke_detector_activated"
+                    },
+                    {
+                      "entity": "automation.notify_rock_tumbler_off_for_1_hour"
                     }
                   ],
                   "state_color": true
@@ -1284,7 +1290,7 @@
                     }
                   ],
                   "type": "tile",
-                  "entity": "light.nicole_nightstand_lamp",
+                  "entity": "light.eric_nightstand_lamp",
                   "features_position": "bottom",
                   "vertical": false,
                   "state_content": [
@@ -1300,7 +1306,7 @@
                     }
                   ],
                   "type": "tile",
-                  "entity": "light.eric_nightstand_lamp",
+                  "entity": "light.nicole_nightstand_lamp",
                   "features_position": "bottom",
                   "vertical": false,
                   "state_content": [
@@ -1379,7 +1385,10 @@
                     {
                       "type": "climate-hvac-modes"
                     }
-                  ]
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 },
                 {
                   "features": [
@@ -1413,17 +1422,6 @@
                   ],
                   "name": "Ceiling Fan",
                   "icon": "mdi:ceiling-fan"
-                },
-                {
-                  "type": "tile",
-                  "entity": "binary_sensor.bedroom_window",
-                  "name": "Window",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ]
                 }
               ]
             },
@@ -1434,10 +1432,6 @@
                   "type": "heading",
                   "heading": "Entertainment",
                   "icon": "mdi:multimedia"
-                },
-                {
-                  "type": "media-control",
-                  "entity": "media_player.bedroom_homepod_2"
                 },
                 {
                   "features": [
@@ -1487,6 +1481,9 @@
                     },
                     {
                       "entity": "script.wind_down_nicole"
+                    },
+                    {
+                      "entity": "script.good_morning"
                     }
                   ]
                 },
@@ -1525,28 +1522,30 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "automation.bedroom_control_nightstand_lamps_with_wall_switch"
+                      "entity": "automation.bedroom_control_nightstand_lamps_with_wall_switch",
+                      "name": "Control Nightstand Lamps with Wall Switch"
                     },
                     {
-                      "entity": "automation.bedroom_turn_off_lights_with_motion"
+                      "entity": "automation.bedroom_turn_off_lights_with_motion",
+                      "name": "Turn  Off Lights with Motion"
                     },
                     {
-                      "entity": "automation.dehumidifier_turn_off_when_windows_open"
+                      "entity": "automation.dehumidifier_turn_off_when_windows_open",
+                      "name": "Turn Off Air Purifier When Window is Open"
                     },
                     {
-                      "entity": "automation.lighting_set_dimmers_to_max_brightness_when_turned_on_during_day"
+                      "entity": "automation.lighting_turn_off_bedroom_closet_light_with_overhead_light",
+                      "name": "Turn Off Closet Light with Wall Switch"
                     },
                     {
-                      "entity": "automation.lighting_turn_off_bedroom_closet_light_with_overhead_light"
-                    },
-                    {
-                      "entity": "automation.switch_master_bedroom_fan_direction_with_hvac_mode"
-                    },
-                    {
-                      "entity": "automation.turn_off_dehumidifiers_and_turn_up_fan_during_peak_hours"
+                      "entity": "automation.switch_master_bedroom_fan_direction_with_hvac_mode",
+                      "name": "Set Fan Direction"
                     },
                     {
                       "entity": "automation.plant_lights"
+                    },
+                    {
+                      "entity": "automation.set_bedjet"
                     }
                   ],
                   "state_color": true
@@ -1569,6 +1568,13 @@
               "show_state": true,
               "show_icon": true,
               "entity": "binary_sensor.bedroom_ecobee_sensor_occupancy"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "binary_sensor.bedroom_window"
             }
           ],
           "subview": true,
@@ -1642,6 +1648,16 @@
               "cards": [
                 {
                   "type": "heading",
+                  "heading": "Entertainment",
+                  "heading_style": "title",
+                  "icon": "mdi:music"
+                },
+                {
+                  "type": "media-control",
+                  "entity": "media_player.closet_room_homepod"
+                },
+                {
+                  "type": "heading",
                   "heading": "Batteries",
                   "heading_style": "title",
                   "icon": "mdi:battery-70"
@@ -1679,10 +1695,12 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "automation.closet_room_control_lights_with_motion"
+                      "entity": "automation.closet_room_control_lights_with_motion",
+                      "name": "Control Lights with Motion"
                     },
                     {
-                      "entity": "automation.lighting_turn_off_closet_room_closet_light_with_overhead_light_2"
+                      "entity": "automation.lighting_turn_off_closet_room_closet_light_with_overhead_light_2",
+                      "name": "Control Lights with Wall Switch"
                     }
                   ],
                   "state_color": true
@@ -4160,6 +4178,22 @@
                 {
                   "features": [
                     {
+                      "type": "toggle"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "switch.hair_straightener",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "icon": "",
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ]
+                },
+                {
+                  "features": [
+                    {
                       "type": "light-brightness"
                     }
                   ],
@@ -4191,19 +4225,17 @@
                   ]
                 },
                 {
+                  "type": "tile",
+                  "entity": "light.green_bathroom_nightlight",
+                  "vertical": false,
+                  "features_position": "bottom",
                   "features": [
                     {
-                      "type": "toggle"
+                      "type": "light-brightness"
+                    },
+                    {
+                      "type": "light-color-temp"
                     }
-                  ],
-                  "type": "tile",
-                  "entity": "switch.hair_straightener",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "icon": "",
-                  "state_content": [
-                    "state",
-                    "last_updated"
                   ]
                 }
               ]
@@ -4221,13 +4253,11 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "automation.control_green_bath_lights_with_motion"
+                      "entity": "automation.control_green_bath_lights_with_motion",
+                      "name": "Control Lights with Motion"
                     },
                     {
                       "entity": "automation.hair_straightener_turn_off_after_30_minutes"
-                    },
-                    {
-                      "entity": "automation.notify_when_moisture_sensor_detects_moisture"
                     }
                   ],
                   "state_color": true
@@ -4254,23 +4284,6 @@
                     "last_updated"
                   ],
                   "name": "Climate",
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.green_bath_motion_sensor_battery",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ],
-                  "name": "Motion Sensor",
                   "icon_tap_action": {
                     "action": "more-info"
                   },
@@ -5753,37 +5766,23 @@
                   "icon": "mdi:shape"
                 },
                 {
+                  "type": "tile",
+                  "grid_options": {
+                    "columns": "full"
+                  },
+                  "entity": "switch.nicole_desk",
+                  "name": "Desk",
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "vertical": false,
                   "features": [
                     {
                       "type": "toggle"
                     }
                   ],
-                  "type": "tile",
-                  "entity": "switch.nicole_desk_personal",
-                  "name": "Desk - Personal",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ]
-                },
-                {
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
-                  ],
-                  "type": "tile",
-                  "entity": "switch.nicole_desk_work",
-                  "name": "Desk - Work",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ],
-                  "icon": "mdi:laptop"
+                  "features_position": "bottom"
                 },
                 {
                   "type": "tile",
@@ -5951,9 +5950,6 @@
                   "entities": [
                     {
                       "entity": "automation.3d_printer_idle_mode"
-                    },
-                    {
-                      "entity": "automation.turn_off_nicole_desk_for_work_at_the_end_of_the_day"
                     },
                     {
                       "entity": "automation.dehumidifier_turn_off_when_windows_open"
@@ -6816,6 +6812,222 @@
                   "state_color": true
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Ecowitt Weather Station"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_outdoor_temperature",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_humidity",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_dewpoint",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_feels_like_temperature",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_windchill",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_wind_speed",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_wind_gust",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_max_daily_wind_gust",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_wind_direction",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.ecowitt_weather_station_rain_state_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_rain_rate_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_event_rain_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_hourly_rain_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_daily_rain_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_weekly_rain_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_monthly_rain_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_yearly_rain_piezo",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_absolute_pressure",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_relative_pressure",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_vapour_pressure_deficit",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_solar_lux",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_solar_radiation",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.ecowitt_weather_station_uv_index",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                }
+              ]
             }
           ],
           "badges": [
@@ -6824,9 +7036,17 @@
               "show_name": false,
               "show_state": true,
               "show_icon": true,
-              "entity": "sensor.workshop_hvac_outdoor_temperature",
+              "entity": "sensor.ecowitt_weather_station_outdoor_temperature",
               "icon": "mdi:thermometer",
               "color": "red"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.ecowitt_weather_station_humidity",
+              "color": "indigo"
             },
             {
               "type": "entity",
@@ -6845,8 +7065,9 @@
               "show_name": false,
               "show_state": true,
               "show_icon": true,
-              "entity": "sensor.current_uv_index",
-              "color": "orange"
+              "entity": "sensor.ecowitt_weather_station_uv_index",
+              "color": "orange",
+              "icon": "mdi:weather-sunny"
             },
             {
               "type": "entity",
@@ -6999,7 +7220,8 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "automation.notification_smoke_detector_activated"
+                      "entity": "automation.notification_smoke_detector_activated",
+                      "name": "Smoke Detector Activiated"
                     }
                   ],
                   "state_color": true
@@ -7214,13 +7436,16 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "automation.dehumidifier_turn_off_when_windows_open"
+                      "entity": "automation.dehumidifier_turn_off_when_windows_open",
+                      "name": "Dehumidifier Off with Windows"
                     },
                     {
-                      "entity": "automation.lighting_control_utility_room_lights_with_door"
+                      "entity": "automation.lighting_control_utility_room_lights_with_door",
+                      "name": "Control Lights with Door"
                     },
                     {
-                      "entity": "automation.notify_when_moisture_sensor_detects_moisture"
+                      "entity": "automation.notify_when_moisture_sensor_detects_moisture",
+                      "name": "Water Sensor Leak Detected"
                     },
                     {
                       "entity": "automation.turn_off_dehumidifiers_and_turn_up_fan_during_peak_hours"
@@ -7247,9 +7472,19 @@
           ],
           "badges": [
             {
-              "entity": "sensor.hot_water_heater_flood_sensor_air_temperature",
               "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.utility_room_climate_temperature",
               "color": "red"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.utility_room_climate_humidity"
             },
             {
               "type": "entity",
