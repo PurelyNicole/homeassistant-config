@@ -5744,6 +5744,23 @@
                   "icon": "mdi:lamp"
                 },
                 {
+                  "type": "tile",
+                  "entity": "light.nicole_office_plant_lights",
+                  "name": "Plant Lights",
+                  "icon": "",
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "features_position": "bottom"
+                },
+                {
                   "features": [
                     {
                       "type": "toggle"

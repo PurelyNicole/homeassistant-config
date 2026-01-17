@@ -1233,6 +1233,9 @@
                     },
                     {
                       "entity": "light.nicole_office_closet_light"
+                    },
+                    {
+                      "entity": "light.nicole_office_plant_lights"
                     }
                   ],
                   "title": "Nicole Office Lights",

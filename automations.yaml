@@ -2828,7 +2828,7 @@
           entity_id:
           - number.simple_plant_days_between_waterings_parlor_palm
           - number.simple_plant_days_between_waterings_parlor_palm_2
-      - alias: Set Pothos
+      - alias: Set Pothos/Philodendron
         action: number.set_value
         metadata: {}
         data:
@@ -2837,6 +2837,8 @@
           entity_id:
           - number.simple_plant_days_between_waterings_entry_pothos
           - number.simple_plant_days_between_waterings_eric_office_pothos
+          - number.simple_plant_days_between_waterings_dark_lord_philodendron
+          - number.simple_plant_days_between_waterings_prince_of_orange_philodendron
       - action: number.set_value
         metadata: {}
         data:
@@ -4849,6 +4851,7 @@
           entity_id:
           - light.den_plant_lights
           - light.bedroom_plant_light
+          - light.nicole_office_plant_lights
     - conditions:
       - condition: trigger
         id:
@@ -4861,6 +4864,7 @@
           entity_id:
           - light.den_plant_lights
           - light.bedroom_plant_light
+          - light.nicole_office_plant_lights
   mode: single
 - id: '1766170046379'
   alias: Climate - Set thermostat one hour before waking up
