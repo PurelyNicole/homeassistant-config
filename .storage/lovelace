@@ -1340,6 +1340,9 @@
                       "entity": "light.basement_lights_south"
                     },
                     {
+                      "entity": "light.paint_closet_light"
+                    },
+                    {
                       "entity": "light.utility_room_light"
                     }
                   ],

@@ -1093,6 +1093,22 @@
                 },
                 {
                   "type": "tile",
+                  "entity": "light.paint_closet_light",
+                  "name": "Paint Closet",
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
                   "entity": "switch.diy_rock_tumbler",
                   "features_position": "bottom",
                   "vertical": false,
@@ -1176,6 +1192,19 @@
                     "battery_size",
                     "last_updated"
                   ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.paint_closet_light_battery",
+                  "name": {
+                    "type": "device"
+                  },
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "vertical": false,
+                  "features_position": "bottom"
                 },
                 {
                   "type": "tile",
