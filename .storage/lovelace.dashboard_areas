@@ -6030,7 +6030,7 @@
               "show_name": false,
               "show_state": true,
               "show_icon": true,
-              "entity": "sensor.nicole_office_air_quality_voc_index"
+              "entity": "sensor.nicole_office_air_quality_carbon_dioxide"
             },
             {
               "type": "entity",
@@ -7719,6 +7719,20 @@
               "show_icon": true,
               "entity": "sensor.workshop_sensor_humidity",
               "color": "indigo"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.workshop_air_quality_pm2_5"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.workshop_air_quality_voc_index"
             },
             {
               "type": "entity",

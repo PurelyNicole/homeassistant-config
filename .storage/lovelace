@@ -1690,12 +1690,17 @@
                   "graph": "line",
                   "type": "sensor",
                   "detail": 2,
-                  "entity": "sensor.nicole_office_air_quality_voc_index",
+                  "entity": "sensor.workshop_air_quality_pm2_5",
                   "hours_to_show": 24,
-                  "name": "Nicole Office VOC",
-                  "grid_options": {
-                    "columns": "full"
-                  }
+                  "name": "Workshop PM2.5"
+                },
+                {
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 2,
+                  "entity": "sensor.workshop_air_quality_voc_index",
+                  "hours_to_show": 24,
+                  "name": "Workshop VOC"
                 },
                 {
                   "type": "history-graph",
@@ -4265,14 +4270,16 @@
                   ],
                   "sensor_classes": [
                     "temperature",
-                    "humidity"
+                    "humidity",
+                    "pm25"
                   ],
-                  "features_position": "bottom",
                   "display_type": "picture",
+                  "features_position": "bottom",
                   "type": "area",
                   "area": "nicole_office",
                   "navigation_path": "/dashboard-areas/areas-nicole_office",
-                  "color": ""
+                  "color": "",
+                  "vertical": false
                 },
                 {
                   "alert_classes": [
