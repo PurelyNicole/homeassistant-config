@@ -134,6 +134,10 @@
                 },
                 {
                   "type": "custom:simple-plant-card",
+                  "device": "c0c7d0ec90bf370f9a988d5d71d473e4"
+                },
+                {
+                  "type": "custom:simple-plant-card",
                   "device": "112c9d4a389bc3dd596a2595d707ff5e"
                 },
                 {
@@ -178,11 +182,23 @@
                 },
                 {
                   "type": "custom:simple-plant-card",
+                  "device": "d96740717cacf4318884480175a807f1"
+                },
+                {
+                  "type": "custom:simple-plant-card",
                   "device": "ae12b70ee306905a49d50be00094772e"
                 },
                 {
                   "type": "custom:simple-plant-card",
                   "device": "a2d961e4660b4adbfeebcea63951425c"
+                },
+                {
+                  "type": "custom:simple-plant-card",
+                  "device": "488ff1095a5aeecbd884100bb776880e"
+                },
+                {
+                  "type": "custom:simple-plant-card",
+                  "device": "f702c31d841b9bf23318abbc03b8d239"
                 }
               ],
               "column_span": 4
@@ -235,11 +251,23 @@
                 },
                 {
                   "type": "custom:simple-plant-card",
+                  "device": "78494afd0c459d654c5e9e9664b6adff"
+                },
+                {
+                  "type": "custom:simple-plant-card",
                   "device": "5fb10050c57f3b18ead58d152812b56d"
                 },
                 {
                   "type": "custom:simple-plant-card",
-                  "device": "c0c7d0ec90bf370f9a988d5d71d473e4"
+                  "device": "8cc6d632d15e0abb8cfd8cb849120081"
+                },
+                {
+                  "type": "custom:simple-plant-card",
+                  "device": "8f09e3a68a9f15d125bf6581e3a780ec"
+                },
+                {
+                  "type": "custom:simple-plant-card",
+                  "device": "acad6d1a7099176322e4b92fda86d901"
                 }
               ],
               "column_span": 4

@@ -1027,14 +1027,16 @@
                   ],
                   "sensor_classes": [
                     "temperature",
-                    "humidity"
+                    "humidity",
+                    "pm25"
                   ],
-                  "features_position": "bottom",
                   "display_type": "compact",
+                  "features_position": "bottom",
                   "type": "area",
                   "area": "workshop",
                   "color": "",
-                  "navigation_path": "/dashboard-areas/areas-workshop"
+                  "navigation_path": "/dashboard-areas/areas-workshop",
+                  "vertical": false
                 },
                 {
                   "alert_classes": [],
