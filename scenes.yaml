@@ -78,8 +78,6 @@
       entity_only: true
     fan.blue_air_fan:
       entity_only: true
-    fan.bedjet_12fa:
-      entity_only: true
     fan.snooz_c0_49_ef_27_a8_62:
       entity_only: true
     lock.front_door_lock:
@@ -105,4 +103,14 @@
     fan.family_room_fan_south:
       entity_only: true
     input_select.home_mode:
+      entity_only: true
+    light.family_room_deck_light_back:
+      entity_only: true
+    light.family_room_deck_light_side:
+      entity_only: true
+    light.grill_lights:
+      entity_only: true
+    light.garage_flood_lights_west:
+      entity_only: true
+    light.driveway_post_and_tree_lights:
       entity_only: true

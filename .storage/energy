@@ -41,11 +41,13 @@
     "device_consumption": [
       {
         "stat_consumption": "sensor.bambu_p1s_energy_today",
-        "name": "3D Printer"
+        "name": "3D Printer",
+        "stat_rate": "sensor.bambu_p1s_energy_power"
       },
       {
         "stat_consumption": "sensor.air_purifiers_combined_energy",
-        "name": "Air Purifiers (Combined)"
+        "name": "Air Purifiers (Combined)",
+        "stat_rate": "sensor.air_purifiers_combined_power"
       },
       {
         "stat_consumption": "sensor.cameras_estimated_energy_use",
@@ -56,12 +58,19 @@
         "name": "Camper (Estimated)"
       },
       {
+        "stat_consumption": "sensor.ceiling_fans_energy",
+        "stat_rate": "sensor.ceiling_fans_power",
+        "name": "Ceiling Fans"
+      },
+      {
         "stat_consumption": "sensor.dehumidifier_energy_today",
-        "name": "Dehumidifier"
+        "name": "Dehumidifier",
+        "stat_rate": "sensor.dehumidifier_energy_power"
       },
       {
         "stat_consumption": "sensor.den_media_center_electric_consumption_kwh",
-        "name": "Den Media Center"
+        "name": "Den Media Center",
+        "stat_rate": "sensor.den_media_center_electric_w_2"
       },
       {
         "stat_consumption": "sensor.dishwasher_energy_estimated",
@@ -69,15 +78,18 @@
       },
       {
         "stat_consumption": "sensor.diy_rock_tumbler_summation_delivered",
-        "name": "DIY Rock Tumbler "
+        "name": "DIY Rock Tumbler ",
+        "stat_rate": "sensor.diy_rock_tumbler_power"
       },
       {
         "stat_consumption": "sensor.eric_desk_summation_delivered",
-        "name": "Eric Desk"
+        "name": "Eric Desk",
+        "stat_rate": "sensor.eric_desk_power"
       },
       {
         "stat_consumption": "sensor.family_room_media_center_energy",
-        "name": "Family Room Media Center"
+        "name": "Family Room Media Center",
+        "stat_rate": "sensor.family_room_media_center_power"
       },
       {
         "stat_consumption": "sensor.garage_network_switch_power_estimated",
@@ -85,35 +97,43 @@
       },
       {
         "stat_consumption": "sensor.hvac_system_energy",
-        "name": "HVAC System"
+        "name": "HVAC System",
+        "stat_rate": "sensor.hvac_system_power"
       },
       {
         "stat_consumption": "sensor.lights_energy",
-        "name": "Lights"
+        "name": "Lights",
+        "stat_rate": "sensor.lights_power"
       },
       {
         "stat_consumption": "sensor.main_floor_media_center_electric_consumption_kwh",
-        "name": "Main Floor Media Center"
+        "name": "Main Floor Media Center",
+        "stat_rate": "sensor.main_floor_media_center_plug_power"
       },
       {
         "stat_consumption": "sensor.network_rack_summation_delivered",
-        "name": "Network Rack"
+        "name": "Network Rack",
+        "stat_rate": "sensor.network_rack_plug_power"
       },
       {
         "stat_consumption": "sensor.nicole_desk_summation_delivered",
-        "name": "Nicole Desk"
+        "name": "Nicole Desk",
+        "stat_rate": "sensor.nicole_desk_power"
       },
       {
         "stat_consumption": "sensor.openevse_usage_this_session",
-        "name": "OpenEVSE"
+        "name": "OpenEVSE",
+        "stat_rate": "sensor.openevse_openevse_current_power_usage_actual"
       },
       {
         "stat_consumption": "sensor.misc_smart_devices_energy",
-        "name": "Smart Devices"
+        "name": "Smart Devices",
+        "stat_rate": "sensor.misc_smart_devices_power"
       },
       {
         "stat_consumption": "sensor.washer_energy",
-        "name": "Washing Machine"
+        "name": "Washing Machine",
+        "stat_rate": "sensor.washer_power"
       },
       {
         "stat_consumption": "sensor.estimated_water_heater_cathcode",
@@ -121,7 +141,8 @@
       },
       {
         "stat_consumption": "sensor.well_pump_power_energy",
-        "name": "Well Pump"
+        "name": "Well Pump",
+        "stat_rate": "sensor.well_pump_power_power"
       },
       {
         "stat_consumption": "sensor.well_water_treatment_power_estimate",
@@ -129,15 +150,18 @@
       },
       {
         "stat_consumption": "sensor.wled_lights_energy_today",
-        "name": "WLED Lights"
+        "name": "WLED Lights",
+        "stat_rate": "sensor.wled_lights_energy_power"
       },
       {
         "stat_consumption": "sensor.workshop_battery_wall_energy_today",
-        "name": "Workshop Battery Wall"
+        "name": "Workshop Battery Wall",
+        "stat_rate": "sensor.workshop_battery_wall_energy_power"
       },
       {
         "stat_consumption": "sensor.workshop_hvac_total_energy",
-        "name": "Workshop HVAC"
+        "name": "Workshop HVAC",
+        "stat_rate": "sensor.workshop_hvac_power"
       }
     ],
     "device_consumption_water": []

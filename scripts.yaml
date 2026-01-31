@@ -571,7 +571,6 @@ energy_saving_mode:
         target:
           entity_id:
           - light.raccoon_lamp
-          - light.nicole_office_floor_lamp
           - light.stairway_dimmer
           - light.kitchenette_led_strip
           - light.step_lights

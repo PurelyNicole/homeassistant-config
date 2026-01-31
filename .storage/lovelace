@@ -1228,9 +1228,6 @@
                       "entity": "light.nicole_office_wall_switch"
                     },
                     {
-                      "entity": "light.nicole_office_floor_lamp"
-                    },
-                    {
                       "entity": "light.raccoon_lamp"
                     },
                     {
@@ -3210,12 +3207,6 @@
                       "entity": "button.3d_printer_stop_printing"
                     },
                     {
-                      "entity": "switch.3d_printer_load_model_data_from_printer"
-                    },
-                    {
-                      "entity": "switch.3d_printer_save_gcode_file_in_ha"
-                    },
-                    {
                       "entity": "automation.3d_printer_idle_mode"
                     }
                   ],
@@ -3251,9 +3242,6 @@
                     },
                     {
                       "entity": "sensor.3d_printer_heatbreak_fan_speed"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_active_tray"
                     },
                     {
                       "entity": "sensor.3d_printer_current_layer"
