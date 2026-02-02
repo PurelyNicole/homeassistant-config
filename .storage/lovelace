@@ -2699,47 +2699,132 @@
           "max_columns": 4
         },
         {
-          "theme": "Backend-selected",
-          "title": "Outdoors",
-          "path": "outdoors",
-          "icon": "mdi:leaf",
-          "badges": [],
-          "cards": [],
           "type": "sections",
+          "max_columns": 4,
+          "title": "Weather",
+          "path": "weather",
+          "icon": "mdi:weather-partly-cloudy",
           "sections": [
             {
               "type": "grid",
               "cards": [
                 {
-                  "show_current": true,
-                  "show_forecast": true,
-                  "type": "weather-forecast",
-                  "entity": "weather.ecobee_thermostat",
-                  "forecast_type": "daily",
-                  "secondary_info_attribute": "humidity"
+                  "type": "custom:nws-alert-card",
+                  "longitude": "-83.3933",
+                  "email": "nicolezeckner@gmail.com",
+                  "title": "Weather Alerts",
+                  "update_interval": 300,
+                  "show_severity_markers": true,
+                  "show_expanded": false,
+                  "title_font_size": 20,
+                  "alert_title_font_size": 16,
+                  "meta_font_size": 14,
+                  "description_font_size": 14,
+                  "alert_entity": "input_text.nws_alert_types",
+                  "nws_zone": "MIZ069",
+                  "latitude": "42.591",
+                  "visibility": [
+                    {
+                      "condition": "state",
+                      "entity": "sensor.nws_alerts",
+                      "state_not": "clear"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 },
                 {
-                  "type": "custom:weather-radar-card",
-                  "frame_count": 10,
-                  "center_latitude": 42.59099219695002,
-                  "center_longitude": -83.39325635707908,
-                  "marker_latitude": 42.59099219695002,
-                  "marker_longitude": -83.39325635707908,
-                  "show_marker": true,
-                  "show_range": true,
-                  "show_zoom": true,
-                  "show_recenter": true,
-                  "show_playback": true,
-                  "zoom_level": 8,
-                  "extra_labels": false,
-                  "show_scale": false,
-                  "static_map": false
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
+                  "type": "custom:weather-forecast-card",
+                  "show_current": true,
+                  "show_forecast": true,
+                  "default_forecast": "daily",
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "entity": "weather.pirateweather",
+                  "temperature_entity": "sensor.ecowitt_weather_station_outdoor_temperature",
+                  "grid_options": {
+                    "columns": "full"
+                  },
+                  "forecast": {
+                    "mode": "chart",
+                    "show_sun_times": true,
+                    "extra_attribute": "precipitation_probability"
+                  },
+                  "forecast_action": {
+                    "tap_action": {
+                      "action": "toggle-forecast"
+                    }
+                  },
+                  "current": {
+                    "secondary_info_attribute": "humidity"
+                  }
+                },
+                {
+                  "type": "custom:apexcharts-card",
+                  "header": {
+                    "show": true,
+                    "title": "24 Hour Temperatures",
+                    "show_states": true,
+                    "colorize_states": true
+                  },
+                  "all_series_config": {
+                    "stroke_width": 2
+                  },
+                  "series": [
+                    {
+                      "entity": "sensor.ecowitt_weather_station_outdoor_temperature",
+                      "name": "Actual Temperature"
+                    },
+                    {
+                      "entity": "sensor.ecowitt_weather_station_feels_like_temperature",
+                      "name": "Feels Like"
+                    },
+                    {
+                      "entity": "sensor.ecowitt_weather_station_windchill",
+                      "name": "Wind Chill"
+                    },
+                    {
+                      "entity": "sensor.ecowitt_weather_station_dewpoint",
+                      "name": "Dewpoint"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "gauge",
+                  "entity": "sensor.ecowitt_weather_station_uv_index",
+                  "max": 13,
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#00e400"
+                    },
+                    {
+                      "from": 3,
+                      "color": "#ffff00"
+                    },
+                    {
+                      "from": 6,
+                      "color": "#ff7e00"
+                    },
+                    {
+                      "from": 8,
+                      "color": "#ff0000"
+                    },
+                    {
+                      "from": 11,
+                      "color": "#8f3f97"
+                    }
+                  ],
+                  "needle": true,
+                  "name": {
+                    "type": "entity"
+                  }
+                },
                 {
                   "type": "gauge",
                   "entity": "sensor.airnow_aqi",
@@ -2831,149 +2916,86 @@
                   ],
                   "needle": true
                 }
-              ]
+              ],
+              "column_span": 2
             },
             {
               "type": "grid",
               "cards": [
                 {
-                  "type": "heading",
-                  "heading": "Ecowitt Weather Station"
+                  "type": "custom:weather-radar-card",
+                  "frame_count": 10,
+                  "center_latitude": 42.59099219695002,
+                  "center_longitude": -83.39325635707908,
+                  "marker_latitude": 42.59099219695002,
+                  "marker_longitude": -83.39325635707908,
+                  "show_marker": true,
+                  "show_range": true,
+                  "show_zoom": true,
+                  "show_recenter": true,
+                  "show_playback": true,
+                  "zoom_level": 8,
+                  "extra_labels": false,
+                  "show_scale": false,
+                  "static_map": false,
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 },
                 {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_outdoor_temperature",
-                  "name": {
-                    "type": "entity"
+                  "type": "custom:barometric-pressure-card",
+                  "entity": "sensor.ecowitt_weather_station_relative_pressure",
+                  "lang": "en",
+                  "unit": "inHg",
+                  "threshold_unit": "inhg",
+                  "gauge_scale": "dual",
+                  "contrast_mode": "light",
+                  "show_range_arcs": true,
+                  "forecast_mode": "zambretti",
+                  "hemisphere": "north",
+                  "season_mode": "auto",
+                  "name": "Relative Pressure",
+                  "grid_options": {
+                    "columns": "full"
                   },
-                  "vertical": false,
-                  "features_position": "bottom"
+                  "dual_sync": true,
+                  "normalize_msl": true,
+                  "temperature_entity": "sensor.ecowitt_weather_station_outdoor_temperature",
+                  "wind_entity": "sensor.ecowitt_weather_station_wind_direction_10m_avg",
+                  "high_inhg": 31.5,
+                  "high_hpa": 0,
+                  "low_inhg": 29.4,
+                  "low_hpa": 0,
+                  "scale_inhg_max": 34,
+                  "scale_inhg_min": 28,
+                  "inhg_label_offset": 23,
+                  "hpa_label_offset": 18,
+                  "gauge_offset_x": 9,
+                  "gauge_offset_y": -25,
+                  "scale_hpa_max": 1151,
+                  "scale_hpa_min": 950,
+                  "scale_hpa_major": 50,
+                  "scale_hpa_minor": 5
                 },
                 {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_humidity",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
+                  "type": "custom:horizon-card"
                 },
                 {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_dewpoint",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
+                  "type": "custom:wu-wind-compass-card",
+                  "entity_direction": "sensor.ecowitt_weather_station_wind_direction_10m_avg",
+                  "size": 160,
+                  "wedge_width_deg": 22.5,
+                  "language": "auto",
+                  "entity_speed": "sensor.ecowitt_weather_station_wind_speed",
+                  "name": "Wind Direction"
                 },
                 {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_feels_like_temperature",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_windchill",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_wind_speed",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_wind_gust",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_max_daily_wind_gust",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_wind_direction",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
-                },
-                {
-                  "type": "tile",
-                  "entity": "binary_sensor.ecowitt_weather_station_rain_state_piezo",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_rain_rate_piezo",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_event_rain_piezo",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_hourly_rain_piezo",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
-                },
-                {
-                  "type": "tile",
+                  "type": "custom:rain-gauge-card",
                   "entity": "sensor.ecowitt_weather_station_daily_rain_piezo",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_weekly_rain_piezo",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
+                  "is_imperial": true,
+                  "show_warning": false,
+                  "show_error": false,
+                  "hourly_rate_entity": "sensor.ecowitt_weather_station_hourly_rain_piezo"
                 },
                 {
                   "type": "tile",
@@ -2982,25 +3004,40 @@
                     "type": "entity"
                   },
                   "vertical": false,
-                  "features_position": "bottom"
-                },
+                  "features": [
+                    {
+                      "type": "trend-graph"
+                    }
+                  ],
+                  "features_position": "bottom",
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 2
+                  }
+                }
+              ],
+              "column_span": 2
+            },
+            {
+              "type": "grid",
+              "cards": [
                 {
                   "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_yearly_rain_piezo",
+                  "entity": "sensor.ecowitt_weather_station_humidity",
                   "name": {
                     "type": "entity"
                   },
                   "vertical": false,
-                  "features_position": "bottom"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_absolute_pressure",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
+                  "features": [
+                    {
+                      "type": "trend-graph"
+                    }
+                  ],
+                  "features_position": "bottom",
+                  "grid_options": {
+                    "columns": 10,
+                    "rows": 2
+                  }
                 },
                 {
                   "type": "tile",
@@ -3009,16 +3046,16 @@
                     "type": "entity"
                   },
                   "vertical": false,
-                  "features_position": "bottom"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_vapour_pressure_deficit",
-                  "name": {
-                    "type": "entity"
-                  },
-                  "vertical": false,
-                  "features_position": "bottom"
+                  "features": [
+                    {
+                      "type": "trend-graph"
+                    }
+                  ],
+                  "features_position": "bottom",
+                  "grid_options": {
+                    "columns": 10,
+                    "rows": 2
+                  }
                 },
                 {
                   "type": "tile",
@@ -3027,30 +3064,515 @@
                     "type": "entity"
                   },
                   "vertical": false,
-                  "features_position": "bottom"
+                  "features": [
+                    {
+                      "type": "trend-graph"
+                    }
+                  ],
+                  "features_position": "bottom",
+                  "grid_options": {
+                    "columns": 10,
+                    "rows": 2
+                  }
                 },
                 {
                   "type": "tile",
+                  "grid_options": {
+                    "columns": 9,
+                    "rows": 2
+                  },
                   "entity": "sensor.ecowitt_weather_station_solar_radiation",
                   "name": {
                     "type": "entity"
                   },
                   "vertical": false,
+                  "features": [
+                    {
+                      "type": "trend-graph"
+                    }
+                  ],
                   "features_position": "bottom"
                 },
                 {
                   "type": "tile",
-                  "entity": "sensor.ecowitt_weather_station_uv_index",
-                  "name": {
-                    "type": "entity"
+                  "grid_options": {
+                    "columns": 9,
+                    "rows": 2
                   },
+                  "entity": "sensor.pirateweather_cloud_coverage",
+                  "name": "Cloud Coverage",
                   "vertical": false,
+                  "features": [
+                    {
+                      "type": "trend-graph"
+                    }
+                  ],
                   "features_position": "bottom"
                 }
-              ]
+              ],
+              "column_span": 4
             }
-          ],
-          "max_columns": 4
+          ]
+        },
+        {
+          "type": "sections",
+          "max_columns": 4,
+          "title": "Solar",
+          "path": "solar",
+          "icon": "mdi:solar-power",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "custom:solar-bar-card",
+                  "show_header": true,
+                  "show_stats": true,
+                  "show_legend": true,
+                  "header_title": "Current Power Usage",
+                  "use_solcast": false,
+                  "production_entity": "sensor.enphase_combiner_current_power_production",
+                  "show_weather": true,
+                  "weather_entity": "weather.ecobee_thermostat",
+                  "grid_options": {
+                    "columns": "full"
+                  },
+                  "inverter_size": 5.2,
+                  "self_consumption_entity": "sensor.enphase_combiner_current_power_consumption",
+                  "grid_power_entity": "sensor.enphase_combiner_current_net_power_consumption",
+                  "invert_grid_power": true,
+                  "color_palette": "classic-solar",
+                  "show_battery_indicator": false,
+                  "show_battery_flow": false,
+                  "decimal_places": 2
+                },
+                {
+                  "type": "custom:openevse-card",
+                  "header": true,
+                  "name": "OpenEVSE",
+                  "feat_soc": false,
+                  "feat_range": false,
+                  "feat_max_range": 125,
+                  "feat_max_energy": 50,
+                  "device_id": "259222c83d28bf1f8c4841f8ebfbad03",
+                  "override_entity": "select.openevse_override_state",
+                  "status_entity": "sensor.openevse_station_status",
+                  "power_entity": "sensor.openevse_current_power_usage",
+                  "current_entity": "sensor.openevse_charging_current",
+                  "charge_rate_entity": "number.openevse_charge_rate",
+                  "vehicle_connected_entity": "binary_sensor.openevse_vehicle_connected",
+                  "charging_status_entity": "sensor.openevse_charging_status",
+                  "session_energy_entity": "sensor.openevse_usage_this_session",
+                  "time_elapsed_entity": "sensor.openevse_charge_time_elapsed",
+                  "wifi_signal_strength_entity": "sensor.openevse_wifi_signal_strength",
+                  "limit_active_entity": "binary_sensor.openevse_limit_active",
+                  "divert_active_entity": "binary_sensor.openevse_divert_active",
+                  "divert_mode_entity": "sensor.openevse_divert_mode",
+                  "pv_charge_rate_entity": "sensor.openevse_pv_charge_rate",
+                  "vehicle_battery_level_entity": "",
+                  "vehicle_range_entity": "",
+                  "optional_entities": []
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.enphase_combiner_current_power_production"
+                    },
+                    {
+                      "entity": "sensor.enphase_combiner_current_power_consumption"
+                    },
+                    {
+                      "entity": "sensor.enphase_combiner_current_net_power_consumption"
+                    },
+                    {
+                      "entity": "sensor.envoy_202446023403_power_factor_production_ct"
+                    },
+                    {
+                      "entity": "sensor.envoy_202446023403_voltage_production_ct"
+                    }
+                  ]
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.ecowitt_weather_station_solar_lux"
+                    },
+                    {
+                      "entity": "sensor.ecowitt_weather_station_uv_index"
+                    },
+                    {
+                      "entity": "sensor.ecowitt_weather_station_solar_radiation"
+                    },
+                    {
+                      "entity": "sensor.pirateweather_cloud_coverage"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.enphase_combiner_current_power_production"
+                    },
+                    {
+                      "entity": "sensor.inverter_a1"
+                    },
+                    {
+                      "entity": "sensor.inverter_a2"
+                    },
+                    {
+                      "entity": "sensor.inverter_a3"
+                    },
+                    {
+                      "entity": "sensor.inverter_a4"
+                    },
+                    {
+                      "entity": "sensor.inverter_a5"
+                    },
+                    {
+                      "entity": "sensor.inverter_a6"
+                    },
+                    {
+                      "entity": "sensor.inverter_a7"
+                    },
+                    {
+                      "entity": "sensor.inverter_a8"
+                    },
+                    {
+                      "entity": "sensor.inverter_a9"
+                    },
+                    {
+                      "entity": "sensor.inverter_b1"
+                    },
+                    {
+                      "entity": "sensor.inverter_b2"
+                    },
+                    {
+                      "entity": "sensor.inverter_b3"
+                    },
+                    {
+                      "entity": "sensor.inverter_b4"
+                    },
+                    {
+                      "entity": "sensor.inverter_b5"
+                    },
+                    {
+                      "entity": "sensor.inverter_b6"
+                    },
+                    {
+                      "entity": "sensor.inverter_b7"
+                    },
+                    {
+                      "entity": "sensor.inverter_b8"
+                    },
+                    {
+                      "entity": "sensor.inverter_b9"
+                    }
+                  ],
+                  "title": "Solar Generation"
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "history-graph",
+                      "entities": [
+                        {
+                          "entity": "sensor.enphase_combiner_current_power_consumption"
+                        }
+                      ],
+                      "hours_to_show": 24,
+                      "title": "Energy Use Past 24 Hours"
+                    },
+                    {
+                      "type": "history-graph",
+                      "entities": [
+                        {
+                          "entity": "sensor.enphase_combiner_current_power_production"
+                        }
+                      ],
+                      "hours_to_show": 24,
+                      "title": "Total PV Output"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:gap-card",
+                  "grid_options": {
+                    "columns": 10,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b8",
+                      "name": "B8",
+                      "icon": "",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b5",
+                      "name": "B5",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b6",
+                      "name": "B6",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b3",
+                      "name": "B3",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a9",
+                      "name": "A9",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a8",
+                      "name": "A8",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a7",
+                      "name": "A7",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    }
+                  ],
+                  "columns": 7,
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 4
+                  },
+                  "title": "Solar Array"
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b9",
+                      "name": "B9",
+                      "icon": "",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b4",
+                      "name": "B4",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b7",
+                      "name": "B7",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b2",
+                      "name": "B2",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a4",
+                      "name": "A4",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a5",
+                      "name": "A5",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a6",
+                      "name": "A6",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    }
+                  ],
+                  "columns": 7,
+                  "grid_options": {
+                    "columns": "full",
+                    "rows": 3
+                  }
+                },
+                {
+                  "type": "custom:gap-card",
+                  "grid_options": {
+                    "columns": 10,
+                    "rows": "auto"
+                  }
+                },
+                {
+                  "square": true,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_b1",
+                      "name": "B1",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a3",
+                      "name": "A3",
+                      "vertical": true,
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ],
+                      "features_position": "bottom"
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a2",
+                      "name": "A2",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "tile",
+                      "entity": "sensor.inverter_a1",
+                      "name": "A1",
+                      "vertical": true,
+                      "features_position": "bottom",
+                      "features": [
+                        {
+                          "type": "trend-graph"
+                        }
+                      ]
+                    }
+                  ],
+                  "columns": 4,
+                  "grid_options": {
+                    "rows": "auto",
+                    "columns": 14
+                  }
+                }
+              ],
+              "column_span": 2
+            }
+          ]
         },
         {
           "type": "sections",
@@ -3492,463 +4014,6 @@
             }
           ],
           "max_columns": 4
-        },
-        {
-          "type": "sections",
-          "max_columns": 4,
-          "title": "Solar",
-          "path": "solar",
-          "icon": "mdi:solar-power",
-          "sections": [
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "custom:solar-bar-card",
-                  "show_header": true,
-                  "show_stats": true,
-                  "show_legend": true,
-                  "header_title": "Current Power Usage",
-                  "use_solcast": false,
-                  "production_entity": "sensor.enphase_combiner_current_power_production",
-                  "show_weather": true,
-                  "weather_entity": "weather.ecobee_thermostat",
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "inverter_size": 5.2,
-                  "self_consumption_entity": "sensor.enphase_combiner_current_power_consumption",
-                  "grid_power_entity": "sensor.enphase_combiner_current_net_power_consumption",
-                  "invert_grid_power": true,
-                  "color_palette": "classic-solar",
-                  "show_battery_indicator": false,
-                  "show_battery_flow": false,
-                  "decimal_places": 2
-                },
-                {
-                  "type": "custom:openevse-card",
-                  "header": true,
-                  "name": "OpenEVSE",
-                  "feat_soc": false,
-                  "feat_range": false,
-                  "feat_max_range": 125,
-                  "feat_max_energy": 50,
-                  "device_id": "259222c83d28bf1f8c4841f8ebfbad03",
-                  "override_entity": "select.openevse_override_state",
-                  "status_entity": "sensor.openevse_station_status",
-                  "power_entity": "sensor.openevse_current_power_usage",
-                  "current_entity": "sensor.openevse_charging_current",
-                  "charge_rate_entity": "number.openevse_charge_rate",
-                  "vehicle_connected_entity": "binary_sensor.openevse_vehicle_connected",
-                  "charging_status_entity": "sensor.openevse_charging_status",
-                  "session_energy_entity": "sensor.openevse_usage_this_session",
-                  "time_elapsed_entity": "sensor.openevse_charge_time_elapsed",
-                  "wifi_signal_strength_entity": "sensor.openevse_wifi_signal_strength",
-                  "limit_active_entity": "binary_sensor.openevse_limit_active",
-                  "divert_active_entity": "binary_sensor.openevse_divert_active",
-                  "divert_mode_entity": "sensor.openevse_divert_mode",
-                  "pv_charge_rate_entity": "sensor.openevse_pv_charge_rate",
-                  "vehicle_battery_level_entity": "",
-                  "vehicle_range_entity": "",
-                  "optional_entities": []
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "sensor.enphase_combiner_current_power_production"
-                    },
-                    {
-                      "entity": "sensor.enphase_combiner_current_power_consumption"
-                    },
-                    {
-                      "entity": "sensor.enphase_combiner_current_net_power_consumption"
-                    },
-                    {
-                      "entity": "sensor.envoy_202446023403_power_factor_production_ct"
-                    },
-                    {
-                      "entity": "sensor.envoy_202446023403_voltage_production_ct"
-                    }
-                  ]
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "sensor.ecowitt_weather_station_solar_lux"
-                    },
-                    {
-                      "entity": "sensor.ecowitt_weather_station_uv_index"
-                    },
-                    {
-                      "entity": "sensor.ecowitt_weather_station_solar_radiation"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "sensor.enphase_combiner_current_power_production"
-                    },
-                    {
-                      "entity": "sensor.inverter_a1"
-                    },
-                    {
-                      "entity": "sensor.inverter_a2"
-                    },
-                    {
-                      "entity": "sensor.inverter_a3"
-                    },
-                    {
-                      "entity": "sensor.inverter_a4"
-                    },
-                    {
-                      "entity": "sensor.inverter_a5"
-                    },
-                    {
-                      "entity": "sensor.inverter_a6"
-                    },
-                    {
-                      "entity": "sensor.inverter_a7"
-                    },
-                    {
-                      "entity": "sensor.inverter_a8"
-                    },
-                    {
-                      "entity": "sensor.inverter_a9"
-                    },
-                    {
-                      "entity": "sensor.inverter_b1"
-                    },
-                    {
-                      "entity": "sensor.inverter_b2"
-                    },
-                    {
-                      "entity": "sensor.inverter_b3"
-                    },
-                    {
-                      "entity": "sensor.inverter_b4"
-                    },
-                    {
-                      "entity": "sensor.inverter_b5"
-                    },
-                    {
-                      "entity": "sensor.inverter_b6"
-                    },
-                    {
-                      "entity": "sensor.inverter_b7"
-                    },
-                    {
-                      "entity": "sensor.inverter_b8"
-                    },
-                    {
-                      "entity": "sensor.inverter_b9"
-                    }
-                  ],
-                  "title": "Solar Generation"
-                },
-                {
-                  "type": "vertical-stack",
-                  "cards": [
-                    {
-                      "type": "history-graph",
-                      "entities": [
-                        {
-                          "entity": "sensor.enphase_combiner_current_power_consumption"
-                        }
-                      ],
-                      "hours_to_show": 24,
-                      "title": "Energy Use Past 24 Hours"
-                    },
-                    {
-                      "type": "history-graph",
-                      "entities": [
-                        {
-                          "entity": "sensor.enphase_combiner_current_power_production"
-                        }
-                      ],
-                      "hours_to_show": 24,
-                      "title": "Total PV Output"
-                    }
-                  ]
-                },
-                {
-                  "type": "custom:gap-card",
-                  "grid_options": {
-                    "columns": 10,
-                    "rows": "auto"
-                  }
-                },
-                {
-                  "square": false,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_b8",
-                      "name": "B8",
-                      "icon": "",
-                      "vertical": true,
-                      "features_position": "bottom",
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_b5",
-                      "name": "B5",
-                      "vertical": true,
-                      "features_position": "bottom",
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_b6",
-                      "name": "B6",
-                      "vertical": true,
-                      "features_position": "bottom",
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_b3",
-                      "name": "B3",
-                      "vertical": true,
-                      "features_position": "bottom",
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_a9",
-                      "name": "A9",
-                      "vertical": true,
-                      "features_position": "bottom",
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_a8",
-                      "name": "A8",
-                      "vertical": true,
-                      "features_position": "bottom",
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_a7",
-                      "name": "A7",
-                      "vertical": true,
-                      "features_position": "bottom",
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ]
-                    }
-                  ],
-                  "columns": 7,
-                  "grid_options": {
-                    "columns": "full",
-                    "rows": 4
-                  },
-                  "title": "Solar Array"
-                },
-                {
-                  "square": false,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_b9",
-                      "name": "B9",
-                      "icon": "",
-                      "vertical": true,
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ],
-                      "features_position": "bottom"
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_b4",
-                      "name": "B4",
-                      "vertical": true,
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ],
-                      "features_position": "bottom"
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_b7",
-                      "name": "B7",
-                      "vertical": true,
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ],
-                      "features_position": "bottom"
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_b2",
-                      "name": "B2",
-                      "vertical": true,
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ],
-                      "features_position": "bottom"
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_a4",
-                      "name": "A4",
-                      "vertical": true,
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ],
-                      "features_position": "bottom"
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_a5",
-                      "name": "A5",
-                      "vertical": true,
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ],
-                      "features_position": "bottom"
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_a6",
-                      "name": "A6",
-                      "vertical": true,
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ],
-                      "features_position": "bottom"
-                    }
-                  ],
-                  "columns": 7,
-                  "grid_options": {
-                    "columns": "full",
-                    "rows": 3
-                  }
-                },
-                {
-                  "type": "custom:gap-card",
-                  "grid_options": {
-                    "columns": 10,
-                    "rows": "auto"
-                  }
-                },
-                {
-                  "square": true,
-                  "type": "grid",
-                  "cards": [
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_b1",
-                      "name": "B1",
-                      "vertical": true,
-                      "features_position": "bottom",
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_a3",
-                      "name": "A3",
-                      "vertical": true,
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ],
-                      "features_position": "bottom"
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_a2",
-                      "name": "A2",
-                      "vertical": true,
-                      "features_position": "bottom",
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "tile",
-                      "entity": "sensor.inverter_a1",
-                      "name": "A1",
-                      "vertical": true,
-                      "features_position": "bottom",
-                      "features": [
-                        {
-                          "type": "trend-graph"
-                        }
-                      ]
-                    }
-                  ],
-                  "columns": 4,
-                  "grid_options": {
-                    "rows": "auto",
-                    "columns": 14
-                  }
-                }
-              ],
-              "column_span": 2
-            }
-          ]
         },
         {
           "title": "System",
