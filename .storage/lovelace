@@ -2955,27 +2955,29 @@
                   "hemisphere": "north",
                   "season_mode": "auto",
                   "name": "Relative Pressure",
-                  "grid_options": {
-                    "columns": "full"
-                  },
                   "dual_sync": true,
-                  "normalize_msl": true,
+                  "normalize_msl": false,
                   "temperature_entity": "sensor.ecowitt_weather_station_outdoor_temperature",
                   "wind_entity": "sensor.ecowitt_weather_station_wind_direction_10m_avg",
-                  "high_inhg": 31.5,
-                  "high_hpa": 0,
-                  "low_inhg": 29.4,
-                  "low_hpa": 0,
-                  "scale_inhg_max": 34,
-                  "scale_inhg_min": 28,
+                  "high_inhg": 30.2,
+                  "high_hpa": 1023,
+                  "low_inhg": 29.5,
+                  "low_hpa": 999,
+                  "scale_inhg_max": 31,
+                  "scale_inhg_min": 29,
                   "inhg_label_offset": 23,
-                  "hpa_label_offset": 18,
+                  "hpa_label_offset": 25,
                   "gauge_offset_x": 9,
                   "gauge_offset_y": -25,
-                  "scale_hpa_max": 1151,
-                  "scale_hpa_min": 950,
-                  "scale_hpa_major": 50,
-                  "scale_hpa_minor": 5
+                  "scale_hpa_max": 1050,
+                  "scale_hpa_min": 980,
+                  "scale_hpa_major": 10,
+                  "scale_hpa_minor": 2,
+                  "show_trend": true,
+                  "show_level": false,
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 },
                 {
                   "type": "custom:horizon-card"
