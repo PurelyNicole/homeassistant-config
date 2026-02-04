@@ -100,7 +100,7 @@
       target:
         entity_id:
         - switch.main_floor_media_center_plug
-        - switch.family_room_media_center
+        - switch.family_room_media_center_top
   mode: parallel
   max: 10
 - id: goodnight_2am
@@ -2339,7 +2339,7 @@
     target:
       entity_id:
       - switch.main_floor_media_center_plug
-      - switch.family_room_media_center
+      - switch.family_room_media_center_top
   mode: single
 - id: '1748350438976'
   alias: Turn off printer power if idle for 12 hours

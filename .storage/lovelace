@@ -3865,15 +3865,15 @@
                   }
                 },
                 {
+                  "type": "tile",
+                  "entity": "switch.family_room_media_center_top",
+                  "vertical": false,
                   "features": [
                     {
                       "type": "toggle"
                     }
                   ],
-                  "type": "tile",
-                  "entity": "switch.family_room_media_center",
-                  "features_position": "inline",
-                  "vertical": false
+                  "features_position": "inline"
                 },
                 {
                   "type": "media-control",
@@ -3881,7 +3881,7 @@
                   "visibility": [
                     {
                       "condition": "state",
-                      "entity": "switch.family_room_media_center",
+                      "entity": "switch.family_room_media_center_top",
                       "state": "on"
                     }
                   ]
@@ -4562,19 +4562,6 @@
                 },
                 {
                   "type": "markdown",
-                  "content": "## [TasmoAdmin](http://192.168.1.50:9541/devices)\n\nManage Tasmota devices."
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "markdown",
-                  "content": "## [Frigate](http://192.168.1.100:8971)\n\nFrigate NVR Software.\n"
-                },
-                {
-                  "type": "markdown",
                   "content": "## [UniFi](https://192.168.1.1/network/default/dashboard)\n\nDoes not use HA password."
                 }
               ]
@@ -4584,7 +4571,7 @@
               "cards": [
                 {
                   "type": "markdown",
-                  "content": "## [HortusFox](http://192.168.1.100:7568)\n\nHouseplant care."
+                  "content": "## [Frigate](http://192.168.1.100:8971)\n\nFrigate NVR Software.\n"
                 }
               ]
             },
@@ -4594,6 +4581,15 @@
                 {
                   "type": "markdown",
                   "content": "## [Portainer](http://192.168.1.50:9000)\n\nManage containers."
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [TasmoAdmin](http://192.168.1.50:9541/devices)\n\nManage Tasmota devices."
                 }
               ]
             },

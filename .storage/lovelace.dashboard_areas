@@ -3145,16 +3145,16 @@
                   "icon": "mdi:multimedia"
                 },
                 {
+                  "type": "tile",
+                  "entity": "switch.family_room_media_center_top",
+                  "name": "Media Center",
+                  "vertical": false,
                   "features": [
                     {
                       "type": "toggle"
                     }
                   ],
-                  "type": "tile",
-                  "entity": "switch.family_room_media_center",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "name": "Media Center"
+                  "features_position": "bottom"
                 },
                 {
                   "features": [
@@ -3174,7 +3174,7 @@
                   "visibility": [
                     {
                       "condition": "state",
-                      "entity": "switch.family_room_media_center",
+                      "entity": "switch.family_room_media_center_top",
                       "state": "on"
                     }
                   ]

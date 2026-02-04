@@ -35,7 +35,7 @@
       state: 'off'
     switch.workshop_battery_wall:
       state: 'off'
-    switch.family_room_media_center:
+    switch.family_room_media_center_top:
       state: 'off'
     switch.klipsch_speakers:
       state: 'off'
@@ -92,7 +92,7 @@
       entity_only: true
     switch.workshop_battery_wall:
       entity_only: true
-    switch.family_room_media_center:
+    switch.family_room_media_center_top:
       entity_only: true
     switch.klipsch_speakers:
       entity_only: true

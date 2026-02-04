@@ -142,7 +142,7 @@ good_morning:
           target:
             entity_id:
             - switch.main_floor_media_center_plug
-            - switch.family_room_media_center
+            - switch.family_room_media_center_top
     - if:
       - condition: state
         entity_id: binary_sensor.eric_in_office_workday_sensor
@@ -154,7 +154,7 @@ good_morning:
         target:
           entity_id:
           - switch.eric_desk
-          - switch.family_room_media_center
+          - switch.family_room_media_center_top
   - if:
     - condition: state
       entity_id: group.anyone_asleep
@@ -203,9 +203,9 @@ goodbye:
       - switch.den_media_center
       - switch.workshop_battery_wall
       - switch.klipsch_speakers
-      - switch.family_room_media_center
       - switch.eric_desk
       - switch.nicole_desk
+      - switch.family_room_media_center_top
     enabled: true
   - action: lock.lock
     continue_on_error: true
@@ -681,8 +681,8 @@ vacation_mode:
           - switch.hair_straightener
           - switch.main_floor_media_center_plug
           - switch.workshop_battery_wall
-          - switch.family_room_media_center
           - switch.nicole_desk
+          - switch.family_room_media_center_top
       - action: remote.turn_off
         continue_on_error: true
         metadata: {}
