@@ -80,13 +80,6 @@ goodnight:
     target:
       entity_id: input_select.home_mode
     enabled: true
-  - action: switch.turn_off
-    continue_on_error: true
-    metadata: {}
-    data: {}
-    target:
-      entity_id: switch.christmas_tree
-    enabled: false
   description: ''
   icon: mdi:weather-night
 good_morning:
@@ -206,6 +199,7 @@ goodbye:
       - switch.eric_desk
       - switch.nicole_desk
       - switch.family_room_media_center_top
+      - switch.filament_dry_box
     enabled: true
   - action: lock.lock
     continue_on_error: true
@@ -683,6 +677,7 @@ vacation_mode:
           - switch.workshop_battery_wall
           - switch.nicole_desk
           - switch.family_room_media_center_top
+          - switch.filament_dry_box
       - action: remote.turn_off
         continue_on_error: true
         metadata: {}

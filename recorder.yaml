@@ -12,7 +12,6 @@ exclude:
     - binary_sensor.3d_printer_*
     - fan.3d_printer_*
     - select.3d_printer_*
-    - sensor.3d_printer_*
     - switch.3d_printer_*
     # Doorbell Entities
     - select.doorbell_*

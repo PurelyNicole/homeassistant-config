@@ -15,6 +15,10 @@
       {
         "name": "Good Morning Eric",
         "id": "good_morning_eric"
+      },
+      {
+        "id": "reset_3d_printer_filter_hours_remaining",
+        "name": "Reset 3D Printer Filter Hours Remaining"
       }
     ]
   }

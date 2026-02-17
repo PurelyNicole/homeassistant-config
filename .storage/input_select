@@ -15,6 +15,23 @@
           "Wind Down",
           "Wind Up"
         ]
+      },
+      {
+        "id": "current_printer_filament",
+        "name": "Current Printer Filament",
+        "options": [
+          "Bambu Black ABS",
+          "Bambu Matte Plum PLA",
+          "eSun Pine Green PLA",
+          "Overture Black PETG",
+          "Overture Black PLA",
+          "Overture Green PLA",
+          "Overture Green-Blue Silk PLA",
+          "Overture White PLA",
+          "Polymaker Teal ASA",
+          "Sunlu Green PETG"
+        ],
+        "icon": "mdi:movie-roll"
       }
     ]
   }

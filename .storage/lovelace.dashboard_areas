@@ -5876,14 +5876,26 @@
                   "entity": "switch.bambu_p1s",
                   "features_position": "bottom",
                   "vertical": false,
-                  "grid_options": {
-                    "columns": "full"
-                  },
                   "name": "Printer Plug",
                   "state_content": [
                     "state",
                     "last_updated"
                   ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "switch.filament_dry_box",
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "features_position": "bottom"
                 },
                 {
                   "type": "custom:ha-bambulab-print_status-card",
@@ -5917,6 +5929,20 @@
                       "state_not": "unavailable"
                     }
                   ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "input_number.3d_printer_filter_hours_remaining",
+                  "name": "Filter Hours Remaining",
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "input_button.reset_3d_printer_filter_hours_remaining",
+                  "name": "Reset Filter Hours Remaining",
+                  "vertical": false,
+                  "features_position": "bottom"
                 }
               ]
             },

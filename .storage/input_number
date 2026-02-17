@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_number",
+  "data": {
+    "items": [
+      {
+        "id": "master_hvac_booster_override_speed",
+        "min": 0.0,
+        "max": 100.0,
+        "name": "Master HVAC Booster Override Speed",
+        "icon": "mdi:speedometer",
+        "step": 1.0,
+        "mode": "slider"
+      },
+      {
+        "id": "3d_printer_filter_hours_remaining",
+        "min": 0.0,
+        "max": 600.0,
+        "name": "3D Printer Filter Hours Remaining",
+        "icon": "mdi:air-filter",
+        "step": 1.0,
+        "mode": "box"
+      },
+      {
+        "id": "esun_pine_green_filament",
+        "min": 0.0,
+        "max": 1000.0,
+        "mode": "box",
+        "step": 1.0,
+        "unit_of_measurement": "grams",
+        "name": "eSun Pine Green PLA",
+        "icon": "mdi:movie-roll"
+      },
+      {
+        "id": "overture_white_pla",
+        "min": 0.0,
+        "max": 1000.0,
+        "name": "Overture White PLA",
+        "mode": "box",
+        "unit_of_measurement": "grams",
+        "step": 1.0,
+        "icon": "mdi:movie-roll"
+      },
+      {
+        "id": "overture_black_pla",
+        "min": 0.0,
+        "max": 1000.0,
+        "name": "Overture Black PLA",
+        "mode": "box",
+        "step": 1.0,
+        "unit_of_measurement": "grams",
+        "icon": "mdi:movie-roll"
+      },
+      {
+        "id": "overture_green_pla",
+        "min": 0.0,
+        "max": 1000.0,
+        "name": "Overture Green PLA",
+        "mode": "box",
+        "step": 1.0,
+        "unit_of_measurement": "grams",
+        "icon": "mdi:movie-roll"
+      },
+      {
+        "id": "overture_green_blue_silk_pla",
+        "min": 0.0,
+        "max": 1000.0,
+        "name": "Overture Green-Blue Silk PLA",
+        "mode": "box",
+        "unit_of_measurement": "grams",
+        "step": 1.0,
+        "icon": "mdi:movie-roll"
+      },
+      {
+        "id": "bambu_matte_plum_pla",
+        "min": 0.0,
+        "max": 1000.0,
+        "name": "Bambu Matte Plum PLA",
+        "mode": "box",
+        "unit_of_measurement": "grams",
+        "step": 1.0,
+        "icon": "mdi:movie-roll"
+      },
+      {
+        "id": "overture_black_petg",
+        "min": 0.0,
+        "max": 1000.0,
+        "name": "Overture Black PETG",
+        "unit_of_measurement": "grams",
+        "mode": "box",
+        "step": 1.0,
+        "icon": "mdi:movie-roll"
+      },
+      {
+        "id": "polymaker_teal_asa",
+        "min": 0.0,
+        "max": 1000.0,
+        "name": "Polymaker Teal ASA",
+        "icon": "mdi:movie-roll",
+        "mode": "box",
+        "unit_of_measurement": "grams",
+        "step": 1.0
+      },
+      {
+        "id": "sunlu_green_petg",
+        "min": 0.0,
+        "max": 1000.0,
+        "name": "Sunlu Green PETG",
+        "icon": "mdi:movie-roll",
+        "mode": "box",
+        "unit_of_measurement": "grams",
+        "step": 1.0
+      },
+      {
+        "id": "bambu_black_abs",
+        "min": 0.0,
+        "max": 1000.0,
+        "name": "Bambu Black ABS",
+        "icon": "mdi:movie-roll",
+        "unit_of_measurement": "grams",
+        "mode": "box",
+        "step": 1.0
+      }
+    ]
+  }
+}
