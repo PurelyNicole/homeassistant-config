@@ -11,6 +11,4 @@ exclude:
     # Shelly
     - binary_sensor.*overheating
     - binary_sensor.*_overpowering
-  entities:
-    - sensor.zigbeebridge_last_restart_time
 

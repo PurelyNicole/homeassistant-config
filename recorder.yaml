@@ -8,11 +8,6 @@ exclude:
     - siren
     - update
   entity_globs:
-    # 3D Printer Entities
-    - binary_sensor.3d_printer_*
-    - fan.3d_printer_*
-    - select.3d_printer_*
-    - switch.3d_printer_*
     # Doorbell Entities
     - select.doorbell_*
     - switch.doorbell_*
@@ -62,6 +57,7 @@ exclude:
     # Simple Plant Sensors
     - binary_sensor.simple_plant_*
     - date.simple_plant_*
+    - number.simple_plant_*
     - select.simple_plant_*
     - sensor.simple_plant_*
     # SmartThings
