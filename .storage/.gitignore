@@ -6,9 +6,10 @@
 !input_boolean
 !input_button
 !input_datetime
+!input_number
 !input_select
 !input_text
-!lovelace
+!lovelace.lovelace
 !energy
 !lovelace.dashboard_areas
 !lovelace.plant_care

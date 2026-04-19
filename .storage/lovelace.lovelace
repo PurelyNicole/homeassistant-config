@@ -1,7 +1,7 @@
 {
   "version": 1,
   "minor_version": 1,
-  "key": "lovelace",
+  "key": "lovelace.lovelace",
   "data": {
     "config": {
       "title": "Possum Den",
@@ -332,6 +332,13 @@
                   "hide_completed": true,
                   "hide_create": true,
                   "hide_section_headers": true
+                }
+              ],
+              "visibility": [
+                {
+                  "condition": "state",
+                  "entity": "person.nicole",
+                  "state": "home"
                 }
               ]
             }
@@ -1346,6 +1353,9 @@
                     },
                     {
                       "entity": "light.utility_room_light"
+                    },
+                    {
+                      "entity": "light.seed_starter_light"
                     }
                   ],
                   "state_color": true,
@@ -2415,18 +2425,24 @@
                         {
                           "type": "tile",
                           "entity": "button.set_dishwasher_to_clean",
+                          "name": "Dishwasher Clean",
+                          "hide_state": true,
+                          "vertical": false,
                           "tap_action": {
                             "action": "toggle"
                           },
-                          "name": "Dishwasher Clean"
+                          "features_position": "bottom"
                         },
                         {
                           "type": "tile",
                           "entity": "button.set_dishwasher_to_dirty",
+                          "name": "Dishwasher Dirty",
+                          "hide_state": true,
+                          "vertical": false,
                           "tap_action": {
                             "action": "toggle"
                           },
-                          "name": "Dishwasher Dirty"
+                          "features_position": "bottom"
                         }
                       ]
                     }
@@ -3159,7 +3175,7 @@
                   "device_id": "259222c83d28bf1f8c4841f8ebfbad03",
                   "override_entity": "select.openevse_override_state",
                   "status_entity": "sensor.openevse_station_status",
-                  "power_entity": "sensor.openevse_current_power_usage",
+                  "power_entity": "sensor.openevse_openevse_current_power_usage_actual",
                   "current_entity": "sensor.openevse_charging_current",
                   "charge_rate_entity": "number.openevse_charge_rate",
                   "vehicle_connected_entity": "binary_sensor.openevse_vehicle_connected",
@@ -3578,7 +3594,7 @@
         },
         {
           "type": "sections",
-          "max_columns": 4,
+          "max_columns": 3,
           "title": "3D Printer",
           "path": "3d-printer",
           "icon": "mdi:printer-3d-nozzle",
@@ -3590,23 +3606,18 @@
                   "camera_view": "auto",
                   "fit_mode": "cover",
                   "type": "picture-glance",
-                  "image": "https://demo.home-assistant.io/stub_config/kitchen.png",
                   "entities": [
                     {
-                      "entity": "button.3d_printer_pause_printing"
+                      "entity": "sensor.3d_printer_print_progress",
+                      "show_state": true,
+                      "icon": "mdi:progress-helper"
                     },
                     {
-                      "entity": "button.3d_printer_resume_printing"
-                    },
-                    {
-                      "entity": "button.3d_printer_stop_printing"
-                    },
-                    {
-                      "entity": "light.3d_printer_chamber_light"
+                      "entity": "sensor.3d_printer_remaining_time",
+                      "show_state": true
                     }
                   ],
                   "title": "3D Printer",
-                  "camera_image": "camera.3d_printer_camera",
                   "visibility": [
                     {
                       "condition": "state",
@@ -3619,13 +3630,29 @@
                       "state": "on"
                     }
                   ],
-                  "entity": "sensor.3d_printer_print_progress"
+                  "camera_image": "camera.3d_printer_camera",
+                  "entity": "sensor.3d_printer_print_status"
+                },
+                {
+                  "type": "tile",
+                  "entity": "switch.bambu_p1s",
+                  "vertical": false,
+                  "features_position": "inline",
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ]
+                },
+                {
+                  "type": "custom:ha-bambulab-print_control-card",
+                  "printer": "7649118e2915b0039fb85c874288af0c"
                 },
                 {
                   "type": "glance",
                   "entities": [
                     {
-                      "entity": "sensor.3d_printer_print_progress"
+                      "entity": "sensor.3d_printer_start_time"
                     },
                     {
                       "entity": "sensor.3d_printer_end_time"
@@ -3648,10 +3675,330 @@
                 },
                 {
                   "type": "tile",
-                  "entity": "sensor.3d_printer_print_progress",
+                  "entity": "sensor.3d_printer_current_stage",
                   "features_position": "bottom",
                   "vertical": false,
-                  "name": "Print Progress"
+                  "name": "Current Stage"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_print_length",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_print_weight",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_current_layer",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_total_layer_count",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "Filter Status",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "tile",
+                  "entity": "input_number.3d_printer_filter_hours_remaining",
+                  "name": "Filter Hours Remaining",
+                  "vertical": false,
+                  "features_position": "bottom",
+                  "features": [
+                    {
+                      "type": "numeric-input",
+                      "style": "buttons"
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "input_button.reset_3d_printer_filter_hours_remaining",
+                  "name": "Reset Filter Hours Remaining",
+                  "icon": "mdi:restart",
+                  "hide_state": true,
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "button"
+                    }
+                  ],
+                  "features_position": "bottom"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Controls",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "tile",
+                  "entity": "number.3d_printer_nozzle_target_temperature",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "numeric-input",
+                      "style": "buttons"
+                    }
+                  ],
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "number.3d_printer_bed_target_temperature",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "numeric-input",
+                      "style": "buttons"
+                    }
+                  ],
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_nozzle_temperature",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_bed_temperature",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "light.3d_printer_chamber_light",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "fan.3d_printer_chamber_fan",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "fan-speed"
+                    }
+                  ],
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "fan.3d_printer_cooling_fan",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "fan-speed"
+                    }
+                  ],
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "fan.3d_printer_aux_fan",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "fan-speed"
+                    }
+                  ],
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "switch.3d_printer_enable_camera",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ],
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "switch.3d_printer_use_image_sensor_camera",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "vertical": false,
+                  "features_position": "bottom",
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ]
+                },
+                {
+                  "type": "heading",
+                  "heading": "Diagnostic",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "tile",
+                  "entity": "button.3d_printer_force_refresh_data"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.3d_printer_hms_errors"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.3d_printer_hybrid_mqtt_blocks_control"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.3d_printer_developer_lan_mode"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_ip_address"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_mqtt_connection_mode"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.3d_printer_print_error"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.3d_printer_mqtt_encryption_firmware"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_sd_card_status"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_wi_fi_signal"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.3d_printer_online"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.3d_printer_firmware_update"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Sensors",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "tile",
+                  "entity": "image.3d_printer_cover_image",
+                  "show_entity_picture": true
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.3d_printer_extruder_filament_state"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_nozzle_size"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_nozzle_type"
+                },
+                {
+                  "type": "tile",
+                  "entity": "image.3d_printer_pick_image",
+                  "show_entity_picture": true
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_print_bed_type"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_print_type"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_printable_objects"
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.3d_printer_recording_timelapse"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_skipped_objects"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.3d_printer_task_name"
                 },
                 {
                   "type": "tile",
@@ -3666,20 +4013,6 @@
                   "features_position": "bottom",
                   "vertical": false,
                   "name": "Energy Today"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.3d_printer_current_stage",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "name": "Current Stage"
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.3d_printer_end_time",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "name": "Print End Time"
                 }
               ]
             },
@@ -3687,128 +4020,624 @@
               "type": "grid",
               "cards": [
                 {
-                  "type": "entities",
-                  "entities": [
+                  "type": "heading",
+                  "heading": "Filaments",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "tile",
+                  "entity": "switch.filament_dry_box",
+                  "vertical": false,
+                  "features": [
                     {
-                      "entity": "switch.bambu_p1s"
-                    },
-                    {
-                      "entity": "number.3d_printer_nozzle_target_temperature",
-                      "name": "Nozzle Target Temperature"
-                    },
-                    {
-                      "entity": "number.3d_printer_bed_target_temperature",
-                      "name": "Bed Target Temperature"
-                    },
-                    {
-                      "entity": "fan.3d_printer_aux_fan"
-                    },
-                    {
-                      "entity": "fan.3d_printer_chamber_fan"
-                    },
-                    {
-                      "entity": "light.3d_printer_chamber_light"
-                    },
-                    {
-                      "entity": "fan.3d_printer_cooling_fan"
-                    },
-                    {
-                      "entity": "select.3d_printer_printing_speed"
-                    },
-                    {
-                      "entity": "switch.3d_printer_enable_camera"
-                    },
-                    {
-                      "entity": "switch.3d_printer_use_image_sensor_camera"
-                    },
-                    {
-                      "entity": "button.3d_printer_pause_printing"
-                    },
-                    {
-                      "entity": "button.3d_printer_resume_printing"
-                    },
-                    {
-                      "entity": "button.3d_printer_stop_printing"
-                    },
-                    {
-                      "entity": "automation.3d_printer_idle_mode"
+                      "type": "toggle"
                     }
                   ],
-                  "title": "Controls",
-                  "state_color": true,
-                  "show_header_toggle": false
+                  "features_position": "bottom",
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": 2
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "button.reset_current_filament",
+                  "hide_state": true,
+                  "vertical": false,
+                  "features": [
+                    {
+                      "type": "button"
+                    }
+                  ],
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "input_select.current_printer_filament",
+                  "vertical": false,
+                  "features_position": "bottom",
+                  "features": [
+                    {
+                      "type": "select-options"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 12,
+                    "rows": 2
+                  }
+                },
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "PLA",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.bambu_indigo_purple_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#482960"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.bambu_indigo_purple_pla",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.bambu_matte_plum_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#9A3F63"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.bambu_matte_plum_pla",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.esun_pine_green_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#375C49"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.esun_pine_green_pla",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.inland_basic_black_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#27272C"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.inland_basic_black_pla",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.inland_basic_white_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#E0E3E3"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.inland_basic_white_pla",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.inland_light_blue_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#079FBF"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.inland_light_blue_pla",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.overture_black_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#2B292E"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.overture_black_pla",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.overture_green_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#318C49"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.overture_green_pla",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.overture_white_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#E7EBE3"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.overture_white_pla",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.polymaker_earth_brown_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#725348"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.polymaker_earth_brown_pla",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.polymaker_wine_burgundy_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#753E4C"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.polymaker_wine_burgundy_pla",
+                      "above": 0
+                    }
+                  ]
                 }
-              ]
+              ],
+              "column_span": 3
             },
             {
               "type": "grid",
               "cards": [
                 {
-                  "type": "entities",
-                  "entities": [
+                  "type": "heading",
+                  "icon": "",
+                  "heading_style": "subtitle",
+                  "heading": "Silk PLA"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.inland_lime_silk_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
                     {
-                      "entity": "sensor.3d_printer_print_status"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_nozzle_temperature"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_bed_temperature"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_aux_fan_speed"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_chamber_fan_speed"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_cooling_fan_speed"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_heatbreak_fan_speed"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_current_layer"
-                    },
-                    {
-                      "entity": "binary_sensor.3d_printer_extruder_filament_state"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_nozzle_size"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_print_bed_type"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_print_length"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_print_weight"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_print_type"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_printable_objects"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_skipped_objects"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_task_name"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_total_layer_count"
-                    },
-                    {
-                      "entity": "sensor.3d_printer_start_time"
+                      "from": 0,
+                      "color": "#74C74D"
                     }
                   ],
-                  "title": "Sensors"
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.inland_lime_silk_pla",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.overture_green_blue_silk_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#4EA2AA"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.overture_green_blue_silk_pla",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.polymaker_bronze_silk_pla",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#Af6b4c"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.polymaker_bronze_silk_pla",
+                      "above": 0
+                    }
+                  ]
                 }
-              ]
+              ],
+              "column_span": 3
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "PETG",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.esun_basic_black_petg",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#353434"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.esun_basic_black_petg",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.inland_clear_petg",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#C0BFBA"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.inland_clear_petg",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.overture_black_petg",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#2F2821"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.overture_black_petg",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.polymaker_green_petg",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#38b837"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.polymaker_green_petg",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.sunlu_green_petg",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#67DB25"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.sunlu_green_petg",
+                      "above": 0
+                    }
+                  ]
+                }
+              ],
+              "column_span": 3
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "icon": "",
+                  "heading": "ASA/ABS",
+                  "heading_style": "subtitle"
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.bambu_black_abs",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#3D3D3C"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.bambu_black_abs",
+                      "above": 0
+                    }
+                  ]
+                },
+                {
+                  "type": "gauge",
+                  "entity": "input_number.polymaker_teal_asa",
+                  "max": 1000,
+                  "min": 0,
+                  "needle": true,
+                  "unit": "g",
+                  "segments": [
+                    {
+                      "from": 0,
+                      "color": "#0094a4"
+                    }
+                  ],
+                  "grid_options": {
+                    "columns": 6,
+                    "rows": "auto"
+                  },
+                  "visibility": [
+                    {
+                      "condition": "numeric_state",
+                      "entity": "input_number.polymaker_teal_asa",
+                      "above": 0
+                    }
+                  ]
+                }
+              ],
+              "column_span": 3
             }
-          ]
+          ],
+          "cards": []
         },
         {
           "title": "Media",
@@ -4562,16 +5391,7 @@
                 },
                 {
                   "type": "markdown",
-                  "content": "## [UniFi](https://192.168.1.1/network/default/dashboard)\n\nDoes not use HA password."
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "markdown",
-                  "content": "## [Frigate](http://192.168.1.100:8971)\n\nFrigate NVR Software.\n"
+                  "content": "## [Jellyfin](http://192.168.1.100:30013/)\n\nMedia server"
                 }
               ]
             },
@@ -4581,6 +5401,10 @@
                 {
                   "type": "markdown",
                   "content": "## [Portainer](http://192.168.1.50:9000)\n\nManage containers."
+                },
+                {
+                  "type": "markdown",
+                  "content": "## [TasmoAdmin](http://192.168.1.50:9541/devices)\n\nManage Tasmota devices."
                 }
               ]
             },
@@ -4589,9 +5413,17 @@
               "cards": [
                 {
                   "type": "markdown",
-                  "content": "## [TasmoAdmin](http://192.168.1.50:9541/devices)\n\nManage Tasmota devices."
+                  "content": "## [TrueNAS](http://192.168.1.100/ui/dashboard)\n\nNAS Admininstration dashboard."
+                },
+                {
+                  "type": "markdown",
+                  "content": "## [UniFi](https://192.168.1.1/network/default/dashboard)\n\nDoes not use HA password."
                 }
               ]
+            },
+            {
+              "type": "grid",
+              "cards": []
             },
             {
               "type": "grid",
@@ -4609,21 +5441,25 @@
               "cards": [
                 {
                   "type": "markdown",
+                  "content": "## [AdGuard Home](/hassio/ingress/a0d7b954_adguard)"
+                },
+                {
+                  "type": "markdown",
                   "content": "## [ESPHome Device Builder](/hassio/ingress/5c53de3b_esphome)"
                 },
                 {
                   "type": "markdown",
                   "content": "## [EmonCMS](/hassio/ingress/60ed1c84_emoncms)"
-                },
-                {
-                  "type": "markdown",
-                  "content": "## [Grafana](/hassio/ingress/a0d7b954_grafana)"
                 }
               ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [Grafana](/hassio/ingress/a0d7b954_grafana)"
+                },
                 {
                   "type": "markdown",
                   "content": "## [InfluxDB](/hassio/ingress/a0d7b954_influxdb)"
@@ -4631,10 +5467,6 @@
                 {
                   "type": "markdown",
                   "content": "## [Matter Server](/hassio/ingress/core_matter_server)"
-                },
-                {
-                  "type": "markdown",
-                  "content": "## [NodeRED](/hassio/ingress/a0d7b954_nodered)"
                 }
               ]
             },
@@ -4643,21 +5475,26 @@
               "cards": [
                 {
                   "type": "markdown",
+                  "content": "## [NodeRED](/hassio/ingress/a0d7b954_nodered)"
+                },
+                {
+                  "type": "markdown",
                   "content": "## [SQLite Web](/hassio/ingress/a0d7b954_sqlite-web)"
                 },
                 {
                   "type": "markdown",
                   "content": "## [Terminal](/hassio/ingress/core_ssh)"
-                },
-                {
-                  "type": "markdown",
-                  "content": "## [VS Code](/hassio/ingress/a0d7b954_vscode)"
                 }
               ]
             },
             {
               "type": "grid",
-              "cards": []
+              "cards": [
+                {
+                  "type": "markdown",
+                  "content": "## [VS Code](/hassio/ingress/a0d7b954_vscode)"
+                }
+              ]
             }
           ],
           "header": {

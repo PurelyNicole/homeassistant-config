@@ -1,4 +1,5 @@
 # Folders
+.cache
 .cloud
 .vscode
 addons_autoscripts

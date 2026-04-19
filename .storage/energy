@@ -1,34 +1,32 @@
 {
   "version": 1,
-  "minor_version": 2,
+  "minor_version": 3,
   "key": "energy",
   "data": {
     "energy_sources": [
       {
         "type": "grid",
-        "flow_from": [
-          {
-            "stat_energy_from": "sensor.net_energy_consumption_off_peak",
-            "stat_cost": null,
-            "entity_energy_price": "sensor.dte_tariff",
-            "number_energy_price": null
-          },
-          {
-            "stat_energy_from": "sensor.net_energy_consumption_on_peak",
-            "stat_cost": null,
-            "entity_energy_price": "sensor.dte_tariff",
-            "number_energy_price": null
-          }
-        ],
-        "flow_to": [
-          {
-            "stat_energy_to": "sensor.net_energy_production",
-            "stat_compensation": null,
-            "entity_energy_price": "sensor.dte_sell_back_rate",
-            "number_energy_price": null
-          }
-        ],
-        "cost_adjustment_day": 0.0
+        "cost_adjustment_day": 0.0,
+        "stat_energy_from": "sensor.net_energy_consumption_off_peak",
+        "stat_cost": null,
+        "entity_energy_price": "sensor.dte_tariff",
+        "number_energy_price": null,
+        "stat_energy_to": "sensor.net_energy_production",
+        "stat_compensation": null,
+        "entity_energy_price_export": "sensor.dte_sell_back_rate",
+        "number_energy_price_export": null
+      },
+      {
+        "type": "grid",
+        "cost_adjustment_day": 0.0,
+        "stat_energy_from": "sensor.net_energy_consumption_on_peak",
+        "stat_cost": null,
+        "entity_energy_price": "sensor.dte_tariff",
+        "number_energy_price": null,
+        "stat_energy_to": null,
+        "stat_compensation": null,
+        "entity_energy_price_export": null,
+        "number_energy_price_export": null
       },
       {
         "type": "solar",
@@ -43,6 +41,11 @@
         "stat_consumption": "sensor.bambu_p1s_energy_today",
         "name": "3D Printer",
         "stat_rate": "sensor.bambu_p1s_energy_power"
+      },
+      {
+        "stat_consumption": "sensor.filament_dry_box_energy_today",
+        "stat_rate": "sensor.filament_dry_box_energy_power",
+        "name": "3D Printer Filament Dry Box"
       },
       {
         "stat_consumption": "sensor.air_purifiers_combined_energy",
