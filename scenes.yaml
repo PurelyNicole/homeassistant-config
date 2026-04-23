@@ -27,6 +27,8 @@
       state: locked
     lock.workshop:
       state: locked
+    lock.kitchen_door_lock:
+      state: locked
     switch.main_floor_media_center_plug:
       state: 'off'
     switch.nicole_desk:
@@ -83,6 +85,8 @@
     lock.front_door_lock:
       entity_only: true
     lock.workshop:
+      entity_only: true
+    lock.kitchen_door_lock:
       entity_only: true
     switch.main_floor_media_center_plug:
       entity_only: true

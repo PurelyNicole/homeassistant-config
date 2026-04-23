@@ -869,12 +869,7 @@
       hours: 0
       minutes: 30
       seconds: 0
-  conditions:
-  - condition: not
-    conditions:
-    - condition: state
-      entity_id: sensor.hair_straightener_energy_power
-      state: '0'
+  conditions: []
   actions:
   - action: switch.turn_off
     metadata: {}
@@ -1080,6 +1075,10 @@
       - condition: state
         entity_id: input_select.home_mode
         state: Sleep
+      - condition: state
+        entity_id: group.anyone_asleep
+        state:
+        - 'on'
     - condition: time
       before: '19:00:00'
       after: 03:00:00
@@ -1420,7 +1419,6 @@
         data: {}
         target:
           entity_id:
-          - switch.dehumidifier
           - switch.dining_room_air_purifier
           - switch.bedroom_air_purifier
           - switch.nicole_office_air_purifier
@@ -1444,7 +1442,6 @@
         data: {}
         target:
           entity_id:
-          - switch.dehumidifier
           - switch.dining_room_air_purifier
           - switch.bedroom_air_purifier
           - switch.nicole_office_air_purifier
@@ -2208,10 +2205,11 @@
   - trigger: state
     entity_id:
     - sensor.3d_printer_current_stage
-    to: idle
+    to:
+    - idle
     for:
       hours: 0
-      minutes: 5
+      minutes: 30
       seconds: 0
   - trigger: state
     entity_id:
@@ -2348,9 +2346,10 @@
   - trigger: state
     entity_id:
     - number.3d_printer_bed_target_temperature
-    to: '0'
+    to:
+    - '0'
     for:
-      hours: 12
+      hours: 1
       minutes: 0
       seconds: 0
   conditions: []
@@ -2490,9 +2489,9 @@
           state: 'off'
         - condition: time
           weekday:
-          - mon
           - wed
-          - fri
+          - tue
+          - thu
         - condition: state
           entity_id: input_select.home_mode
           state: Home
@@ -2501,7 +2500,9 @@
         metadata: {}
         data: {}
         target:
-          entity_id: button.roborock_main_floor_clean_main_floor
+          entity_id:
+          - button.roborock_main_floor_clean_main_floor
+          - button.roborock_downstairs_clean_downstairs
       alias: If Moday, Wednesday, Friday and Vacation Mode is Off
     - conditions:
       - condition: state
@@ -2512,51 +2513,9 @@
         metadata: {}
         data: {}
         target:
-          entity_id: button.roborock_main_floor_clean_main_floor
-  mode: single
-- id: '1752256809004'
-  alias: Roomba Schedule
-  description: ''
-  triggers:
-  - trigger: time
-    at: 09:00:00
-  conditions:
-  - condition: state
-    entity_id: input_boolean.guest_mode
-    state: 'off'
-  actions:
-  - choose:
-    - conditions:
-      - condition: and
-        conditions:
-        - condition: state
-          entity_id: input_boolean.vacation_mode
-          state: 'off'
-        - condition: time
-          weekday:
-          - tue
-          - thu
-        - condition: state
-          entity_id: input_select.home_mode
-          state: Home
-      sequence:
-      - action: vacuum.start
-        metadata: {}
-        data: {}
-        target:
           entity_id:
-          - vacuum.roomba
-    - conditions:
-      - condition: state
-        entity_id: input_boolean.vacation_mode
-        state: 'on'
-      sequence:
-      - action: vacuum.start
-        metadata: {}
-        data: {}
-        target:
-          entity_id:
-          - vacuum.roomba
+          - button.roborock_main_floor_clean_main_floor
+          - button.roborock_downstairs_clean_downstairs
   mode: single
 - id: '1754157399244'
   alias: Turn off Living/Dining Room Lights with Motion
@@ -2757,8 +2716,6 @@
         metadata: {}
         data:
           value: '15'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
@@ -2784,6 +2741,7 @@
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
           - number.simple_plant_days_between_waterings_dracaena
+          - number.simple_plant_days_between_waterings_white_ribbon_plant
       - alias: Set Dragon Trees
         action: number.set_value
         metadata: {}
@@ -2836,10 +2794,20 @@
         metadata: {}
         data:
           value: '12'
+      - alias: Set Peperomia
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '21'
         target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_parlor_palm
-          - number.simple_plant_days_between_waterings_parlor_palm_2
+          entity_id: number.simple_plant_days_between_waterings_marble_peperomia
+      - alias: Set Persian Shield Plant
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '14'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_persian_shield_plant
       - alias: Set Pothos/Philodendron
         action: number.set_value
         metadata: {}
@@ -2861,13 +2829,6 @@
           - number.simple_plant_days_between_waterings_prayer_plant_1
           - number.simple_plant_days_between_waterings_prayer_plant_2
           - number.simple_plant_days_between_waterings_rabbit_foot_prayer_plant
-      - alias: Set Persian Shield Plant
-        action: number.set_value
-        metadata: {}
-        data:
-          value: '14'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_persian_shield_plant
       - alias: Set Purple Passion
         action: number.set_value
         metadata: {}
@@ -2884,6 +2845,13 @@
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_2
+      - alias: Set Rubber Plant
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '10'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_rubber_tree
       - alias: Set Silver Inch Plants
         action: number.set_value
         metadata: {}
@@ -2939,14 +2907,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '12'
         target:
           entity_id: number.simple_plant_days_between_waterings_african_mask_plant
       - alias: Set Aloes
         action: number.set_value
         metadata: {}
         data:
-          value: '33'
+          value: '30'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_short_leaved_aloe
@@ -2955,35 +2923,33 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '12'
         target:
           entity_id: number.simple_plant_days_between_waterings_arrowhead_plant
       - alias: Set Begonia
         action: number.set_value
         metadata: {}
         data:
-          value: '13'
+          value: '12'
         target:
           entity_id: number.simple_plant_days_between_waterings_rex_begonia_red_kiss
       - alias: Set Bromiliads
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
+          value: '14'
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
         data:
-          value: '27'
+          value: '25'
         target:
           entity_id: number.simple_plant_days_between_waterings_cactus
       - alias: Set Crotons
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '8'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_corkscrew_croton
@@ -2992,16 +2958,17 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '14'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
           - number.simple_plant_days_between_waterings_dracaena
+          - number.simple_plant_days_between_waterings_white_ribbon_plant
       - alias: Set Dragon Trees
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '5'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_colorama_dragon_tree
@@ -3011,7 +2978,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '9'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Flapjack Plants
@@ -3025,14 +2992,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '5'
+          value: '4'
         target:
           entity_id: number.simple_plant_days_between_waterings_monstera
       - alias: Set Moonstones
         action: number.set_value
         metadata: {}
         data:
-          value: '32'
+          value: '17'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -3041,11 +3008,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '5'
+      - alias: Set Peperomia
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '18'
         target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_parlor_palm
-          - number.simple_plant_days_between_waterings_parlor_palm_2
+          entity_id: number.simple_plant_days_between_waterings_marble_peperomia
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
@@ -3061,7 +3031,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '12'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_prayer_plant_1
@@ -3078,11 +3048,18 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '6'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_2
+      - alias: Set Rubber Plant
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '9'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_rubber_tree
       - alias: Set Silver Inch Plants
         action: number.set_value
         metadata: {}
@@ -3094,7 +3071,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '30'
+          value: '27'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -3103,7 +3080,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '16'
+          value: '13'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_spider_plant_1
@@ -3119,7 +3096,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '9'
         target:
           entity_id: number.simple_plant_days_between_waterings_umbrella_tree
       - alias: Set Nerve Plants
@@ -3183,13 +3160,11 @@
         metadata: {}
         data:
           value: '12'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
         data:
-          value: '25'
+          value: '22'
         target:
           entity_id: number.simple_plant_days_between_waterings_cactus
       - alias: Set Crotons
@@ -3210,11 +3185,12 @@
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
           - number.simple_plant_days_between_waterings_dracaena
+          - number.simple_plant_days_between_waterings_white_ribbon_plant
       - alias: Set Dragon Trees
         action: number.set_value
         metadata: {}
         data:
-          value: '8'
+          value: '4'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_colorama_dragon_tree
@@ -3231,7 +3207,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '24'
+          value: '22'
         target:
           entity_id: number.simple_plant_days_between_waterings_red_flapjack_plant
       - alias: Set Monstera
@@ -3245,7 +3221,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '30'
+          value: '15'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
@@ -3254,11 +3230,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '9'
+      - alias: Set Peperomia
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '16'
         target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_parlor_palm
-          - number.simple_plant_days_between_waterings_parlor_palm_2
+          entity_id: number.simple_plant_days_between_waterings_marble_peperomia
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
@@ -3291,16 +3270,23 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '23'
+          value: '4'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_2
+      - alias: Set Rubber Plant
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '8'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_rubber_tree
       - alias: Set Silver Inch Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '3'
+          value: '4'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
@@ -3325,7 +3311,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '27'
+          value: '22'
         target:
           entity_id: number.simple_plant_days_between_waterings_string_of_pearls
       - alias: Set Umbrella Trees
@@ -3339,7 +3325,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '3'
+          value: '4'
         target:
           entity_id: number.simple_plant_days_between_waterings_red_nerve_plant
       - alias: Set Persian Shield Plant
@@ -3353,7 +3339,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '23'
+          value: '22'
         target:
           entity_id: number.simple_plant_days_between_waterings_zz_plant
     - conditions:
@@ -3372,7 +3358,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '22'
+          value: '16'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_short_leaved_aloe
@@ -3381,35 +3367,28 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '10'
         target:
           entity_id: number.simple_plant_days_between_waterings_arrowhead_plant
       - alias: Set Begonia
         action: number.set_value
         metadata: {}
         data:
-          value: '7'
+          value: '9'
         target:
           entity_id: number.simple_plant_days_between_waterings_rex_begonia_red_kiss
-      - alias: Set Bromiliads
-        action: number.set_value
-        metadata: {}
-        data:
-          value: '10'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
         data:
-          value: '21'
+          value: '18'
         target:
           entity_id: number.simple_plant_days_between_waterings_cactus
       - alias: Set Crotons
         action: number.set_value
         metadata: {}
         data:
-          value: '5'
+          value: '4'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_corkscrew_croton
@@ -3418,16 +3397,17 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '12'
+          value: '10'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
           - number.simple_plant_days_between_waterings_dracaena
+          - number.simple_plant_days_between_waterings_white_ribbon_plant
       - alias: Set Dragon Trees
         action: number.set_value
         metadata: {}
         data:
-          value: '7'
+          value: '3'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_colorama_dragon_tree
@@ -3437,14 +3417,14 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '7'
+          value: '6'
         target:
           entity_id: number.simple_plant_days_between_waterings_fiddle_leaf_fig
       - alias: Set Flapjack Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '23'
+          value: '18'
         target:
           entity_id: number.simple_plant_days_between_waterings_red_flapjack_plant
       - alias: Set Monstera
@@ -3458,20 +3438,37 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '25'
+          value: '13'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_moonstones
           - number.simple_plant_days_between_waterings_moonstone
+      - alias: Set Nerve Plants
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '3'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_red_nerve_plant
       - alias: Set Parlor Palms
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '8'
+      - alias: Set Peperomia
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '10'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_marble_peperomia
+      - alias: Set Persian Shield Plant
         action: number.set_value
         metadata: {}
         data:
           value: '9'
         target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_parlor_palm
-          - number.simple_plant_days_between_waterings_parlor_palm_2
+          entity_id: number.simple_plant_days_between_waterings_persian_shield_plant
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
@@ -3487,7 +3484,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '14'
+          value: '9'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_prayer_plant_1
@@ -3497,23 +3494,30 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '10'
+          value: '5'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_2
+      - alias: Set Rubber Plant
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '6'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_rubber_tree
       - alias: Set Silver Inch Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '3'
+          value: '4'
         target:
           entity_id: number.simple_plant_days_between_waterings_silver_inch_plant
       - alias: Set Snake Plants
         action: number.set_value
         metadata: {}
         data:
-          value: '21'
+          value: '20'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_black_coral_snake_plant
@@ -3531,7 +3535,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '21'
+          value: '15'
         target:
           entity_id: number.simple_plant_days_between_waterings_string_of_pearls
       - alias: Set Umbrella Trees
@@ -3541,25 +3545,11 @@
           value: '7'
         target:
           entity_id: number.simple_plant_days_between_waterings_umbrella_tree
-      - alias: Set Nerve Plants
-        action: number.set_value
-        metadata: {}
-        data:
-          value: '3'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_red_nerve_plant
-      - alias: Set Persian Shield Plant
-        action: number.set_value
-        metadata: {}
-        data:
-          value: '10'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_persian_shield_plant
       - alias: Set ZZ Plant
         action: number.set_value
         metadata: {}
         data:
-          value: '21'
+          value: '18'
         target:
           entity_id: number.simple_plant_days_between_waterings_zz_plant
     - conditions:
@@ -3602,8 +3592,6 @@
         metadata: {}
         data:
           value: '8'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
@@ -3629,6 +3617,7 @@
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
           - number.simple_plant_days_between_waterings_dracaena
+          - number.simple_plant_days_between_waterings_white_ribbon_plant
       - alias: Set Dragon Trees
         action: number.set_value
         metadata: {}
@@ -3674,10 +3663,6 @@
         metadata: {}
         data:
           value: '8'
-        target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_parlor_palm
-          - number.simple_plant_days_between_waterings_parlor_palm_2
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
@@ -3710,7 +3695,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '8'
+          value: '4'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -3775,6 +3760,20 @@
           value: '15'
         target:
           entity_id: number.simple_plant_days_between_waterings_zz_plant
+      - alias: Set Rubber Plant
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '6'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_rubber_tree
+      - alias: Set Peperomia
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '13'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_marble_peperomia
     - conditions:
       - condition: state
         entity_id: sensor.current_month
@@ -3815,8 +3814,6 @@
         metadata: {}
         data:
           value: '8'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
@@ -3842,6 +3839,7 @@
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
           - number.simple_plant_days_between_waterings_dracaena
+          - number.simple_plant_days_between_waterings_white_ribbon_plant
       - alias: Set Dragon Trees
         action: number.set_value
         metadata: {}
@@ -3887,10 +3885,6 @@
         metadata: {}
         data:
           value: '7'
-        target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_parlor_palm
-          - number.simple_plant_days_between_waterings_parlor_palm_2
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
@@ -3923,7 +3917,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '8'
+          value: '4'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -3988,6 +3982,20 @@
           value: '14'
         target:
           entity_id: number.simple_plant_days_between_waterings_zz_plant
+      - alias: Set Rubber Plant
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '5'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_rubber_tree
+      - alias: Set Peperomia
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '11'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_marble_peperomia
     - conditions:
       - condition: state
         entity_id: sensor.current_month
@@ -4028,8 +4036,6 @@
         metadata: {}
         data:
           value: '8'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
@@ -4055,6 +4061,7 @@
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
           - number.simple_plant_days_between_waterings_dracaena
+          - number.simple_plant_days_between_waterings_white_ribbon_plant
       - alias: Set Dragon Trees
         action: number.set_value
         metadata: {}
@@ -4100,10 +4107,6 @@
         metadata: {}
         data:
           value: '7'
-        target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_parlor_palm
-          - number.simple_plant_days_between_waterings_parlor_palm_2
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
@@ -4136,7 +4139,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '9'
+          value: '4'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -4201,6 +4204,20 @@
           value: '15'
         target:
           entity_id: number.simple_plant_days_between_waterings_zz_plant
+      - alias: Set Rubber Plant
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '5'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_rubber_tree
+      - alias: Set Peperomia
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '10'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_marble_peperomia
     - conditions:
       - condition: state
         entity_id: sensor.current_month
@@ -4241,8 +4258,6 @@
         metadata: {}
         data:
           value: '9'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
@@ -4268,6 +4283,7 @@
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
           - number.simple_plant_days_between_waterings_dracaena
+          - number.simple_plant_days_between_waterings_white_ribbon_plant
       - alias: Set Dragon Trees
         action: number.set_value
         metadata: {}
@@ -4313,10 +4329,6 @@
         metadata: {}
         data:
           value: '9'
-        target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_parlor_palm
-          - number.simple_plant_days_between_waterings_parlor_palm_2
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
@@ -4349,7 +4361,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '7'
+          value: '4'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -4414,6 +4426,20 @@
           value: '17'
         target:
           entity_id: number.simple_plant_days_between_waterings_zz_plant
+      - alias: Set Rubber Plant
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '6'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_rubber_tree
+      - alias: Set Peperomia
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '11'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_marble_peperomia
     - conditions:
       - condition: state
         entity_id: sensor.current_month
@@ -4454,8 +4480,6 @@
         metadata: {}
         data:
           value: '11'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
@@ -4481,6 +4505,7 @@
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
           - number.simple_plant_days_between_waterings_dracaena
+          - number.simple_plant_days_between_waterings_white_ribbon_plant
       - alias: Set Dragon Trees
         action: number.set_value
         metadata: {}
@@ -4526,10 +4551,6 @@
         metadata: {}
         data:
           value: '10'
-        target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_parlor_palm
-          - number.simple_plant_days_between_waterings_parlor_palm_2
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
@@ -4562,7 +4583,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '11'
+          value: '4'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -4627,6 +4648,20 @@
           value: '21'
         target:
           entity_id: number.simple_plant_days_between_waterings_zz_plant
+      - alias: Set Rubber Plant
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '7'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_rubber_tree
+      - alias: Set Peperomia
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '15'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_marble_peperomia
     - conditions:
       - condition: state
         entity_id: sensor.current_month
@@ -4667,8 +4702,6 @@
         metadata: {}
         data:
           value: '13'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
@@ -4694,6 +4727,7 @@
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
           - number.simple_plant_days_between_waterings_dracaena
+          - number.simple_plant_days_between_waterings_white_ribbon_plant
       - alias: Set Dragon Trees
         action: number.set_value
         metadata: {}
@@ -4739,10 +4773,6 @@
         metadata: {}
         data:
           value: '12'
-        target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_parlor_palm
-          - number.simple_plant_days_between_waterings_parlor_palm_2
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
@@ -4775,7 +4805,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '13'
+          value: '4'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -4840,6 +4870,20 @@
           value: '23'
         target:
           entity_id: number.simple_plant_days_between_waterings_zz_plant
+      - alias: Set Rubber Plant
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '8'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_rubber_tree
+      - alias: Set Peperomia
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '18'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_marble_peperomia
     - conditions:
       - condition: state
         entity_id: sensor.current_month
@@ -4880,8 +4924,6 @@
         metadata: {}
         data:
           value: '15'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
@@ -4907,6 +4949,7 @@
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
           - number.simple_plant_days_between_waterings_dracaena
+          - number.simple_plant_days_between_waterings_white_ribbon_plant
       - alias: Set Dragon Trees
         action: number.set_value
         metadata: {}
@@ -4952,10 +4995,6 @@
         metadata: {}
         data:
           value: '13'
-        target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_parlor_palm
-          - number.simple_plant_days_between_waterings_parlor_palm_2
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
@@ -4988,7 +5027,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '15'
+          value: '7'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -5053,6 +5092,20 @@
           value: '27'
         target:
           entity_id: number.simple_plant_days_between_waterings_zz_plant
+      - alias: Set Rubber Plant
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '9'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_rubber_tree
+      - alias: Set Peperomia
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '21'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_marble_peperomia
     - conditions:
       - condition: state
         entity_id: sensor.current_month
@@ -5093,8 +5146,6 @@
         metadata: {}
         data:
           value: '15'
-        target:
-          entity_id: number.simple_plant_days_between_waterings_scarlet_star_bromeliad
       - alias: Set Cacti
         action: number.set_value
         metadata: {}
@@ -5120,6 +5171,7 @@
           entity_id:
           - number.simple_plant_days_between_waterings_striped_dracaena
           - number.simple_plant_days_between_waterings_dracaena
+          - number.simple_plant_days_between_waterings_white_ribbon_plant
       - alias: Set Dragon Trees
         action: number.set_value
         metadata: {}
@@ -5165,10 +5217,6 @@
         metadata: {}
         data:
           value: '12'
-        target:
-          entity_id:
-          - number.simple_plant_days_between_waterings_parlor_palm
-          - number.simple_plant_days_between_waterings_parlor_palm_2
       - alias: Set Pothos
         action: number.set_value
         metadata: {}
@@ -5194,7 +5242,7 @@
         action: number.set_value
         metadata: {}
         data:
-          value: '15'
+          value: '77'
         target:
           entity_id:
           - number.simple_plant_days_between_waterings_purple_heart_spider_wort_1
@@ -5259,6 +5307,20 @@
           value: '14'
         target:
           entity_id: number.simple_plant_days_between_waterings_persian_shield_plant
+      - alias: Set Rubber Plant
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '10'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_rubber_tree
+      - alias: Set Peperomia
+        action: number.set_value
+        metadata: {}
+        data:
+          value: '23'
+        target:
+          entity_id: number.simple_plant_days_between_waterings_marble_peperomia
   mode: single
 - id: '1758915679413'
   alias: Restart OpenEVSE every night at 2:00am
@@ -5373,6 +5435,11 @@
         data: {}
         target:
           entity_id: light.plant_lights
+      - action: light.turn_on
+        metadata: {}
+        target:
+          entity_id: light.seed_starter_light
+        data: {}
     - conditions:
       - condition: trigger
         id:
@@ -5383,6 +5450,11 @@
         data: {}
         target:
           entity_id: light.plant_lights
+      - action: light.turn_off
+        metadata: {}
+        target:
+          entity_id: light.seed_starter_light
+        data: {}
   mode: single
 - id: '1766170046379'
   alias: Climate - Set thermostat one hour before waking up
@@ -5417,4 +5489,18 @@
     metadata: {}
     data:
       entry_id: ff0f1ddf072f54ca776a985661601475
+  mode: single
+- id: '1770823895339'
+  alias: Reset 3D Printer Filter Hours when button pressed
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - input_button.reset_3d_printer_filter_hours_remaining
+  conditions: []
+  actions:
+  - action: input_number.set_value
+    metadata: {}
+    data:
+      value: 600
   mode: single

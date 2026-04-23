@@ -2374,20 +2374,22 @@
                 },
                 {
                   "type": "tile",
-                  "entity": "vacuum.roomba",
+                  "grid_options": {
+                    "columns": "full"
+                  },
+                  "entity": "vacuum.roborock_downstairs",
+                  "vertical": false,
                   "features": [
                     {
                       "type": "vacuum-commands",
                       "commands": [
                         "start_pause",
                         "stop",
-                        "locate"
+                        "clean_spot"
                       ]
                     }
                   ],
-                  "grid_options": {
-                    "columns": "full"
-                  }
+                  "features_position": "bottom"
                 }
               ]
             },
@@ -3652,10 +3654,18 @@
                   "type": "glance",
                   "entities": [
                     {
-                      "entity": "sensor.3d_printer_start_time"
+                      "entity": "sensor.3d_printer_start_time",
+                      "name": {
+                        "type": "entity"
+                      }
                     },
                     {
-                      "entity": "sensor.3d_printer_end_time"
+                      "entity": "sensor.3d_printer_end_time",
+                      "show_last_changed": false,
+                      "show_state": true,
+                      "name": {
+                        "type": "entity"
+                      }
                     }
                   ],
                   "visibility": [

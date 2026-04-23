@@ -553,7 +553,6 @@ energy_saving_mode:
         data: {}
         target:
           entity_id:
-          - switch.dehumidifier
           - switch.bedroom_air_purifier
           - switch.dining_room_air_purifier
           - switch.nicole_office_air_purifier
@@ -592,12 +591,6 @@ energy_saving_mode:
           entity_id: binary_sensor.windows
           state: 'off'
         then:
-        - action: switch.turn_on
-          continue_on_error: true
-          metadata: {}
-          data: {}
-          target:
-            entity_id: switch.dehumidifier
         - alias: If not on vacation...
           if:
           - condition: state

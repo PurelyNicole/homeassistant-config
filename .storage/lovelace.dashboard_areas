@@ -2026,6 +2026,22 @@
                   "icon_tap_action": {
                     "action": "more-info"
                   }
+                },
+                {
+                  "type": "tile",
+                  "entity": "vacuum.roborock_downstairs",
+                  "vertical": false,
+                  "features_position": "bottom",
+                  "features": [
+                    {
+                      "type": "vacuum-commands",
+                      "commands": [
+                        "start_pause",
+                        "stop",
+                        "clean_spot"
+                      ]
+                    }
+                  ]
                 }
               ]
             },
@@ -2251,10 +2267,23 @@
                   "entity": "switch.dining_room_air_purifier",
                   "name": "Air Purifier",
                   "features_position": "bottom",
+                  "vertical": false
+                },
+                {
+                  "type": "tile",
+                  "entity": "vacuum.roborock_main_floor",
                   "vertical": false,
-                  "grid_options": {
-                    "columns": "full"
-                  }
+                  "features_position": "bottom",
+                  "features": [
+                    {
+                      "type": "vacuum-commands",
+                      "commands": [
+                        "start_pause",
+                        "stop",
+                        "clean_spot"
+                      ]
+                    }
+                  ]
                 },
                 {
                   "type": "heading",
@@ -2502,6 +2531,22 @@
                   "grid_options": {
                     "columns": "full"
                   }
+                },
+                {
+                  "type": "tile",
+                  "grid_options": {
+                    "columns": "full"
+                  },
+                  "entity": "sensor.main_floor_hallway_battery",
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "vertical": false,
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "features_position": "bottom"
                 }
               ]
             },
@@ -3043,37 +3088,6 @@
                       "type": "toggle"
                     }
                   ]
-                },
-                {
-                  "type": "heading",
-                  "heading": "Others",
-                  "icon": "mdi:shape"
-                },
-                {
-                  "features": [
-                    {
-                      "type": "vacuum-commands",
-                      "commands": [
-                        "start_pause",
-                        "stop",
-                        "locate"
-                      ]
-                    }
-                  ],
-                  "type": "tile",
-                  "entity": "vacuum.roomba",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "grid_options": {
-                    "columns": "full"
-                  },
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ],
-                  "icon_tap_action": {
-                    "action": "toggle"
-                  }
                 }
               ]
             },
@@ -3334,9 +3348,6 @@
                     },
                     {
                       "entity": "automation.turn_off_appletv_with_musiccast"
-                    },
-                    {
-                      "entity": "automation.roomba_schedule"
                     }
                   ],
                   "state_color": true
@@ -5155,37 +5166,6 @@
                 },
                 {
                   "type": "heading",
-                  "heading": "Others",
-                  "icon": "mdi:shape"
-                },
-                {
-                  "type": "tile",
-                  "entity": "vacuum.roborock_main_floor",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ],
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "features": [
-                    {
-                      "type": "vacuum-commands",
-                      "commands": [
-                        "start_pause",
-                        "stop",
-                        "clean_spot"
-                      ]
-                    }
-                  ],
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "type": "heading",
                   "heading_style": "title",
                   "heading": "Batteries",
                   "icon": "mdi:battery-70"
@@ -5687,7 +5667,7 @@
               "content": "## Nicole Office"
             }
           },
-          "max_columns": 4,
+          "max_columns": 3,
           "sections": [
             {
               "type": "grid",
@@ -5775,6 +5755,36 @@
                     "state",
                     "last_updated"
                   ]
+                },
+                {
+                  "type": "heading",
+                  "heading": "Automations",
+                  "heading_style": "title",
+                  "icon": "mdi:robot"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "automation.3d_printer_idle_mode"
+                    },
+                    {
+                      "entity": "automation.dehumidifier_turn_off_when_windows_open"
+                    },
+                    {
+                      "entity": "automation.nicole_office_turn_off_lights_with_wall_switch"
+                    },
+                    {
+                      "entity": "automation.nicole_office_turn_closet_light_off_on_with_door"
+                    },
+                    {
+                      "entity": "automation.nicole_office_turn_off_lights_when_no_one_in_office"
+                    },
+                    {
+                      "entity": "automation.turn_off_dehumidifiers_and_turn_up_fan_during_peak_hours"
+                    }
+                  ],
+                  "state_color": true
                 }
               ]
             },
@@ -5854,6 +5864,63 @@
                     "state",
                     "last_changed"
                   ]
+                },
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Batteries",
+                  "icon": "mdi:battery-70"
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.nicole_office_closet_door_battery_level",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Closet Door",
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.nicole_office_sensor_battery_level",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Multi Sensor",
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": "full"
+                  }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.nicole_office_window_battery_level",
+                  "features_position": "bottom",
+                  "vertical": false,
+                  "name": "Window",
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "icon_tap_action": {
+                    "action": "more-info"
+                  },
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 }
               ]
             },
@@ -5943,103 +6010,33 @@
                   "name": "Reset Filter Hours Remaining",
                   "vertical": false,
                   "features_position": "bottom"
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading_style": "title",
-                  "heading": "Batteries",
-                  "icon": "mdi:battery-70"
                 },
                 {
-                  "type": "tile",
-                  "entity": "sensor.nicole_office_closet_door_battery_level",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "name": "Closet Door",
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ],
-                  "icon_tap_action": {
-                    "action": "more-info"
+                  "type": "custom:auto-entities",
+                  "card": {
+                    "type": "entities"
                   },
-                  "grid_options": {
-                    "columns": "full"
+                  "filter": {
+                    "include": [
+                      {
+                        "options": {},
+                        "label": "filament",
+                        "sort": {
+                          "method": "entity_id"
+                        }
+                      }
+                    ],
+                    "exclude": [
+                      {
+                        "options": {},
+                        "sort": {
+                          "method": "friendly_name",
+                          "ignore_case": true
+                        },
+                        "entity_id": "input_select.current_printer_filament"
+                      }
+                    ]
                   }
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.nicole_office_sensor_battery_level",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "name": "Multi Sensor",
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ],
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                },
-                {
-                  "type": "tile",
-                  "entity": "sensor.nicole_office_window_battery_level",
-                  "features_position": "bottom",
-                  "vertical": false,
-                  "name": "Window",
-                  "state_content": [
-                    "state",
-                    "last_updated"
-                  ],
-                  "icon_tap_action": {
-                    "action": "more-info"
-                  },
-                  "grid_options": {
-                    "columns": "full"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
-                {
-                  "type": "heading",
-                  "heading": "Automations",
-                  "heading_style": "title",
-                  "icon": "mdi:robot"
-                },
-                {
-                  "type": "entities",
-                  "entities": [
-                    {
-                      "entity": "automation.3d_printer_idle_mode"
-                    },
-                    {
-                      "entity": "automation.dehumidifier_turn_off_when_windows_open"
-                    },
-                    {
-                      "entity": "automation.nicole_office_turn_off_lights_with_wall_switch"
-                    },
-                    {
-                      "entity": "automation.nicole_office_turn_closet_light_off_on_with_door"
-                    },
-                    {
-                      "entity": "automation.nicole_office_turn_off_lights_when_no_one_in_office"
-                    },
-                    {
-                      "entity": "automation.turn_off_dehumidifiers_and_turn_up_fan_during_peak_hours"
-                    }
-                  ],
-                  "state_color": true
                 }
               ]
             }
