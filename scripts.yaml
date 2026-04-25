@@ -554,9 +554,9 @@ energy_saving_mode:
         target:
           entity_id:
           - switch.bedroom_air_purifier
-          - switch.dining_room_air_purifier
           - switch.nicole_office_air_purifier
           - switch.workshop_battery_wall
+          - switch.eric_office_air_purifier
       - action: light.turn_off
         continue_on_error: true
         metadata: {}
@@ -617,9 +617,9 @@ energy_saving_mode:
             target:
               entity_id:
               - switch.bedroom_air_purifier
-              - switch.dining_room_air_purifier
               - switch.nicole_office_air_purifier
               - switch.workshop_battery_wall
+              - switch.eric_office_air_purifier
       - action: climate.turn_on
         metadata: {}
         data: {}
@@ -720,8 +720,8 @@ vacation_mode:
             entity_id:
             - switch.bedroom_air_purifier
             - switch.nicole_office_air_purifier
-            - switch.dining_room_air_purifier
             - switch.workshop_battery_wall
+            - switch.eric_office_air_purifier
         - action: fan.turn_on
           continue_on_error: true
           metadata: {}
@@ -774,6 +774,14 @@ goodnight_nicole:
       entity_id:
       - switch.nicole_desk
     data: {}
+  - action: input_boolean.turn_on
+    metadata: {}
+    target:
+      entity_id: input_boolean.nicole_asleep
+    data: {}
+  - action: script.set_home_mode_to_sleep_when_everyone_asleep_murphy_bed_open_guest_mode_off
+    metadata: {}
+    data: {}
   alias: Goodnight Nicole
   description: ''
   icon: mdi:weather-night
@@ -822,4 +830,53 @@ blue_air_fan_control:
         target:
           entity_id: fan.blue_air_fan
   alias: Blue Air Fan Control
+  description: ''
+goodnight_eric:
+  sequence:
+  - action: light.turn_off
+    metadata: {}
+    target:
+      area_id: eric_office
+    data: {}
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.eric_desk
+    data: {}
+  - action: input_boolean.turn_on
+    metadata: {}
+    target:
+      entity_id: input_boolean.eric_asleep
+    data: {}
+  - action: script.set_home_mode_to_sleep_when_everyone_asleep_murphy_bed_open_guest_mode_off
+    metadata: {}
+    data: {}
+  alias: Goodnight Eric
+  description: ''
+set_home_mode_to_sleep_when_everyone_asleep_murphy_bed_open_guest_mode_off:
+  sequence:
+  - if:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: input_boolean.nicole_asleep
+        state:
+        - 'on'
+      - condition: state
+        entity_id: input_boolean.eric_asleep
+        state:
+        - 'on'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state:
+        - 'off'
+    then:
+    - action: input_select.select_option
+      metadata: {}
+      target:
+        entity_id: input_select.home_mode
+      data:
+        option: Sleep
+  alias: Set Home Mode to Sleep when everyone asleep, Murphy Bed open, Guest Mode
+    off
   description: ''

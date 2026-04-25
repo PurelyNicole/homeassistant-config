@@ -662,6 +662,9 @@
                     },
                     {
                       "entity": "script.goodnight_nicole"
+                    },
+                    {
+                      "entity": "script.goodnight_eric"
                     }
                   ]
                 },
@@ -1668,7 +1671,7 @@
                   "type": "entities",
                   "entities": [
                     {
-                      "entity": "switch.dining_room_air_purifier"
+                      "entity": "switch.eric_office_air_purifier"
                     },
                     {
                       "entity": "switch.bedroom_air_purifier"
@@ -2374,6 +2377,26 @@
                 },
                 {
                   "type": "tile",
+                  "entity": "button.roborock_main_floor_clean_main_floor",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "hide_state": true,
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "button.roborock_main_floor_clean_upstairs",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "hide_state": true,
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
                   "grid_options": {
                     "columns": "full"
                   },
@@ -2390,6 +2413,19 @@
                     }
                   ],
                   "features_position": "bottom"
+                },
+                {
+                  "type": "tile",
+                  "entity": "button.roborock_downstairs_clean_downstairs",
+                  "name": {
+                    "type": "entity"
+                  },
+                  "hide_state": true,
+                  "vertical": false,
+                  "features_position": "bottom",
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 }
               ]
             },

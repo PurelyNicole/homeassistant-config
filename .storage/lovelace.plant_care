@@ -150,7 +150,11 @@
                 },
                 {
                   "type": "custom:simple-plant-card",
-                  "device": "64c15014d16609f0b48924f397a4c886"
+                  "device": "78494afd0c459d654c5e9e9664b6adff"
+                },
+                {
+                  "type": "custom:simple-plant-card",
+                  "device": "aaf6728cb55c763f56fb8a8a084abda9"
                 },
                 {
                   "type": "custom:simple-plant-card",
@@ -178,11 +182,11 @@
                 },
                 {
                   "type": "custom:simple-plant-card",
-                  "device": "f702c31d841b9bf23318abbc03b8d239"
+                  "device": "64c15014d16609f0b48924f397a4c886"
                 },
                 {
                   "type": "custom:simple-plant-card",
-                  "device": "aaf6728cb55c763f56fb8a8a084abda9"
+                  "device": "f702c31d841b9bf23318abbc03b8d239"
                 }
               ],
               "column_span": 4
@@ -232,10 +236,6 @@
                 {
                   "type": "custom:simple-plant-card",
                   "device": "9346af2417d6c267b8a2f4efaf47efd0"
-                },
-                {
-                  "type": "custom:simple-plant-card",
-                  "device": "78494afd0c459d654c5e9e9664b6adff"
                 },
                 {
                   "type": "custom:simple-plant-card",

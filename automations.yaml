@@ -1419,10 +1419,10 @@
         data: {}
         target:
           entity_id:
-          - switch.dining_room_air_purifier
           - switch.bedroom_air_purifier
           - switch.nicole_office_air_purifier
           - switch.blue_air_fan
+          - switch.eric_office_air_purifier
       - alias: Turn off thermostat
         action: climate.set_hvac_mode
         metadata: {}
@@ -1442,9 +1442,9 @@
         data: {}
         target:
           entity_id:
-          - switch.dining_room_air_purifier
           - switch.bedroom_air_purifier
           - switch.nicole_office_air_purifier
+          - switch.eric_office_air_purifier
       - action: script.blue_air_fan_control
         metadata: {}
         data: {}
@@ -2474,7 +2474,7 @@
   description: ''
   triggers:
   - trigger: time
-    at: 09:00:00
+    at: 08:00:00
   conditions:
   - condition: state
     entity_id: input_boolean.guest_mode
@@ -2487,23 +2487,42 @@
         - condition: state
           entity_id: input_boolean.vacation_mode
           state: 'off'
-        - condition: time
-          weekday:
-          - wed
-          - tue
-          - thu
         - condition: state
           entity_id: input_select.home_mode
           state: Home
       sequence:
-      - action: button.press
-        metadata: {}
-        data: {}
-        target:
-          entity_id:
-          - button.roborock_main_floor_clean_main_floor
-          - button.roborock_downstairs_clean_downstairs
-      alias: If Moday, Wednesday, Friday and Vacation Mode is Off
+      - choose:
+        - conditions:
+          - condition: and
+            conditions:
+            - condition: state
+              entity_id: binary_sensor.eric_in_office_workday_sensor
+              state:
+              - 'on'
+            - condition: state
+              entity_id: binary_sensor.nicole_workday_sensor
+              state:
+              - 'on'
+            alias: If it's a workday and Eric is in office
+          - alias: If it's a workday and Eric is WFH
+            condition: and
+            conditions:
+            - condition: state
+              entity_id: binary_sensor.eric_at_home_workday_sensor
+              state:
+              - 'on'
+            - condition: state
+              entity_id: binary_sensor.nicole_workday_sensor
+              state:
+              - 'on'
+          sequence:
+          - action: button.press
+            metadata: {}
+            data: {}
+            target:
+              entity_id:
+              - button.roborock_main_floor_clean_main_floor
+      alias: If it's a workday and Vacation Mode is Off
     - conditions:
       - condition: state
         entity_id: input_boolean.vacation_mode

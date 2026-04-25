@@ -2258,18 +2258,6 @@
                   "icon": "mdi:shape"
                 },
                 {
-                  "features": [
-                    {
-                      "type": "toggle"
-                    }
-                  ],
-                  "type": "tile",
-                  "entity": "switch.dining_room_air_purifier",
-                  "name": "Air Purifier",
-                  "features_position": "bottom",
-                  "vertical": false
-                },
-                {
                   "type": "tile",
                   "entity": "vacuum.roborock_main_floor",
                   "vertical": false,
@@ -2283,7 +2271,10 @@
                         "clean_spot"
                       ]
                     }
-                  ]
+                  ],
+                  "grid_options": {
+                    "columns": "full"
+                  }
                 },
                 {
                   "type": "heading",
@@ -2806,7 +2797,12 @@
                   "icon_tap_action": {
                     "action": "more-info"
                   }
-                },
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
                 {
                   "type": "heading",
                   "icon": "mdi:shape",
@@ -2823,12 +2819,24 @@
                       "type": "toggle"
                     }
                   ]
-                }
-              ]
-            },
-            {
-              "type": "grid",
-              "cards": [
+                },
+                {
+                  "type": "tile",
+                  "entity": "switch.eric_office_air_purifier",
+                  "vertical": false,
+                  "features_position": "bottom",
+                  "features": [
+                    {
+                      "type": "toggle"
+                    }
+                  ]
+                },
+                {
+                  "type": "tile",
+                  "entity": "binary_sensor.murphy_bed",
+                  "vertical": false,
+                  "features_position": "bottom"
+                },
                 {
                   "type": "heading",
                   "icon": "mdi:battery-70",
@@ -2841,9 +2849,6 @@
                   "features_position": "bottom",
                   "vertical": false,
                   "name": "Closet Door - Left",
-                  "grid_options": {
-                    "columns": "full"
-                  },
                   "state_content": [
                     "state",
                     "last_updated"
@@ -2858,9 +2863,6 @@
                   "features_position": "bottom",
                   "vertical": false,
                   "name": "Closet Door - Right",
-                  "grid_options": {
-                    "columns": "full"
-                  },
                   "state_content": [
                     "state",
                     "last_updated"
@@ -2875,9 +2877,6 @@
                   "features_position": "bottom",
                   "vertical": false,
                   "name": "Motion",
-                  "grid_options": {
-                    "columns": "full"
-                  },
                   "state_content": [
                     "state",
                     "battery_size",
@@ -2893,9 +2892,6 @@
                   "features_position": "bottom",
                   "vertical": false,
                   "name": "Smoke Detector",
-                  "grid_options": {
-                    "columns": "full"
-                  },
                   "state_content": [
                     "state",
                     "last_updated"
@@ -2910,9 +2906,6 @@
                   "features_position": "bottom",
                   "vertical": false,
                   "name": "Window",
-                  "grid_options": {
-                    "columns": "full"
-                  },
                   "state_content": [
                     "state",
                     "last_updated"
@@ -2920,12 +2913,36 @@
                   "icon_tap_action": {
                     "action": "more-info"
                   }
+                },
+                {
+                  "type": "tile",
+                  "entity": "sensor.murphy_bed_battery",
+                  "state_content": [
+                    "state",
+                    "last_updated"
+                  ],
+                  "vertical": false,
+                  "features_position": "bottom"
                 }
               ]
             },
             {
               "type": "grid",
               "cards": [
+                {
+                  "type": "heading",
+                  "icon": "mdi:script-text",
+                  "heading": "Scripts",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "script.goodnight_eric"
+                    }
+                  ]
+                },
                 {
                   "type": "heading",
                   "icon": "mdi:robot",
@@ -3526,9 +3543,6 @@
                 {
                   "type": "entities",
                   "entities": [
-                    {
-                      "entity": "script.open_garage_door_start_bmw"
-                    },
                     {
                       "entity": "script.goodnight"
                     }
